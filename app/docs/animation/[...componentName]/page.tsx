@@ -37,7 +37,7 @@ const AnimationDocumentation = () => {
   });
   const [fileContent, setFileContent] = useState("");
   const pathName = usePathname();
-  const componentName = pathName.split("/")?.pop();
+  const componentName: string = pathName.split("/")?.pop() || "text-writer";
 
   const fetchFileContent = async (file: string) => {
     try {
@@ -54,8 +54,12 @@ const AnimationDocumentation = () => {
   }, [componentName]);
 
   useEffect(() => {
-    if (COMPONENT_CONFIG["animation"]?.[componentName]) {
-      setComponentConfig(COMPONENT_CONFIG["animation"][componentName]);
+    if (
+      COMPONENT_CONFIG["animation"]?.[
+        componentName as any
+      ] as ComponentConfigType
+    ) {
+      setComponentConfig(COMPONENT_CONFIG["animation"]?.[componentName]);
     } else {
       redirect("/");
     }

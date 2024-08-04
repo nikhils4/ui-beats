@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
-import { ThemeProvider } from "@/components/theme-provider";
-
-const inter = Inter({ subsets: ["latin"] });
+import { ThemeProvider } from "@/context/theme-provider";
+import { GeistSans } from "geist/font/sans";
+import { Header } from "@/components/website/header";
+import { Footer } from "@/components/website/footer";
+import { WebsiteContextProvider } from "@/context/website-context";
+import { ReactNode } from "react";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -13,20 +15,24 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          {children}
-        </ThemeProvider>
-      </body>
+      <WebsiteContextProvider>
+        <body className={GeistSans.className}>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <Header />
+            {children}
+            <Footer />
+          </ThemeProvider>
+        </body>
+      </WebsiteContextProvider>
     </html>
   );
 }

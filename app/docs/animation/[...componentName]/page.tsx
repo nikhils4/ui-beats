@@ -113,6 +113,7 @@ const AnimationDocumentation = () => {
           ({ description, code, isFullCode }, index) => {
             return (
               <div
+                key={index}
                 className={
                   index !== componentConfig.installation.length - 1
                     ? "mb-8"
@@ -170,10 +171,7 @@ const AnimationDocumentation = () => {
             dangerouslySetInnerHTML={{
               __html: sanitizeHtml(componentConfig.credits),
             }}
-          >
-            This component was inspired by [source name]. Special thanks to
-            [contributor name] for their contributions.
-          </p>
+          ></p>
         </>
       )}
     </div>

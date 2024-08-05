@@ -1,12 +1,23 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { Github, Twitter } from "lucide-react";
 import { CommandMenu } from "@/components/website/command-menu";
 import { ModeToggle } from "@/components/website/ui-theme-toggle";
 import { SideNavSheet } from "@/components/website/side-nav-sheet";
 import Link from "next/link";
+import { siGithub, siX } from "simple-icons";
+import { Badge } from "@/components/ui/badge";
 
 export const Header = () => {
+  const githubSvg = siGithub.svg.replace(
+    "<svg",
+    '<svg class="text-black dark:text-white" fill="currentColor"',
+  );
+
+  const xSvg = siX.svg.replace(
+    "<svg",
+    '<svg class="text-black dark:text-white" fill="currentColor"',
+  );
+
   return (
     <header className="sticky top-0 z-50 w-full border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="flex px-2 md:px-7 h-14 align-middle  items-center">
@@ -15,7 +26,12 @@ export const Header = () => {
         <div className="mr-4 hidden md:flex items-center">
           <Link className="mr-6 flex items-center space-x-2" href="/">
             {/*TODO: LOGO*/}
-            <span className="hidden font-bold sm:inline-block">ui/beats</span>
+            <div className="sm:flex justify-center items-center hidden font-bold">
+              <div className="mr-2">ui/beats</div>
+              <Badge className="text-[10px]" variant="outline">
+                Alpha
+              </Badge>
+            </div>
           </Link>
           <nav className="flex items-center space-x-6 text-sm">
             <Link
@@ -38,11 +54,17 @@ export const Header = () => {
             <CommandMenu />
           </div>
           <Button variant="ghost" size="icon">
-            <Github className="h-4 w-4" />
+            <div
+              className="h-4 w-4"
+              dangerouslySetInnerHTML={{ __html: githubSvg }}
+            />
             <span className="sr-only">GitHub</span>
           </Button>
           <Button variant="ghost" size="icon">
-            <Twitter className="h-4 w-4" />
+            <div
+              className="h-4 w-4"
+              dangerouslySetInnerHTML={{ __html: xSvg }}
+            />
             <span className="sr-only">Twitter</span>
           </Button>
           <ModeToggle />

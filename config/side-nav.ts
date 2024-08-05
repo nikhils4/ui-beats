@@ -13,6 +13,10 @@ export const sideNav: {
         title: "Installation",
         path: "/docs/getting-started/installation",
       },
+      {
+        title: "Contribute",
+        path: "/docs/getting-started/contribute",
+      },
     ],
   },
   {

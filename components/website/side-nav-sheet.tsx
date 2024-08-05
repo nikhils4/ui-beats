@@ -17,10 +17,10 @@ export const SideNavSheet = () => {
       >
         <ArrowRightFromLine className="h-4 w-4" />
       </SheetTrigger>
-      <SheetContent side="left" className="w-[400px] sm:w-[540px]">
+      <SheetContent side="left" className="w-[280px]">
         <div className="p-4 flex flex-col">
           <div className="mb-2">{/*TODO: LOGO*/}</div>
-          <nav className="flex-1 space-y-6">
+          <nav className="flex-1 ">
             <div className="min-w-[100%] table !mt-0">
               {/*TODO: Selected path highlighting*/}
               {sideNav.map(({ subItems, title }) => (

@@ -40,7 +40,7 @@ const Introduction = () => {
             <br />
             <br />
             This is <strong>NOT</strong> a traditional component library that
-            you install as a dependency. Instead, it's a resource for
+            you install as a dependency. Instead, it&apos;s a resource for
             beautifully designed components ready to be integrated into your
             projects with ease.
           </p>

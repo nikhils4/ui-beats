@@ -62,7 +62,7 @@ const Contribute = () => {
           <h2 className="font-semibold mb-2">4. Make Your Changes</h2>
           <p>
             Make the necessary changes to the codebase. Ensure your code follows
-            the project's style and the standard guidelines.
+            the project&apos;s style and the standard guidelines.
           </p>
         </div>
 
@@ -113,8 +113,8 @@ const Contribute = () => {
           <h2 className="font-semibold mb-2">Thank You for Contributing!</h2>
           <p>
             Your contributions help make ui/beats better for everyone. Whether
-            you're fixing bugs, adding new features, or improving documentation,
-            your efforts are appreciated.
+            you&apos;re fixing bugs, adding new features, or improving
+            documentation, your efforts are appreciated.
           </p>
         </div>
       </div>

@@ -58,7 +58,7 @@ const Installation = () => {
         <div className="mb-6">
           <h2 className="font-semibold mb-2">4. Customize</h2>
           <p>
-            Customize the component to fit your project's design and
+            Customize the component to fit your project&apos;s design and
             functionality requirements. The code is now yours to modify as
             needed.
           </p>
@@ -67,9 +67,9 @@ const Installation = () => {
         <div className="mb-6">
           <h2 className="font-semibold mb-2">Dependencies Installation</h2>
           <p className="mb-4">
-            If you're using a React project with TypeScript and Tailwind CSS,
-            you can easily integrate ui/beats components. Make sure you have the
-            following dependencies installed:
+            If you&apos;re using a React project with TypeScript and Tailwind
+            CSS, you can easily integrate ui/beats components. Make sure you
+            have the following dependencies installed:
           </p>
           <CodeSnippet
             language="bash"

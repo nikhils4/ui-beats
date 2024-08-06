@@ -25,11 +25,12 @@ export const HeroSection = () => {
             <span className="animate-gradient bg-gradient-to-r from-[#4050ff] via-[#40ff7a] to-[#4050ff] bg-[length:var(--bg-size)_100%] bg-clip-text text-transparent inline hidden dark:inline">
               Introducing {libraryName}
             </span>
-            <ChevronRight className="w-4 h-4" />
+            <ChevronRight className="w-4 h-4 ml-2" />
           </div>
         </a>
 
-        <div className="relative flex flex-col gap-10 md:items-center lg:flex-row mt-10">
+        <div className="relative flex flex-col gap-10 md:items-center lg:flex-row mt-6">
+          h
           <h1 className="text-black dark:text-white relative mx-0 max-w-[43.5rem] pt-5 md:mx-auto md:px-4 md:py-2 text-left tracking-tighter text-balance md:text-center font-semibold md:text-7xl lg:text-7xl sm:text-7xl text-5xl">
             Supercharge your UI
           </h1>
@@ -41,12 +42,12 @@ export const HeroSection = () => {
         </p>
         <div className="flex flex-col md:flex-row">
           <a href="https://uibeats.com/docs/getting-started" target="_blank">
-            <Button>
+            <Button className="w-full">
               Browse Components <ChevronRight className="w-4 h-4 ml-2" />
             </Button>
           </a>
           <a href="https://github.com/nikhils4/ui-beats" target="_blank">
-            <Button variant="outline" className="mt-7 md:mt-0 md:ml-5">
+            <Button variant="outline" className="mt-7 md:mt-0 md:ml-5 w-full">
               Contribute <ChevronRight className="w-4 h-4 ml-2" />
             </Button>
           </a>

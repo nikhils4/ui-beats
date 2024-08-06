@@ -53,20 +53,24 @@ export const Header = () => {
           <div className="flex w-full md:w-fit items-center space-x-2 md:order-last">
             <CommandMenu />
           </div>
-          <Button variant="ghost" size="icon">
-            <div
-              className="h-4 w-4"
-              dangerouslySetInnerHTML={{ __html: githubSvg }}
-            />
-            <span className="sr-only">GitHub</span>
-          </Button>
-          <Button variant="ghost" size="icon">
-            <div
-              className="h-4 w-4"
-              dangerouslySetInnerHTML={{ __html: xSvg }}
-            />
-            <span className="sr-only">Twitter</span>
-          </Button>
+          <a href="https://github.com/nikhils4/ui-beats" target="_blank">
+            <Button variant="ghost" size="icon">
+              <div
+                className="h-4 w-4"
+                dangerouslySetInnerHTML={{ __html: githubSvg }}
+              />
+              <span className="sr-only">GitHub</span>
+            </Button>
+          </a>
+          <a href="https://x.com/nikhilScripts" target="_blank">
+            <Button variant="ghost" size="icon">
+              <div
+                className="h-4 w-4"
+                dangerouslySetInnerHTML={{ __html: xSvg }}
+              />
+              <span className="sr-only">Twitter</span>
+            </Button>
+          </a>
           <ModeToggle />
         </div>
       </div>

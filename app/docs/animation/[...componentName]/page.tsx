@@ -71,7 +71,7 @@ const AnimationDocumentation = () => {
         <BreadcrumbList>
           {componentConfig.breadcrumbs?.map(({ label, href }, index) => {
             return (
-              <>
+              <div key={index}>
                 {href ? (
                   <BreadcrumbItem key={label}>
                     <BreadcrumbLink href={href}>{label}</BreadcrumbLink>
@@ -84,7 +84,7 @@ const AnimationDocumentation = () => {
                 {index !== componentConfig.breadcrumbs.length - 1 && (
                   <BreadcrumbSeparator />
                 )}
-              </>
+              </div>
             );
           })}
         </BreadcrumbList>

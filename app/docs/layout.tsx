@@ -13,14 +13,20 @@ export default function RootLayout({
   children: ReactNode;
 }>) {
   return (
-    <div className="flex min-h-screen">
-      <aside className="hidden md:block w-64 px-8 py-8 overflow-auto">
+    <div className="flex flex-col min-h-screen md:flex-row">
+      <aside className="hidden md:block w-64 px-8 py-8 overflow-y-auto">
         <SideNav />
       </aside>
-      <main className="relative py-6 lg:gap-10 lg:py-8 xl:grid xl:grid-cols-[1fr_300px]">
-        <div className="w-full container">{children}</div>
-        <div className="hidden text-sm xl:block">The very right column</div>
-      </main>
+      <div className="flex flex-col flex-grow md:flex-row">
+        <main className="flex-grow p-4 md:p-6 lg:p-8 overflow-x-auto">
+          <div className="max-w-full md:max-w-3xl lg:max-w-4xl xl:max-w-4xl mx-auto">
+            {children}
+          </div>
+        </main>
+        <div className="hidden xl:block w-64 px-8 py-8">
+          <div className="text-sm">The very right column</div>
+        </div>
+      </div>
     </div>
   );
 }

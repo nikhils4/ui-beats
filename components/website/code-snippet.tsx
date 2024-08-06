@@ -17,29 +17,30 @@ export const CodeSnippet = ({
   const copyCode = () => {
     copyToClipboard(code);
   };
+
   return (
-    <CodeBlock code={code} language={language} theme={themes.jettwaveDark}>
-      <div className="relative">
-        <CodeBlock.Code className="bg-gray-900 !p-4 text-sm rounded-xl shadow-lg">
-          <div className="table-row">
-            <CodeBlock.LineContent className="table-cell">
+    <div className="relative">
+      <CodeBlock code={code} language={language} theme={themes.jettwaveDark}>
+        <div>
+          <CodeBlock.Code className="bg-gray-900 !p-4 text-sm rounded-xl shadow-lg whitespace-pre overflow-x-scroll">
+            <CodeBlock.LineContent>
               <CodeBlock.Token />
             </CodeBlock.LineContent>
-          </div>
-        </CodeBlock.Code>
+          </CodeBlock.Code>
+        </div>
+      </CodeBlock>
 
-        <Button
-          variant="link"
-          className="absolute top-2 right-2"
-          onClick={copyCode}
-        >
-          {state.value ? (
-            <ClipboardCheck className="text-white h-4 w-4" />
-          ) : (
-            <Clipboard className="text-white h-4 w-4" />
-          )}
-        </Button>
-      </div>
-    </CodeBlock>
+      <Button
+        variant="link"
+        className="absolute top-2 right-2"
+        onClick={copyCode}
+      >
+        {state.value ? (
+          <ClipboardCheck className="text-white h-4 w-4" />
+        ) : (
+          <Clipboard className="text-white h-4 w-4" />
+        )}
+      </Button>
+    </div>
   );
 };

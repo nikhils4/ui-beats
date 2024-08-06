@@ -66,25 +66,25 @@ const AnimationDocumentation = () => {
   }, []);
 
   return (
-    <div className="container mx-auto pb-10">
+    <div className="md:container mx-auto pb-10">
       <Breadcrumb>
         <BreadcrumbList>
           {componentConfig.breadcrumbs?.map(({ label, href }, index) => {
             return (
-              <div key={index}>
+              <>
                 {href ? (
                   <BreadcrumbItem key={label}>
                     <BreadcrumbLink href={href}>{label}</BreadcrumbLink>
                   </BreadcrumbItem>
                 ) : (
-                  <BreadcrumbItem>
+                  <BreadcrumbItem key={label}>
                     <BreadcrumbPage>{label}</BreadcrumbPage>
                   </BreadcrumbItem>
                 )}
                 {index !== componentConfig.breadcrumbs.length - 1 && (
-                  <BreadcrumbSeparator />
+                  <BreadcrumbSeparator key={label} />
                 )}
-              </div>
+              </>
             );
           })}
         </BreadcrumbList>

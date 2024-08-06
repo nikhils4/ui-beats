@@ -30,7 +30,6 @@ export const HeroSection = () => {
         </a>
 
         <div className="relative flex flex-col gap-10 md:items-center lg:flex-row mt-6">
-          h
           <h1 className="text-black dark:text-white relative mx-0 max-w-[43.5rem] pt-5 md:mx-auto md:px-4 md:py-2 text-left tracking-tighter text-balance md:text-center font-semibold md:text-7xl lg:text-7xl sm:text-7xl text-5xl">
             Supercharge your UI
           </h1>

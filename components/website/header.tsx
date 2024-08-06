@@ -43,6 +43,7 @@ export const Header = () => {
             <Link
               className="hidden text-foreground/60 transition-colors hover:text-foreground/80 lg:block"
               href="https://github.com/nikhils4/ui-beats"
+              target="_blank"
             >
               GitHub
             </Link>

@@ -12,7 +12,7 @@ const SmoothRevealContent: ComponentConfigType = {
   ],
   title: "Smooth Reveal",
   description:
-    "The SmoothReveal component creates a smooth reveal animation for its children when they enter the viewport, adding visual appeal to the website.",
+    "The SmoothReveal component creates a smooth reveal animation for its children when they enter the viewport.",
   usageCode: `<SmoothReveal>
   <p>This content will smoothly reveal on scroll</p>
 </SmoothReveal>`,

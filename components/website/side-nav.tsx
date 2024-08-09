@@ -1,7 +1,11 @@
+"use client";
 import { sideNav } from "@/config/side-nav";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export const SideNav = () => {
+  const pathname = usePathname();
+
   return (
     <div className="min-w-[100%] table">
       <div className="w-full">
@@ -11,10 +15,13 @@ export const SideNav = () => {
               {title}
             </h4>
             <div className="grid grid-flow-row auto-rows-max text-sm">
-              {/*TODO: Selected path highlighting*/}
               {subItems.map(({ path, title }) => (
                 <Link
-                  className="group flex w-full items-center rounded-md border border-transparent px-2 py-1 text-muted-foreground hover:text-foreground"
+                  className={`group flex w-full items-center rounded-md border border-transparent px-2 py-1 ${
+                    path === pathname
+                      ? "text-foreground"
+                      : "text-muted-foreground"
+                  } hover:text-foreground`}
                   target=""
                   rel=""
                   href={path}

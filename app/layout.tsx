@@ -6,6 +6,7 @@ import { Header } from "@/components/website/header";
 import { Footer } from "@/components/website/footer";
 import { WebsiteContextProvider } from "@/context/website-context";
 import { ReactNode } from "react";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -32,6 +33,7 @@ export default function RootLayout({
             <Footer />
           </ThemeProvider>
         </body>
+        <GoogleAnalytics gaId="G-E5FVREP9R1" />
       </WebsiteContextProvider>
     </html>
   );

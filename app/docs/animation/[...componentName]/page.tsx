@@ -29,7 +29,14 @@ const AnimationDocumentation = () => {
   const [componentConfig, setComponentConfig] = useState<ComponentConfigType>({
     title: "Sample Animation",
     description: "Animate your components using pre-written components",
-    breadcrumbs: [{ label: "Docs", href: "/docs" }, { label: "Animation" }],
+    breadcrumbs: [
+      {
+        label: "Home",
+        href: "/",
+      },
+      { label: "Docs", href: "/docs" },
+      { label: "Animation" },
+    ],
     usageCode: "",
     installation: [],
     props: [],

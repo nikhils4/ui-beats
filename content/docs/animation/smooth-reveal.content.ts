@@ -3,6 +3,10 @@ import { ComponentConfigType } from "@/types/component-config.type";
 const SmoothRevealContent: ComponentConfigType = {
   breadcrumbs: [
     {
+      label: "Home",
+      href: "/",
+    },
+    {
       label: "Docs",
       href: "/docs",
     },

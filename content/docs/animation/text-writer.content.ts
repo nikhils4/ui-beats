@@ -4,6 +4,10 @@ import { getAnimationPreview } from "@/lib/animation-preview";
 const SmoothRevealContent: ComponentConfigType = {
   breadcrumbs: [
     {
+      label: "Home",
+      href: "/",
+    },
+    {
       label: "Docs",
       href: "/docs",
     },

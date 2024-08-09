@@ -13,6 +13,10 @@ const Introduction = () => {
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
+            <BreadcrumbLink href={"/"}>Home</BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
             <BreadcrumbLink href={"/docs/getting-started"}>Docs</BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />

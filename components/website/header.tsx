@@ -27,7 +27,7 @@ export const Header = () => {
         <div className="mr-4 hidden md:flex items-center">
           <Link className="mr-6 flex items-center space-x-2" href="/">
             <Image
-              src="/logo.png"
+              src="/uibeats-logo.png"
               width={20}
               height={20}
               alt="ui/beats logo"

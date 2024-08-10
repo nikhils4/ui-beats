@@ -6,6 +6,7 @@ import { SideNavSheet } from "@/components/website/side-nav-sheet";
 import Link from "next/link";
 import { siGithub, siX } from "simple-icons";
 import { Badge } from "@/components/ui/badge";
+import Image from "next/image";
 
 export const Header = () => {
   const githubSvg = siGithub.svg.replace(
@@ -25,7 +26,13 @@ export const Header = () => {
         <span className="sr-only">Menu</span>
         <div className="mr-4 hidden md:flex items-center">
           <Link className="mr-6 flex items-center space-x-2" href="/">
-            {/*TODO: LOGO*/}
+            <Image
+              src="/logo.png"
+              width={20}
+              height={20}
+              alt="ui/beats logo"
+              className="rounded-sm bg-white"
+            />
             <div className="sm:flex justify-center items-center hidden font-bold">
               <div className="mr-2">ui/beats</div>
               <Badge className="text-[10px]" variant="outline">

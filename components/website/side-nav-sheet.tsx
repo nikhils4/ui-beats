@@ -10,6 +10,8 @@ import { ArrowRightFromLine } from "lucide-react";
 import { sideNav } from "@/config/side-nav";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
+import { Badge } from "@/components/ui/badge";
 
 export const SideNavSheet = () => {
   const pathname = usePathname();
@@ -24,7 +26,24 @@ export const SideNavSheet = () => {
       </SheetTrigger>
       <SheetContent side="left" className="w-[280px]">
         <div className="p-4 flex flex-col">
-          <div className="mb-2">{/*TODO: LOGO*/}</div>
+          <SheetClose asChild>
+            <Link className="mr-6 flex items-center space-x-2" href="/">
+              <Image
+                src="/logo.png"
+                width={20}
+                height={20}
+                alt="ui/beats logo"
+                className="rounded-sm bg-white"
+              />
+
+              <div className="flex justify-center items-center font-bold">
+                <div className="mr-2">ui/beats</div>
+                <Badge className="text-[10px]" variant="outline">
+                  Alpha
+                </Badge>
+              </div>
+            </Link>
+          </SheetClose>
           <nav className="flex-1 ">
             <div className="min-w-[100%] table !mt-0">
               {sideNav.map(({ subItems, title }) => (

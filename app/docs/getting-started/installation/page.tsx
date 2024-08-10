@@ -85,6 +85,7 @@ const Installation = () => {
           <p className="mt-4">
             Add Tailwind CSS to your project by following the{" "}
             <a
+              rel="noopener noreferrer"
               href="https://tailwindcss.com/docs/installation"
               className="text-blue-500 underline"
             >

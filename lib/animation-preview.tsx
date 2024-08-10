@@ -4,6 +4,7 @@ import TextWriter from "@/components/demo/text-writer";
 
 export const getAnimationPreview = (
   componentName: string,
+  key: number = 0,
   isString: boolean = false,
 ) => {
   switch (componentName) {
@@ -12,7 +13,7 @@ export const getAnimationPreview = (
         return `<SmoothReveal><p>This content will smoothly reveal on scroll</p></SmoothReveal>`;
       }
       return (
-        <SmoothReveal>
+        <SmoothReveal key={key}>
           <p>This content will smoothly reveal on scroll</p>
         </SmoothReveal>
       );
@@ -26,6 +27,7 @@ export const getAnimationPreview = (
       }
       return (
         <TextWriter
+          key={key}
           text="Welcome to Our Amazing Website"
           className="text-4xl font-bold mb-4"
           delay={0.1}

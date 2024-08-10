@@ -52,6 +52,7 @@ const Introduction = () => {
             ui/beats is inspired by{" "}
             <em>
               <a
+                rel="noopener noreferrer"
                 className="underline"
                 href="https://ui.shadcn.com/"
                 target="_blank"

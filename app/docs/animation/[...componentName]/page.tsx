@@ -21,27 +21,13 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { getAnimationPreview } from "@/lib/animation-preview";
 import { sanitizeHtml } from "@/lib/utils";
+import { ComponentDemo } from "@/components/website/component-demo";
+import TextWriterContent from "@/content/docs/animation/text-writer.content";
 
 const AnimationDocumentation = () => {
-  // TODO - Dont forget to put default routing
-  const [componentConfig, setComponentConfig] = useState<ComponentConfigType>({
-    title: "Sample Animation",
-    description: "Animate your components using pre-written components",
-    breadcrumbs: [
-      {
-        label: "Home",
-        href: "/",
-      },
-      { label: "Docs", href: "/docs" },
-      { label: "Animation" },
-    ],
-    usageCode: "",
-    installation: [],
-    props: [],
-    credits: "",
-  });
+  const [componentConfig, setComponentConfig] =
+    useState<ComponentConfigType>(TextWriterContent);
   const [fileContent, setFileContent] = useState("");
   const pathName = usePathname();
   const componentName: string = pathName.split("/")?.pop() || "text-writer";
@@ -61,11 +47,7 @@ const AnimationDocumentation = () => {
   }, [componentName]);
 
   useEffect(() => {
-    if (
-      COMPONENT_CONFIG["animation"]?.[
-        componentName as any
-      ] as ComponentConfigType
-    ) {
+    if (COMPONENT_CONFIG["animation"]?.[componentName] as ComponentConfigType) {
       setComponentConfig(COMPONENT_CONFIG["animation"]?.[componentName]);
     } else {
       redirect("/");
@@ -105,9 +87,7 @@ const AnimationDocumentation = () => {
           <TabsTrigger value="code">Code</TabsTrigger>
         </TabsList>
         <TabsContent value="preview">
-          <div className="border rounded flex h-72 items-center justify-center align-middle">
-            {getAnimationPreview(componentName)}
-          </div>
+          <ComponentDemo componentName={componentName} />
         </TabsContent>
         <TabsContent value="code">
           <CodeSnippet code={componentConfig.usageCode} />
@@ -136,14 +116,11 @@ const AnimationDocumentation = () => {
       </ol>
 
       <h2 className="text-2xl font-semibold mt-10 mb-4">Usage</h2>
-      <Tabs defaultValue="code">
+      <Tabs defaultValue="props">
         <TabsList>
-          <TabsTrigger value="code">Code</TabsTrigger>
           <TabsTrigger value="props">Props</TabsTrigger>
+          <TabsTrigger value="code">Code</TabsTrigger>
         </TabsList>
-        <TabsContent value="code">
-          <CodeSnippet code={componentConfig?.usageCode} />
-        </TabsContent>
         <TabsContent value="props">
           <Table className="border">
             <TableHeader>
@@ -169,6 +146,9 @@ const AnimationDocumentation = () => {
               )}
             </TableBody>
           </Table>
+        </TabsContent>
+        <TabsContent value="code">
+          <CodeSnippet code={componentConfig?.usageCode} />
         </TabsContent>
       </Tabs>
       {componentConfig.credits && (

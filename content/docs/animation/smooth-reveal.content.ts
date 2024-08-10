@@ -1,4 +1,5 @@
 import { ComponentConfigType } from "@/types/component-config.type";
+import { getAnimationPreview } from "@/lib/animation-preview";
 
 const SmoothRevealContent: ComponentConfigType = {
   breadcrumbs: [
@@ -17,9 +18,7 @@ const SmoothRevealContent: ComponentConfigType = {
   title: "Smooth Reveal",
   description:
     "The SmoothReveal component creates a smooth reveal animation for its children when they enter the viewport.",
-  usageCode: `<SmoothReveal>
-  <p>This content will smoothly reveal on scroll</p>
-</SmoothReveal>`,
+  usageCode: `${getAnimationPreview("smooth-reveal", 1, true)}`,
   installation: [
     {
       description: "Add the following code into your project",

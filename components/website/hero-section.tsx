@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ChevronRight } from "lucide-react";
+import Link from "next/link";
 
 export const HeroSection = () => {
   let libraryName = "ui/beats";
@@ -7,7 +8,7 @@ export const HeroSection = () => {
   return (
     <div className="mt-16 flex flex-col md:mt-20 h-full">
       <div className="flex flex-col items-start gap-6 px-7 pb-8 text-center md:items-center md:px-10">
-        <a href="/docs/getting-started">
+        <Link href="/docs/getting-started">
           <div className="group relative mx-auto flex max-w-fit flex-row items-center justify-center rounded-2xl bg-white/40 px-4 py-1.5 text-sm font-medium shadow-[inset_0_-8px_10px_#8fdfff1f] backdrop-blur-sm transition-shadow duration-500 ease-out [--bg-size:300%] hover:shadow-[inset_0_-5px_10px_#8fdfff3f] dark:bg-black/40">
             <div className="absolute inset-0 block h-full w-full animate-gradient bg-gradient-to-r from-[#ff7a40]/50 via-[#ff4040]/50 to-[#ff7a40]/50 bg-[length:var(--bg-size)_100%] p-[1px] ![mask-composite:subtract] [border-radius:inherit] [mask:linear-gradient(#fff_0_0)_content-box,linear-gradient(#fff_0_0)] dark:hidden"></div>
             <div className="absolute inset-0 block h-full w-full animate-gradient bg-gradient-to-r from-[#4050ff]/50 via-[#40ff7a]/50 to-[#4050ff]/50 bg-[length:var(--bg-size)_100%] p-[1px] ![mask-composite:subtract] [border-radius:inherit] [mask:linear-gradient(#fff_0_0)_content-box,linear-gradient(#fff_0_0)] dark:block"></div>
@@ -27,7 +28,7 @@ export const HeroSection = () => {
             </span>
             <ChevronRight className="w-4 h-4 ml-2" />
           </div>
-        </a>
+        </Link>
 
         <div className="relative flex flex-col gap-10 md:items-center lg:flex-row mt-6">
           <h1 className="text-black dark:text-white relative mx-0 max-w-[43.5rem] pt-5 md:mx-auto md:px-4 md:py-2 text-left tracking-tighter text-balance md:text-center font-semibold md:text-7xl lg:text-7xl sm:text-7xl text-5xl">
@@ -40,12 +41,20 @@ export const HeroSection = () => {
           <b> Framer Motion</b>.
         </p>
         <div className="flex flex-col md:flex-row">
-          <a href="https://uibeats.com/docs/getting-started" target="_blank">
+          <Link
+            rel="noopener noreferrer"
+            href="/docs/getting-started"
+            target="_blank"
+          >
             <Button className="w-full">
               Browse Components <ChevronRight className="w-4 h-4 ml-2" />
             </Button>
-          </a>
-          <a href="https://github.com/nikhils4/ui-beats" target="_blank">
+          </Link>
+          <a
+            href="https://github.com/nikhils4/ui-beats"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
             <Button variant="outline" className="mt-7 md:mt-0 md:ml-5 w-full">
               Contribute <ChevronRight className="w-4 h-4 ml-2" />
             </Button>

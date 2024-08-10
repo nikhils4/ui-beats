@@ -18,7 +18,7 @@ const SmoothRevealContent: ComponentConfigType = {
   title: "Text Writer",
   description:
     "The TextWriter component creates a typing animation effect for text, where characters appear one by one to mimic real-time typing.",
-  usageCode: `${getAnimationPreview("text-writer", true)}`,
+  usageCode: `${getAnimationPreview("text-writer", 1, true)}`,
   installation: [
     {
       description: "Add the following code into your project",

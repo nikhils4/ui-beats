@@ -40,13 +40,14 @@ export const Header = () => {
             >
               Docs
             </Link>
-            <Link
+            <a
+              rel="noopener noreferrer"
               className="hidden text-foreground/60 transition-colors hover:text-foreground/80 lg:block"
               href="https://github.com/nikhils4/ui-beats"
               target="_blank"
             >
               GitHub
-            </Link>
+            </a>
           </nav>
         </div>
         <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
@@ -54,7 +55,11 @@ export const Header = () => {
           <div className="flex w-full md:w-fit items-center space-x-2 md:order-last">
             <CommandMenu />
           </div>
-          <a href="https://github.com/nikhils4/ui-beats" target="_blank">
+          <a
+            rel="noopener noreferrer"
+            href="https://github.com/nikhils4/ui-beats"
+            target="_blank"
+          >
             <Button variant="ghost" size="icon">
               <div
                 className="h-4 w-4"
@@ -63,7 +68,11 @@ export const Header = () => {
               <span className="sr-only">GitHub</span>
             </Button>
           </a>
-          <a href="https://x.com/nikhilScripts" target="_blank">
+          <a
+            rel="noopener noreferrer"
+            href="https://x.com/nikhilScripts"
+            target="_blank"
+          >
             <Button variant="ghost" size="icon">
               <div
                 className="h-4 w-4"

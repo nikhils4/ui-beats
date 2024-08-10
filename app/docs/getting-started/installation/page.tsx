@@ -43,7 +43,7 @@ const Installation = () => {
         <div className="mb-6">
           <h2 className="font-semibold mb-2">1. Browse the Components</h2>
           <p>
-            Visit the UI Beats component library and explore the various
+            Visit the ui/beats component library and explore the various
             components available.
           </p>
         </div>

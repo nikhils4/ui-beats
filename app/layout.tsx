@@ -11,7 +11,7 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 export const metadata: Metadata = {
   title: "ui/beats",
   description:
-    "Supercharge your UI with UI Beats! Reusable components crafted with React, TypeScript, Tailwind CSS, and Framer Motion for dynamic, responsive interfaces.",
+    "Supercharge your UI with ui/beats! Reusable components crafted with React, TypeScript, Tailwind CSS, and Framer Motion for dynamic, responsive interfaces.",
   metadataBase: new URL("https://uibeats.com"),
   applicationName: "ui/beats",
   authors: [{ name: "Nikhil Singh", url: "https://nikhils.ca" }],
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "ui/beats",
     description:
-      "Supercharge your UI with UI Beats! Reusable components crafted with React, TypeScript, Tailwind CSS, and Framer Motion for dynamic, responsive interfaces.",
+      "Supercharge your UI with ui/beats! Reusable components crafted with React, TypeScript, Tailwind CSS, and Framer Motion for dynamic, responsive interfaces.",
     url: "https://uibeats.com",
     type: "website",
     images: [

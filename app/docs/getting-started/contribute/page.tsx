@@ -42,7 +42,7 @@ const Contribute = () => {
       <div className="pb-12 pt-8">
         <div className="mb-6">
           <h2 className="font-semibold mb-2">1. Fork the Repository</h2>
-          <p>Fork the UI Beats repository to your GitHub account.</p>
+          <p>Fork the ui/beats repository to your GitHub account.</p>
         </div>
 
         <div className="mb-6">

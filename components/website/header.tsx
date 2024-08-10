@@ -11,7 +11,7 @@ import Image from "next/image";
 export const Header = () => {
   const githubSvg = siGithub.svg.replace(
     "<svg",
-    '<svg class="text-black dark:text-white" fill="currentColor"',
+    '<svg class="text-white dark:text-black" fill="currentColor"',
   );
 
   const xSvg = siX.svg.replace(
@@ -36,7 +36,7 @@ export const Header = () => {
             <div className="sm:flex justify-center items-center hidden font-bold">
               <div className="mr-2">ui/beats</div>
               <Badge className="text-[10px]" variant="outline">
-                Alpha
+                Beta
               </Badge>
             </div>
           </Link>
@@ -67,9 +67,10 @@ export const Header = () => {
             href="https://github.com/nikhils4/ui-beats"
             target="_blank"
           >
-            <Button variant="ghost" size="icon">
+            <Button>
+              Star on
               <div
-                className="h-4 w-4"
+                className="h-4 w-4 ml-2"
                 dangerouslySetInnerHTML={{ __html: githubSvg }}
               />
               <span className="sr-only">GitHub</span>

@@ -26,7 +26,7 @@ export default function RootLayout({
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors"
-                  href="https://github.com/nikhils4/ui-beats/issues"
+                  href="https://github.com/nikhils4/ui-beats/issues/new?assignees=&labels=&projects=&template=bug_report.md&title="
                 >
                   <Bug className="h-4 w-4 mr-2" />
                   Report an issue
@@ -37,7 +37,7 @@ export default function RootLayout({
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors"
-                  href="https://github.com/nikhils4/ui-beats"
+                  href="https://github.com/nikhils4/ui-beats/issues/new?assignees=&labels=&projects=&template=feature_request.md&title="
                 >
                   <Edit3 className="h-4 w-4 mr-2" />
                   Request a feature

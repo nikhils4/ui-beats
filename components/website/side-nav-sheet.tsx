@@ -39,7 +39,7 @@ export const SideNavSheet = () => {
               <div className="flex justify-center items-center font-bold">
                 <div className="mr-2">ui/beats</div>
                 <Badge className="text-[10px]" variant="outline">
-                  Alpha
+                  Beta
                 </Badge>
               </div>
             </Link>

@@ -7,6 +7,11 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { CodeSnippet } from "@/components/website/code-snippet";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "ui/beats | Installation",
+};
 
 const Installation = () => {
   return (

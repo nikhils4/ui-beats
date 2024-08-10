@@ -54,6 +54,10 @@ const AnimationDocumentation = () => {
     }
   }, []);
 
+  useEffect(() => {
+    document.title = `ui/beats | ${componentConfig.title}`;
+  }, [componentConfig.title]);
+
   return (
     <div className="md:container mx-auto pb-10">
       <Breadcrumb>

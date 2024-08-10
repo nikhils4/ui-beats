@@ -6,6 +6,11 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "ui/beats | Introduction",
+};
 
 const Introduction = () => {
   return (

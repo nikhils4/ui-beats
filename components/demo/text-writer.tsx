@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Easing, motion } from "framer-motion";
 
 interface TextWriterProps {
@@ -27,6 +27,7 @@ const TextWriter: React.FC<TextWriterProps> = ({
 }) => {
   const [displayText, setDisplayText] = useState("");
   const [isWriting, setIsWriting] = useState(true);
+  const textRef = useRef<HTMLSpanElement>(null);
   const stepEasing: Easing = (t) => Math.floor(t * 2) / 2;
 
   useEffect(() => {
@@ -68,18 +69,17 @@ const TextWriter: React.FC<TextWriterProps> = ({
   }, [text, delay, eraseOnComplete, eraseDelay, loop]);
 
   return (
-    <span className={`relative inline-block ${className}`}>
-      {displayText}
+    <span className={`inline-flex items-center ${className}`}>
+      <span ref={textRef}>{displayText}</span>
       {isWriting && (
         <motion.span
-          className="absolute"
           style={{
             width: cursorWidth,
             height: "1em",
             backgroundColor: cursorColor,
             display: "inline-block",
-            marginLeft: "2px",
             borderStyle: cursorStyle,
+            marginLeft: "1px",
           }}
           animate={{ opacity: [1, 0] }}
           transition={{

@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect } from "react";
-import { motion, useAnimation } from "framer-motion";
+import { cubicBezier, motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
 type SmoothRevealProps = {
@@ -17,8 +17,8 @@ const SmoothReveal: React.FC<SmoothRevealProps> = ({
   children,
   direction = "up",
   delay = 0,
-  duration = 0.6,
-  distance = 50,
+  duration = 0.8,
+  distance = 100,
   className = "",
   once = true,
 }) => {
@@ -50,6 +50,8 @@ const SmoothReveal: React.FC<SmoothRevealProps> = ({
     }
   };
 
+  const customEasing = cubicBezier(0.2, 0.0, 0.0, 1.0);
+
   const variants = {
     hidden: {
       opacity: 0,
@@ -61,7 +63,7 @@ const SmoothReveal: React.FC<SmoothRevealProps> = ({
       x: 0,
       transition: {
         duration: duration,
-        ease: "easeOut",
+        ease: customEasing,
         delay: delay,
       },
     },

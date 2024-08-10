@@ -10,17 +10,17 @@ export const getAnimationPreview = (
   switch (componentName) {
     case "smooth-reveal":
       if (isString) {
-        return `<SmoothReveal><p>This content will smoothly reveal on scroll</p></SmoothReveal>`;
+        return `<SmoothReveal><p className="text-xl">This content will smoothly reveal on scroll</p></SmoothReveal>`;
       }
       return (
         <SmoothReveal key={key}>
-          <p>This content will smoothly reveal on scroll</p>
+          <p className="text-xl">This content will smoothly reveal on scroll</p>
         </SmoothReveal>
       );
     case "text-writer":
       if (isString) {
         return `<TextWriter
-  text="Welcome to Our Amazing Website"
+  text="Welcome to ui/beats"
   className="text-4xl font-bold mb-4"
   delay={0.1}
 />`;
@@ -28,7 +28,7 @@ export const getAnimationPreview = (
       return (
         <TextWriter
           key={key}
-          text="Welcome to Our Amazing Website"
+          text="Welcome to ui/beats"
           className="text-4xl font-bold mb-4"
           delay={0.1}
         />

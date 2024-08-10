@@ -14,7 +14,7 @@ export default function NotFound() {
           404
         </h1>
         <p className="text text-gray-600 dark:text-gray-300 mt-4">
-          The page you're looking for doesn't exist.
+          The page you&apos;re looking for doesn&apos;t exist.
         </p>
         <Button
           className="mt-10"

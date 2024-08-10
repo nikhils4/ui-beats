@@ -1,12 +1,6 @@
-import type { Metadata } from "next";
 import { ReactNode } from "react";
 import { SideNav } from "@/components/website/side-nav";
 import { Bug, Edit3 } from "lucide-react";
-
-export const metadata: Metadata = {
-  title: "ui/beats",
-  description: "Develop stunning UI effortlessly with reusable components",
-};
 
 export default function RootLayout({
   children,

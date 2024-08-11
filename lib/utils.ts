@@ -17,3 +17,20 @@ export const sanitizeHtml = (html: string) => {
     return domPurify.sanitize(html);
   }
 };
+
+export const getGithubStarsCount = async (
+  repoName: string,
+): Promise<number> => {
+  try {
+    const response = await fetch(`https://api.github.com/repos/${repoName}`);
+    if (response.ok) {
+      const data = await response.json();
+      return data.stargazers_count;
+    } else {
+      return 0;
+    }
+  } catch (error) {
+    console.error("Error fetching GitHub stars count:", JSON.stringify(error));
+    return 0;
+  }
+};

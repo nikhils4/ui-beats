@@ -1,6 +1,7 @@
 import SmoothReveal from "@/components/demo/smooth-reveal";
 import React from "react";
 import TextWriter from "@/components/demo/text-writer";
+import ScaleIn from "@/components/demo/scale-in";
 
 export const getAnimationPreview = (
   componentName: string,
@@ -32,6 +33,17 @@ export const getAnimationPreview = (
           className="text-4xl font-bold mb-4"
           delay={0.1}
         />
+      );
+    case "scale-in":
+      if (isString) {
+        return `<ScaleIn><div className="text-4xl font-bold mb-4">This content will scale in when visible</div></ScaleIn>`;
+      }
+      return (
+        <ScaleIn key={key}>
+          <div className="text-4xl font-bold mb-4">
+            This content will scale in when visible
+          </div>
+        </ScaleIn>
       );
     default:
       return "";

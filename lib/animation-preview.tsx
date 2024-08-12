@@ -1,6 +1,7 @@
 import SmoothReveal from "@/components/demo/smooth-reveal";
 import React from "react";
 import TextWriter from "@/components/demo/text-writer";
+import FadeIn from "@/components/demo/fade-in";
 
 export const getAnimationPreview = (
   componentName: string,
@@ -32,6 +33,17 @@ export const getAnimationPreview = (
           className="text-4xl font-bold mb-4"
           delay={0.1}
         />
+      );
+    case "fade-in":
+      if (isString) {
+        return `<FadeIn><p className="text-xl">This content will fade in when it enters the viewport</p></FadeIn>`;
+      }
+      return (
+        <FadeIn key={key}>
+          <p className="text-xl">
+            This content will fade in when it enters the viewport
+          </p>
+        </FadeIn>
       );
     default:
       return "";

@@ -11,11 +11,11 @@ export const getAnimationPreview = (
   switch (componentName) {
     case "smooth-reveal":
       if (isString) {
-        return `<SmoothReveal><p className="text-2xl font-bold mb-4">This content will smoothly reveal on scroll</p></SmoothReveal>`;
+        return `<SmoothReveal><p className="text-md mb-4">This content will smoothly reveal on scroll</p></SmoothReveal>`;
       }
       return (
         <SmoothReveal key={key}>
-          <p className="text-2xl font-bold mb-4">
+          <p className="text-md mb-4">
             This content will smoothly reveal on scroll
           </p>
         </SmoothReveal>
@@ -24,7 +24,7 @@ export const getAnimationPreview = (
       if (isString) {
         return `<TextWriter
   text="Welcome to ui/beats"
-  className="text-2xl font-bold mb-4"
+  className="text-md mb-4"
   delay={0.1}
 />`;
       }
@@ -32,17 +32,17 @@ export const getAnimationPreview = (
         <TextWriter
           key={key}
           text="Welcome to ui/beats"
-          className="text-2xl font-bold mb-4"
+          className="text-md mb-4"
           delay={0.1}
         />
       );
     case "scale-in":
       if (isString) {
-        return `<ScaleIn><div className="text-2xl font-bold mb-4">This content will scale in when visible</div></ScaleIn>`;
+        return `<ScaleIn><div className="text-md mb-4">This content will scale in when visible</div></ScaleIn>`;
       }
       return (
         <ScaleIn key={key}>
-          <div className="text-2xl font-bold mb-4">
+          <div className="text-md mb-4">
             This content will scale in when visible
           </div>
         </ScaleIn>

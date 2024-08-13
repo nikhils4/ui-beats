@@ -45,11 +45,7 @@ export const getAnimationPreview = (
       );
     case "text-writer":
       if (isString) {
-        return `<TextWriter
-  text="Welcome to ui/beats"
-  className="text-md mb-4"
-  delay={0.1}
-/>`;
+        return `<TextWriter text="Welcome to ui/beats" className="text-md mb-4" delay={0.1} />`;
       }
       return (
         <TextWriter

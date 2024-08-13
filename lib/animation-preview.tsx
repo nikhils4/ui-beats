@@ -20,6 +20,7 @@ export const getAnimationPreview = (
             This content will fade in when it enters the viewport
           </p>
         </FadeIn>
+      );
     case "smooth-reveal":
       if (isString) {
         return `<SmoothReveal><p className="text-md mb-4">This content will smoothly reveal on scroll</p></SmoothReveal>`;

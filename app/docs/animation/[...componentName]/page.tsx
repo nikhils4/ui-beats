@@ -157,7 +157,7 @@ const AnimationDocumentation = () => {
       </Tabs>
       {componentConfig.credits && (
         <>
-          <h2 className="text-2xl font-semibold">Credits</h2>
+          <h2 className="text-2xl font-semibold mt-10 mb-4">Credits</h2>
           <p
             dangerouslySetInnerHTML={{
               __html: sanitizeHtml(componentConfig.credits),

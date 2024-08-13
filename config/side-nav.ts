@@ -22,9 +22,9 @@ export const sideNav: {
   {
     title: "Animation",
     subItems: [
-      { title: "Text Writer", path: "/docs/animation/text-writer" },
-      { title: "Smooth Reveal", path: "/docs/animation/smooth-reveal" },
       { title: "Scale In", path: "/docs/animation/scale-in" },
+      { title: "Smooth Reveal", path: "/docs/animation/smooth-reveal" },
+      { title: "Text Writer", path: "/docs/animation/text-writer" },
     ],
   },
 ];

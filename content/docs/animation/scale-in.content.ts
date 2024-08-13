@@ -66,6 +66,8 @@ const ScaleInContent: ComponentConfigType = {
       description: "Whether to trigger the animation only once",
     },
   ],
+  credits:
+    "Credits to <a target='_blank' style='font-weight: bold' href='https://github.com/lappemic' rel='noreferrer noopener'>Michael</a> for this awesome component.",
 };
 
 export default ScaleInContent;

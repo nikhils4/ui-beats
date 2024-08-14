@@ -1,4 +1,5 @@
 import React from "react";
+import GravityTextSwap from "@/components/demo/gravity-text-swap";
 import GradientFlow from "@/components/demo/gradient-flow";
 import Bounce from "@/components/demo/bounce";
 import SmoothReveal from "@/components/demo/smooth-reveal";
@@ -74,6 +75,24 @@ export const getAnimationPreview = (
             This content will bounce when visible
           </div>
         </Bounce>
+      );
+    case "gravity-text-swap":
+      if (isString) {
+        return `<GravityTextSwap
+  textArray={["Code", "Build", "Sleep", "Repeat"]}
+  duration={0.5}
+  pauseDuration={1}
+  className="text-md mb-4"
+/>`;
+      }
+      return (
+        <GravityTextSwap
+          key={key}
+          textArray={["Code", "Build", "Sleep", "Repeat"]}
+          duration={0.5}
+          pauseDuration={1}
+          className="text-md mb-4"
+        />
       );
     case "smooth-reveal":
       if (isString) {

@@ -4,9 +4,9 @@ import GradientFlowConfig from "@/content/docs/animation/gradient-flow.content";
 import BounceConfig from "@/content/docs/animation/bounce.content";
 import SmoothRevealConfig from "@/content/docs/animation/smooth-reveal.content";
 import TextWriterConfig from "@/content/docs/animation/text-writer.content";
-import {DocsConfigType} from "@/types/docs-config.type";
 import ScaleInConfig from "@/content/docs/animation/scale-in.content";
 import ShimmerEffectConfig from "@/content/docs/animation/shimmer-effect.content";
+import {DocsConfigType} from "@/types/docs-config.type";
 
 const DocsContentConfig: DocsConfigType = {
   animation: {

@@ -1,7 +1,8 @@
+import GradientFlow from "@/components/demo/gradient-flow";
+import SmoothReveal from "@/components/demo/smooth-reveal";
 import React from "react";
 import FadeIn from "@/components/demo/fade-in";
 import ScaleIn from "@/components/demo/scale-in";
-import SmoothReveal from "@/components/demo/smooth-reveal";
 import RotateIn from "@/components/demo/rotate-in";
 import TextWriter from "@/components/demo/text-writer";
 import ShimmerEffect from "@/components/demo/shimmer-effect";
@@ -33,6 +34,34 @@ export const getAnimationPreview = (
             This content will rotate in when visible
           </div>
         </RotateIn>
+      );
+    case "gradient-flow":
+      if (isString) {
+        return `<GradientFlow
+  duration={20} 
+  colors={['#6366f1', '#2563eb', '#7c3aed', '#db2777']} 
+  fullWidth={true}
+  radialOverlay={true}
+  blurAmount="10px"
+>
+  <div className="text-white text-md mb-4 font-medium">
+    Flowing Gradient Background
+  </div>
+</GradientFlow>`;
+              }
+      return (
+        <GradientFlow
+          key={key}
+          duration={20}
+          colors={["#6366f1", "#2563eb", "#7c3aed", "#db2777"]}
+          fullWidth={true}
+          radialOverlay={true}
+          blurAmount="10px"
+        >
+          <div className="text-white text-md mb-4">
+            Flowing Gradient Background
+          </div>
+        </GradientFlow>
       );
     case "smooth-reveal":
       if (isString) {

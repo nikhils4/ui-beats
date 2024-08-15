@@ -1,7 +1,7 @@
-import { type ClassValue, clsx } from "clsx";
-import { twMerge } from "tailwind-merge";
+import {type ClassValue, clsx} from "clsx";
+import {twMerge} from "tailwind-merge";
 import DOMPurify from "dompurify";
-import { JSDOM } from "jsdom";
+import {JSDOM} from "jsdom";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -32,5 +32,18 @@ export const getGithubStarsCount = async (
   } catch (error) {
     console.error("Error fetching GitHub stars count:", JSON.stringify(error));
     return 0;
+  }
+};
+
+export const fetchFileContent = async (file: string) => {
+  try {
+    const response = await fetch(`/api/file-content?file=${file}`);
+    if (!response.ok) {
+      console.error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json();
+    return data.content;
+  } catch (error) {
+    console.error("Error fetching file content:", error);
   }
 };

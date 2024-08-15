@@ -25,3 +25,5 @@ export type ComponentConfigType = {
   props: Prop[];
   credits?: string;
 };
+
+

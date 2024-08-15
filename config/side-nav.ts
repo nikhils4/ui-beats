@@ -20,17 +20,22 @@ export const sideNav: {
     ],
   },
   {
+    title: "Modern Animation",
+    subItems: [
+      { title: "Gradient Flow", path: "/docs/modern-animation/gradient-flow" },
+      { title: "Gravity Text Swap", path: "/docs/modern-animation/gravity-text-swap" },
+      { title: "Shimmer Effect", path: "/docs/modern-animation/shimmer-effect" },
+      { title: "Text Writer", path: "/docs/modern-animation/text-writer" },
+    ],
+  },
+  {
     title: "Animation",
     subItems: [
+      { title: "Bounce", path: "/docs/animation/bounce" },
       { title: "Fade In", path: "/docs/animation/fade-in" },
       { title: "Rotate In", path: "/docs/animation/rotate-in" },
-      { title: "Gradient Flow", path: "/docs/animation/gradient-flow" },
-      { title: "Bounce", path: "/docs/animation/bounce" },
-      { title: "Gravity Text Swap", path: "/docs/animation/gravity-text-swap" },
       { title: "Scale In", path: "/docs/animation/scale-in" },
       { title: "Smooth Reveal", path: "/docs/animation/smooth-reveal" },
-      { title: "Text Writer", path: "/docs/animation/text-writer" },
-      { title: "Shimmer Effect", path: "/docs/animation/shimmer-effect" },
     ],
   },
 ];

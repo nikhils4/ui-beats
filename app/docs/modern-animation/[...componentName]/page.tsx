@@ -23,20 +23,20 @@ import {
 } from "@/components/ui/table";
 import { fetchFileContent, sanitizeHtml } from "@/lib/utils";
 import { ComponentDemo } from "@/components/website/component-demo";
-import TextWriterContent from "@/content/docs/modern-animation/text-writer.content";
+import GradientFlowContent from "@/content/docs/modern-animation/gradient-flow.content";
 
 const AnimationDocumentation = () => {
   const [componentConfig, setComponentConfig] =
-    useState<ComponentConfigType>(TextWriterContent);
+    useState<ComponentConfigType>(GradientFlowContent);
   const [fileContent, setFileContent] = useState("");
   const pathName = usePathname();
-  const componentName: string = pathName.split("/")?.pop() || "text-writer";
+  const componentName: string = pathName.split("/")?.pop() || "gradient-flow";
 
   useEffect(() => {
     const getFileContent = async () => {
       try {
         const content = await fetchFileContent(
-          `animation/${componentName}.tsx`,
+          `modern-animation/${componentName}.tsx`,
         );
         setFileContent(content);
       } catch (error) {
@@ -48,8 +48,12 @@ const AnimationDocumentation = () => {
   }, [componentName]);
 
   useEffect(() => {
-    if (COMPONENT_CONFIG["animation"]?.[componentName] as ComponentConfigType) {
-      setComponentConfig(COMPONENT_CONFIG["animation"]?.[componentName]);
+    if (
+      COMPONENT_CONFIG["modern-animation"]?.[
+        componentName
+      ] as ComponentConfigType
+    ) {
+      setComponentConfig(COMPONENT_CONFIG["modern-animation"]?.[componentName]);
     } else {
       redirect("/");
     }

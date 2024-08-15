@@ -24,6 +24,7 @@ export const sideNav: {
     subItems: [
       { title: "Fade In", path: "/docs/animation/fade-in" },
       { title: "Rotate In", path: "/docs/animation/rotate-in" },
+      { title: "Gradient Flow", path: "/docs/animation/gradient-flow" },
       { title: "Scale In", path: "/docs/animation/scale-in" },
       { title: "Smooth Reveal", path: "/docs/animation/smooth-reveal" },
       { title: "Text Writer", path: "/docs/animation/text-writer" },

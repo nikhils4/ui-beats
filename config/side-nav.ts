@@ -27,6 +27,7 @@ export const sideNav: {
       { title: "Scale In", path: "/docs/animation/scale-in" },
       { title: "Smooth Reveal", path: "/docs/animation/smooth-reveal" },
       { title: "Text Writer", path: "/docs/animation/text-writer" },
+      { title: "Shimmer Effect", path: "/docs/animation/shimmer-effect" },
     ],
   },
 ];

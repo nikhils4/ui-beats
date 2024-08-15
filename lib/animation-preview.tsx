@@ -12,7 +12,7 @@ export const getAnimationPreview = (
   switch (componentName) {
     case "fade-in":
       if (isString) {
-        return `<FadeIn><p className="text-xl">This content will fade in when it enters the viewport</p></FadeIn>`;
+        return `<FadeIn><p className="text-md mb-4">This content will fade in when it enters the viewport</p></FadeIn>`;
       }
       return (
         <FadeIn key={key}>

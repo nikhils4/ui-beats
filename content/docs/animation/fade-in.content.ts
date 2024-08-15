@@ -1,5 +1,5 @@
-import { ComponentConfigType } from "@/types/component-config.type";
-import { getAnimationPreview } from "@/lib/animation-preview";
+import {ComponentConfigType} from "@/types/component-config.type";
+import {getAnimationPreview} from "@/lib/animation-preview";
 
 const FadeInContent: ComponentConfigType = {
   breadcrumbs: [
@@ -60,6 +60,8 @@ const FadeInContent: ComponentConfigType = {
       description: "Whether to trigger the animation only once",
     },
   ],
+  credits:
+      "Credits to <a target='_blank' style='font-weight: bold' href='https://github.com/lappemic' rel='noreferrer noopener'>Michael</a> for this awesome component.",
 };
 
 export default FadeInContent;

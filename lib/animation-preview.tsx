@@ -2,6 +2,7 @@ import React from "react";
 import FadeIn from "@/components/demo/fade-in";
 import ScaleIn from "@/components/demo/scale-in";
 import SmoothReveal from "@/components/demo/smooth-reveal";
+import RotateIn from "@/components/demo/rotate-in";
 import TextWriter from "@/components/demo/text-writer";
 
 export const getAnimationPreview = (
@@ -20,6 +21,17 @@ export const getAnimationPreview = (
             This content will fade in when it enters the viewport
           </p>
         </FadeIn>
+      )
+    case "rotate-in":
+      if (isString) {
+        return `<RotateIn><div className="text-md mb-4">This content will rotate in when visible</div></RotateIn>`;
+      }
+      return (
+        <RotateIn key={key}>
+          <div className="text-md mb-4">
+            This content will rotate in when visible
+          </div>
+        </RotateIn>
       );
     case "smooth-reveal":
       if (isString) {

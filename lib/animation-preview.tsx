@@ -1,6 +1,7 @@
-import GradientFlow from "@/components/demo/gradient-flow";
-import SmoothReveal from "@/components/demo/smooth-reveal";
 import React from "react";
+import GradientFlow from "@/components/demo/gradient-flow";
+import Bounce from "@/components/demo/bounce";
+import SmoothReveal from "@/components/demo/smooth-reveal";
 import FadeIn from "@/components/demo/fade-in";
 import ScaleIn from "@/components/demo/scale-in";
 import RotateIn from "@/components/demo/rotate-in";
@@ -62,6 +63,17 @@ export const getAnimationPreview = (
             Flowing Gradient Background
           </div>
         </GradientFlow>
+      );
+    case "bounce":
+      if (isString) {
+        return `<Bounce><div className="text-md mb-4">This content will bounce when visible</div></Bounce>`;
+      }
+      return (
+        <Bounce key={key}>
+          <div className="text-md mb-4">
+            This content will bounce when visible
+          </div>
+        </Bounce>
       );
     case "smooth-reveal":
       if (isString) {

@@ -1,4 +1,5 @@
 import React from "react";
+import GravityTextSwap from "@/components/demo/gravity-text-swap";
 import GradientFlow from "@/components/demo/gradient-flow";
 import Bounce from "@/components/demo/bounce";
 import SmoothReveal from "@/components/demo/smooth-reveal";
@@ -16,22 +17,22 @@ export const getAnimationPreview = (
   switch (componentName) {
     case "fade-in":
       if (isString) {
-        return `<FadeIn><p className="text-md mb-4">This content will fade in when it enters the viewport</p></FadeIn>`;
+        return `<FadeIn><p className="text-md md:text-lg mb-4">This content will fade in when it enters the viewport</p></FadeIn>`;
       }
       return (
         <FadeIn key={key}>
-          <p className="text-xl">
+          <p className="text-md md:text-lg mb-4">
             This content will fade in when it enters the viewport
           </p>
         </FadeIn>
       );
     case "rotate-in":
       if (isString) {
-        return `<RotateIn><div className="text-md mb-4">This content will rotate in when visible</div></RotateIn>`;
+        return `<RotateIn><div className="text-md md:text-lg mb-4">This content will rotate in when visible</div></RotateIn>`;
       }
       return (
         <RotateIn key={key}>
-          <div className="text-md mb-4">
+          <div className="text-md md:text-lg mb-4">
             This content will rotate in when visible
           </div>
         </RotateIn>
@@ -45,7 +46,7 @@ export const getAnimationPreview = (
   radialOverlay={true}
   blurAmount="10px"
 >
-  <div className="text-white text-md mb-4 font-medium">
+  <div className="text-white text-md md:text-lg mb-4">
     Flowing Gradient Background
   </div>
 </GradientFlow>`;
@@ -59,55 +60,77 @@ export const getAnimationPreview = (
           radialOverlay={true}
           blurAmount="10px"
         >
-          <div className="text-white text-md mb-4">
+          <div className="text-white text-md md:text-lg mb-4">
             Flowing Gradient Background
           </div>
         </GradientFlow>
       );
     case "bounce":
       if (isString) {
-        return `<Bounce><div className="text-md mb-4">This content will bounce when visible</div></Bounce>`;
+        return `<Bounce><div className="text-md md:text-lg mb-4">This content will bounce when visible</div></Bounce>`;
       }
       return (
         <Bounce key={key}>
-          <div className="text-md mb-4">
+          <div className="text-md md:text-lg mb-4">
             This content will bounce when visible
           </div>
         </Bounce>
       );
+    case "gravity-text-swap":
+      if (isString) {
+        return `<GravityTextSwap
+  textArray={["Code", "Build", "Sleep", "Repeat"]}
+  duration={0.5}
+  pauseDuration={1}
+  className="text-md md:text-lg mb-4"
+/>`;
+      }
+      return (
+        <GravityTextSwap
+          key={key}
+          textArray={["Code", "Build", "Sleep", "Repeat"]}
+          duration={0.5}
+          pauseDuration={1}
+          className="text-md md:text-lg mb-4"
+        />
+      );
     case "smooth-reveal":
       if (isString) {
-        return `<SmoothReveal><p className="text-md mb-4">This content will smoothly reveal on scroll</p></SmoothReveal>`;
+        return `<SmoothReveal><p className="text-md md:text-lg mb-4">This content will smoothly reveal on scroll</p></SmoothReveal>`;
       }
       return (
         <SmoothReveal key={key}>
-          <p className="text-md mb-4">
+          <p className="text-md md:text-lg mb-4">
             This content will smoothly reveal on scroll
           </p>
         </SmoothReveal>
       );
-    case "scale-in":
-      if (isString) {
-        return `<ScaleIn><div className="text-md mb-4">This content will scale in when visible</div></ScaleIn>`;
-      }
-      return (
-        <ScaleIn key={key}>
-          <div className="text-md mb-4">
-            This content will scale in when visible
-          </div>
-        </ScaleIn>
-      );
     case "text-writer":
       if (isString) {
-        return `<TextWriter text="Welcome to ui/beats" className="text-md mb-4" delay={0.1} />`;
+        return `<TextWriter
+  text="Welcome to ui/beats"
+  className="text-md md:text-lg mb-4"
+  delay={0.1}
+/>`;
       }
       return (
         <TextWriter
           key={key}
           text="Welcome to ui/beats"
-          className="text-md mb-4"
+          className="text-md md:text-lg mb-4"
           delay={0.1}
         />
+      );
+    case "scale-in":
+      if (isString) {
+        return `<ScaleIn><div className="text-md md:text-lg mb-4">This content will scale in when visible</div></ScaleIn>`;
+      }
+      return (
+        <ScaleIn key={key}>
+          <div className="text-md md:text-lg mb-4">
+            This content will scale in when visible
+          </div>
+        </ScaleIn>
       );
     case "shimmer-effect":
       if (isString) {

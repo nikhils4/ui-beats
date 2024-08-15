@@ -26,6 +26,7 @@ export const sideNav: {
       { title: "Rotate In", path: "/docs/animation/rotate-in" },
       { title: "Gradient Flow", path: "/docs/animation/gradient-flow" },
       { title: "Bounce", path: "/docs/animation/bounce" },
+      { title: "Gravity Text Swap", path: "/docs/animation/gravity-text-swap" },
       { title: "Scale In", path: "/docs/animation/scale-in" },
       { title: "Smooth Reveal", path: "/docs/animation/smooth-reveal" },
       { title: "Text Writer", path: "/docs/animation/text-writer" },

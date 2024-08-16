@@ -13,5 +13,6 @@ export default {
     components: {
         GradientFlowUsage: require("./components/gradient-flow.usage").default,
         ShimmerEffectUsage: require("./components/shimmer-effect.usage").default,
+        FlipCardUsage: require("./components/flip-card.usage").default,
     },
 }

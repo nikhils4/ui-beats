@@ -1,5 +1,5 @@
-import {ComponentConfigType} from "@/types/component-config.type";
-import {getAnimationPreview} from "@/lib/animation-preview";
+import { ComponentConfigType } from "@/types/component-config.type";
+import { getAnimationPreview } from "@/lib/animation-preview";
 
 const GradientFlowContent: ComponentConfigType = {
   breadcrumbs: [
@@ -12,7 +12,7 @@ const GradientFlowContent: ComponentConfigType = {
       href: "/docs",
     },
     {
-      label: "Animation",
+      label: "Components",
     },
   ],
   title: "Gradient Flow",
@@ -56,8 +56,7 @@ const GradientFlowContent: ComponentConfigType = {
     },
   ],
   credits:
-      "Credits to <a target='_blank' style='font-weight: bold' href='https://github.com/lappemic' rel='noreferrer noopener'>Michael</a> for this awesome component.",
-
+    "Credits to <a target='_blank' style='font-weight: bold' href='https://github.com/lappemic' rel='noreferrer noopener'>Michael</a> for this awesome component.",
 };
 
 export default GradientFlowContent;

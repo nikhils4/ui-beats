@@ -7,20 +7,13 @@ import Link from "next/link";
 import { siGithub, siX } from "simple-icons";
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
-import { getGithubStarsCount } from "@/lib/utils";
 import { Star } from "lucide-react";
-import { useEffect, useState } from "react";
 
 export const Header = () => {
-  const [stars, setStars] = useState(0);
   const githubSvg = siGithub.svg.replace(
     "<svg",
     '<svg class="text-white dark:text-black" fill="currentColor"',
   );
-
-  useEffect(() => {
-    setStars(getGithubStarsCount("nikhils4/ui-beats") as any);
-  }, []);
 
   const xSvg = siX.svg.replace(
     "<svg",
@@ -76,7 +69,8 @@ export const Header = () => {
             target="_blank"
           >
             <Button>
-              {stars} <Star className="text-yellow-400 h-4 w-4 ml-2 mr-2" /> on
+              <Star className="text-yellow-400 h-4 w-4 mr-2" />
+              Star on
               <div
                 className="h-4 w-4 ml-2"
                 dangerouslySetInnerHTML={{ __html: githubSvg }}

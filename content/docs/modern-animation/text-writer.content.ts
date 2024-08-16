@@ -12,7 +12,7 @@ const TextWriterContent: ComponentConfigType = {
       href: "/docs",
     },
     {
-      label: "Animation",
+      label: "Modern Animation",
     },
   ],
   title: "Text Writer",

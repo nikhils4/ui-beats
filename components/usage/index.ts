@@ -14,5 +14,6 @@ export default {
     components: {
         GradientFlowUsage: require("./components/gradient-flow.usage").default,
         ShimmerEffectUsage: require("./components/shimmer-effect.usage").default,
+        MorphingCardUsage: require("./components/morphing-card.usage").default,
     },
 }

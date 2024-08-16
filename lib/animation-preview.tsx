@@ -13,6 +13,7 @@ const componentMap: ComponentMap = {
   "scale-in": usageComponents.animation.ScaleInUsage,
   "shimmer-effect": usageComponents.components.ShimmerEffectUsage,
   "flip-card": usageComponents.animation.FlipCardUsage,
+  "morphing-card": usageComponents.components.MorphingCardUsage,
 };
 
 export const getAnimationPreview = (

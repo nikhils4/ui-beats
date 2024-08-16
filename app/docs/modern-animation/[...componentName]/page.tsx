@@ -24,13 +24,15 @@ import {
 import { fetchFileContent, sanitizeHtml } from "@/lib/utils";
 import { ComponentDemo } from "@/components/website/component-demo";
 import GradientFlowContent from "@/content/docs/modern-animation/gradient-flow.content";
+import { ComponentName } from "@/types/component-map.type";
 
 const AnimationDocumentation = () => {
   const [componentConfig, setComponentConfig] =
     useState<ComponentConfigType>(GradientFlowContent);
   const [fileContent, setFileContent] = useState("");
   const pathName = usePathname();
-  const componentName: string = pathName.split("/")?.pop() || "gradient-flow";
+  const componentName = (pathName.split("/")?.pop() ||
+    "gradient-flow") as ComponentName;
 
   useEffect(() => {
     const getFileContent = async () => {

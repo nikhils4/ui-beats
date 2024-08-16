@@ -2,8 +2,13 @@ import React, { useState } from "react";
 import { RotateCw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getAnimationPreview } from "@/lib/animation-preview";
+import { ComponentName } from "@/types/component-map.type";
 
-export const ComponentDemo = ({ componentName }: { componentName: string }) => {
+export const ComponentDemo = ({
+  componentName,
+}: {
+  componentName: ComponentName;
+}) => {
   const [key, setKey] = useState(0);
 
   return (

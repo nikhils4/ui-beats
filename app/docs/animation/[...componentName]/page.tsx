@@ -24,13 +24,15 @@ import {
 import { fetchFileContent, sanitizeHtml } from "@/lib/utils";
 import { ComponentDemo } from "@/components/website/component-demo";
 import TextWriterContent from "@/content/docs/modern-animation/text-writer.content";
+import { ComponentName } from "@/types/component-map.type";
 
 const AnimationDocumentation = () => {
   const [componentConfig, setComponentConfig] =
     useState<ComponentConfigType>(TextWriterContent);
   const [fileContent, setFileContent] = useState("");
   const pathName = usePathname();
-  const componentName: string = pathName.split("/")?.pop() || "text-writer";
+  const componentName = (pathName.split("/")?.pop() ||
+    "text-writer") as ComponentName;
 
   useEffect(() => {
     const getFileContent = async () => {

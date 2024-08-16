@@ -24,7 +24,7 @@ export const SideNavSheet = () => {
       >
         <ArrowRightFromLine className="h-4 w-4" />
       </SheetTrigger>
-      <SheetContent side="left" className="w-[280px]">
+      <SheetContent side="left" className="w-[280px] overflow-y-auto">
         <div className="p-4 flex flex-col">
           <SheetClose asChild>
             <Link className="mr-6 flex items-center space-x-2" href="/">

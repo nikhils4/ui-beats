@@ -7,9 +7,11 @@ export default {
         SmoothRevealUsage: require("./animation/smooth-reveal.usage").default,
     },
     ["modern-animation"]: {
-        GradientFlowUsage: require("./modern-animation/gradient-flow.usage").default,
         GravityTextSwapUsage: require("./modern-animation/gravity-text-swap.usage").default,
-        ShimmerEffectUsage: require("./modern-animation/shimmer-effect.usage").default,
         TextWriterUsage: require("./modern-animation/text-writer.usage").default,
-    }
+    },
+    components: {
+        GradientFlowUsage: require("./components/gradient-flow.usage").default,
+        ShimmerEffectUsage: require("./components/shimmer-effect.usage").default,
+    },
 }

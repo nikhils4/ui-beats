@@ -32,7 +32,7 @@ const AnimationDocumentation = () => {
   const [fileContent, setFileContent] = useState("");
   const pathName = usePathname();
   const componentName = (pathName.split("/")?.pop() ||
-    "text-writer") as ComponentName;
+    "smooth-reveal") as ComponentName;
 
   useEffect(() => {
     const getFileContent = async () => {

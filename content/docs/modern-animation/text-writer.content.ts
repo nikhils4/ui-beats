@@ -1,7 +1,7 @@
 import { ComponentConfigType } from "@/types/component-config.type";
 import { getAnimationPreview } from "@/lib/animation-preview";
 
-const SmoothRevealContent: ComponentConfigType = {
+const TextWriterContent: ComponentConfigType = {
   breadcrumbs: [
     {
       label: "Home",
@@ -98,4 +98,4 @@ const SmoothRevealContent: ComponentConfigType = {
   ],
 };
 
-export default SmoothRevealContent;
+export default TextWriterContent;

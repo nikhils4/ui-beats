@@ -1,5 +1,5 @@
 import React from "react";
-import GradientFlow from "@/components/demo/modern-animation/gradient-flow";
+import GradientFlow from "@/components/demo/components/gradient-flow";
 
 const GradientFlowUsage = ({ key }: { key: number }) => {
   return (

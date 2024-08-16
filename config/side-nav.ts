@@ -20,11 +20,16 @@ export const sideNav: {
     ],
   },
   {
+    title: "Components",
+    subItems: [
+      { title: "Gradient Flow", path: "/docs/components/gradient-flow" },
+      { title: "Shimmer Effect", path: "/docs/components/shimmer-effect" },
+    ],
+  },
+  {
     title: "Modern Animation",
     subItems: [
-      { title: "Gradient Flow", path: "/docs/modern-animation/gradient-flow" },
       { title: "Gravity Text Swap", path: "/docs/modern-animation/gravity-text-swap" },
-      { title: "Shimmer Effect", path: "/docs/modern-animation/shimmer-effect" },
       { title: "Text Writer", path: "/docs/modern-animation/text-writer" },
     ],
   },

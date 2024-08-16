@@ -23,22 +23,22 @@ import {
 } from "@/components/ui/table";
 import { fetchFileContent, sanitizeHtml } from "@/lib/utils";
 import { ComponentDemo } from "@/components/website/component-demo";
-import GradientFlowContent from "@/content/docs/components/gradient-flow.content";
 import { ComponentName } from "@/types/component-map.type";
+import GradientFlowContent from "@/content/docs/components/gradient-flow.content";
 
-const ModernAnimationDocumentation = () => {
+const ComponentsDocumentation = () => {
   const [componentConfig, setComponentConfig] =
     useState<ComponentConfigType>(GradientFlowContent);
   const [fileContent, setFileContent] = useState("");
   const pathName = usePathname();
   const componentName = (pathName.split("/")?.pop() ||
-    "text-writer") as ComponentName;
+    "gradient-flow") as ComponentName;
 
   useEffect(() => {
     const getFileContent = async () => {
       try {
         const content = await fetchFileContent(
-          `modern-animation/${componentName}.tsx`,
+          `components/${componentName}.tsx`,
         );
         setFileContent(content);
       } catch (error) {
@@ -51,11 +51,9 @@ const ModernAnimationDocumentation = () => {
 
   useEffect(() => {
     if (
-      COMPONENT_CONFIG["modern-animation"]?.[
-        componentName
-      ] as ComponentConfigType
+      COMPONENT_CONFIG["components"]?.[componentName] as ComponentConfigType
     ) {
-      setComponentConfig(COMPONENT_CONFIG["modern-animation"]?.[componentName]);
+      setComponentConfig(COMPONENT_CONFIG["components"]?.[componentName]);
     } else {
       redirect("/");
     }
@@ -176,4 +174,4 @@ const ModernAnimationDocumentation = () => {
   );
 };
 
-export default ModernAnimationDocumentation;
+export default ComponentsDocumentation;

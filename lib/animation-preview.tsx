@@ -12,7 +12,7 @@ const componentMap: ComponentMap = {
   "text-writer": usageComponents["modern-animation"].TextWriterUsage,
   "scale-in": usageComponents.animation.ScaleInUsage,
   "shimmer-effect": usageComponents.components.ShimmerEffectUsage,
-  "flip-card": usageComponents.components.FlipCardUsage,
+  "flip-card": usageComponents.animation.FlipCardUsage,
 };
 
 export const getAnimationPreview = (

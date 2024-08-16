@@ -1,5 +1,5 @@
 import React from "react";
-import FlipCard from "@/components/demo/components/flip-card";
+import FlipCard from "@/components/demo/animation/flip-card";
 
 const FlipCardUsage = () => {
   return (

@@ -24,7 +24,6 @@ export const sideNav: {
     subItems: [
       { title: "Gradient Flow", path: "/docs/components/gradient-flow" },
       { title: "Shimmer Effect", path: "/docs/components/shimmer-effect" },
-      { title: "Flip Card", path: "/docs/components/flip-card" },
     ],
   },
   {
@@ -39,6 +38,7 @@ export const sideNav: {
     subItems: [
       { title: "Bounce", path: "/docs/animation/bounce" },
       { title: "Fade In", path: "/docs/animation/fade-in" },
+      { title: "Flip Card", path: "/docs/animation/flip-card" },
       { title: "Rotate In", path: "/docs/animation/rotate-in" },
       { title: "Scale In", path: "/docs/animation/scale-in" },
       { title: "Smooth Reveal", path: "/docs/animation/smooth-reveal" },

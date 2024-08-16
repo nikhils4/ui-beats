@@ -12,7 +12,7 @@ const FlipCardContent: ComponentConfigType = {
       href: "/docs",
     },
     {
-      label: "Components",
+      label: "Animation",
     },
   ],
   title: "Flip Card",

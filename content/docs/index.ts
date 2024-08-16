@@ -7,7 +7,7 @@ import SmoothRevealConfig from "@/content/docs/animation/smooth-reveal.content";
 import TextWriterConfig from "@/content/docs/modern-animation/text-writer.content";
 import ScaleInConfig from "@/content/docs/animation/scale-in.content";
 import ShimmerEffectConfig from "@/content/docs/components/shimmer-effect.content";
-import FlipCardConfig from "@/content/docs/components/flip-card.content";
+import FlipCardConfig from "@/content/docs/animation/flip-card.content";
 import { DocsConfigType } from "@/types/docs-config.type";
 
 const DocsContentConfig: DocsConfigType = {
@@ -17,6 +17,7 @@ const DocsContentConfig: DocsConfigType = {
     bounce: BounceConfig,
     "scale-in": ScaleInConfig,
     "smooth-reveal": SmoothRevealConfig,
+    "flip-card": FlipCardConfig,
   },
   "modern-animation": {
     "gravity-text-swap": GravityTextSwapConfig,
@@ -25,7 +26,6 @@ const DocsContentConfig: DocsConfigType = {
   components: {
     "gradient-flow": GradientFlowConfig,
     "shimmer-effect": ShimmerEffectConfig,
-    "flip-card": FlipCardConfig,
   },
 };
 

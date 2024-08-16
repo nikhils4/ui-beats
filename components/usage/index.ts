@@ -5,6 +5,7 @@ export default {
         RotateInUsage: require("./animation/rotate-in.usage").default,
         ScaleInUsage: require("./animation/scale-in.usage").default,
         SmoothRevealUsage: require("./animation/smooth-reveal.usage").default,
+        FlipCardUsage: require("./animation/flip-card.usage").default,
     },
     ["modern-animation"]: {
         GravityTextSwapUsage: require("./modern-animation/gravity-text-swap.usage").default,
@@ -13,6 +14,5 @@ export default {
     components: {
         GradientFlowUsage: require("./components/gradient-flow.usage").default,
         ShimmerEffectUsage: require("./components/shimmer-effect.usage").default,
-        FlipCardUsage: require("./components/flip-card.usage").default,
     },
 }

@@ -48,15 +48,41 @@ const Installation = () => {
           </p>
         </div>
 
+        <div>
+          <h2 className="font-semibold mb-2">2. Add the utility function</h2>
+          <p className="mb-4">
+            This step is optional and only needed if your component from ui/beats uses the `cn` utility function.
+          </p>
+          <CodeSnippet
+              language="bash"
+              code={
+                  "npm i clsx tailwind-merge"
+              }
+          />
+          <div className="h-4 w-full"></div>
+            <CodeSnippet
+                language="typescript"
+                code={
+                    "import {type ClassValue, clsx} from \"clsx\";\n" +
+                    "import {twMerge} from \"tailwind-merge\";\n \n" +
+                    "export function cn(...inputs: ClassValue[]) {\n" +
+                    "  return twMerge(clsx(inputs));\n" +
+                    "}"
+                }
+            />
+        </div>
+
+        </div>
+
         <div className="mb-6">
-          <h2 className="font-semibold mb-2">2. Copy the Code</h2>
+          <h2 className="font-semibold mb-2">3. Copy the Code</h2>
           <p>
             Once you find a component you need, simply copy the code provided.
           </p>
         </div>
 
         <div className="mb-6">
-          <h2 className="font-semibold mb-2">3. Paste into Your Project</h2>
+          <h2 className="font-semibold mb-2">4. Paste into Your Project</h2>
           <p>
             Paste the copied code into your project files. Ensure that you have
             the necessary dependencies installed (React, TypeScript, Tailwind
@@ -65,7 +91,7 @@ const Installation = () => {
         </div>
 
         <div className="mb-6">
-          <h2 className="font-semibold mb-2">4. Customize</h2>
+          <h2 className="font-semibold mb-2">5. Customize</h2>
           <p>
             Customize the component to fit your project&apos;s design and
             functionality requirements. The code is now yours to modify as
@@ -81,18 +107,18 @@ const Installation = () => {
             have the following dependencies installed:
           </p>
           <CodeSnippet
-            language="bash"
-            code={
-              "npm install react react-dom typescript tailwindcss framer-motion"
-            }
+              language="bash"
+              code={
+                "npm install react react-dom typescript tailwindcss framer-motion"
+              }
           />
 
           <p className="mt-4">
             Add Tailwind CSS to your project by following the{" "}
             <a
-              rel="noopener noreferrer"
-              href="https://tailwindcss.com/docs/installation"
-              className="text-blue-500 underline"
+                rel="noopener noreferrer"
+                href="https://tailwindcss.com/docs/installation"
+                className="text-blue-500 underline"
             >
               official installation guide
             </a>
@@ -100,7 +126,6 @@ const Installation = () => {
           </p>
         </div>
       </div>
-    </div>
   );
 };
 

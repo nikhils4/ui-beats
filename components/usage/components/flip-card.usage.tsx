@@ -17,7 +17,7 @@ const FlipCardUsage = ({ key }: { key: number }) => {
       width="300px"
       height="200px"
       flipDirection="horizontal"
-      triggerMode="click"
+      triggerMode="hover"
     />
   );
 };
@@ -34,7 +34,7 @@ FlipCardUsage.stringVersion = `<FlipCard
   width="300px"
   height="200px"
   flipDirection="horizontal"
-  triggerMode="click"
+  triggerMode="hover"
 />`;
 
 export default FlipCardUsage;

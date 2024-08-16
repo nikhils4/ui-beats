@@ -67,6 +67,8 @@ const FlipCardContent: ComponentConfigType = {
       description: "Event that triggers the flip animation",
     },
   ],
+  credits:
+    "Credits to <a target='_blank' style='font-weight: bold' href='https://github.com/lappemic' rel='noreferrer noopener'>Michael</a> for this awesome component.",
 };
 
 export default FlipCardContent;

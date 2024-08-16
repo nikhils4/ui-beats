@@ -1,9 +1,9 @@
 import React from "react";
 import FadeIn from "@/components/demo/animation/fade-in";
 
-const FadeInUsage = ({ key }: { key: number }) => {
+const FadeInUsage = () => {
   return (
-    <FadeIn key={key}>
+    <FadeIn>
       <p className="text-md md:text-lg mb-4">
         This content will fade in when it enters the viewport
       </p>

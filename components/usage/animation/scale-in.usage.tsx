@@ -1,9 +1,9 @@
 import React from "react";
 import ScaleIn from "@/components/demo/animation/scale-in";
 
-const ScaleInUsage = ({ key }: { key: number }) => {
+const ScaleInUsage = () => {
   return (
-    <ScaleIn key={key}>
+    <ScaleIn>
       <div className="text-md md:text-lg mb-4">
         This content will scale in when visible
       </div>

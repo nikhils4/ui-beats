@@ -1,10 +1,9 @@
 import React from "react";
 import FlipCard from "@/components/demo/components/flip-card";
 
-const FlipCardUsage = ({ key }: { key: number }) => {
+const FlipCardUsage = () => {
   return (
     <FlipCard
-      key={key}
       frontContent={{
         title: "Discover",
         subtitle: "Tap to learn more",

@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -67,7 +67,7 @@ const AnimationDocumentation = () => {
         <BreadcrumbList>
           {componentConfig.breadcrumbs?.map(({ label, href }, index) => {
             return (
-              <>
+              <Fragment key={`${label}-${index}`}>
                 {href ? (
                   <BreadcrumbItem key={label}>
                     <BreadcrumbLink href={href}>{label}</BreadcrumbLink>
@@ -80,7 +80,7 @@ const AnimationDocumentation = () => {
                 {index !== componentConfig.breadcrumbs.length - 1 && (
                   <BreadcrumbSeparator key={label} />
                 )}
-              </>
+              </Fragment>
             );
           })}
         </BreadcrumbList>

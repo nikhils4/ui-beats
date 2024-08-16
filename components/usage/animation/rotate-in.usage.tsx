@@ -1,9 +1,9 @@
 import React from "react";
 import RotateIn from "@/components/demo/animation/rotate-in";
 
-const RotateInUsage = ({ key }: { key: number }) => {
+const RotateInUsage = () => {
   return (
-    <RotateIn key={key}>
+    <RotateIn>
       <div className="text-md md:text-lg mb-4">
         This content will rotate in when visible
       </div>

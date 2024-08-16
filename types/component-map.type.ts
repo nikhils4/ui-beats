@@ -14,6 +14,7 @@ export type ComponentMap = {
     "text-writer": React.ComponentType<ComponentProps>;
     "scale-in": React.ComponentType<ComponentProps>;
     "shimmer-effect": React.ComponentType<ComponentProps>;
+    "flip-card": React.ComponentType<ComponentProps>;
 };
 
 export type ComponentName = keyof ComponentMap;

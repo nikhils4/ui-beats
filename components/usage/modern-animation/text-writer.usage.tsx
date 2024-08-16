@@ -1,10 +1,9 @@
 import React from "react";
 import TextWriter from "@/components/demo/modern-animation/text-writer";
 
-const TextWriterUsage = ({ key }: { key: number }) => {
+const TextWriterUsage = () => {
   return (
     <TextWriter
-      key={key}
       text="Welcome to ui/beats"
       className="text-md md:text-lg mb-4"
       delay={0.1}

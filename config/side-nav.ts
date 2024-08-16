@@ -24,6 +24,7 @@ export const sideNav: {
     subItems: [
       { title: "Gradient Flow", path: "/docs/components/gradient-flow" },
       { title: "Shimmer Effect", path: "/docs/components/shimmer-effect" },
+      { title: "Flip Card", path: "/docs/components/flip-card" },
     ],
   },
   {

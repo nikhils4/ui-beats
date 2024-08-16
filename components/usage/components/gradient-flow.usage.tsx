@@ -1,10 +1,9 @@
 import React from "react";
 import GradientFlow from "@/components/demo/components/gradient-flow";
 
-const GradientFlowUsage = ({ key }: { key: number }) => {
+const GradientFlowUsage = () => {
   return (
     <GradientFlow
-      key={key}
       duration={20}
       colors={["#6366f1", "#2563eb", "#7c3aed", "#db2777"]}
       fullWidth={true}

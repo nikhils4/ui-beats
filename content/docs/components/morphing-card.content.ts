@@ -17,7 +17,7 @@ const MorphingCardContent: ComponentConfigType = {
   ],
   title: "Morphing Card",
   description:
-    "The MorphingCard component creates an engaging, interactive card that smoothly transitions between different shapes and content. It features elegant animations, customizable gradients, and a clean design that's perfect for showcasing key information or features in a visually striking manner.",
+    "The MorphingCard component creates an engaging, interactive card that smoothly transitions between different shapes and content. It features elegant 3D rotations, customizable gradients, and a clean design that's perfect for showcasing key information or features in a visually striking manner.",
   usageCode: `${getAnimationPreview("morphing-card", 1, true)}`,
   installation: [
     {
@@ -53,6 +53,19 @@ const MorphingCardContent: ComponentConfigType = {
       type: "{ from: string; to: string; }",
       defaultValue: "{ from: '#4F46E5', to: '#7C3AED' }",
       description: "Gradient color scheme for the card background",
+    },
+    {
+      prop: "autoPlay",
+      type: "boolean",
+      defaultValue: "true",
+      description: "Whether the card should automatically cycle through shapes",
+    },
+    {
+      prop: "interval",
+      type: "number",
+      defaultValue: "3000",
+      description:
+        "Time interval (in milliseconds) between shape transitions when autoPlay is true",
     },
   ],
 };

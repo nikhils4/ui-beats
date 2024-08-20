@@ -5,8 +5,8 @@ const MorphingCardUsage = ({ key }: { key: number }) => {
   return (
     <MorphingCard
       key={key}
-      width="250px"
-      height="250px"
+      width="300px"
+      height="300px"
       contents={[
         {
           shape: "rectangle",
@@ -28,13 +28,15 @@ const MorphingCardUsage = ({ key }: { key: number }) => {
         },
       ]}
       colorScheme={{ from: "#4F46E5", to: "#7C3AED" }}
+      autoPlay={true}
+      interval={4000}
     />
   );
 };
 
 MorphingCardUsage.stringVersion = `<MorphingCard
-  width="200px"
-  height="200px"
+  width="300px"
+  height="300px"
   contents={[
     {
       shape: "rectangle",
@@ -53,6 +55,8 @@ MorphingCardUsage.stringVersion = `<MorphingCard
     },
   ]}
   colorScheme={{ from: '#4F46E5', to: '#7C3AED' }}
+  autoPlay={true}
+  interval={4000}
 />`;
 
 export default MorphingCardUsage;

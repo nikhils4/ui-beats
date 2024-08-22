@@ -10,6 +10,7 @@ export default {
     ["modern-animation"]: {
         GravityTextSwapUsage: require("./modern-animation/gravity-text-swap.usage").default,
         TextWriterUsage: require("./modern-animation/text-writer.usage").default,
+        MorphingCardUsage: require("./modern-animation/morphing-card.usage").default,
     },
     components: {
         GradientFlowUsage: require("./components/gradient-flow.usage").default,

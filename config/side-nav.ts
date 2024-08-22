@@ -31,6 +31,7 @@ export const sideNav: {
     subItems: [
       { title: "Gravity Text Swap", path: "/docs/modern-animation/gravity-text-swap" },
       { title: "Text Writer", path: "/docs/modern-animation/text-writer" },
+      { title: "Morphing Card", path: "/docs/modern-animation/morphing-card" },
     ],
   },
   {

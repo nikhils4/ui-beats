@@ -13,13 +13,13 @@ const componentMap: ComponentMap = {
   "scale-in": usageComponents.animation.ScaleInUsage,
   "shimmer-effect": usageComponents.components.ShimmerEffectUsage,
   "flip-card": usageComponents.animation.FlipCardUsage,
-  "morphing-card": usageComponents.components.MorphingCardUsage,
+  "morphing-card": usageComponents["modern-animation"].MorphingCardUsage,
 };
 
 export const getAnimationPreview = (
-    componentName: ComponentName,
-    key: number = 0,
-    isString: boolean = false
+  componentName: ComponentName,
+  key: number = 0,
+  isString: boolean = false
 ) => {
   const Component = componentMap[componentName];
   if (!Component) return "";

@@ -1,12 +1,12 @@
 import React from "react";
-import MorphingCard from "@/components/demo/components/morphing-card";
+import MorphingCard from "@/components/demo/modern-animation/morphing-card";
 
 const MorphingCardUsage = ({ key }: { key: number }) => {
   return (
     <MorphingCard
       key={key}
-      width="300px"
-      height="300px"
+      width="250px"
+      height="250px"
       contents={[
         {
           shape: "rectangle",
@@ -35,8 +35,8 @@ const MorphingCardUsage = ({ key }: { key: number }) => {
 };
 
 MorphingCardUsage.stringVersion = `<MorphingCard
-  width="300px"
-  height="300px"
+  width="250px"
+  height="250px"
   contents={[
     {
       shape: "rectangle",

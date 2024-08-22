@@ -68,6 +68,8 @@ const MorphingCardContent: ComponentConfigType = {
         "Time interval (in milliseconds) between shape transitions when autoPlay is true",
     },
   ],
+    credits:
+      "Credits to <a target='_blank' style='font-weight: bold' href='https://github.com/lappemic' rel='noreferrer noopener'>Michael</a> for this awesome component.",
 };
 
 export default MorphingCardContent;

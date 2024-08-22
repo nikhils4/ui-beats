@@ -24,7 +24,6 @@ export const sideNav: {
     subItems: [
       { title: "Gradient Flow", path: "/docs/components/gradient-flow" },
       { title: "Shimmer Effect", path: "/docs/components/shimmer-effect" },
-      { title: "Morphing Card", path: "/docs/components/morphing-card" },
     ],
   },
   {
@@ -32,6 +31,7 @@ export const sideNav: {
     subItems: [
       { title: "Gravity Text Swap", path: "/docs/modern-animation/gravity-text-swap" },
       { title: "Text Writer", path: "/docs/modern-animation/text-writer" },
+      { title: "Morphing Card", path: "/docs/modern-animation/morphing-card" },
     ],
   },
   {

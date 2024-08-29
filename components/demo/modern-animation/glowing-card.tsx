@@ -75,7 +75,7 @@ const GlowingCard: React.FC<GlowingCardProps> = ({
       >
         <motion.div
           className={cn(
-            "absolute inset-0.5 rounded-lg p-4 flex flex-col justify-between",
+            "absolute inset-[1px] rounded-[7px] p-4 flex flex-col justify-between",
             theme === "dark" ? "bg-gray-800" : "bg-gray-100"
           )}
         >

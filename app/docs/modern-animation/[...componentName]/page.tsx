@@ -25,6 +25,7 @@ import { fetchFileContent, sanitizeHtml } from "@/lib/utils";
 import { ComponentDemo } from "@/components/website/component-demo";
 import GradientFlowContent from "@/content/docs/components/gradient-flow.content";
 import { ComponentName } from "@/types/component-map.type";
+import { motion } from "framer-motion";
 
 const ModernAnimationDocumentation = () => {
   const [componentConfig, setComponentConfig] =
@@ -38,7 +39,7 @@ const ModernAnimationDocumentation = () => {
     const getFileContent = async () => {
       try {
         const content = await fetchFileContent(
-          `modern-animation/${componentName}.tsx`,
+          `modern-animation/${componentName}.tsx`
         );
         setFileContent(content);
       } catch (error) {
@@ -65,114 +66,170 @@ const ModernAnimationDocumentation = () => {
     document.title = `ui/beats | ${componentConfig.title}`;
   }, [componentConfig.title]);
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        when: "beforeChildren",
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 10,
+      },
+    },
+  };
+
   return (
-    <div className="md:container mx-auto pb-10">
-      <Breadcrumb>
-        <BreadcrumbList>
-          {componentConfig.breadcrumbs?.map(({ label, href }, index) => {
-            return (
-              <Fragment key={`${label}-${index}`}>
-                {href ? (
-                  <BreadcrumbItem key={label}>
-                    <BreadcrumbLink href={href}>{label}</BreadcrumbLink>
-                  </BreadcrumbItem>
-                ) : (
-                  <BreadcrumbItem key={label}>
-                    <BreadcrumbPage>{label}</BreadcrumbPage>
-                  </BreadcrumbItem>
-                )}
-                {index !== componentConfig.breadcrumbs.length - 1 && (
-                  <BreadcrumbSeparator key={label} />
-                )}
-              </Fragment>
-            );
-          })}
-        </BreadcrumbList>
-      </Breadcrumb>
-      <h1 className="text-3xl font-bold mt-6 mb-2">{componentConfig.title}</h1>
-      <p className="text-gray-500 mb-6">{componentConfig.description}</p>
+    <motion.div
+      className="md:container mx-auto pb-10"
+      variants={containerVariants}
+      initial="hidden"
+      animate="visible"
+    >
+      <motion.div variants={itemVariants}>
+        <Breadcrumb>
+          <BreadcrumbList>
+            {componentConfig.breadcrumbs?.map(({ label, href }, index) => {
+              return (
+                <Fragment key={`${label}-${index}`}>
+                  {href ? (
+                    <BreadcrumbItem key={label}>
+                      <BreadcrumbLink href={href}>{label}</BreadcrumbLink>
+                    </BreadcrumbItem>
+                  ) : (
+                    <BreadcrumbItem key={label}>
+                      <BreadcrumbPage>{label}</BreadcrumbPage>
+                    </BreadcrumbItem>
+                  )}
+                  {index !== componentConfig.breadcrumbs.length - 1 && (
+                    <BreadcrumbSeparator key={label} />
+                  )}
+                </Fragment>
+              );
+            })}
+          </BreadcrumbList>
+        </Breadcrumb>
+      </motion.div>
+      <motion.h1
+        className="text-3xl font-bold mt-6 mb-2"
+        variants={itemVariants}
+      >
+        {componentConfig.title}
+      </motion.h1>
+      <motion.p className="text-gray-500 mb-6" variants={itemVariants}>
+        {componentConfig.description}
+      </motion.p>
 
-      <Tabs defaultValue="preview">
-        <TabsList>
-          <TabsTrigger value="preview">Preview</TabsTrigger>
-          <TabsTrigger value="code">Code</TabsTrigger>
-        </TabsList>
-        <TabsContent value="preview">
-          <ComponentDemo componentName={componentName} />
-        </TabsContent>
-        <TabsContent value="code">
-          <CodeSnippet code={componentConfig.usageCode} />
-        </TabsContent>
-      </Tabs>
+      <motion.div variants={itemVariants}>
+        <Tabs defaultValue="preview">
+          <TabsList>
+            <TabsTrigger value="preview">Preview</TabsTrigger>
+            <TabsTrigger value="code">Code</TabsTrigger>
+          </TabsList>
+          <TabsContent value="preview">
+            <ComponentDemo componentName={componentName} />
+          </TabsContent>
+          <TabsContent value="code">
+            <CodeSnippet code={componentConfig.usageCode} />
+          </TabsContent>
+        </Tabs>
+      </motion.div>
 
-      <h2 className="text-2xl font-semibold mt-10 mb-4">Installation</h2>
-      <ol className="list-decimal list-inside space-y-2">
+      <motion.h2
+        className="text-2xl font-semibold mt-10 mb-4"
+        variants={itemVariants}
+      >
+        Installation
+      </motion.h2>
+      <motion.ol
+        className="list-decimal list-inside space-y-2"
+        variants={itemVariants}
+      >
         {componentConfig.installation?.map(
-          ({ description, code, isFullCode }, index) => {
+          ({ description, isFullCode }, index) => {
             return (
-              <div
+              <motion.div
                 key={index}
                 className={
                   index !== componentConfig.installation.length - 1
                     ? "mb-8"
                     : ""
                 }
+                variants={itemVariants}
               >
                 <li className="mb-5">{description}</li>
                 {isFullCode ? <CodeSnippet code={fileContent || ""} /> : <></>}
-              </div>
+              </motion.div>
             );
-          },
+          }
         )}
-      </ol>
+      </motion.ol>
 
-      <h2 className="text-2xl font-semibold mt-10 mb-4">Usage</h2>
-      <Tabs defaultValue="props">
-        <TabsList>
-          <TabsTrigger value="props">Props</TabsTrigger>
-          <TabsTrigger value="code">Code</TabsTrigger>
-        </TabsList>
-        <TabsContent value="props">
-          <Table className="border">
-            <TableHeader>
-              <TableRow>
-                <TableHead>Prop</TableHead>
-                <TableHead>Type</TableHead>
-                <TableHead>Default</TableHead>
-                <TableHead>Description</TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {componentConfig?.props?.map(
-                ({ prop, type, defaultValue, description }, index) => {
-                  return (
-                    <TableRow key={prop}>
-                      <TableCell>{prop}</TableCell>
-                      <TableCell>{type}</TableCell>
-                      <TableCell>{defaultValue}</TableCell>
-                      <TableCell>{description}</TableCell>
-                    </TableRow>
-                  );
-                },
-              )}
-            </TableBody>
-          </Table>
-        </TabsContent>
-        <TabsContent value="code">
-          <CodeSnippet code={componentConfig?.usageCode} />
-        </TabsContent>
-      </Tabs>
+      <motion.h2
+        className="text-2xl font-semibold mt-10 mb-4"
+        variants={itemVariants}
+      >
+        Usage
+      </motion.h2>
+      <motion.div variants={itemVariants}>
+        <Tabs defaultValue="props">
+          <TabsList>
+            <TabsTrigger value="props">Props</TabsTrigger>
+            <TabsTrigger value="code">Code</TabsTrigger>
+          </TabsList>
+          <TabsContent value="props">
+            <Table className="border">
+              <TableHeader>
+                <TableRow>
+                  <TableHead>Prop</TableHead>
+                  <TableHead>Type</TableHead>
+                  <TableHead>Default</TableHead>
+                  <TableHead>Description</TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {componentConfig?.props?.map(
+                  ({ prop, type, defaultValue, description }) => {
+                    return (
+                      <TableRow key={prop}>
+                        <TableCell>{prop}</TableCell>
+                        <TableCell>{type}</TableCell>
+                        <TableCell>{defaultValue}</TableCell>
+                        <TableCell>{description}</TableCell>
+                      </TableRow>
+                    );
+                  }
+                )}
+              </TableBody>
+            </Table>
+          </TabsContent>
+          <TabsContent value="code">
+            <CodeSnippet code={componentConfig?.usageCode} />
+          </TabsContent>
+        </Tabs>
+      </motion.div>
       {componentConfig.credits && (
-        <>
+        <motion.div variants={itemVariants}>
           <h2 className="text-2xl font-semibold mt-10 mb-4">Credits</h2>
           <p
             dangerouslySetInnerHTML={{
               __html: sanitizeHtml(componentConfig.credits),
             }}
           ></p>
-        </>
+        </motion.div>
       )}
-    </div>
+    </motion.div>
   );
 };
 

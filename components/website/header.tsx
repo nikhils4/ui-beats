@@ -8,6 +8,7 @@ import { siGithub, siX } from "simple-icons";
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
 import { Star } from "lucide-react";
+import { motion } from "framer-motion";
 
 export const Header = () => {
   const githubSvg = siGithub.svg.replace(
@@ -20,8 +21,25 @@ export const Header = () => {
     '<svg class="text-black dark:text-white" fill="currentColor"',
   );
 
+  const containerVariants = {
+    hidden: { opacity: 0, y: -20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.3,
+        ease: "easeOut",
+      },
+    },
+  };
+
   return (
-    <header className="sticky top-0 z-50 w-full border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <motion.header
+      initial="hidden"
+      animate="visible"
+      variants={containerVariants}
+      className="sticky top-0 z-50 w-full border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
+    >
       <div className="flex px-2 md:px-7 h-14 align-middle  items-center">
         <SideNavSheet />
         <span className="sr-only">Menu</span>
@@ -94,6 +112,6 @@ export const Header = () => {
           <ModeToggle />
         </div>
       </div>
-    </header>
+    </motion.header>
   );
 };

@@ -9,6 +9,7 @@ import ScaleInConfig from "@/content/docs/animation/scale-in.content";
 import ShimmerEffectConfig from "@/content/docs/components/shimmer-effect.content";
 import FlipCardConfig from "@/content/docs/animation/flip-card.content";
 import MorphingCardConfig from "@/content/docs/modern-animation/morphing-card.content";
+import GlowingCardConfig from "./modern-animation/glowing-card.content";
 import { DocsConfigType } from "@/types/docs-config.type";
 
 const DocsContentConfig: DocsConfigType = {
@@ -24,6 +25,7 @@ const DocsContentConfig: DocsConfigType = {
     "gravity-text-swap": GravityTextSwapConfig,
     "text-writer": TextWriterConfig,
     "morphing-card": MorphingCardConfig,
+    "glowing-card": GlowingCardConfig,
   },
   components: {
     "gradient-flow": GradientFlowConfig,

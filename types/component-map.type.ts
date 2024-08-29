@@ -16,6 +16,7 @@ export type ComponentMap = {
     "shimmer-effect": React.ComponentType<ComponentProps>;
     "flip-card": React.ComponentType<ComponentProps>;
     "morphing-card": React.ComponentType<ComponentProps>;
+    "glowing-card": React.ComponentType<ComponentProps>;
 };
 
 export type ComponentName = keyof ComponentMap;

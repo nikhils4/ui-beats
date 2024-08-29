@@ -14,6 +14,7 @@ const componentMap: ComponentMap = {
   "shimmer-effect": usageComponents.components.ShimmerEffectUsage,
   "flip-card": usageComponents.animation.FlipCardUsage,
   "morphing-card": usageComponents["modern-animation"].MorphingCardUsage,
+  "glowing-card": usageComponents["modern-animation"].GlowingCardUsage,
 };
 
 export const getAnimationPreview = (

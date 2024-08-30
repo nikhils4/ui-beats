@@ -2,12 +2,9 @@
 import { Button } from "@/components/ui/button";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
-import { Badge } from "@/components/ui/badge";
 import { motion } from "framer-motion";
 
 export const HeroSection = () => {
-  let libraryName = "Glowing Card";
-
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -39,31 +36,56 @@ export const HeroSection = () => {
     >
       <div className="flex flex-col items-start gap-6 px-7 pb-8 text-center md:items-center md:px-10">
         <motion.div variants={itemVariants}>
-          <Link href="/docs/modern-animation/glowing-card">
-            <div className="group relative mx-auto flex max-w-fit flex-row items-center justify-center rounded-2xl bg-white/40 px-4 py-1.5 text-sm font-medium shadow-[inset_0_-8px_10px_#8fdfff1f] backdrop-blur-sm transition-shadow duration-500 ease-out hover:shadow-[inset_0_-5px_10px_#8fdfff3f] dark:bg-black/40">
-              <div className="absolute inset-0 block h-full w-full bg-gradient-to-r from-[#ff7a40]/50 via-[#ff4040]/50 to-[#ff7a40]/50 bg-[length:400%_100%] animate-gradient-x p-[1px] ![mask-composite:subtract] [border-radius:inherit] [mask:linear-gradient(#fff_0_0)_content-box,linear-gradient(#fff_0_0)] dark:hidden"></div>
-              <div className="absolute inset-0 block h-full w-full bg-gradient-to-r from-[#4050ff]/50 via-[#40ff7a]/50 to-[#4050ff]/50 bg-[length:400%_100%] animate-gradient-x p-[1px] ![mask-composite:subtract] [border-radius:inherit] [mask:linear-gradient(#fff_0_0)_content-box,linear-gradient(#fff_0_0)] dark:block"></div>
-              <div className="absolute inset-0 block size-full bg-gradient-to-r from-[#ff7a40]/50 via-[#ff4040]/50 to-[#ff7a40]/50 bg-[length:400%_100%] animate-gradient-x [border-radius:inherit] [mask:linear-gradient(#fff_0_0)_content-box,linear-gradient(#fff_0_0)] p-px ![mask-composite:subtract] dark:hidden"></div>
-              <div className="absolute inset-0 block size-full bg-gradient-to-r from-[#4050ff]/50 via-[#40ff7a]/50 to-[#4050ff]/50 bg-[length:400%_100%] animate-gradient-x [border-radius:inherit] [mask:linear-gradient(#fff_0_0)_content-box,linear-gradient(#fff_0_0)] p-px ![mask-composite:subtract] dark:block"></div>
-              <Badge variant="outline">NEW</Badge>{" "}
+          <a
+            href="https://github.com/nikhils4/ui-beats"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <div className="group relative mx-auto flex max-w-fit flex-row items-center justify-center rounded-full bg-white/10 px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-medium backdrop-blur-sm transition-all duration-300 hover:bg-white/20 dark:bg-black/20 dark:hover:bg-black/30 border-transparent hover:border-blue-300/70 dark:hover:border-blue-600/70 border">
+              <motion.div
+                className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-400/10 to-purple-400/10 opacity-50 blur-sm transition-opacity"
+                animate={{
+                  background: [
+                    "linear-gradient(to right, rgba(96, 165, 250, 0.1), rgba(192, 132, 252, 0.1))",
+                    "linear-gradient(to right, rgba(192, 132, 252, 0.1), rgba(96, 165, 250, 0.1))",
+                    "linear-gradient(to right, rgba(96, 165, 250, 0.1), rgba(192, 132, 252, 0.1))",
+                  ],
+                }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: "linear",
+                }}
+              ></motion.div>
+              <span className="relative mr-1 sm:mr-2 text-blue-600 dark:text-blue-400 font-semibold">
+                Last Update
+              </span>
               <div
                 data-orientation="vertical"
                 role="none"
-                className="shrink-0 bg-border w-px mx-2 h-4"
+                className="relative shrink-0 bg-gray-400 dark:bg-gray-500 w-px mx-1 sm:mx-2 h-2 sm:h-3 self-center"
               ></div>
-              <span className="bg-gradient-to-r from-[#ff7a40] via-[#ff4040] to-[#ff7a40] bg-[length:400%_100%] animate-gradient-x bg-clip-text text-transparent inline dark:hidden">
-                {libraryName}
+              <span className="relative text-gray-700 dark:text-gray-200 ml-1 sm:ml-2">
+                {new Date().toLocaleDateString("en-US", {
+                  month: "short",
+                  day: "numeric",
+                })}
               </span>
-              <span className="bg-gradient-to-r from-[#4050ff] via-[#40ff7a] to-[#4050ff] bg-[length:400%_100%] animate-gradient-x bg-clip-text text-transparent hidden dark:inline">
-                {libraryName}
-              </span>
-              <ChevronRight className="w-4 h-4 ml-2" />
+              <motion.div
+                className="relative ml-1 sm:ml-2 w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-green-500"
+                animate={{ scale: [1, 1.3, 1] }}
+                transition={{
+                  duration: 1.5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              />
             </div>
-          </Link>
+          </a>
         </motion.div>
         <motion.div
           variants={itemVariants}
-          className="relative flex flex-col gap-10 md:items-center lg:flex-row mt-6"
+          className="relative flex flex-col gap-10 md:items-center lg:flex-row md:mt-6"
         >
           <h1 className="text-black dark:text-white relative mx-0 max-w-[43.5rem] pt-5 md:mx-auto md:px-4 md:py-2 text-left tracking-tighter text-balance md:text-center font-semibold md:text-7xl lg:text-7xl sm:text-7xl text-5xl">
             Supercharge your UI

@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { useTheme } from "next-themes";
 import { usePathname } from "next/navigation";
 
-export const BgParticles = () => {
+export const ParticleGrid = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const { theme } = useTheme();
   const pathname = usePathname();

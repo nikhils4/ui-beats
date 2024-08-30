@@ -50,6 +50,7 @@ export default function RootLayout({
 }: Readonly<{
   children: ReactNode;
 }>) {
+
   return (
     <html lang="en">
       <WebsiteContextProvider>

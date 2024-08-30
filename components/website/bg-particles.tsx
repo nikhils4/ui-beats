@@ -1,9 +1,11 @@
 "use client";
 import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
+import { useTheme } from 'next-themes';
 
 export const BgParticles = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const { theme } = useTheme();
 
   useEffect(() => {
     const container = containerRef.current;
@@ -15,7 +17,7 @@ export const BgParticles = () => {
 
     const createDot = (row: number, col: number) => {
       const dot = document.createElement('div');
-      dot.className = 'absolute w-0.5 h-0.5 rounded-full bg-black/10 dark:bg-white/10 transition-all duration-1000';
+      dot.className = `absolute w-0.5 h-0.5 rounded-full ${theme === 'dark' ? 'bg-white/20' : 'bg-black/20'} transition-all duration-1500`;
       dot.style.left = `${col * gridSize}px`;
       dot.style.top = `${row * gridSize}px`;
       dot.style.opacity = '0';
@@ -28,12 +30,16 @@ export const BgParticles = () => {
       const dy = row - centerRow;
       const distance = Math.sqrt(dx * dx + dy * dy);
       const maxDistance = Math.sqrt(centerRow * centerRow + centerCol * centerCol);
-      const delay = (distance / maxDistance) * 1500; // Radial animation delay
+      const delay = (distance / maxDistance) * 2000; // Increased delay for more visible radial pattern
 
       setTimeout(() => {
         dot.style.opacity = '1';
-        dot.style.transform = 'scale(1) rotate(360deg)';
+        dot.style.transform = 'scale(1.2) rotate(360deg)'; // Slightly increased scale for visibility
       }, delay);
+
+      setTimeout(() => {
+        dot.style.transform = 'scale(1) rotate(360deg)'; // Return to normal scale
+      }, delay + 500); // Additional 500ms for the scale-down animation
     };
 
     for (let row = 0; row < rows; row++) {
@@ -47,7 +53,7 @@ export const BgParticles = () => {
         container.removeChild(container.firstChild);
       }
     };
-  }, []);
+  }, [theme]);
 
   return (
     <motion.div
@@ -55,7 +61,7 @@ export const BgParticles = () => {
       className="absolute -z-50 top-0 inset-0 overflow-hidden"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 1.5 }}
+      transition={{ duration: 2 }}
     />
   );
 };

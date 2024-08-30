@@ -7,6 +7,7 @@ import { Footer } from "@/components/website/footer";
 import { WebsiteContextProvider } from "@/context/website-context";
 import { ReactNode } from "react";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import { BgParticles } from "@/components/website/bg-particles";
 
 export const metadata: Metadata = {
   title: "ui/beats",
@@ -59,6 +60,7 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
+            <BgParticles />
             <Header />
             {children}
             <Footer />

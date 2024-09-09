@@ -15,6 +15,7 @@ const componentMap: ComponentMap = {
   "flip-card": usageComponents.animation.FlipCardUsage,
   "morphing-card": usageComponents["modern-animation"].MorphingCardUsage,
   "glowing-card": usageComponents["modern-animation"].GlowingCardUsage,
+  "sparkling-grid": usageComponents.components.SparklingGridUsage,
 };
 
 export const getAnimationPreview = (

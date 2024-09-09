@@ -1,5 +1,5 @@
 export const sideNav: {
-  subItems: { path: string; title: string }[];
+  subItems: { path: string; title: string, isNew?: boolean }[];
   title: string;
 }[] = [
   {
@@ -24,15 +24,16 @@ export const sideNav: {
     subItems: [
       { title: "Gradient Flow", path: "/docs/components/gradient-flow" },
       { title: "Shimmer Effect", path: "/docs/components/shimmer-effect" },
-    ],
+      { title: "Sparkling Grid", path: "/docs/components/sparkling-grid", isNew: true },
+    ]
   },
   {
     title: "Modern Animation",
     subItems: [
-      { title: "Glowing Card", path: "/docs/modern-animation/glowing-card" },
+      { title: "Glowing Card", path: "/docs/modern-animation/glowing-card", isNew: true },
       { title: "Gravity Text Swap", path: "/docs/modern-animation/gravity-text-swap" },
       { title: "Text Writer", path: "/docs/modern-animation/text-writer" },
-      { title: "Morphing Card", path: "/docs/modern-animation/morphing-card" },
+      { title: "Morphing Card", path: "/docs/modern-animation/morphing-card", isNew: true },
     ],
   },
   {

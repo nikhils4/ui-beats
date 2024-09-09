@@ -49,17 +49,25 @@ export const SideNavSheet = () => {
               {sideNav.map(({ subItems, title }) => (
                 <div className="flex flex-col space-y-3 pt-6" key={title}>
                   <h4 className="font-medium">{title}</h4>
-                  {subItems?.map(({ path, title }) => (
+                  {subItems?.map(({ path, title, isNew }) => (
                     <SheetClose asChild key={path}>
                       <Link
                         href={path}
-                        className={`hover:text-foreground ${
+                        className={`hover:text-foreground flex items-center ${
                           path === pathname
                             ? "text-foreground"
                             : "text-muted-foreground"
                         }`}
                       >
-                        {title}
+                        <span className="text-sm">{title}</span>
+                        {isNew && (
+                          <Badge
+                            variant="outline"
+                            className="ml-2 px-1 py-0 text-[9px] font-medium bg-emerald-100 text-emerald-700 border-emerald-300 rounded-sm leading-tight self-start mt-1"
+                          >
+                            New
+                          </Badge>
+                        )}
                       </Link>
                     </SheetClose>
                   ))}

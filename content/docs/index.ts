@@ -10,6 +10,7 @@ import ShimmerEffectConfig from "@/content/docs/components/shimmer-effect.conten
 import FlipCardConfig from "@/content/docs/animation/flip-card.content";
 import MorphingCardConfig from "@/content/docs/modern-animation/morphing-card.content";
 import GlowingCardConfig from "./modern-animation/glowing-card.content";
+import SparklingGridConfig from "@/content/docs/components/sparkling-grid.content";
 import { DocsConfigType } from "@/types/docs-config.type";
 
 const DocsContentConfig: DocsConfigType = {
@@ -30,6 +31,7 @@ const DocsContentConfig: DocsConfigType = {
   components: {
     "gradient-flow": GradientFlowConfig,
     "shimmer-effect": ShimmerEffectConfig,
+    "sparkling-grid": SparklingGridConfig,
   },
 };
 

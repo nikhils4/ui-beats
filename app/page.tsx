@@ -1,11 +1,11 @@
 import { HeroSection } from "@/components/website/hero-section";
-import { ParticleGrid } from "@/components/website/particles-grid";
+import { SparklingGrid } from "@/components/demo/components/sparkling-grid";
 
 export default function Home() {
   return (
     <main>
-      <ParticleGrid />
       <HeroSection />
+      <SparklingGrid />
     </main>
   );
 }

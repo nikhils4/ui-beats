@@ -16,5 +16,6 @@ export default {
     components: {
         GradientFlowUsage: require("./components/gradient-flow.usage").default,
         ShimmerEffectUsage: require("./components/shimmer-effect.usage").default,
+        SparklingGridUsage: require("./components/sparkling-grid.usage").default,
     },
 }

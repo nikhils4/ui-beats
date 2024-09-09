@@ -2,6 +2,7 @@
 import { sideNav } from "@/config/side-nav";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Badge } from "@/components/ui/badge";
 
 export const SideNav = () => {
   const pathname = usePathname();
@@ -15,7 +16,7 @@ export const SideNav = () => {
               {title}
             </h4>
             <div className="grid grid-flow-row auto-rows-max text-sm">
-              {subItems.map(({ path, title }) => (
+              {subItems.map(({ path, title, isNew }) => (
                 <Link
                   className={`group flex w-full items-center rounded-md border border-transparent px-2 py-1 ${
                     path === pathname
@@ -28,6 +29,16 @@ export const SideNav = () => {
                   key={path}
                 >
                   {title}
+                  {isNew && (
+                    <span className="ml-2 flex items-center">
+                      <Badge
+                        variant="outline"
+                        className="px-1 py-0 text-[9px] font-medium bg-emerald-100 text-emerald-700 border-emerald-300 rounded-sm leading-tight"
+                      >
+                        New
+                      </Badge>
+                    </span>
+                  )}
                 </Link>
               ))}
             </div>

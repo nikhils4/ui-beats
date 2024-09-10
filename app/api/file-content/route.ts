@@ -13,10 +13,10 @@ export async function GET(request: NextRequest) {
     );
   }
   console.log("File name:", fileName);
-
-  const filePath = path.join(process.cwd(), "components/demo/", fileName);
   const files = fs.readdirSync(path.join(process.cwd(), "components/demo/"));
   console.log("Directory contents:", files);
+  const filePath = path.join(process.cwd(), "components/demo/", fileName);
+
   try {
     const fileContent = fs.readFileSync(filePath, "utf8");
     console.log("File content:", fileContent);

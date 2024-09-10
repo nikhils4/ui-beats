@@ -1,7 +1,6 @@
 "use client";
 import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
-import { useTheme } from "next-themes";
 
 interface SparklingGridProps {
   gridSize?: number;
@@ -14,6 +13,7 @@ interface SparklingGridProps {
     light: string;
     dark: string;
   };
+  theme: string;
 }
 
 export const SparklingGrid: React.FC<SparklingGridProps> = ({
@@ -21,9 +21,9 @@ export const SparklingGrid: React.FC<SparklingGridProps> = ({
   sparkleFrequency = 0.03,
   sparkleColor = { light: "darkgray", dark: "silver" },
   dotColor = { light: "bg-black/20", dark: "bg-white/20" },
+  theme,
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const { theme } = useTheme();
 
   useEffect(() => {
     const container = containerRef.current;

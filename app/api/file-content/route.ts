@@ -13,7 +13,7 @@ export async function GET(request: NextRequest) {
     );
   }
   console.log("File name:", fileName);
-  const files = fs.readdirSync(path.join(process.cwd(), "components/demo/"));
+  const files = fs.readdirSync(path.join(process.cwd(), "components/demo/components/"));
   console.log("Directory contents:", files);
   const filePath = path.join(process.cwd(), "components/demo/", fileName);
 

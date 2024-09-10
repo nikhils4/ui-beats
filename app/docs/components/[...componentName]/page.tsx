@@ -37,6 +37,7 @@ const ComponentsDocumentation = () => {
 
   useEffect(() => {
     const getFileContent = async () => {
+      console.log("Fetching file content for", componentName);
       try {
         const content = await fetchFileContent(
           `components/${componentName}.tsx`,

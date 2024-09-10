@@ -12,10 +12,12 @@ export async function GET(request: NextRequest) {
       { status: 400 },
     );
   }
+  console.log("File name:", fileName);
 
   const filePath = path.join(process.cwd(), "components/demo/", fileName);
   try {
     const fileContent = fs.readFileSync(filePath, "utf8");
+    console.log("File content:", fileContent);
     return NextResponse.json({ content: fileContent });
   } catch (error) {
     return NextResponse.json(

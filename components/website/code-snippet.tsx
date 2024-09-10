@@ -19,7 +19,7 @@ export const CodeSnippet = ({
   };
 
   return (
-    <div className="relative">
+    <div className="relative ">
       <CodeBlock code={code} language={language} theme={themes.jettwaveDark}>
         <div>
           <CodeBlock.Code className="bg-gray-900 !p-4 text-sm rounded-xl shadow-lg whitespace-pre overflow-x-scroll max-h-80">
@@ -36,7 +36,7 @@ export const CodeSnippet = ({
         onClick={copyCode}
       >
         {state.value ? (
-          <ClipboardCheck className="text-whrite h-4 w-4" />
+          <ClipboardCheck className="text-white h-4 w-4" />
         ) : (
           <Clipboard className="text-white h-4 w-4" />
         )}

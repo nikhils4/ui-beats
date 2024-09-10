@@ -13,7 +13,7 @@ export const ComponentDemo = ({
 
   return (
     <div className="relative border rounded-lg h-72 overflow-hidden bg-white dark:bg-black shadow-sm">
-      <div className="absolute inset-0 bg-gradient-to-br from-white/60 to-black/60 dark:from-gray-900/60 dark:to-black/60 backdrop-blur-sm"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-white/60 to-white/60 dark:from-gray-900/60 dark:to-black/60 backdrop-blur-sm"></div>
       <Button
         variant="outline"
         size="icon"

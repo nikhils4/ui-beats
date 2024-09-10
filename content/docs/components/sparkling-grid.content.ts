@@ -21,6 +21,18 @@ const SparklingGridContent: ComponentConfigType = {
   usageCode: `${getAnimationPreview("sparkling-grid", 1, true)}`,
   installation: [
     {
+      description: "If you want to use dynamic themes, add the following to your project (optional)",
+      code: `import { useTheme } from "next-themes";
+
+const YourComponent = () => {
+  const { theme } = useTheme();
+
+  return (
+    <SparklingGrid theme={theme as "light" | "dark"} />
+  );
+};`,
+  },
+    {
       description: "Add the following code into your project",
       isFullCode: true,
     },
@@ -52,6 +64,12 @@ const SparklingGridContent: ComponentConfigType = {
       type: "{ light: string; dark: string }",
       defaultValue: "{ light: 'bg-black/20', dark: 'bg-white/20' }",
       description: "Colors for the grid dots in light and dark themes",
+    },
+    {
+      prop: "theme",
+      type: "'light' | 'dark'",
+      defaultValue: "'light'",
+      description: "Current theme of the component",
     },
   ],
 };

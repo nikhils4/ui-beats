@@ -157,7 +157,7 @@ const ModernAnimationDocumentation = () => {
         variants={itemVariants}
       >
         {componentConfig.installation?.map(
-          ({ description, isFullCode }, index) => {
+          ({ description, code, isFullCode }, index) => {
             return (
               <motion.div
                 key={index}
@@ -169,7 +169,11 @@ const ModernAnimationDocumentation = () => {
                 variants={itemVariants}
               >
                 <li className="mb-5">{description}</li>
-                {isFullCode ? <CodeSnippet code={fileContent || ""} /> : <></>}
+                {isFullCode ? (
+                  <CodeSnippet code={fileContent || ""} />
+                ) : code ? (
+                  <CodeSnippet code={code} />
+                ) : null}
               </motion.div>
             );
           }

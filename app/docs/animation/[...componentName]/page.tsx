@@ -156,7 +156,11 @@ const AnimationDocumentation = () => {
                 variants={itemVariants}
               >
                 <li className="mb-5">{description}</li>
-                {isFullCode ? <CodeSnippet code={fileContent || ""} /> : <></>}
+                {isFullCode ? (
+                  <CodeSnippet code={fileContent || ""} />
+                ) : code ? (
+                  <CodeSnippet code={code} />
+                ) : null}
               </motion.div>
             );
           },

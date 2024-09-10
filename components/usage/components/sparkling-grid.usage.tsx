@@ -4,7 +4,7 @@ import { SparklingGrid } from "@/components/demo/components/sparkling-grid";
 const SparklingGridUsage = () => {
   return (
     <div className="relative h-80 w-full">
-      <SparklingGrid />
+      <SparklingGrid theme={"dark"} />
       <div className="absolute inset-0 flex items-center justify-center text-lg md:text-2xl font-semibold">
         Sparkling Grid Background
       </div>
@@ -13,7 +13,7 @@ const SparklingGridUsage = () => {
 };
 
 SparklingGridUsage.stringVersion = `<div className="relative h-80 w-full">
-  <SparklingGrid />
+  <SparklingGrid theme={"dark"} />
   <div className="absolute inset-0 flex items-center justify-center text-lg md:text-2xl font-semibold">
     Sparkling Grid Background
   </div>

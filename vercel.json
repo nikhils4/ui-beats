@@ -4,5 +4,12 @@
       "source": "/blogs/:path*",
       "destination": "https://ui-beats-blogs.vercel.app/blogs/:path*"
     }
+  ],
+  "redirects": [
+    {
+      "source": "https://ui-beats-blogs.vercel.app/:path*",
+      "destination": "https://www.uibeats.com/blog/:path*",
+      "permanent": true
+    }
   ]
 }

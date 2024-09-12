@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/blogs/:path*",
+      "destination": "https://ui-beats-blogs.vercel.app/blogs/:path*"
+    }
+  ]
+}

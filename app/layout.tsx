@@ -7,6 +7,7 @@ import { Footer } from "@/components/website/footer";
 import { WebsiteContextProvider } from "@/context/website-context";
 import { ReactNode } from "react";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import Script from "next/script";
 
 export const metadata: Metadata = {
   title: "ui/beats",
@@ -49,7 +50,6 @@ export default function RootLayout({
 }: Readonly<{
   children: ReactNode;
 }>) {
-
   return (
     <html lang="en">
       <WebsiteContextProvider>
@@ -64,6 +64,20 @@ export default function RootLayout({
             {children}
             <Footer />
           </ThemeProvider>
+          <Script id="blog-assets" strategy="afterInteractive">
+            {`
+            if (window.location.pathname.startsWith('/blogs')) {
+              const linkEl = document.createElement('link');
+              linkEl.rel = 'stylesheet';
+              linkEl.href = '/api/blog/_next/static/css/app/blogs/layout.css';
+              document.head.appendChild(linkEl);
+
+              const scriptEl = document.createElement('script');
+              scriptEl.src = '/api/blog/_next/static/chunks/app/blogs/page.js';
+              document.body.appendChild(scriptEl);
+            }
+          `}
+          </Script>
         </body>
         <GoogleAnalytics gaId="G-E5FVREP9R1" />
       </WebsiteContextProvider>

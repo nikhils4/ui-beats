@@ -2,21 +2,13 @@ import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
 export function middleware(request: NextRequest) {
-  const { pathname } = request.nextUrl;
-
-  if (pathname.startsWith('/blogs')) {
-    const remoteUrl = new URL(pathname, 'https://ui-beats-blogs.vercel.app');
-
-    if (pathname.endsWith('.css') || pathname.endsWith('.js')) {
-      return NextResponse.rewrite(remoteUrl);
-    }
-
-    return NextResponse.rewrite(new URL(pathname, `${remoteUrl}/blogs`));
+  if (request.nextUrl.pathname.startsWith('/blogs')) {
+    const url = request.nextUrl.clone();
+    url.pathname = `/api/blog${url.pathname}`;
+    return NextResponse.rewrite(url);
   }
-
-  return NextResponse.next();
 }
 
 export const config = {
-  matcher: ['/blogs/:path*'],
+  matcher: '/blogs/:path*',
 };

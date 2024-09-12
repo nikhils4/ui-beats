@@ -7,7 +7,7 @@
   ],
   "redirects": [
     {
-      "source": "https://ui-beats-blogs.vercel.app/:path*",
+      "source": "/:path*",
       "destination": "https://www.uibeats.com/blog/:path*",
       "permanent": true
     }

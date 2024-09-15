@@ -53,53 +53,71 @@ export default function RootLayout({
       animate="visible"
       variants={containerVariants}
     >
-      <motion.aside variants={itemVariants} className="hidden md:block w-64 px-8 py-8 overflow-y-auto">
+      <motion.aside
+        variants={itemVariants}
+        className="hidden md:block w-64 px-8 py-8 overflow-y-auto fixed left-0 top-[90px] bottom-0 z-10"
+        style={{ paddingTop: "var(--header-height, 0px)" }}
+      >
         <SideNav />
       </motion.aside>
-      <motion.div variants={itemVariants} className="flex flex-col flex-grow md:flex-row">
-        <motion.main variants={contentVariants} className="flex-grow p-4 md:p-6 lg:p-8 overflow-x-auto">
-          <motion.div variants={contentVariants} className="max-w-full md:max-w-3xl lg:max-w-4xl xl:max-w-4xl mx-auto">
+      <motion.div
+        variants={itemVariants}
+        className="flex flex-col flex-grow md:flex-row md:ml-64 md:mr-64"
+      >
+        <motion.main
+          variants={contentVariants}
+          className="flex-grow p-4 md:p-6 lg:p-8 overflow-y-auto"
+          style={{ paddingTop: "calc(var(--header-height, 0px) + 2rem)" }}
+        >
+          <motion.div
+            variants={contentVariants}
+            className="max-w-full md:max-w-3xl lg:max-w-4xl xl:max-w-4xl mx-auto"
+          >
             {children}
           </motion.div>
         </motion.main>
-        <motion.div variants={itemVariants} className="hidden xl:block w-64 px-8 py-8">
-          <div className="space-y-2">
-            <ul className="m-0 list-none">
-              <motion.li
-                variants={itemVariants}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="mt-0 pt-2"
+      </motion.div>
+      <motion.div
+        variants={itemVariants}
+        className="hidden xl:block w-64 px-8 py-8 fixed right-0 top-[90px] bottom-0 z-10"
+        style={{ paddingTop: "var(--header-height, 0px)" }}
+      >
+        <div className="space-y-2">
+          <ul className="m-0 list-none">
+            <motion.li
+              variants={itemVariants}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="mt-0 pt-2"
+            >
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors"
+                href="https://github.com/nikhils4/ui-beats/issues/new?assignees=&labels=&projects=&template=bug_report.md&title="
               >
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors"
-                  href="https://github.com/nikhils4/ui-beats/issues/new?assignees=&labels=&projects=&template=bug_report.md&title="
-                >
-                  <Bug className="h-4 w-4 mr-2" />
-                  Report an issue
-                </a>
-              </motion.li>
-              <motion.li
-                variants={itemVariants}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="mt-0 pt-2"
+                <Bug className="h-4 w-4 mr-2" />
+                Report an issue
+              </a>
+            </motion.li>
+            <motion.li
+              variants={itemVariants}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="mt-0 pt-2"
+            >
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors"
+                href="https://github.com/nikhils4/ui-beats/issues/new?assignees=&labels=&projects=&template=feature_request.md&title="
               >
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors"
-                  href="https://github.com/nikhils4/ui-beats/issues/new?assignees=&labels=&projects=&template=feature_request.md&title="
-                >
-                  <Edit3 className="h-4 w-4 mr-2" />
-                  Request a feature
-                </a>
-              </motion.li>
-            </ul>
-          </div>
-        </motion.div>
+                <Edit3 className="h-4 w-4 mr-2" />
+                Request a feature
+              </a>
+            </motion.li>
+          </ul>
+        </div>
       </motion.div>
     </motion.div>
   );

@@ -40,7 +40,7 @@ const ComponentsDocumentation = () => {
       console.log("Fetching file content for", componentName);
       try {
         const content = await fetchFileContent(
-          `components/${componentName}.tsx`,
+          `components/${componentName}.tsx`
         );
         setFileContent(content);
       } catch (error) {
@@ -62,7 +62,7 @@ const ComponentsDocumentation = () => {
   }, []);
 
   useEffect(() => {
-    document.title = `UIBeats | ${componentConfig.title}`;
+    document.title = `UI Beats | ${componentConfig.title}`;
   }, [componentConfig.title]);
 
   const containerVariants = {
@@ -120,7 +120,10 @@ const ComponentsDocumentation = () => {
           </BreadcrumbList>
         </Breadcrumb>
       </motion.div>
-      <motion.h1 className="text-3xl font-bold mt-6 mb-2" variants={itemVariants}>
+      <motion.h1
+        className="text-3xl font-bold mt-6 mb-2"
+        variants={itemVariants}
+      >
         {componentConfig.title}
       </motion.h1>
       <motion.p className="text-gray-500 mb-6" variants={itemVariants}>
@@ -142,10 +145,16 @@ const ComponentsDocumentation = () => {
         </Tabs>
       </motion.div>
 
-      <motion.h2 className="text-2xl font-semibold mt-10 mb-4" variants={itemVariants}>
+      <motion.h2
+        className="text-2xl font-semibold mt-10 mb-4"
+        variants={itemVariants}
+      >
         Installation
       </motion.h2>
-      <motion.ol className="list-decimal list-inside space-y-2" variants={itemVariants}>
+      <motion.ol
+        className="list-decimal list-inside space-y-2"
+        variants={itemVariants}
+      >
         {componentConfig.installation?.map(
           ({ description, code, isFullCode }, index) => {
             return (
@@ -166,11 +175,14 @@ const ComponentsDocumentation = () => {
                 ) : null}
               </motion.div>
             );
-          },
+          }
         )}
       </motion.ol>
 
-      <motion.h2 className="text-2xl font-semibold mt-10 mb-4" variants={itemVariants}>
+      <motion.h2
+        className="text-2xl font-semibold mt-10 mb-4"
+        variants={itemVariants}
+      >
         Usage
       </motion.h2>
       <motion.div variants={itemVariants}>
@@ -200,7 +212,7 @@ const ComponentsDocumentation = () => {
                         <TableCell>{description}</TableCell>
                       </TableRow>
                     );
-                  },
+                  }
                 )}
               </TableBody>
             </Table>

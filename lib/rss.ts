@@ -4,18 +4,16 @@ import { allPosts, Post } from 'contentlayer/generated'
 const site_url = 'https://uibeats.com'
 
 const feedOptions: FeedOptions = {
-  title: 'UIBeats Blog',
+  title: 'UI Beats Blog',
   description: 'Discover in-depth tutorials and guides on frontend development, UI/UX design, and web animations. Learn the latest techniques and best practices for creating stunning, interactive web experiences.',
   id: site_url,
   link: site_url,
-  image: `${site_url}/favicon.png`,
-  favicon: `${site_url}/favicon.png`,
-  copyright: `All rights reserved ${new Date().getFullYear()}, UIBeats`,
-  generator: 'Feed for Node.js',
+  image: `${site_url}/uibeats-social-media.png`,
+  favicon: `${site_url}/icon.png`,
+  copyright: `All rights reserved ${new Date().getFullYear()}, UI Beats`,
+  generator: 'Feed for Next.js',
   feedLinks: {
-    rss2: `${site_url}/rss/feed.xml`,
-    json: `${site_url}/rss/feed.json`,
-    atom: `${site_url}/rss/atom.xml`,
+    rss2: `${site_url}/api/rss.xml`,
   },
 }
 

@@ -38,7 +38,7 @@ export async function generateMetadata({
           alt: post.imageAlt || post.title,
         },
       ],
-      siteName: "UIBeats",
+      siteName: "UI Beats",
     },
     twitter: {
       card: "summary_large_image",

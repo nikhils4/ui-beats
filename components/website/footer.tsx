@@ -1,7 +1,12 @@
 "use client";
 import { motion } from "framer-motion";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export const Footer = () => {
+  const pathname = usePathname();
+  const isHomePage = pathname === "/";
+
   const containerVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
@@ -19,17 +24,31 @@ export const Footer = () => {
       initial="hidden"
       animate="visible"
       variants={containerVariants}
-      className="flex justify-center mt-14 text-sm items-center transition-colors text-foreground/60 px-2 md:px-7 h-24"
+      className={`flex w-full items-center mt-14 text-sm transition-colors text-foreground/60 px-2 md:px-7 h-24 ${
+        isHomePage ? "justify-center" : "justify-between"
+      }`}
     >
-      Crafted by&nbsp;
-      <a
-        className="hover:text-foreground/80 underline"
-        target="_blank"
-        href="https://nikhils.ca"
+      <div
+        className={`flex justify-center md:justify-between w-full md:w-auto`}
       >
-        nikhils4
-      </a>
-      , for the web!
+        <span>Crafted by&nbsp;</span>
+        <a
+          className="hover:text-foreground/80 underline"
+          target="_blank"
+          href="https://nikhils.ca"
+        >
+          nikhils4
+        </a>
+        <span>, for the web!</span>
+      </div>
+      {!isHomePage && (
+        <Link
+          href="/blogs"
+          className="hover:text-foreground/80 underline hidden md:inline-block"
+        >
+          Read our blogs
+        </Link>
+      )}
     </motion.footer>
   );
 };

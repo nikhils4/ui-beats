@@ -1,4 +1,4 @@
-<h1 align="center">UIBeats</h1>
+<h1 align="center">UI Beats</h1>
 <p align="center">
     Supercharge your UI
 </p>

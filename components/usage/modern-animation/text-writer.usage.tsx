@@ -4,16 +4,15 @@ import TextWriter from "@/components/demo/modern-animation/text-writer";
 const TextWriterUsage = () => {
   return (
     <TextWriter
-      text="Welcome to UIBeats"
+      text="Welcome to UI Beats"
       className="text-md md:text-lg mb-4"
       delay={0.1}
     />
   );
 };
 
-TextWriterUsage.stringVersion =
-    `<TextWriter
-  text="Welcome to UIBeats"
+TextWriterUsage.stringVersion = `<TextWriter
+  text="Welcome to UI Beats"
   className="text-md md:text-lg mb-4"
   delay={0.1}
 />`;

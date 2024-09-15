@@ -9,7 +9,7 @@ const FlipCardUsage = () => {
         subtitle: "Tap to learn more",
       }}
       backContent={{
-        title: "UIBeats",
+        title: "UI Beats",
         description:
           "A collection of modern and interactive UI components for React.",
       }}

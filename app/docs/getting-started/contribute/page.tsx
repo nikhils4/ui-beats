@@ -10,7 +10,7 @@ import { CodeSnippet } from "@/components/website/code-snippet";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "UIBeats | Contribute",
+  title: "UI Beats | Contribute",
 };
 
 const Contribute = () => {
@@ -36,7 +36,7 @@ const Contribute = () => {
           Contribute
         </h1>
         <p className="text-base text-muted-foreground">
-          How to contribute to UIBeats.
+          How to contribute to UI Beats.
         </p>
       </div>
       <div className="pb-12 pt-8">
@@ -121,7 +121,7 @@ const Contribute = () => {
         <div className="mb-6">
           <h2 className="font-semibold mb-2">Thank You for Contributing!</h2>
           <p>
-            Your contributions help make UIBeats better for everyone. Whether
+            Your contributions help make UI Beats better for everyone. Whether
             you&apos;re fixing bugs, adding new features, or improving
             documentation, your efforts are appreciated.
           </p>

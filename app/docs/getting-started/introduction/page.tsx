@@ -9,7 +9,7 @@ import {
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "UIBeats | Introduction",
+  title: "UI Beats | Introduction",
 };
 
 const Introduction = () => {
@@ -44,7 +44,7 @@ const Introduction = () => {
           <p className="leading-7 [&amp;:not(:first-child)]:mt-6 mb-5">
             Create stunning user interfaces with components you can copy and
             paste directly into your applications. Accessible, customizable, and
-            open source. UIBeats is a collection of reusable components crafted
+            open source. UI Beats is a collection of reusable components crafted
             with React, TypeScript, Tailwind CSS, and Framer Motion.
             <br />
             <br />
@@ -54,7 +54,7 @@ const Introduction = () => {
             projects with ease.
           </p>
           <p className="leading-7 [&amp;:not(:first-child)]:mt-6">
-            UIBeats is inspired by{" "}
+            UI Beats is inspired by{" "}
             <em>
               <a
                 rel="noopener noreferrer"
@@ -66,7 +66,7 @@ const Introduction = () => {
               </a>{" "}
             </em>
             , and we extend our gratitude building a beautiful UI library that
-            has inspired us to create UIBeats.{" "}
+            has inspired us to create UI Beats.{" "}
           </p>
         </div>
       </div>

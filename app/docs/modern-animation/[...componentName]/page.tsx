@@ -63,7 +63,7 @@ const ModernAnimationDocumentation = () => {
   }, []);
 
   useEffect(() => {
-    document.title = `UIBeats | ${componentConfig.title}`;
+    document.title = `UI Beats | ${componentConfig.title}`;
   }, [componentConfig.title]);
 
   const containerVariants = {

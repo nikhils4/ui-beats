@@ -9,23 +9,23 @@ import { ReactNode } from "react";
 import { GoogleAnalytics } from "@next/third-parties/google";
 
 export const metadata: Metadata = {
-  title: "UIBeats",
+  title: "UI Beats",
   description:
-    "Supercharge your UI with UIBeats! Reusable components crafted with React, TypeScript, Tailwind CSS, and Framer Motion for dynamic, responsive interfaces.",
+    "Supercharge your UI with UI Beats! Reusable components crafted with React, TypeScript, Tailwind CSS, and Framer Motion for dynamic, responsive interfaces.",
   metadataBase: new URL("https://uibeats.com"),
-  applicationName: "UIBeats",
+  applicationName: "UI Beats",
   authors: [{ name: "Nikhil Singh", url: "https://nikhils.ca" }],
   creator: "Nikhil Singh",
   openGraph: {
-    title: "UIBeats",
+    title: "UI Beats",
     description:
-      "Supercharge your UI with UIBeats! Reusable components crafted with React, TypeScript, Tailwind CSS, and Framer Motion for dynamic, responsive interfaces.",
+      "Supercharge your UI with UI Beats! Reusable components crafted with React, TypeScript, Tailwind CSS, and Framer Motion for dynamic, responsive interfaces.",
     url: "https://uibeats.com",
     type: "website",
     images: [
       {
         url: "/uibeats-social-media.png",
-        alt: "UIBeats social media image",
+        alt: "UI Beats social media image",
       },
     ],
   },

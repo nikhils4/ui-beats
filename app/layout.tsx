@@ -7,26 +7,25 @@ import { Footer } from "@/components/website/footer";
 import { WebsiteContextProvider } from "@/context/website-context";
 import { ReactNode } from "react";
 import { GoogleAnalytics } from "@next/third-parties/google";
-import Script from "next/script";
 
 export const metadata: Metadata = {
-  title: "ui/beats",
+  title: "UIBeats",
   description:
-    "Supercharge your UI with ui/beats! Reusable components crafted with React, TypeScript, Tailwind CSS, and Framer Motion for dynamic, responsive interfaces.",
+    "Supercharge your UI with UIBeats! Reusable components crafted with React, TypeScript, Tailwind CSS, and Framer Motion for dynamic, responsive interfaces.",
   metadataBase: new URL("https://uibeats.com"),
-  applicationName: "ui/beats",
+  applicationName: "UIBeats",
   authors: [{ name: "Nikhil Singh", url: "https://nikhils.ca" }],
   creator: "Nikhil Singh",
   openGraph: {
-    title: "ui/beats",
+    title: "UIBeats",
     description:
-      "Supercharge your UI with ui/beats! Reusable components crafted with React, TypeScript, Tailwind CSS, and Framer Motion for dynamic, responsive interfaces.",
+      "Supercharge your UI with UIBeats! Reusable components crafted with React, TypeScript, Tailwind CSS, and Framer Motion for dynamic, responsive interfaces.",
     url: "https://uibeats.com",
     type: "website",
     images: [
       {
         url: "/uibeats-social-media.png",
-        alt: "ui/beats social media image",
+        alt: "UIBeats social media image",
       },
     ],
   },
@@ -64,20 +63,6 @@ export default function RootLayout({
             {children}
             <Footer />
           </ThemeProvider>
-          <Script id="blog-assets" strategy="afterInteractive">
-            {`
-            if (window.location.pathname.startsWith('/blogs')) {
-              const linkEl = document.createElement('link');
-              linkEl.rel = 'stylesheet';
-              linkEl.href = '/api/blog/_next/static/css/app/blogs/layout.css';
-              document.head.appendChild(linkEl);
-
-              const scriptEl = document.createElement('script');
-              scriptEl.src = '/api/blog/_next/static/chunks/app/blogs/page.js';
-              document.body.appendChild(scriptEl);
-            }
-          `}
-          </Script>
         </body>
         <GoogleAnalytics gaId="G-E5FVREP9R1" />
       </WebsiteContextProvider>

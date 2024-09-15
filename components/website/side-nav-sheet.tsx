@@ -32,12 +32,12 @@ export const SideNavSheet = () => {
                 src="/uibeats-logo.png"
                 width={20}
                 height={20}
-                alt="ui/beats logo"
+                alt="UIBeats logo"
                 className="rounded-sm bg-white"
               />
 
               <div className="flex justify-center items-center font-bold">
-                <div className="mr-2">ui/beats</div>
+                <div className="mr-2">UIBeats</div>
                 <Badge className="text-[10px]" variant="outline">
                   Beta
                 </Badge>

@@ -92,7 +92,7 @@ export const HeroSection = () => {
           variants={itemVariants}
           className="max-w-xl mt-6 mb-6 text-balance text-left text-base tracking-tight text-black dark:font-medium dark:text-white md:text-center md:text-lg "
         >
-          Level up your UI development with reusable components from ui/beats,
+          Level up your UI development with reusable components from UIBeats,
           crafted with <b>React</b>, <b>Typescript</b>, <b>Tailwind CSS</b>, and
           <b> Framer Motion</b>.
         </motion.p>

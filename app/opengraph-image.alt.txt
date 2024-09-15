@@ -1,1 +1,1 @@
-Logo and description of ui/beats
+Logo and description of UIBeats

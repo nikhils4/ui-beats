@@ -9,16 +9,26 @@ import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
 import { Star } from "lucide-react";
 import { motion } from "framer-motion";
+import { ScrollProgress } from "@/components/website/scroll-progress";
+import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 export const Header = () => {
+  const [showScrollProgress, setShowScrollProgress] = useState(false);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    setShowScrollProgress(pathname.startsWith("/blogs/"));
+  }, [pathname]);
+
   const githubSvg = siGithub.svg.replace(
     "<svg",
-    '<svg class="text-white dark:text-black" fill="currentColor"',
+    '<svg class="text-white dark:text-black" fill="currentColor"'
   );
 
   const xSvg = siX.svg.replace(
     "<svg",
-    '<svg class="text-black dark:text-white" fill="currentColor"',
+    '<svg class="text-black dark:text-white" fill="currentColor"'
   );
 
   const containerVariants = {
@@ -38,9 +48,10 @@ export const Header = () => {
       initial="hidden"
       animate="visible"
       variants={containerVariants}
-      className="sticky top-0 z-50 w-full border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
+      className="sticky pt-[4px] top-0 z-50 w-full border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
     >
-      <div className="flex px-2 md:px-7 h-14 align-middle  items-center">
+      {showScrollProgress && <ScrollProgress />}
+      <div className="flex px-2 md:px-7 h-14 align-middle items-center">
         <SideNavSheet />
         <span className="sr-only">Menu</span>
         <div className="mr-4 hidden md:flex items-center">
@@ -49,11 +60,11 @@ export const Header = () => {
               src="/uibeats-logo.png"
               width={20}
               height={20}
-              alt="ui/beats logo"
+              alt="UIBeats logo"
               className="rounded-sm bg-white"
             />
             <div className="sm:flex justify-center items-center hidden font-bold">
-              <div className="mr-2">ui/beats</div>
+              <div className="mr-2">UIBeats</div>
               <Badge className="text-[10px]" variant="outline">
                 Beta
               </Badge>

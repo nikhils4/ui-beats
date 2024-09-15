@@ -10,7 +10,7 @@ import { CodeSnippet } from "@/components/website/code-snippet";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "ui/beats | Installation",
+  title: "UIBeats | Installation",
 };
 
 const Installation = () => {
@@ -36,14 +36,14 @@ const Installation = () => {
           Installation
         </h1>
         <p className="text-base text-muted-foreground">
-          How to get started with ui/beats.
+          How to get started with UIBeats. 
         </p>
       </div>
       <div className="pb-12 pt-8">
         <div className="mb-6">
           <h2 className="font-semibold mb-2">1. Browse the Components</h2>
           <p>
-            Visit the ui/beats component library and explore the various
+            Visit the UIBeats component library and explore the various
             components available.
           </p>
         </div>
@@ -51,7 +51,7 @@ const Installation = () => {
         <div>
           <h2 className="font-semibold mb-2">2. Add the utility function</h2>
           <p className="mb-4">
-            This step is optional and only needed if your component from ui/beats uses the `cn` utility function.
+            This step is optional and only needed if your component from UIBeats uses the `cn` utility function.
           </p>
           <CodeSnippet
               language="bash"
@@ -103,7 +103,7 @@ const Installation = () => {
           <h2 className="font-semibold mb-2">Dependencies Installation</h2>
           <p className="mb-4">
             If you&apos;re using a React project with TypeScript and Tailwind
-            CSS, you can easily integrate ui/beats components. Make sure you
+            CSS, you can easily integrate UIBeats components. Make sure you
             have the following dependencies installed:
           </p>
           <CodeSnippet

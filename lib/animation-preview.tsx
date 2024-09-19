@@ -16,6 +16,7 @@ const componentMap: ComponentMap = {
   "morphing-card": usageComponents["modern-animation"].MorphingCardUsage,
   "glowing-card": usageComponents["modern-animation"].GlowingCardUsage,
   "sparkling-grid": usageComponents.components.SparklingGridUsage,
+  "subscribe-button": usageComponents.components.SubscribeButtonUsage,
 };
 
 export const getAnimationPreview = (

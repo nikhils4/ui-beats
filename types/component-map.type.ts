@@ -18,6 +18,7 @@ export type ComponentMap = {
     "morphing-card": React.ComponentType<ComponentProps>;
   "glowing-card": React.ComponentType<ComponentProps>;
   "sparkling-grid": React.ComponentType<ComponentProps>;
+  "subscribe-button": React.ComponentType<ComponentProps>;
 };
 
 export type ComponentName = keyof ComponentMap;

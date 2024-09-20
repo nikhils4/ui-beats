@@ -88,6 +88,7 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
       <BlogPost post={post}>
         <MDXContent code={post.body.code} />
       </BlogPost>
+      <BlogPromotionalCard />
       {allPosts.filter(
         (p) =>
           p.slug !== post.slug &&
@@ -97,7 +98,6 @@ export default function BlogPostPage({ params }: { params: { slug: string } }) {
           <RelatedPosts currentPost={post} allPosts={allPosts} />
         </div>
       )}
-      <BlogPromotionalCard />
     </div>
   );
 }

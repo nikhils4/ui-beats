@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { FileQuestionIcon, PlusIcon } from "lucide-react";
 import { allPosts, Post } from "contentlayer/generated";
-import { categories } from "@/content/blogs";
+import { categories } from "@/types/blogs.type";
 import { motion, AnimatePresence } from "framer-motion";
 import BlogCard from "@/components/website/blog-card";
 

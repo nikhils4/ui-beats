@@ -66,7 +66,7 @@ export const HeroSection = () => {
                 className="relative shrink-0 bg-gray-400 dark:bg-gray-500 w-px mx-1 sm:mx-2 h-2 sm:h-3 self-center"
               ></div>
               <span className="relative text-gray-700 dark:text-gray-200 ml-1 sm:ml-2">
-                Sep 18
+                Sep 20
               </span>
               <motion.div
                 className="relative ml-1 sm:ml-2 w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-green-500"
@@ -92,8 +92,9 @@ export const HeroSection = () => {
           variants={itemVariants}
           className="max-w-xl mt-6 mb-6 text-balance text-left text-base tracking-tight text-black dark:font-medium dark:text-white md:text-center md:text-lg "
         >
-          Implement <strong>responsive design patterns</strong> and create a <strong>seamless user
-          experience</strong> using our collection of <strong>animated react components</strong>.
+          Implement <strong>responsive design patterns</strong> and create a{" "}
+          <strong>seamless user experience</strong> using our collection of{" "}
+          <strong>animated react components</strong>.
         </motion.p>
         <motion.div
           variants={itemVariants}

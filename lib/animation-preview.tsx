@@ -17,6 +17,7 @@ const componentMap: ComponentMap = {
   "glowing-card": usageComponents["modern-animation"].GlowingCardUsage,
   "sparkling-grid": usageComponents.components.SparklingGridUsage,
   "subscribe-button": usageComponents.components.SubscribeButtonUsage,
+  "fade-in-unblur": usageComponents.animation.FadeInUnblurUsage,
 };
 
 export const getAnimationPreview = (

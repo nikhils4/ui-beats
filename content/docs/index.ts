@@ -13,6 +13,7 @@ import GlowingCardConfig from "./modern-animation/glowing-card.content";
 import SparklingGridConfig from "@/content/docs/components/sparkling-grid.content";
 import SubscribeButtonConfig from "@/content/docs/components/subscribe-button.content";
 import { DocsConfigType } from "@/types/docs-config.type";
+import FadeInUnblurContent from "./animation/fade-in-unblur.content";
 
 const DocsContentConfig: DocsConfigType = {
   animation: {
@@ -22,6 +23,7 @@ const DocsContentConfig: DocsConfigType = {
     "scale-in": ScaleInConfig,
     "smooth-reveal": SmoothRevealConfig,
     "flip-card": FlipCardConfig,
+    "fade-in-unblur": FadeInUnblurContent,
   },
   "modern-animation": {
     "gravity-text-swap": GravityTextSwapConfig,

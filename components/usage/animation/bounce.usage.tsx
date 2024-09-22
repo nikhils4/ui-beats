@@ -3,7 +3,7 @@ import Bounce from "@/components/demo/animation/bounce";
 
 const BounceUsage = () => {
   return (
-    <Bounce>
+    <Bounce delay={1.2}>
       <div className="text-md md:text-lg mb-4">
         This content will bounce when visible
       </div>

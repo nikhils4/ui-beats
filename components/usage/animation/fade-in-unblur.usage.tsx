@@ -3,7 +3,7 @@ import FadeInUnblur from "@/components/demo/animation/fade-in-unblur";
 
 const FadeInUnblurUsage = () => {
   return (
-    <FadeInUnblur>
+    <FadeInUnblur delay={1.2}>
       <p className="text-md md:text-lg mb-4">
         This content fades in while unblurring when it enters the viewport
       </p>

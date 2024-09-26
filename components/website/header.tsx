@@ -89,7 +89,7 @@ export const Header = () => {
               className="transition-colors hover:text-foreground/80 text-foreground/60"
               href="/blogs"
             >
-              Blog
+              Blogs
             </Link>
           </nav>
         </div>

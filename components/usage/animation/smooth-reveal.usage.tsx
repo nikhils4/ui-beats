@@ -3,7 +3,7 @@ import SmoothReveal from "@/components/demo/animation/smooth-reveal";
 
 const SmoothRevealUsage = () => {
   return (
-    <SmoothReveal>
+    <SmoothReveal delay={1.2}>
       <p className="text-md md:text-lg mb-4">
         This content will smoothly reveal on scroll
       </p>

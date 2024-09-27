@@ -1,5 +1,5 @@
 export const sideNav: {
-  subItems: { path: string; title: string, isNew?: boolean }[];
+  subItems: { path: string; title: string; isNew?: boolean }[];
   title: string;
 }[] = [
   {
@@ -24,15 +24,30 @@ export const sideNav: {
     subItems: [
       { title: "Gradient Flow", path: "/docs/components/gradient-flow" },
       { title: "Shimmer Effect", path: "/docs/components/shimmer-effect" },
-      { title: "Subscribe Button", path: "/docs/components/subscribe-button", isNew: true },
-      { title: "Sparkling Grid", path: "/docs/components/sparkling-grid", isNew: true },
-    ]
+      {
+        title: "Subscribe Button",
+        path: "/docs/components/subscribe-button",
+        isNew: true,
+      },
+      {
+        title: "Sparkling Grid",
+        path: "/docs/components/sparkling-grid",
+        isNew: true,
+      },
+    ],
   },
   {
     title: "Modern Animation",
     subItems: [
-      { title: "Glowing Card", path: "/docs/modern-animation/glowing-card", isNew: true },
-      { title: "Gravity Text Swap", path: "/docs/modern-animation/gravity-text-swap" },
+      {
+        title: "Glowing Card",
+        path: "/docs/modern-animation/glowing-card",
+        isNew: true,
+      },
+      {
+        title: "Gravity Text Swap",
+        path: "/docs/modern-animation/gravity-text-swap",
+      },
       { title: "Text Writer", path: "/docs/modern-animation/text-writer" },
       { title: "Morphing Card", path: "/docs/modern-animation/morphing-card" },
     ],
@@ -42,6 +57,7 @@ export const sideNav: {
     subItems: [
       { title: "Bounce", path: "/docs/animation/bounce" },
       { title: "Fade In", path: "/docs/animation/fade-in" },
+      { title: "Fade In Unblur", path: "/docs/animation/fade-in-unblur" },
       { title: "Flip Card", path: "/docs/animation/flip-card" },
       { title: "Rotate In", path: "/docs/animation/rotate-in" },
       { title: "Scale In", path: "/docs/animation/scale-in" },

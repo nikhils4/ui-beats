@@ -33,7 +33,7 @@ const FadeInUnblur: React.FC<FadeInUnblurProps> = ({
       transition: {
         duration: duration,
         delay: delay,
-        ease: [0.47, 0, 0.745, 0.715], // cubic-bezier
+        ease: [0.47, 0, 0.745, 0.715],
       },
     },
   };

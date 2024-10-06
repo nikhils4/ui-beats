@@ -18,6 +18,7 @@ const componentMap: ComponentMap = {
   "sparkling-grid": usageComponents.components.SparklingGridUsage,
   "subscribe-button": usageComponents.components.SubscribeButtonUsage,
   "fade-in-unblur": usageComponents.animation.FadeInUnblurUsage,
+  "text-shine": usageComponents.components.TextShineUsage,
 };
 
 export const getAnimationPreview = (

@@ -14,6 +14,7 @@ import SparklingGridConfig from "@/content/docs/components/sparkling-grid.conten
 import SubscribeButtonConfig from "@/content/docs/components/subscribe-button.content";
 import { DocsConfigType } from "@/types/docs-config.type";
 import FadeInUnblurContent from "./animation/fade-in-unblur.content";
+import TextShineConfig from "./components/text-shine.content";
 
 const DocsContentConfig: DocsConfigType = {
   animation: {
@@ -36,6 +37,7 @@ const DocsContentConfig: DocsConfigType = {
     "shimmer-effect": ShimmerEffectConfig,
     "subscribe-button": SubscribeButtonConfig,
     "sparkling-grid": SparklingGridConfig,
+    "text-shine": TextShineConfig,
   },
 };
 

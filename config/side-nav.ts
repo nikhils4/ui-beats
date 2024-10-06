@@ -34,6 +34,11 @@ export const sideNav: {
         path: "/docs/components/sparkling-grid",
         isNew: true,
       },
+      {
+        title: "Text Shine",
+        path: "/docs/components/text-shine",
+        isNew: true,
+      },
     ],
   },
   {

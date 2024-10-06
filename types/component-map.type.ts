@@ -20,6 +20,7 @@ export type ComponentMap = {
   "sparkling-grid": React.ComponentType<ComponentProps>;
   "subscribe-button": React.ComponentType<ComponentProps>;
   "fade-in-unblur": React.ComponentType<ComponentProps>;
+  "text-shine": React.ComponentType<ComponentProps>;
 };
 
 export type ComponentName = keyof ComponentMap;

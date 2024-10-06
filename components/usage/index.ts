@@ -22,5 +22,6 @@ export default {
     SparklingGridUsage: require("./components/sparkling-grid.usage").default,
     SubscribeButtonUsage: require("./components/subscribe-button.usage")
       .default,
+    TextShineUsage: require("./components/text-shine.usage").default,
   },
 };

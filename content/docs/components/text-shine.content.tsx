@@ -17,7 +17,6 @@ const TextShineContent: ComponentConfigType = {
   ],
   title: "Text Shine",
   description:
-    // "The SubscribeButton component is an interactive button designed for subscription actions (more like Youtube Subscribe Button Animation), featuring customizable styles and animations.",
     "The Text Shine component is a simple text animation component where certain portion of the text shines in a specific color. ",
   usageCode: `${getAnimationPreview("text-shine", 1, true)}`,
   installation: [
@@ -49,6 +48,8 @@ const TextShineContent: ComponentConfigType = {
       description: "Duration of time the shining animation should complete in.",
     },
   ],
+  credits:
+    "Credits to <a target='_blank' style='font-weight: bold' href='https://github.com/divyaswormakai' rel='noreferrer noopener'>Divyaswor</a> for this awesome component.",
 };
 
 export default TextShineContent;

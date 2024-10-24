@@ -46,7 +46,7 @@ export const TextShine: React.FC<TextShineProps> = ({
   return (
     <motion.span
       ref={textRef}
-      className="relative w-fit text-transparent bg-clip-text"
+      className="relative w-fit text-transparent bg-clip-text font-bold text-2xl"
       style={{
         backgroundImage: `linear-gradient(to right, #222 0%, ${shineColor} 10%, #222 20%)`,
         backgroundSize: "200%",

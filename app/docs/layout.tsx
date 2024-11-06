@@ -55,7 +55,7 @@ export default function RootLayout({
     >
       <motion.aside
         variants={itemVariants}
-        className="hidden md:block w-64 px-8 py-8 overflow-y-auto fixed left-0 top-[90px] bottom-0 z-10"
+        className="hidden md:block w-64 px-8 py-8 overflow-y-auto fixed left-0 top-[90px] bottom-14 z-10"
         style={{ paddingTop: "var(--header-height, 0px)" }}
       >
         <SideNav />

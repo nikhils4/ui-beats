@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight, Pause, Play } from "lucide-react";
+import { useTheme } from "next-themes";
 
 type Shape = "rectangle" | "circle" | "hexagon";
 
@@ -50,6 +51,7 @@ const MorphingCard: React.FC<MorphingCardProps> = ({
   }, [isPlaying, interval, nextShape]);
 
   const currentContent = contents[currentIndex];
+  const { theme } = useTheme();
 
   return (
     <div className="relative" style={{ width, height }}>
@@ -96,7 +98,7 @@ const MorphingCard: React.FC<MorphingCardProps> = ({
         ))}
       </div>
       <button
-        className="absolute top-4 right-4 rounded-full bg-white/20 p-2 text-white hover:bg-white/30"
+        className={`absolute top-4 right-4 rounded-full p-2 text-white  ${theme!=='dark'?" bg-gray-800 hover:bg-gray-500":" bg-white/20 hover:bg-white/30"}`}
         onClick={(e) => {
           e.stopPropagation();
           setIsPlaying(!isPlaying);
@@ -105,7 +107,7 @@ const MorphingCard: React.FC<MorphingCardProps> = ({
         {isPlaying ? <Pause size={14} /> : <Play size={14} />}
       </button>
       <button
-        className="absolute bottom-4 right-4 rounded-full bg-white/20 p-2 text-white hover:bg-white/30"
+        className={`absolute bottom-4 right-4 rounded-full  p-2 text-white ${theme!=='dark'?" bg-gray-800 hover:bg-gray-500":" bg-white/20 hover:bg-white/30"}`}
         onClick={(e) => {
           e.stopPropagation();
           nextShape();

@@ -10,10 +10,14 @@ import BlogCard from "@/components/website/blog-card";
 const BlogsPage: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState("All");
 
+  const sortedPosts = [...allPosts].sort((a, b) => {
+    return new Date(b.date).getTime() - new Date(a.date).getTime();
+  });
+
   const filteredBlogs =
     activeCategory === "All"
-      ? allPosts
-      : allPosts.filter((post) => post.categories.includes(activeCategory));
+      ? sortedPosts
+      : sortedPosts.filter((post) => post.categories.includes(activeCategory));
 
   return (
     <motion.div

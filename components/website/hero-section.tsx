@@ -66,7 +66,7 @@ export const HeroSection = () => {
                 className="relative shrink-0 bg-gray-400 dark:bg-gray-500 w-px mx-1 sm:mx-2 h-2 sm:h-3 self-center"
               ></div>
               <span className="relative text-gray-700 dark:text-gray-200 ml-1 sm:ml-2">
-                Oct 24
+                Nov 07
               </span>
               <motion.div
                 className="relative ml-1 sm:ml-2 w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-green-500"

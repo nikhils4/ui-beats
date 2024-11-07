@@ -6,7 +6,7 @@ import {
   SheetFooter,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { ArrowRightFromLine } from "lucide-react";
+import { Menu } from "lucide-react";
 import { sideNav } from "@/config/side-nav";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -22,7 +22,7 @@ export const SideNavSheet = () => {
         className="md:hidden hover:bg-accent hover:text-accent-foreground h-8 rounded-md px-3 text-xs"
         type="button"
       >
-        <ArrowRightFromLine className="h-4 w-4" />
+        <Menu className="h-4 w-4" />
       </SheetTrigger>
       <SheetContent side="left" className="w-[280px] overflow-y-auto">
         <div className="p-4 flex flex-col">

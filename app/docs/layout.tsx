@@ -1,8 +1,9 @@
 "use client";
-import { ReactNode } from "react";
+import { ReactNode, useEffect } from "react";
 import { SideNav } from "@/components/website/side-nav";
 import { Bug, Edit3 } from "lucide-react";
 import { motion } from "framer-motion";
+import { toast } from "sonner";
 
 export default function RootLayout({
   children,
@@ -45,6 +46,31 @@ export default function RootLayout({
       },
     },
   };
+
+  useEffect(() => {
+    const hasShownToast = localStorage.getItem("supportToastShown");
+    if (!hasShownToast) {
+      const timer = setTimeout(() => {
+        toast("Show your support for UI Beats", {
+          description: "Keep building for good! ❤️",
+          duration: 30000,
+          action: {
+            label: "Star on GitHub", 
+            onClick: () =>
+              window.open("https://github.com/nikhils4/ui-beats", "_blank"),
+          },
+          onDismiss: () => {
+            localStorage.setItem("supportToastShown", "true");
+          },
+          onAutoClose: () => {
+            localStorage.setItem("supportToastShown", "true");
+          },
+        });
+      }, 5000);
+
+      return () => clearTimeout(timer);
+    }
+  }, []);
 
   return (
     <motion.div

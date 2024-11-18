@@ -7,6 +7,7 @@ import { Footer } from "@/components/website/footer";
 import { WebsiteContextProvider } from "@/context/website-context";
 import { ReactNode } from "react";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import { Toaster } from "sonner";
 
 export const metadata: Metadata = {
   title: "UI Beats",
@@ -62,6 +63,7 @@ export default function RootLayout({
             <Header />
             {children}
             <Footer />
+            <Toaster />
           </ThemeProvider>
         </body>
         <GoogleAnalytics gaId="G-E5FVREP9R1" />

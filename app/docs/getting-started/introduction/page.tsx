@@ -6,6 +6,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import { SidebarTrigger } from "@/components/ui/sidebar";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -17,6 +18,7 @@ const Introduction = () => {
     <div className="md:container mx-auto pb-10">
       <Breadcrumb>
         <BreadcrumbList>
+          <SidebarTrigger />
           <BreadcrumbItem>
             <BreadcrumbLink href={"/"}>Home</BreadcrumbLink>
           </BreadcrumbItem>

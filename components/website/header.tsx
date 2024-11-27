@@ -2,7 +2,6 @@
 import { Button } from "@/components/ui/button";
 import { CommandMenu } from "@/components/website/command-menu";
 import { ModeToggle } from "@/components/website/ui-theme-toggle";
-import { SideNavSheet } from "@/components/website/side-nav-sheet";
 import Link from "next/link";
 import { siGithub, siX } from "simple-icons";
 import { Badge } from "@/components/ui/badge";
@@ -43,6 +42,10 @@ export const Header = () => {
     },
   };
 
+  if (pathname.startsWith("/docs")) {
+    return null;
+  }
+
   return (
     <motion.header
       initial="hidden"
@@ -52,19 +55,18 @@ export const Header = () => {
     >
       {showScrollProgress && <ScrollProgress />}
       <div className="flex px-2 md:px-7 h-14 align-middle items-center">
-        <SideNavSheet />
         <span className="sr-only">Menu</span>
-        <div className="mr-4 hidden md:flex items-center">
+        <div className="mr-4 flex items-center">
           <Link className="mr-6 flex items-center space-x-2" href="/">
             <Image
               src="/uibeats-logo.png"
               width={20}
               height={20}
               alt="UI Beats logo"
-              className="rounded-sm bg-white"
+              className="rounded-sm bg-white hidden md:flex"
             />
-            <div className="sm:flex justify-center items-center hidden font-bold">
-              <div className="mr-2">UI Beats</div>
+            <div className="flex justify-center items-center font-bold">
+              <div className="mr-2 text-base">UI Beats</div>
               <Badge className="text-[10px]" variant="outline">
                 Beta
               </Badge>
@@ -86,7 +88,7 @@ export const Header = () => {
               GitHub
             </a>
             <Link
-              className="transition-colors hover:text-foreground/80 text-foreground/60"
+              className="hidden md:flex transition-colors hover:text-foreground/80 text-foreground/60"
               href="/blogs"
             >
               Blogs
@@ -95,7 +97,7 @@ export const Header = () => {
         </div>
         <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
           <div className="w-full flex-1 md:w-auto md:flex-none"></div>
-          <div className="flex w-full md:w-fit items-center space-x-2 md:order-last">
+          <div className="md:flex w-full hidden md:w-fit items-center space-x-2 md:order-last">
             <CommandMenu />
           </div>
           <a
@@ -117,6 +119,7 @@ export const Header = () => {
             rel="noopener noreferrer"
             href="https://x.com/nikhilScripts"
             target="_blank"
+            className="hidden md:flex"
           >
             <Button variant="ghost" size="icon">
               <div
@@ -126,7 +129,7 @@ export const Header = () => {
               <span className="sr-only">Twitter</span>
             </Button>
           </a>
-          <ModeToggle />
+          <ModeToggle className="hidden md:flex" />
         </div>
       </div>
     </motion.header>

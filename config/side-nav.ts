@@ -1,9 +1,13 @@
+import { Book, LayoutGrid, Sparkles, LucideIcon, ArrowUpDown } from "lucide-react";
+
 export const sideNav: {
   subItems: { path: string; title: string; isNew?: boolean }[];
   title: string;
+  icon?: LucideIcon;
 }[] = [
   {
     title: "Getting Started",
+    icon: Book,
     subItems: [
       {
         title: "Introduction",
@@ -21,6 +25,7 @@ export const sideNav: {
   },
   {
     title: "Components",
+    icon: LayoutGrid,
     subItems: [
       { title: "Gradient Flow", path: "/docs/components/gradient-flow" },
       { title: "Shimmer Effect", path: "/docs/components/shimmer-effect" },
@@ -43,6 +48,7 @@ export const sideNav: {
   },
   {
     title: "Modern Animation",
+    icon: Sparkles,
     subItems: [
       {
         title: "Glowing Card",
@@ -59,6 +65,7 @@ export const sideNav: {
   },
   {
     title: "Animation",
+    icon: ArrowUpDown,
     subItems: [
       { title: "Bounce", path: "/docs/animation/bounce" },
       { title: "Fade In", path: "/docs/animation/fade-in" },

@@ -6,6 +6,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import { SidebarTrigger } from "@/components/ui/sidebar";
 import { CodeSnippet } from "@/components/website/code-snippet";
 import { Metadata } from "next";
 
@@ -18,6 +19,7 @@ const Contribute = () => {
     <div className="md:container mx-auto pb-10">
       <Breadcrumb>
         <BreadcrumbList>
+          <SidebarTrigger />
           <BreadcrumbItem>
             <BreadcrumbLink href={"/"}>Home</BreadcrumbLink>
           </BreadcrumbItem>
@@ -106,16 +108,14 @@ const Contribute = () => {
 
         <div className="mb-6">
           <h2 className="font-semibold mb-2">Guidelines</h2>
-          <p className="mb-2">
-            <ul className="list-disc list-inside">
-              <li>Follow the code style and the standard guidelines.</li>
-              <li>Ensure your changes are well-documented in the PR.</li>
-              <li>
-                Be respectful and collaborative in your interactions with other
-                contributors.
-              </li>
-            </ul>
-          </p>
+          <ul className="list-disc list-inside">
+            <li>Follow the code style and the standard guidelines.</li>
+            <li>Ensure your changes are well-documented in the PR.</li>
+            <li>
+              Be respectful and collaborative in your interactions with other
+              contributors.
+            </li>
+          </ul>
         </div>
 
         <div className="mb-6">

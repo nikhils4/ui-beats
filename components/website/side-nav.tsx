@@ -1,50 +1,168 @@
 "use client";
+import { useState } from "react";
 import { sideNav } from "@/config/side-nav";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarHeader,
+  SidebarMenu,
+  SidebarMenuItem,
+  SidebarMenuButton,
+  SidebarMenuSub,
+  SidebarMenuSubItem,
+  SidebarMenuSubButton,
+  useSidebar,
+} from "@/components/ui/sidebar";
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from "@/components/ui/collapsible";
+import Image from "next/image";
+import { Button } from "../ui/button";
+import { ChevronDown, Search, Star } from "lucide-react";
+import { siGithub } from "simple-icons";
+import { ModeToggle } from "./ui-theme-toggle";
+import { CommandMenu } from "./command-menu";
 
-export const SideNav = () => {
+export const SideNav = ({ ...props }: React.ComponentProps<typeof Sidebar>) => {
   const pathname = usePathname();
+  const { state, setOpen } = useSidebar();
+  const [openMenuIndices, setOpenMenuIndices] = useState<number[]>([0]);
+  const githubSvg = siGithub.svg.replace(
+    "<svg",
+    '<svg class="text-white dark:text-black" fill="currentColor"'
+  );
 
   return (
-    <div className="min-w-[100%] table">
-      <div className="w-full">
-        {sideNav.map(({ subItems, title }) => (
-          <div className="pb-4" key={title}>
-            <h4 className="mb-1 rounded-md px-2 py-1 text-sm font-semibold">
-              {title}
-            </h4>
-            <div className="grid grid-flow-row auto-rows-max text-sm">
-              {subItems.map(({ path, title, isNew }) => (
-                <Link
-                  className={`group flex w-full items-center rounded-md border border-transparent px-2 py-1 ${
-                    path === pathname
-                      ? "text-foreground"
-                      : "text-muted-foreground"
-                  } hover:text-foreground`}
-                  target=""
-                  rel=""
-                  href={path}
-                  key={path}
-                >
-                  {title}
-                  {isNew && (
-                    <span className="ml-2 flex items-center">
-                      <Badge
-                        variant="outline"
-                        className="px-1 py-0 text-[9px] font-medium bg-emerald-100 text-emerald-700 border-emerald-300 rounded-sm leading-tight"
-                      >
-                        New
-                      </Badge>
-                    </span>
-                  )}
-                </Link>
-              ))}
-            </div>
+    <Sidebar collapsible="icon" {...props}>
+      <SidebarHeader>
+        <Link className="flex py-2 justify-center items-center" href="/">
+          {state === "collapsed" && (
+            <Image
+              src="/uibeats-logo.png"
+              width={24}
+              height={24}
+              alt="UI Beats logo"
+              className="rounded-sm bg-white self-center"
+            />
+          )}
+          <div className="sm:flex justify-center items-center hidden font-bold">
+            {state === "expanded" && (
+              <>
+                <div className="mr-2">UI Beats</div>
+                <Badge className="text-[10px]" variant="outline">
+                  Beta
+                </Badge>
+              </>
+            )}
           </div>
-        ))}
-      </div>
-    </div>
+        </Link>
+      </SidebarHeader>
+      <SidebarContent
+        className="space-y-2"
+        style={{
+          marginLeft: state === "expanded" ? "12px" : "4px",
+          marginRight: state === "expanded" ? "12px" : "4px",
+        }}
+      >
+        <SidebarMenu className="space-y-2">
+          {sideNav.map(({ subItems, title, icon: Icon }, index) => (
+            <Collapsible
+              open={
+                state === "expanded"
+                  ? openMenuIndices.includes(index)
+                  : openMenuIndices[0] === index
+              }
+              onOpenChange={(isOpen) => {
+                if (state === "expanded") {
+                  setOpenMenuIndices((prev) =>
+                    isOpen ? [...prev, index] : prev.filter((i) => i !== index)
+                  );
+                } else {
+                  setOpenMenuIndices(isOpen ? [index] : []);
+                }
+              }}
+              className="group/collapsible"
+              key={title}
+            >
+              <SidebarMenuItem>
+                <CollapsibleTrigger asChild defaultChecked>
+                  <div className="w-full flex justify-center">
+                    <SidebarMenuButton
+                      tooltip={title}
+                      className="text-sm"
+                      onClick={() => {
+                        if (state === "collapsed") {
+                          setOpen(true);
+                          setOpenMenuIndices([index]);
+                        }
+                      }}
+                    >
+                      {Icon && <Icon />}
+                      {title}{" "}
+                      <ChevronDown className="ml-auto w-5 h-5 transition-transform group-data-[state=open]/collapsible:rotate-180" />
+                    </SidebarMenuButton>
+                  </div>
+                </CollapsibleTrigger>
+                <CollapsibleContent>
+                  <SidebarMenuSub className="mt-1">
+                    {subItems.map(({ path, title, isNew }) => (
+                      <SidebarMenuSubItem key={title}>
+                        <SidebarMenuSubButton
+                          asChild
+                          isActive={pathname === path}
+                          className="text-xs"
+                        >
+                          <Link
+                            href={path}
+                            className="flex items-center gap-2 justify-between"
+                          >
+                            {title}
+                            {isNew && (
+                              <Badge
+                                variant="outline"
+                                className="text-[10px] px-1.5 py-0"
+                              >
+                                New
+                              </Badge>
+                            )}
+                          </Link>
+                        </SidebarMenuSubButton>
+                      </SidebarMenuSubItem>
+                    ))}
+                  </SidebarMenuSub>
+                </CollapsibleContent>
+              </SidebarMenuItem>
+            </Collapsible>
+          ))}
+        </SidebarMenu>
+      </SidebarContent>
+      <SidebarFooter className="py-4 flex px-2 items-center justify-center">
+        <div className="flex-1 flex items-center justify-center w-full">
+          <ModeToggle variant="outline" />
+          <Button className="grow mr-2 ml-2 items-center justify-center">
+            <Star className="text-yellow-400 h-4 w-4 mr-1" />
+            Star on
+            <a
+              href="https://github.com/nikhils4/ui-beats"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <div
+                dangerouslySetInnerHTML={{ __html: githubSvg }}
+                className="h-4 w-4 ml-1"
+              />
+              <span className="sr-only">GitHub</span>
+            </a>
+          </Button>
+          <CommandMenu small />
+        </div>
+      </SidebarFooter>
+    </Sidebar>
   );
 };

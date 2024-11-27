@@ -51,7 +51,7 @@ export default function RootLayout({
   children: ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <WebsiteContextProvider>
         <body className={GeistSans.className}>
           <ThemeProvider

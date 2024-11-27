@@ -26,6 +26,7 @@ import { ComponentDemo } from "@/components/website/component-demo";
 import { ComponentName } from "@/types/component-map.type";
 import GradientFlowContent from "@/content/docs/components/gradient-flow.content";
 import { motion } from "framer-motion";
+import { SidebarTrigger } from "@/components/ui/sidebar";
 
 const ComponentsDocumentation = () => {
   const [componentConfig, setComponentConfig] =
@@ -99,6 +100,7 @@ const ComponentsDocumentation = () => {
       <motion.div variants={itemVariants}>
         <Breadcrumb>
           <BreadcrumbList>
+            <SidebarTrigger />
             {componentConfig.breadcrumbs?.map(({ label, href }, index) => {
               return (
                 <Fragment key={`${label}-${index}`}>
@@ -112,7 +114,7 @@ const ComponentsDocumentation = () => {
                     </BreadcrumbItem>
                   )}
                   {index !== componentConfig.breadcrumbs.length - 1 && (
-                    <BreadcrumbSeparator key={label} />
+                    <BreadcrumbSeparator key={`${label}-separator`} />
                   )}
                 </Fragment>
               );

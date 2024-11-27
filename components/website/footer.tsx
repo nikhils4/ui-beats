@@ -24,30 +24,22 @@ export const Footer = () => {
       initial="hidden"
       animate="visible"
       variants={containerVariants}
-      className={`flex w-full items-center mt-14 text-sm transition-colors text-foreground/60 px-2 md:px-7 h-24 ${
-        isHomePage ? "justify-center" : "justify-between"
-      }`}
+      className={`flex w-full items-center mt-14 text-sm transition-colors text-foreground/60 px-2 md:px-7 h-24 justify-center`}
     >
-      <div
-        className={`flex justify-center md:justify-between w-full md:w-auto`}
-      >
-        <span>Crafted by&nbsp;</span>
-        <a
-          className="hover:text-foreground/80 underline"
-          target="_blank"
-          href="https://nikhils.ca"
+      {isHomePage && (
+        <div
+          className={`flex justify-center md:justify-between w-full md:w-auto`}
         >
-          nikhils4
-        </a>
-        <span>, for the web!</span>
-      </div>
-      {!isHomePage && (
-        <Link
-          href="/blogs"
-          className="hover:text-foreground/80 underline hidden md:inline-block"
-        >
-          Read our blogs
-        </Link>
+          <span>Crafted by&nbsp;</span>
+          <a
+            className="hover:text-foreground/80 underline"
+            target="_blank"
+            href="https://nikhils.ca"
+          >
+            nikhils4
+          </a>
+          <span>, for the web!</span>
+        </div>
       )}
     </motion.footer>
   );

@@ -6,6 +6,7 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
+import { SidebarTrigger } from "@/components/ui/sidebar";
 import { CodeSnippet } from "@/components/website/code-snippet";
 import { Metadata } from "next";
 
@@ -18,6 +19,7 @@ const Installation = () => {
     <div className="md:container mx-auto pb-10">
       <Breadcrumb>
         <BreadcrumbList>
+          <SidebarTrigger />
           <BreadcrumbItem>
             <BreadcrumbLink href={"/"}>Home</BreadcrumbLink>
           </BreadcrumbItem>

@@ -28,6 +28,7 @@ import { ChevronDown, Search, Star } from "lucide-react";
 import { siGithub } from "simple-icons";
 import { ModeToggle } from "./ui-theme-toggle";
 import { CommandMenu } from "./command-menu";
+import { cn } from "@/lib/utils";
 
 export const SideNav = ({ ...props }: React.ComponentProps<typeof Sidebar>) => {
   const pathname = usePathname();
@@ -41,7 +42,7 @@ export const SideNav = ({ ...props }: React.ComponentProps<typeof Sidebar>) => {
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
-        <div className="flex items-center pl-4 pr-3 py-2">
+        <div className={`flex items-center ${state === "expanded" ? "px-4" : "px-2"} py-2`}>
           {state === "collapsed" && (
             <Link href="/">
               <Image
@@ -147,21 +148,42 @@ export const SideNav = ({ ...props }: React.ComponentProps<typeof Sidebar>) => {
       </SidebarContent>
       <SidebarFooter className="py-4 flex px-2 items-center justify-center">
         <div className="flex-1 flex items-center justify-center w-full">
-          <ModeToggle variant="outline" />
-          <Button className="grow mr-2 ml-2 items-center justify-center">
-            <Star className="text-yellow-400 h-4 w-4 mr-1" />
-            Star on
-            <a
-              href="https://github.com/nikhils4/ui-beats"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <div
-                dangerouslySetInnerHTML={{ __html: githubSvg }}
-                className="h-4 w-4 ml-1"
-              />
-              <span className="sr-only">GitHub</span>
-            </a>
+          {state === "expanded" && <ModeToggle variant="outline" />}
+          <Button 
+            className={cn(
+              "items-center justify-center",
+              state === "expanded" ? "grow mr-2 ml-2" : "w-full"
+            )}
+          >
+            {state === "expanded" ? (
+              <>
+                <Star className="text-yellow-400 h-4 w-4 mr-1" />
+                Star on
+                <a
+                  href="https://github.com/nikhils4/ui-beats"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <div
+                    dangerouslySetInnerHTML={{ __html: githubSvg }}
+                    className="h-4 w-4 ml-1"
+                  />
+                  <span className="sr-only">GitHub</span>
+                </a>
+              </>
+            ) : (
+              <a
+                href="https://github.com/nikhils4/ui-beats"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div
+                  dangerouslySetInnerHTML={{ __html: githubSvg }}
+                  className="h-4 w-4"
+                />
+                <span className="sr-only">GitHub</span>
+              </a>
+            )}
           </Button>
         </div>
       </SidebarFooter>

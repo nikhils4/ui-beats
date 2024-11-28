@@ -1,6 +1,6 @@
 "use client";
 import { HeroSection } from "@/components/website/hero-section";
-import { SparklingGrid } from "@/components/demo/components/sparkling-grid";
+import { SparklingGrid } from "@/components/demo/background/sparkling-grid";
 import { useTheme } from "next-themes";
 
 export default function Home() {

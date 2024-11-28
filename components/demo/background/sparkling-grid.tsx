@@ -13,7 +13,6 @@ interface SparklingGridProps {
     light: string;
     dark: string;
   };
-  theme: "light" | "dark";
 }
 
 export const SparklingGrid: React.FC<SparklingGridProps> = ({
@@ -21,7 +20,6 @@ export const SparklingGrid: React.FC<SparklingGridProps> = ({
   sparkleFrequency = 0.03,
   sparkleColor = { light: "darkgray", dark: "silver" },
   dotColor = { light: "bg-black/20", dark: "bg-white/20" },
-  theme = "light",
 }) => {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -34,13 +32,22 @@ export const SparklingGrid: React.FC<SparklingGridProps> = ({
 
     const createDot = (row: number, col: number) => {
       const dot = document.createElement("div");
-      dot.className = `absolute w-0.5 h-0.5 rounded-full ${
-        theme === "dark" ? dotColor.dark : dotColor.light
-      } transition-all duration-1500`;
+      // Remove the bg- prefix from the classes since we're setting backgroundColor directly
+      const lightClass = dotColor.light.replace("bg-", "");
+      const darkClass = dotColor.dark.replace("bg-", "");
+      dot.className = `absolute w-0.5 h-0.5 rounded-full transition-all duration-1500`;
       dot.style.left = `${col * gridSize}px`;
       dot.style.top = `${row * gridSize}px`;
       dot.style.opacity = "0";
       dot.style.transform = "scale(0) rotate(0deg)";
+      
+      // Set initial background color based on dark mode
+      if (document.documentElement.classList.contains("dark")) {
+        dot.style.backgroundColor = "rgba(255, 255, 255, 0.2)"; // white/20
+      } else {
+        dot.style.backgroundColor = "rgba(0, 0, 0, 0.2)"; // black/20
+      }
+      
       container.appendChild(dot);
 
       const centerRow = rows / 2;
@@ -65,13 +72,12 @@ export const SparklingGrid: React.FC<SparklingGridProps> = ({
       setTimeout(() => {
         const sparkle = () => {
           if (Math.random() < sparkleFrequency) {
-            dot.style.backgroundColor =
-              theme === "dark" ? sparkleColor.dark : sparkleColor.light;
-            dot.style.boxShadow = `0 0 5px ${
-              theme === "dark" ? "white" : "black"
-            }`;
+            const isDark = document.documentElement.classList.contains("dark");
+            dot.style.backgroundColor = isDark ? sparkleColor.dark : sparkleColor.light;
+            dot.style.boxShadow = isDark ? "0 0 5px white" : "0 0 5px black";
+            
             setTimeout(() => {
-              dot.style.backgroundColor = "";
+              dot.style.backgroundColor = isDark ? "rgba(255, 255, 255, 0.2)" : "rgba(0, 0, 0, 0.2)";
               dot.style.boxShadow = "";
             }, 300);
           }
@@ -79,6 +85,21 @@ export const SparklingGrid: React.FC<SparklingGridProps> = ({
         };
         sparkle();
       }, delay + 1000);
+
+      // Listen for theme changes
+      const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          if (mutation.attributeName === "class") {
+            const isDark = document.documentElement.classList.contains("dark");
+            dot.style.backgroundColor = isDark ? "rgba(255, 255, 255, 0.2)" : "rgba(0, 0, 0, 0.2)";
+          }
+        });
+      });
+
+      observer.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ["class"],
+      });
     };
 
     for (let row = 0; row < rows; row++) {
@@ -92,7 +113,7 @@ export const SparklingGrid: React.FC<SparklingGridProps> = ({
         container.removeChild(container.firstChild);
       }
     };
-  }, [theme, gridSize, sparkleFrequency, sparkleColor, dotColor]);
+  }, [gridSize, sparkleFrequency, sparkleColor, dotColor]);
 
   return (
     <motion.div

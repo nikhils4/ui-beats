@@ -2,22 +2,22 @@
 import { BellIcon } from "lucide-react";
 import { useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { useTheme } from "next-themes";
 
 interface SubscribeButtonProps {
   onClick?: () => void;
   text?: string;
-  theme?: "light" | "dark";
   className?: string;
 }
 
 export const SubscribeButton: React.FC<SubscribeButtonProps> = ({
   onClick,
   text = "Subscribe",
-  theme = "light",
   className = "",
 }) => {
   const [isSubscribed, setIsSubscribed] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
+  const { theme } = useTheme();
 
   useEffect(() => {
     if (isAnimating) {
@@ -90,32 +90,31 @@ export const SubscribeButton: React.FC<SubscribeButtonProps> = ({
     });
   };
 
-  const buttonBackgroundColor =
-    theme === "light"
-      ? isSubscribed
-        ? isAnimating
-          ? [
-              "rgba(211,211,211,0.3)",
-              "rgba(105,255,0,0.3)",
-              "rgba(0,255,0,0.3)",
-              "rgba(64,255,0,0.3)",
-              "rgba(128,255,0,0.3)",
-              "rgba(192,255,0,0.35)",
-              "rgba(255,255,0,0.4)",
-              "rgba(255,224,0,0.45)",
-              "rgba(255,192,0,0.5)",
-              "rgba(255,160,0,0.55)",
-              "rgba(255,128,0,0.6)",
-              "rgba(255,96,0,0.65)",
-              "rgba(255,64,0,0.7)",
-              "rgba(255,32,0,0.75)",
-              "rgba(255,0,0,0.8)",
-              "rgba(233,105,105,0.85)",
-              "rgba(211,211,211,0.9)",
-            ]
-          : "rgba(211,211,211,1)"
-        : "rgba(0,0,0,1)"
-      : isSubscribed
+  const buttonBackgroundColor = {
+    light: isSubscribed
+      ? isAnimating
+        ? [
+            "rgba(211,211,211,0.3)",
+            "rgba(105,255,0,0.3)",
+            "rgba(0,255,0,0.3)",
+            "rgba(64,255,0,0.3)",
+            "rgba(128,255,0,0.3)",
+            "rgba(192,255,0,0.35)",
+            "rgba(255,255,0,0.4)",
+            "rgba(255,224,0,0.45)",
+            "rgba(255,192,0,0.5)",
+            "rgba(255,160,0,0.55)",
+            "rgba(255,128,0,0.6)",
+            "rgba(255,96,0,0.65)",
+            "rgba(255,64,0,0.7)",
+            "rgba(255,32,0,0.75)",
+            "rgba(255,0,0,0.8)",
+            "rgba(233,105,105,0.85)",
+            "rgba(211,211,211,0.9)",
+          ]
+        : "rgb(211,211,211)"
+      : "rgb(0,0,0)",
+    dark: isSubscribed
       ? isAnimating
         ? [
             "rgba(50,50,50,0.3)",
@@ -136,8 +135,14 @@ export const SubscribeButton: React.FC<SubscribeButtonProps> = ({
             "rgba(150,0,0,0.85)",
             "rgba(50,50,50,0.9)",
           ]
-        : "rgba(50,50,50,1)"
-      : "rgba(200,200,200,1)";
+        : "rgb(50,50,50)"
+      : "rgb(200,200,200)",
+  };
+
+  const buttonTextColor = {
+    light: isSubscribed ? "black" : "white",
+    dark: isSubscribed ? "white" : "black",
+  };
 
   return (
     <motion.div className="relative w-fit">
@@ -146,7 +151,7 @@ export const SubscribeButton: React.FC<SubscribeButtonProps> = ({
         onClick={handleClick}
         layout
         animate={{
-          backgroundColor: buttonBackgroundColor,
+          backgroundColor: theme === "dark" ? buttonBackgroundColor.dark : buttonBackgroundColor.light,
         }}
         transition={{
           backgroundColor: {
@@ -159,12 +164,15 @@ export const SubscribeButton: React.FC<SubscribeButtonProps> = ({
               : [0, 1],
           },
         }}
-        className={`flex relative justify-center items-center ${
-          theme === "light" ? "text-white" : "text-black"
-        } px-10 py-2 rounded-full overflow-hidden ${className}`}
         style={{
           width: isSubscribed ? "170px" : "140px",
         }}
+        className={`flex relative justify-center items-center px-10 py-2 rounded-full overflow-hidden
+          dark:text-black text-white
+          dark:[&[data-subscribed='true']]:bg-[rgb(50,50,50)] dark:[&[data-subscribed='true']]:text-white [&[data-subscribed='true']]:bg-[rgb(211,211,211)] [&[data-subscribed='true']]:text-black
+          dark:bg-[rgb(200,200,200)] bg-[rgb(0,0,0)]
+          ${className}`}
+        data-subscribed={isSubscribed}
       >
         <AnimatePresence mode="wait">
           {isSubscribed ? (
@@ -173,17 +181,7 @@ export const SubscribeButton: React.FC<SubscribeButtonProps> = ({
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
-              className="flex items-center"
-              style={{
-                color:
-                  theme === "light"
-                    ? isSubscribed
-                      ? "black"
-                      : "white"
-                    : isSubscribed
-                    ? "white"
-                    : "black",
-              }}
+              className={`flex items-center ${buttonTextColor.light} dark:${buttonTextColor.dark}`}
             >
               <motion.div
                 animate={{

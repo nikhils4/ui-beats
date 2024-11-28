@@ -21,19 +21,6 @@ const SubscribeButtonContent: ComponentConfigType = {
   usageCode: `${getAnimationPreview("subscribe-button", 1, true)}`,
   installation: [
     {
-      description:
-        "If you want to use dynamic themes, add the following to your project (optional)",
-      code: `import { useTheme } from "next-themes";
-
-const YourComponent = () => {
-  const { theme } = useTheme();
-
-  return (
-    <SubscribeButton theme={theme as "light" | "dark"} />
-  );
-};`,
-    },
-    {
       description: "Add the following code into your project",
       isFullCode: true,
     },
@@ -53,12 +40,6 @@ const YourComponent = () => {
       type: "string",
       defaultValue: "'Subscribe'",
       description: "Text to be displayed on the button",
-    },
-    {
-      prop: "theme",
-      type: "'light' | 'dark'",
-      defaultValue: "'light'",
-      description: "Current theme of the component",
     },
     {
       prop: "className",

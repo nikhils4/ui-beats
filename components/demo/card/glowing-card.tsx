@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import { motion, useMotionValue, useTransform } from "framer-motion";
-import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
 
 interface GlowingCardProps {
@@ -19,7 +18,6 @@ const GlowingCard: React.FC<GlowingCardProps> = ({
 }) => {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
-  const { theme } = useTheme();
 
   const handleMouseMove = (event: React.MouseEvent<HTMLDivElement>) => {
     const { clientX, clientY, currentTarget } = event;
@@ -28,7 +26,7 @@ const GlowingCard: React.FC<GlowingCardProps> = ({
     mouseY.set(clientY - top);
   };
 
-  const lightBackground = useTransform(
+  const background = useTransform(
     [mouseX, mouseY],
     ([x, y]) => `
       radial-gradient(
@@ -57,26 +55,51 @@ const GlowingCard: React.FC<GlowingCardProps> = ({
       <motion.div
         className={cn(
           "rounded-lg cursor-pointer relative overflow-hidden",
-          "transition-shadow duration-300"
+          "transition-shadow duration-300",
+          "dark:hidden"
         )}
         style={{
           width,
           height,
-          background: theme === "dark" ? darkBackground : lightBackground,
+          background: background,
         }}
         onMouseMove={handleMouseMove}
         initial={{
-          background:
-            theme === "dark"
-              ? "linear-gradient(to right, #4a5568, #2d3748)"
-              : "linear-gradient(to right, #e2e8f0, #cbd5e0)",
+          background: "linear-gradient(to right, #e2e8f0, #cbd5e0)",
         }}
         transition={{ duration: 0.2, ease: "easeOut" }}
       >
         <motion.div
           className={cn(
             "absolute inset-[1px] rounded-[7px] p-4 flex flex-col justify-between",
-            theme === "dark" ? "bg-gray-800" : "bg-gray-100"
+            "bg-gray-100"
+          )}
+        >
+          {children}
+        </motion.div>
+      </motion.div>
+
+      <motion.div
+        className={cn(
+          "rounded-lg cursor-pointer relative overflow-hidden",
+          "transition-shadow duration-300",
+          "hidden dark:block"
+        )}
+        style={{
+          width,
+          height,
+          background: darkBackground,
+        }}
+        onMouseMove={handleMouseMove}
+        initial={{
+          background: "linear-gradient(to right, #4a5568, #2d3748)",
+        }}
+        transition={{ duration: 0.2, ease: "easeOut" }}
+      >
+        <motion.div
+          className={cn(
+            "absolute inset-[1px] rounded-[7px] p-4 flex flex-col justify-between",
+            "bg-gray-800"
           )}
         >
           {children}

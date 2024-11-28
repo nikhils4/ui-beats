@@ -6,7 +6,7 @@ const FlipCardUsage = () => {
     <FlipCard
       frontContent={{
         title: "Discover",
-        subtitle: "Tap to learn more",
+        subtitle: "Hover to learn more",
       }}
       backContent={{
         title: "UI Beats",
@@ -24,7 +24,7 @@ const FlipCardUsage = () => {
 FlipCardUsage.stringVersion = `<FlipCard
   frontContent={{
     title: "Discover",
-    subtitle: "Tap to learn more"
+    subtitle: "Hover to learn more"
   }}
   backContent={{
     title: "Innovation",

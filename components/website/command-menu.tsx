@@ -59,6 +59,7 @@ export function CommandMenu({
           variant="outline"
           size="icon"
           onClick={() => setOpen(true)}
+          className="rounded-md w-14 h-8"
           {...props}
         >
           <Search className="h-[1.2rem] w-[1.2rem]" />
@@ -98,22 +99,24 @@ export function CommandMenu({
               </CommandItem>
             ))}
           </CommandGroup>
-          <CommandGroup heading="Animation">
-            {sideNav[1]?.subItems?.map((group) => (
-              <CommandItem
-                key={group.path}
-                value={group.title}
-                onSelect={() => {
-                  runCommand(() => router.push(group.path as string));
-                }}
-              >
-                <div className="mr-2 flex h-4 w-4 items-center justify-center">
-                  <CircleIcon className="h-3 w-3" />
-                </div>
-                {group.title}
-              </CommandItem>
-            ))}
-          </CommandGroup>
+          {sideNav.slice(1).map((section) => (
+            <CommandGroup key={section.title} heading={section.title}>
+              {section.subItems?.map((item) => (
+                <CommandItem
+                  key={item.path}
+                  value={item.title}
+                  onSelect={() => {
+                    runCommand(() => router.push(item.path as string));
+                  }}
+                >
+                  <div className="mr-2 flex h-4 w-4 items-center justify-center">
+                    <CircleIcon className="h-3 w-3" />
+                  </div>
+                  {item.title}
+                </CommandItem>
+              ))}
+            </CommandGroup>
+          ))}
           <CommandSeparator />
           <CommandGroup heading="Theme">
             <CommandItem onSelect={() => runCommand(() => setTheme("light"))}>

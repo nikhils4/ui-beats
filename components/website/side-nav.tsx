@@ -41,27 +41,30 @@ export const SideNav = ({ ...props }: React.ComponentProps<typeof Sidebar>) => {
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
-        <Link className="flex py-2 justify-center items-center" href="/">
+        <div className="flex items-center pl-4 pr-3 py-2">
           {state === "collapsed" && (
-            <Image
-              src="/uibeats-logo.png"
-              width={24}
-              height={24}
-              alt="UI Beats logo"
-              className="rounded-sm bg-white self-center"
-            />
+            <Link href="/">
+              <Image
+                src="/uibeats-logo.png"
+                width={24}
+                height={24}
+                alt="UI Beats logo"
+                className="rounded-sm bg-white"
+              />
+            </Link>
           )}
-          <div className="sm:flex justify-center items-center hidden font-bold">
-            {state === "expanded" && (
-              <>
-                <div className="mr-2">UI Beats</div>
+          {state === "expanded" && (
+            <div className="flex w-full justify-between items-center">
+              <Link href="/" className="flex items-center">
+                <span className="font-bold mr-2">UI Beats</span>
                 <Badge className="text-[10px]" variant="outline">
                   Beta
                 </Badge>
-              </>
-            )}
-          </div>
-        </Link>
+              </Link>
+              <CommandMenu small />
+            </div>
+          )}
+        </div>
       </SidebarHeader>
       <SidebarContent
         className="space-y-2"
@@ -160,7 +163,6 @@ export const SideNav = ({ ...props }: React.ComponentProps<typeof Sidebar>) => {
               <span className="sr-only">GitHub</span>
             </a>
           </Button>
-          <CommandMenu small />
         </div>
       </SidebarFooter>
     </Sidebar>

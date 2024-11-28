@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { Post } from "@/.contentlayer/generated";
 import { format } from "date-fns";

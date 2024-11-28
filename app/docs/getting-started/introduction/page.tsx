@@ -1,37 +1,9 @@
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
-import { SidebarTrigger } from "@/components/ui/sidebar";
-import { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "UI Beats | Introduction",
-};
+import BreadcrumbGettingStarted from "@/components/website/breadcrumb-getting-started";
 
 const Introduction = () => {
   return (
     <div className="md:container mx-auto pb-10">
-      <Breadcrumb>
-        <BreadcrumbList>
-          <SidebarTrigger />
-          <BreadcrumbItem>
-            <BreadcrumbLink href={"/"}>Home</BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbLink href={"/docs/getting-started"}>Docs</BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbPage>Introduction</BreadcrumbPage>
-          </BreadcrumbItem>
-        </BreadcrumbList>
-      </Breadcrumb>
+      <BreadcrumbGettingStarted page="Introduction" />
       <div className="space-y-2 mt-5">
         <h1 className="scroll-m-20 text-3xl font-bold tracking-tight">
           Introduction

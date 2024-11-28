@@ -1,11 +1,6 @@
 "use client";
-import { Metadata } from "next";
 import { Button } from "@/components/ui/button";
 
-export const metadata: Metadata = {
-  title: "GetByte | 404 Not Found",
-  description: "GetByte | 404 Not Found.",
-};
 export default function NotFound() {
   return (
     <div className="flex items-center justify-center h-screen bg-white dark:bg-black">

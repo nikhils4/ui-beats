@@ -1,38 +1,10 @@
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
-import { SidebarTrigger } from "@/components/ui/sidebar";
+import BreadcrumbGettingStarted from "@/components/website/breadcrumb-getting-started";
 import { CodeSnippet } from "@/components/website/code-snippet";
-import { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "UI Beats | Installation",
-};
 
 const Installation = () => {
   return (
     <div className="md:container mx-auto pb-10">
-      <Breadcrumb>
-        <BreadcrumbList>
-          <SidebarTrigger />
-          <BreadcrumbItem>
-            <BreadcrumbLink href={"/"}>Home</BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbLink href={"/docs/getting-started"}>Docs</BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbPage>Installation</BreadcrumbPage>
-          </BreadcrumbItem>
-        </BreadcrumbList>
-      </Breadcrumb>
+      <BreadcrumbGettingStarted page="Installation" />
       <div className="space-y-2 mt-5">
         <h1 className="scroll-m-20 text-3xl font-bold tracking-tight">
           Installation

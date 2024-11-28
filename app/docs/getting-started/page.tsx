@@ -1,7 +1,5 @@
 import { redirect } from "next/navigation";
 
-const GettingStarted = () => {
+export default function GettingStarted() {
   redirect("/docs/getting-started/introduction");
-};
-
-export default GettingStarted;
+}

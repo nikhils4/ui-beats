@@ -17,7 +17,7 @@ export const SubscribeButton: React.FC<SubscribeButtonProps> = ({
 }) => {
   const [isSubscribed, setIsSubscribed] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
-  const { theme } = useTheme();
+  const { theme, systemTheme } = useTheme();
 
   useEffect(() => {
     if (isAnimating) {
@@ -144,6 +144,9 @@ export const SubscribeButton: React.FC<SubscribeButtonProps> = ({
     dark: isSubscribed ? "white" : "black",
   };
 
+  // Determine the current theme, handling 'system' case
+  const currentTheme = theme === 'system' ? systemTheme : theme;
+
   return (
     <motion.div className="relative w-fit">
       {isSubscribed ? createCircles() : null}
@@ -151,7 +154,7 @@ export const SubscribeButton: React.FC<SubscribeButtonProps> = ({
         onClick={handleClick}
         layout
         animate={{
-          backgroundColor: theme === "dark" ? buttonBackgroundColor.dark : buttonBackgroundColor.light,
+          backgroundColor: currentTheme === "dark" ? buttonBackgroundColor.dark : buttonBackgroundColor.light,
         }}
         transition={{
           backgroundColor: {
@@ -181,7 +184,7 @@ export const SubscribeButton: React.FC<SubscribeButtonProps> = ({
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
-              className={`flex items-center ${buttonTextColor.light} dark:${buttonTextColor.dark}`}
+              className={`flex items-center ${currentTheme === 'dark' ? buttonTextColor.dark : buttonTextColor.light}`}
             >
               <motion.div
                 animate={{

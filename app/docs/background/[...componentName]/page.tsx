@@ -23,24 +23,25 @@ import {
 } from "@/components/ui/table";
 import { fetchFileContent, sanitizeHtml } from "@/lib/utils";
 import { ComponentDemo } from "@/components/website/component-demo";
-import TextWriterContent from "@/content/docs/text/text-writer.content";
 import { ComponentName } from "@/types/component-map.type";
+import GradientFlowContent from "@/content/docs/background/gradient-flow.content";
 import { motion } from "framer-motion";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 
-const AnimationDocumentation = () => {
+const BackgroundDocumentation = () => {
   const [componentConfig, setComponentConfig] =
-    useState<ComponentConfigType>(TextWriterContent);
+    useState<ComponentConfigType>(GradientFlowContent);
   const [fileContent, setFileContent] = useState("");
   const pathName = usePathname();
   const componentName = (pathName.split("/")?.pop() ||
-    "smooth-reveal") as ComponentName;
+    "gradient-flow") as ComponentName;
 
   useEffect(() => {
     const getFileContent = async () => {
+      console.log("Fetching file content for", componentName);
       try {
         const content = await fetchFileContent(
-          `animation/${componentName}.tsx`
+          `background/${componentName}.tsx`
         );
         setFileContent(content);
       } catch (error) {
@@ -52,8 +53,10 @@ const AnimationDocumentation = () => {
   }, [componentName]);
 
   useEffect(() => {
-    if (COMPONENT_CONFIG["animation"]?.[componentName] as ComponentConfigType) {
-      setComponentConfig(COMPONENT_CONFIG["animation"]?.[componentName]);
+    if (
+      COMPONENT_CONFIG["background"]?.[componentName] as ComponentConfigType
+    ) {
+      setComponentConfig(COMPONENT_CONFIG["background"]?.[componentName]);
     } else {
       redirect("/");
     }
@@ -90,9 +93,9 @@ const AnimationDocumentation = () => {
   return (
     <motion.div
       className="md:container mx-auto pb-10"
+      variants={containerVariants}
       initial="hidden"
       animate="visible"
-      variants={containerVariants}
     >
       <motion.div variants={itemVariants}>
         <Breadcrumb>
@@ -222,23 +225,17 @@ const AnimationDocumentation = () => {
         </Tabs>
       </motion.div>
       {componentConfig.credits && (
-        <>
-          <motion.h2
-            className="text-2xl font-semibold mt-10 mb-4"
-            variants={itemVariants}
-          >
-            Credits
-          </motion.h2>
-          <motion.p
-            variants={itemVariants}
+        <motion.div variants={itemVariants}>
+          <h2 className="text-2xl font-semibold mt-10 mb-4">Credits</h2>
+          <p
             dangerouslySetInnerHTML={{
               __html: sanitizeHtml(componentConfig.credits),
             }}
-          ></motion.p>
-        </>
+          ></p>
+        </motion.div>
       )}
     </motion.div>
   );
 };
 
-export default AnimationDocumentation;
+export default BackgroundDocumentation;

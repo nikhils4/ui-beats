@@ -78,7 +78,7 @@ export default function RootLayout({
   return (
     <SidebarProvider>
       <motion.div
-        className="flex flex-col min-h-screen md:flex-row w-full overflow-x-hidden"
+        className="flex flex-col min-h-screen md:flex-row w-full md:w-auto overflow-x-hidden"
         initial="hidden"
         animate="visible"
         variants={containerVariants}

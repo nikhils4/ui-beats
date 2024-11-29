@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { toast } from "sonner";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import Link from "next/link";
+import { ShowcaseCard } from "@/components/website/showcase-card";
 
 export default function RootLayout({
   children,
@@ -103,9 +104,9 @@ export default function RootLayout({
         </motion.div>
         <motion.div
           variants={itemVariants}
-          className="hidden xl:block w-64 px-8 fixed right-0 top-[25px] bottom-0 z-10"
+          className="hidden xl:block w-80 px-8 fixed right-0 top-[25px] bottom-0 z-10"
         >
-          <div className="space-y-2">
+          <div className="space-y-2 mb-6">
             <ul className="m-0 list-none">
               <motion.li
                 variants={itemVariants}
@@ -157,6 +158,7 @@ export default function RootLayout({
               </motion.li>
             </ul>
           </div>
+          <ShowcaseCard />
         </motion.div>
       </motion.div>
     </SidebarProvider>

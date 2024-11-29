@@ -127,22 +127,6 @@ const BlogsPage: React.FC = () => {
           </motion.div>
         )}
       </AnimatePresence>
-
-      <motion.div
-        initial={{ y: 20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: 1, duration: 0.5 }}
-        className="mt-16 flex justify-center"
-      >
-        <a href="https://forms.gle/mbv5MpXnJbrGvrm59" target="_blank">
-          <Button className="bg-primary text-primary-foreground hover:bg-primary/90 px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 ease-in-out hover:scale-105 flex items-center">
-            Submit Blog
-            <div className="ml-2">
-              <PlusIcon className="h-4 w-4" />
-            </div>
-          </Button>
-        </a>
-      </motion.div>
     </motion.div>
   );
 };

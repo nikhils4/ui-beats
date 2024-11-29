@@ -42,7 +42,7 @@ export const SideNav = ({ ...props }: React.ComponentProps<typeof Sidebar>) => {
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
-        <div className={`flex items-center ${state === "expanded" ? "px-4" : "px-2"} py-2`}>
+        <div className={`flex items-center ${state === "expanded" ? "pl-4 pr-3" : "px-2"} py-2`}>
           {state === "collapsed" && (
             <Link href="/">
               <Image

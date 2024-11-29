@@ -149,7 +149,10 @@ export const SideNav = ({ ...props }: React.ComponentProps<typeof Sidebar>) => {
       <SidebarFooter className="py-4 flex px-2 items-center justify-center">
         <div className="flex-1 flex items-center justify-center w-full">
           {state === "expanded" && <ModeToggle variant="outline" />}
-          <Button 
+          <Button
+            onClick={() => {
+              window.open("https://github.com/nikhils4/ui-beats", "_blank");
+            }}
             className={cn(
               "items-center justify-center",
               state === "expanded" ? "grow mr-2 ml-2" : "w-full"
@@ -159,17 +162,11 @@ export const SideNav = ({ ...props }: React.ComponentProps<typeof Sidebar>) => {
               <>
                 <Star className="text-yellow-400 h-4 w-4 mr-1" />
                 Star on
-                <a
-                  href="https://github.com/nikhils4/ui-beats"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
                   <div
                     dangerouslySetInnerHTML={{ __html: githubSvg }}
                     className="h-4 w-4 ml-1"
                   />
                   <span className="sr-only">GitHub</span>
-                </a>
               </>
             ) : (
               <a

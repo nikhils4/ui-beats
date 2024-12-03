@@ -13,7 +13,7 @@ const BlogPost = ({
   post: Post;
 }) => {
   return (
-    <article className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
       <header className="mb-16 mt-16">
         <h1 className="text-4xl sm:text-5xl font-bold mb-4 text-gray-900 dark:text-gray-100 leading-tight">
           {post.title}

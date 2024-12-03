@@ -86,7 +86,7 @@ export default async function BlogPostPage(props: { params: Promise<{ slug: stri
   }
 
   return (
-    <div className="max-w-full md:max-w-3xl lg:max-w-4xl xl:max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="max-w-full md:max-w-4xl lg:max-w-5xl xl:max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       <BlogPost post={post}>
         <MDXContent code={post.body.code} />
       </BlogPost>

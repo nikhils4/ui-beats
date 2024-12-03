@@ -95,3 +95,61 @@
     /* Firefox */
   }
 }
+
+@layer components {
+  .mdx-content {
+    @apply text-lg leading-7 tracking-wide text-gray-800 dark:text-gray-200;
+  }
+
+  .mdx-content h1 {
+    @apply text-3xl font-bold mt-12 mb-6 text-gray-900 dark:text-gray-100;
+  }
+
+  .mdx-content h2 {
+    @apply text-2xl font-bold mt-10 mb-5 text-gray-900 dark:text-gray-100;
+  }
+
+  .mdx-content h3 {
+    @apply text-xl font-bold mt-8 mb-4 text-gray-900 dark:text-gray-100;
+  }
+
+  .mdx-content h4 {
+    @apply text-lg font-bold mt-6 mb-3 text-gray-900 dark:text-gray-100;
+  }
+
+  .mdx-content p {
+    @apply mb-6;
+  }
+
+  .mdx-content ul {
+    @apply list-disc list-outside mb-6 pl-6 space-y-2;
+  }
+
+  .mdx-content ol {
+    @apply list-decimal list-outside mb-6 pl-6 space-y-2;
+  }
+
+  .mdx-content li {
+    @apply mb-2;
+  }
+
+  .mdx-content blockquote {
+    @apply border-l-4 border-gray-300 dark:border-gray-700 pl-4 italic my-6 text-gray-700 dark:text-gray-300;
+  }
+
+  .mdx-content pre {
+    @apply bg-gray-100 dark:bg-gray-900 rounded-lg p-4 overflow-x-auto my-6 text-sm;
+  }
+
+  .mdx-content code {
+    @apply bg-gray-100 dark:bg-gray-900 rounded-md px-1.5 py-0.5 font-mono text-sm text-gray-800 dark:text-black;
+  }
+
+  .mdx-content img {
+    @apply rounded-lg my-8 mx-auto;
+  }
+
+  .mdx-content a {
+    @apply text-green-600 hover:text-green-700 dark:text-green-400 dark:hover:text-green-300 underline;
+  }
+}

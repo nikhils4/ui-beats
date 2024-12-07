@@ -22,7 +22,7 @@ export const ComponentDemo = ({
       >
         <RotateCw className="h-4 w-4" />
       </Button>
-      <div className="relative z-10 flex items-center justify-center h-full">
+      <div className="relative z-10 flex items-center justify-center h-full w-full">
         {getAnimationPreview(componentName, key)}
       </div>
     </div>

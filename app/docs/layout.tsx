@@ -1,7 +1,7 @@
 "use client";
 import { ReactNode, useEffect } from "react";
 import { SideNav } from "@/components/website/side-nav";
-import { BookOpen, Bug, Edit3 } from "lucide-react";
+import { ArrowRight, BookOpen, Bug, Edit3, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
 import { SidebarProvider } from "@/components/ui/sidebar";
@@ -159,6 +159,27 @@ export default function RootLayout({
             </ul>
           </div>
           <ShowcaseCard />
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="mt-6"
+          >
+            <a
+              href="https://ace.uibeats.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative flex items-center justify-between p-4 rounded-lg hover:bg-purple-100/50 dark:hover:bg-purple-900/20 transition-colors border border-dashed border-border"
+            >
+              <Sparkles className="absolute -top-2 -left-1 h-6 w-6 text-purple-500" />
+              <div className="flex items-center space-x-3">
+                <span className="text-sm text-muted-foreground group-hover:text-foreground">
+                  Looking for custom UI development?
+                </span>
+              </div>
+              <ArrowRight className="h-7 w-7 text-muted-foreground group-hover:text-foreground transition-transform group-hover:translate-x-1" />
+            </a>
+          </motion.div>
         </motion.div>
       </motion.div>
     </SidebarProvider>

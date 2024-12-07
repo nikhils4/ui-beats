@@ -14,21 +14,21 @@ export const sideNav: {
   title: string;
   icon?: LucideIcon;
 }[] = [
-    {
+  {
     title: "Getting Started",
     icon: Book,
     subItems: [
       {
-        title: "Contribute",
-        path: "/docs/getting-started/contribute",
+        title: "Introduction",
+        path: "/docs/getting-started/introduction",
       },
       {
         title: "Installation",
         path: "/docs/getting-started/installation",
       },
       {
-        title: "Introduction",
-        path: "/docs/getting-started/introduction",
+        title: "Contribute",
+        path: "/docs/getting-started/contribute",
       },
     ],
   },

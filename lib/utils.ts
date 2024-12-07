@@ -1,7 +1,6 @@
 import {type ClassValue, clsx} from "clsx";
 import {twMerge} from "tailwind-merge";
 import DOMPurify from "dompurify";
-import {JSDOM} from "jsdom";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -12,8 +11,19 @@ export const sanitizeHtml = (html: string) => {
     return DOMPurify.sanitize(html);
   } else {
     const { JSDOM } = require("jsdom");
-    const window = new JSDOM("").window as unknown as Window;
-    const domPurify = DOMPurify(window);
+    const jsdomWindow = new JSDOM("").window;
+    const windowLike = {
+      ...jsdomWindow,
+      DocumentFragment: jsdomWindow.DocumentFragment,
+      HTMLTemplateElement: jsdomWindow.HTMLTemplateElement,
+      Node: jsdomWindow.Node,
+      Element: jsdomWindow.Element,
+      NodeFilter: jsdomWindow.NodeFilter,
+      NamedNodeMap: jsdomWindow.NamedNodeMap,
+      HTMLFormElement: jsdomWindow.HTMLFormElement,
+      DOMParser: jsdomWindow.DOMParser,
+    };
+    const domPurify = DOMPurify(windowLike);
     return domPurify.sanitize(html);
   }
 };

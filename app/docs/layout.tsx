@@ -166,7 +166,7 @@ export default function RootLayout({
             className="mt-6"
           >
             <a
-              href="https://ace.uibeats.com?utm_source=uibeats.com"
+              href="https://www.simplilabs.co?utm_source=uibeats.com"
               target="_blank"
               rel="noopener noreferrer"
               className="group relative flex items-center justify-between p-4 rounded-lg hover:bg-purple-100/50 dark:hover:bg-purple-900/20 transition-colors border border-dashed border-border"

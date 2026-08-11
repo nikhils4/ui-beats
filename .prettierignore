@@ -1,0 +1,10 @@
+.next
+node_modules
+coverage
+playwright-report
+test-results
+public/r
+yarn.lock
+.yarn
+*.png
+*.ico

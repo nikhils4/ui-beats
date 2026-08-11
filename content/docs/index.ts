@@ -1,50 +1,55 @@
-import FadeInConfig from "@/content/docs/animation/fade-in.content";
-import RotateInConfig from "@/content/docs/animation/rotate-in.content";
-import GradientFlowConfig from "@/content/docs/background/gradient-flow.content";
-import BounceConfig from "@/content/docs/animation/bounce.content";
-import GravityTextSwapConfig from "@/content/docs/text/gravity-text-swap.content";
-import SmoothRevealConfig from "@/content/docs/animation/smooth-reveal.content";
-import TextWriterConfig from "@/content/docs/text/text-writer.content";
-import ScaleInConfig from "@/content/docs/animation/scale-in.content";
-import ShimmerEffectConfig from "@/content/docs/component/shimmer-effect.content";
-import FlipCardConfig from "@/content/docs/card/flip-card.content";
-import MorphingCardConfig from "@/content/docs/card/morphing-card.content";
-import GlowingCardConfig from "./card/glowing-card.content";
-import SparklingGridConfig from "@/content/docs/background/sparkling-grid.content";
-import SubscribeButtonConfig from "@/content/docs/button/subscribe-button.content";
-import { DocsConfigType } from "@/types/docs-config.type";
-import FadeInUnblurContent from "./animation/fade-in-unblur.content";
-import TextShineConfig from "./text/text-shine.content";
+import type { ComponentConfig } from "@/types/component-config.type";
 
-const DocsContentConfig: DocsConfigType = {
-  animation: {
-    "fade-in": FadeInConfig,
-    "rotate-in": RotateInConfig,
-    bounce: BounceConfig,
-    "scale-in": ScaleInConfig,
-    "smooth-reveal": SmoothRevealConfig,
-    "fade-in-unblur": FadeInUnblurContent,
-  },
-  text: {
-    "gravity-text-swap": GravityTextSwapConfig,
-    "text-writer": TextWriterConfig,
-    "text-shine": TextShineConfig,
-  },
-  card: {
-    "flip-card": FlipCardConfig,
-    "morphing-card": MorphingCardConfig,
-    "glowing-card": GlowingCardConfig,
-  },
-  background: {
-    "sparkling-grid": SparklingGridConfig,
-    "gradient-flow": GradientFlowConfig,
-  },
-  button: {
-    "subscribe-button": SubscribeButtonConfig,
-  },
-  component: {
-    "shimmer-effect": ShimmerEffectConfig,
-  },
-};
+import Bounce from "./animation/bounce.content";
+import FadeIn from "./animation/fade-in.content";
+import FadeInUnblur from "./animation/fade-in-unblur.content";
+import RotateIn from "./animation/rotate-in.content";
+import ScaleIn from "./animation/scale-in.content";
+import SmoothReveal from "./animation/smooth-reveal.content";
+import StaggerList from "./animation/stagger-list.content";
+import GradientFlow from "./background/gradient-flow.content";
+import SparklingGrid from "./background/sparkling-grid.content";
+import MagneticButton from "./button/magnetic-button.content";
+import SubscribeButton from "./button/subscribe-button.content";
+import FlipCard from "./card/flip-card.content";
+import GlowingCard from "./card/glowing-card.content";
+import MorphingCard from "./card/morphing-card.content";
+import TiltCard from "./card/tilt-card.content";
+import ShimmerEffect from "./component/shimmer-effect.content";
+import GravityTextSwap from "./text/gravity-text-swap.content";
+import TextScramble from "./text/text-scramble.content";
+import TextShine from "./text/text-shine.content";
+import TextWriter from "./text/text-writer.content";
 
-export default DocsContentConfig;
+/**
+ * Every documented component, in one flat list.
+ *
+ * The sidebar, the sitemap, the command menu, the shadcn registry and the
+ * static params for `/docs/[category]/[component]` are all derived from this
+ * array — adding a component means adding one import here, not editing five
+ * parallel maps.
+ */
+export const componentConfigs: ComponentConfig[] = [
+  Bounce,
+  FadeIn,
+  FadeInUnblur,
+  RotateIn,
+  ScaleIn,
+  SmoothReveal,
+  StaggerList,
+  GradientFlow,
+  SparklingGrid,
+  MagneticButton,
+  SubscribeButton,
+  FlipCard,
+  GlowingCard,
+  MorphingCard,
+  TiltCard,
+  ShimmerEffect,
+  GravityTextSwap,
+  TextScramble,
+  TextShine,
+  TextWriter,
+];
+
+export default componentConfigs;

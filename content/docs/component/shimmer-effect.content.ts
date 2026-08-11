@@ -1,33 +1,11 @@
-import { ComponentConfigType } from "@/types/component-config.type";
-import { getAnimationPreview } from "@/lib/animation-preview";
+import type { ComponentConfig } from "@/types/component-config.type";
 
-const ShimmerEffectContent: ComponentConfigType = {
-  breadcrumbs: [
-    {
-      label: "Home",
-      href: "/",
-    },
-    {
-      label: "Docs",
-      href: "/docs",
-    },
-    {
-      label: "Component",
-    },
-  ],
+const ShimmerEffectContent: ComponentConfig = {
+  name: "shimmer-effect",
+  category: "component",
   title: "Shimmer Effect",
   description:
     "The ShimmerEffect component creates a shimmering animation, ideal for loading placeholders or skeleton screens.",
-  usageCode: `${getAnimationPreview("shimmer-effect", 1, true)}`,
-  installation: [
-    {
-      description: "Add the following code into your project",
-      isFullCode: true,
-    },
-    {
-      description: "Update the import paths according to your project setup",
-    },
-  ],
   props: [
     {
       prop: "width",
@@ -44,7 +22,7 @@ const ShimmerEffectContent: ComponentConfigType = {
     {
       prop: "borderRadius",
       type: "string | number",
-      defaultValue: "'0.25rem'",
+      defaultValue: "'0.375rem'",
       description: "Border radius of the shimmer effect",
     },
     {
@@ -60,8 +38,7 @@ const ShimmerEffectContent: ComponentConfigType = {
       description: "Additional CSS classes for styling",
     },
   ],
-  credits:
-    "Credits to <a target='_blank' style='font-weight: bold' href='https://github.com/lappemic' rel='noreferrer noopener'>Michael</a> for this awesome component.",
+  credits: { name: "Michael", url: "https://github.com/lappemic" },
 };
 
 export default ShimmerEffectContent;

@@ -21,19 +21,4 @@ const FlipCardUsage = () => {
   );
 };
 
-FlipCardUsage.stringVersion = `<FlipCard
-  frontContent={{
-    title: "Discover",
-    subtitle: "Hover to learn more"
-  }}
-  backContent={{
-    title: "Innovation",
-    description: "Explore cutting-edge features that redefine your experience."
-  }}
-  width="300px"
-  height="200px"
-  flipDirection="horizontal"
-  triggerMode="hover"
-/>`;
-
 export default FlipCardUsage;

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import { ArrowRight, Pause, Play } from "lucide-react";
 import { useTheme } from "next-themes";
 
@@ -52,7 +52,11 @@ const MorphingCard: React.FC<MorphingCardProps> = ({
 
   const currentContent = contents[currentIndex];
   const { theme, systemTheme } = useTheme();
-  const currentTheme = theme === 'system' ? systemTheme : theme;
+
+  // `contents` is caller-supplied; an empty array would otherwise crash here.
+  if (!currentContent) return null;
+
+  const currentTheme = theme === "system" ? systemTheme : theme;
 
   return (
     <div className="relative" style={{ width, height }}>
@@ -72,16 +76,16 @@ const MorphingCard: React.FC<MorphingCardProps> = ({
         <AnimatePresence mode="wait">
           <motion.div
             key={currentIndex}
-            className="w-full h-full p-6 flex flex-col justify-center items-center"
+            className="flex h-full w-full flex-col items-center justify-center p-6"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.5 }}
           >
-            <h3 className="text-xl font-semibold text-white mb-4 text-center">
+            <h3 className="mb-4 text-center text-xl font-semibold text-white">
               {currentContent.title}
             </h3>
-            <p className="text-sm text-white text-center">
+            <p className="text-center text-sm text-white">
               {currentContent.description}
             </p>
           </motion.div>
@@ -99,7 +103,7 @@ const MorphingCard: React.FC<MorphingCardProps> = ({
         ))}
       </div>
       <button
-        className={`absolute top-4 right-4 rounded-full p-2 text-white  ${currentTheme!=='dark'?" bg-gray-800 hover:bg-gray-500":" bg-white/20 hover:bg-white/30"}`}
+        className={`absolute top-4 right-4 rounded-full p-2 text-white ${currentTheme !== "dark" ? "bg-gray-800 hover:bg-gray-500" : "bg-white/20 hover:bg-white/30"}`}
         onClick={(e) => {
           e.stopPropagation();
           setIsPlaying(!isPlaying);
@@ -108,7 +112,7 @@ const MorphingCard: React.FC<MorphingCardProps> = ({
         {isPlaying ? <Pause size={14} /> : <Play size={14} />}
       </button>
       <button
-        className={`absolute bottom-4 right-4 rounded-full  p-2 text-white ${currentTheme!=='dark'?" bg-gray-800 hover:bg-gray-500":" bg-white/20 hover:bg-white/30"}`}
+        className={`absolute right-4 bottom-4 rounded-full p-2 text-white ${currentTheme !== "dark" ? "bg-gray-800 hover:bg-gray-500" : "bg-white/20 hover:bg-white/30"}`}
         onClick={(e) => {
           e.stopPropagation();
           nextShape();

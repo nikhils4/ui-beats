@@ -1,137 +1,133 @@
 "use client";
+
+import Link from "next/link";
+import Image from "next/image";
+import { usePathname } from "next/navigation";
+import { motion } from "motion/react";
+import { Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import { CommandMenu } from "@/components/website/command-menu";
 import { ModeToggle } from "@/components/website/ui-theme-toggle";
-import Link from "next/link";
-import { siGithub, siX } from "simple-icons";
-import { Badge } from "@/components/ui/badge";
-import Image from "next/image";
-import { Star } from "lucide-react";
-import { motion } from "framer-motion";
 import { ScrollProgress } from "@/components/website/scroll-progress";
-import { useState, useEffect } from "react";
-import { usePathname } from "next/navigation";
+import { GitHubIcon } from "@/components/icons";
+import { siteConfig } from "@/lib/site";
+import { cn, formatCompactNumber } from "@/lib/utils";
 
-export const Header = () => {
-  const [showScrollProgress, setShowScrollProgress] = useState(false);
+const containerVariants = {
+  hidden: { opacity: 0, y: -20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.3, ease: "easeOut" as const },
+  },
+} as const;
+
+const navLinks = [
+  { href: "/docs/getting-started/introduction", label: "Docs", match: "/docs" },
+  { href: "/blogs", label: "Blog", match: "/blogs" },
+];
+
+export function Header({ stars = 0 }: { stars?: number }) {
   const pathname = usePathname();
 
-  useEffect(() => {
-    setShowScrollProgress(pathname.startsWith("/blogs/"));
-  }, [pathname]);
+  // Docs pages have their own sidebar chrome.
+  if (pathname.startsWith("/docs")) return null;
 
-  const githubSvg = siGithub.svg.replace(
-    "<svg",
-    '<svg class="text-white dark:text-black" fill="currentColor"'
-  );
-
-  const xSvg = siX.svg.replace(
-    "<svg",
-    '<svg class="text-black dark:text-white" fill="currentColor"'
-  );
-
-  const containerVariants = {
-    hidden: { opacity: 0, y: -20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.3,
-        ease: "easeOut",
-      },
-    },
-  };
-
-  if (pathname.startsWith("/docs")) {
-    return null;
-  }
+  // Derived during render instead of in a `useEffect`, so the progress bar is
+  // correct on first paint rather than one frame late.
+  const showScrollProgress = pathname.startsWith("/blogs/");
 
   return (
     <motion.header
       initial="hidden"
       animate="visible"
       variants={containerVariants}
-      className="sticky pt-[4px] top-0 z-50 w-full border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
+      className="sticky top-0 z-50 w-full border-b border-border/60 bg-background/80 backdrop-blur-xl"
     >
-      {showScrollProgress && <ScrollProgress />}
-      <div className="flex px-2 md:px-7 h-14 align-middle items-center">
-        <span className="sr-only">Menu</span>
-        <div className="mr-4 flex items-center">
-          <Link className="mr-6 flex items-center space-x-2" href="/">
-            <Image
-              src="/uibeats-logo.png"
-              width={20}
-              height={20}
-              alt="UI Beats logo"
-              className="rounded-sm bg-white hidden md:flex"
-            />
-            <div className="flex justify-center items-center font-bold">
-              <div className="mr-2 text-base">UI Beats</div>
-              <Badge className="text-[10px]" variant="outline">
-                Beta
-              </Badge>
-            </div>
-          </Link>
-          <nav className="flex items-center space-x-6 text-sm">
+      {showScrollProgress ? <ScrollProgress /> : null}
+      <div className="mx-auto flex h-16 max-w-(--breakpoint-2xl) items-center gap-6 px-4 md:px-8">
+        <Link className="flex shrink-0 items-center gap-2.5" href="/">
+          <Image
+            src="/uibeats-logo.png"
+            width={26}
+            height={26}
+            alt=""
+            className="rounded-md bg-white shadow-subtle"
+          />
+          <span className="flex items-center gap-2">
+            <span className="font-display text-[15px] font-bold tracking-tight">
+              {siteConfig.name}
+            </span>
+            <Badge
+              variant="outline"
+              className="border-brand/25 bg-brand-subtle px-1.5 py-0 text-[10px] font-medium text-brand"
+            >
+              Beta
+            </Badge>
+          </span>
+        </Link>
+
+        <nav
+          aria-label="Main"
+          className="hidden items-center gap-1 text-sm sm:flex"
+        >
+          {navLinks.map(({ href, label, match }) => (
             <Link
-              className="transition-colors hover:text-foreground/80 text-foreground/60"
-              href="/docs/getting-started"
+              key={href}
+              href={href}
+              className={cn(
+                "rounded-lg px-3 py-1.5 font-medium transition-colors",
+                pathname.startsWith(match)
+                  ? "bg-accent text-foreground"
+                  : "text-muted-foreground hover:bg-accent/60 hover:text-foreground",
+              )}
             >
-              Docs
+              {label}
             </Link>
-            <a
-              rel="noopener noreferrer"
-              className="hidden text-foreground/60 transition-colors hover:text-foreground/80 lg:block"
-              href="https://github.com/nikhils4/ui-beats"
-              target="_blank"
-            >
-              GitHub
-            </a>
-            <Link
-              className="hidden md:flex transition-colors hover:text-foreground/80 text-foreground/60"
-              href="/blogs"
-            >
-              Blogs
-            </Link>
-          </nav>
-        </div>
-        <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
-          <div className="w-full flex-1 md:w-auto md:flex-none"></div>
-          <div className="md:flex w-full hidden md:w-fit items-center space-x-2 md:order-last">
+          ))}
+        </nav>
+
+        <div className="ml-auto flex items-center gap-2">
+          <div className="hidden md:block">
             <CommandMenu />
           </div>
-          <a
-            rel="noopener noreferrer"
-            href="https://github.com/nikhils4/ui-beats"
-            target="_blank"
+
+          <Button
+            variant="outline"
+            size="sm"
+            asChild
+            className="gap-1.5 font-medium"
           >
-            <Button>
-              <Star className="text-yellow-400 h-4 w-4 mr-2" />
-              Star on
-              <div
-                className="h-4 w-4 ml-2"
-                dangerouslySetInnerHTML={{ __html: githubSvg }}
-              />
-              <span className="sr-only">GitHub</span>
-            </Button>
-          </a>
-          <a
-            rel="noopener noreferrer"
-            href="https://x.com/nikhilScripts"
-            target="_blank"
-            className="hidden md:flex"
-          >
-            <Button variant="ghost" size="icon">
-              <div
-                className="h-4 w-4"
-                dangerouslySetInnerHTML={{ __html: xSvg }}
-              />
-              <span className="sr-only">Twitter</span>
-            </Button>
-          </a>
-          <ModeToggle className="hidden md:flex" />
+            <a
+              rel="noopener noreferrer"
+              target="_blank"
+              href={siteConfig.links.github}
+            >
+              <GitHubIcon className="size-3.5" />
+              <span className="hidden sm:inline">Star</span>
+              {stars > 0 ? (
+                <>
+                  <span
+                    aria-hidden="true"
+                    className="mx-0.5 h-3 w-px bg-border"
+                  />
+                  <Star className="size-3 fill-amber-400 text-amber-400" />
+                  <span className="tabular-nums">
+                    {formatCompactNumber(stars)}
+                  </span>
+                </>
+              ) : null}
+              <span className="sr-only">
+                Star UI Beats on GitHub
+                {stars > 0 ? ` (${stars} stars)` : ""}
+              </span>
+            </a>
+          </Button>
+
+          <ModeToggle />
         </div>
       </div>
     </motion.header>
   );
-};
+}

@@ -1,33 +1,12 @@
-import { ComponentConfigType } from "@/types/component-config.type";
-import { getAnimationPreview } from "@/lib/animation-preview";
+import type { ComponentConfig } from "@/types/component-config.type";
 
-const GlowingCardContent: ComponentConfigType = {
-  breadcrumbs: [
-    {
-      label: "Home",
-      href: "/",
-    },
-    {
-      label: "Docs",
-      href: "/docs",
-    },
-    {
-      label: "Card",
-    },
-  ],
+const GlowingCardContent: ComponentConfig = {
+  name: "glowing-card",
+  category: "card",
   title: "Glowing Card",
   description:
     "The GlowingCard component creates an interactive card with a dynamic glow effect that follows the user's cursor, adding a sleek and modern touch to your UI.",
-  usageCode: `${getAnimationPreview("glowing-card", 1, true)}`,
-  installation: [
-    {
-      description: "Add the following code into your project",
-      isFullCode: true,
-    },
-    {
-      description: "Update the import paths according to your project setup",
-    },
-  ],
+  isNew: true,
   props: [
     {
       prop: "width",

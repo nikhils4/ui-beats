@@ -1,14 +1,13 @@
 ---
 title: "Getting Started with Framer Motion: Animate Your React Apps with Ease"
-date: '2024-09-20'
+date: "2024-09-20"
 description: Learn how to use Framer Motion to add smooth, engaging animations to your React applications. This comprehensive guide covers installation, basic usage, advanced techniques, and practical examples.
-image: '/blogs/getting-started-framer-motion.png'
-imageAlt: 'Title of the blog with a colorful background'
-author: 'Nikhil Singh'
-authorBio: 'Nikhil Singh is a software engineer and a tech enthusiast.'
-authorTwitter: '@nikhilScripts'
-categories: ['Web Development', 'React', 'Animation', 'Frontend']
-tags: ['React', 'Framer Motion', 'Animation', 'UI/UX', 'JavaScript']
+image: "/blogs/getting-started-framer-motion.png"
+imageAlt: "Title of the blog with a colorful background"
+author: "Nikhil Singh"
+authorBio: "Nikhil Singh is a software engineer and a tech enthusiast."
+categories: ["Web Development", "React", "Animation", "Frontend"]
+tags: ["React", "Framer Motion", "Animation", "UI/UX", "JavaScript"]
 ---
 
 Framer Motion has revolutionized the way developers approach animations in React applications. In this comprehensive guide, we'll explore how to use Framer Motion to create fluid, interactive animations that will elevate your React projects to the next level.
@@ -43,8 +42,8 @@ yarn add framer-motion
 Let's start with a simple fade-in animation to get familiar with Framer Motion's syntax:
 
 ```jsx
-import React from 'react';
-import { motion } from 'framer-motion';
+import React from "react";
+import { motion } from "framer-motion";
 
 function FadeInComponent() {
   return (
@@ -68,37 +67,33 @@ export default FadeInComponent;
 Variants allow you to define reusable animation states and orchestrate complex sequences:
 
 ```jsx
-import React from 'react';
-import { motion } from 'framer-motion';
+import React from "react";
+import { motion } from "framer-motion";
 
 const boxVariants = {
   hidden: { opacity: 0, scale: 0.8 },
-  visible: { 
-    opacity: 1, 
+  visible: {
+    opacity: 1,
     scale: 1,
     transition: {
       delayChildren: 0.3,
-      staggerChildren: 0.2
-    }
-  }
+      staggerChildren: 0.2,
+    },
+  },
 };
 
 const itemVariants = {
   hidden: { y: 20, opacity: 0 },
   visible: {
     y: 0,
-    opacity: 1
-  }
+    opacity: 1,
+  },
 };
 
 function VariantsExample() {
   return (
-    <motion.div
-      variants={boxVariants}
-      initial="hidden"
-      animate="visible"
-    >
-      {[1, 2, 3].map(index => (
+    <motion.div variants={boxVariants} initial="hidden" animate="visible">
+      {[1, 2, 3].map((index) => (
         <motion.li key={index} variants={itemVariants}>
           Item {index}
         </motion.li>
@@ -115,8 +110,8 @@ export default VariantsExample;
 Framer Motion makes it easy to add interactivity to your animations:
 
 ```jsx
-import React from 'react';
-import { motion } from 'framer-motion';
+import React from "react";
+import { motion } from "framer-motion";
 
 function DraggableComponent() {
   return (
@@ -145,8 +140,8 @@ While Framer Motion is designed to be performant out of the box, here are some t
 3. **Use the `willChange` property**: This hints to the browser about which properties will animate, allowing for optimizations.
 
 ```jsx
-import React from 'react';
-import { motion, useReducedMotion } from 'framer-motion';
+import React from "react";
+import { motion, useReducedMotion } from "framer-motion";
 
 function OptimizedAnimation() {
   const shouldReduceMotion = useReducedMotion();
@@ -154,7 +149,7 @@ function OptimizedAnimation() {
   return (
     <motion.div
       layout
-      style={{ willChange: 'transform' }}
+      style={{ willChange: "transform" }}
       animate={{ x: shouldReduceMotion ? 0 : 100 }}
     >
       Optimized animation
@@ -170,8 +165,8 @@ export default OptimizedAnimation;
 Let's look at a practical example of how you might use Framer Motion in a real application:
 
 ```jsx
-import React from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 function AnimatedModal({ isOpen, onClose, children }) {
   return (
@@ -183,26 +178,26 @@ function AnimatedModal({ isOpen, onClose, children }) {
           exit={{ opacity: 0 }}
           onClick={onClose}
           style={{
-            position: 'fixed',
+            position: "fixed",
             top: 0,
             left: 0,
-            width: '100%',
-            height: '100%',
-            background: 'rgba(0, 0, 0, 0.5)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center'
+            width: "100%",
+            height: "100%",
+            background: "rgba(0, 0, 0, 0.5)",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
           }}
         >
           <motion.div
             initial={{ y: -50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: 50, opacity: 0 }}
-            onClick={e => e.stopPropagation()}
+            onClick={(e) => e.stopPropagation()}
             style={{
-              background: 'white',
-              padding: '20px',
-              borderRadius: '5px'
+              background: "white",
+              padding: "20px",
+              borderRadius: "5px",
             }}
           >
             {children}

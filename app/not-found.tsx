@@ -1,23 +1,27 @@
-"use client";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
 export default function NotFound() {
   return (
-    <div className="flex items-center justify-center h-screen bg-white dark:bg-black">
+    <div className="flex min-h-[70svh] items-center justify-center px-4">
       <div className="text-center">
-        <h1 className="text-3xl font-bold text-gray-800 dark:text-white">
-          404
+        <p className="text-sm font-medium text-muted-foreground">404</p>
+        <h1 className="mt-2 text-3xl font-bold tracking-tight">
+          This page doesn&apos;t exist
         </h1>
-        <p className="text text-gray-600 dark:text-gray-300 mt-4">
-          The page you&apos;re looking for doesn&apos;t exist.
+        <p className="mt-3 text-muted-foreground">
+          The page you&apos;re looking for was moved or never existed.
         </p>
-        <Button
-          className="mt-10"
-          onClick={() => (window.location.href = "/")}
-          variant="outline"
-        >
-          Back to homepage
-        </Button>
+        <div className="mt-8 flex flex-wrap justify-center gap-3">
+          {/* Client-side navigation via Link, rather than a
+              `window.location.href` assignment that reloaded the whole app. */}
+          <Button asChild>
+            <Link href="/">Back to home</Link>
+          </Button>
+          <Button variant="outline" asChild>
+            <Link href="/docs/getting-started/introduction">Browse docs</Link>
+          </Button>
+        </div>
       </div>
     </div>
   );

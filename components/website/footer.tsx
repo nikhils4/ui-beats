@@ -1,46 +1,112 @@
 "use client";
-import { motion } from "framer-motion";
+
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { GitHubIcon } from "@/components/icons";
+import { siteConfig } from "@/lib/site";
 
-export const Footer = () => {
-  const pathname = usePathname();
-  const isHomePage = pathname === "/";
-
-  const containerVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.3,
-        ease: "easeOut",
+const columns = [
+  {
+    title: "Docs",
+    links: [
+      { label: "Introduction", href: "/docs/getting-started/introduction" },
+      { label: "Installation", href: "/docs/getting-started/installation" },
+      { label: "CLI", href: "/docs/getting-started/cli" },
+      { label: "Contribute", href: "/docs/getting-started/contribute" },
+    ],
+  },
+  {
+    title: "Components",
+    links: [
+      { label: "Animation", href: "/docs/animation" },
+      { label: "Background", href: "/docs/background" },
+      { label: "Card", href: "/docs/card" },
+      { label: "Text", href: "/docs/text" },
+    ],
+  },
+  {
+    title: "Project",
+    links: [
+      { label: "Blog", href: "/blogs" },
+      { label: "GitHub", href: siteConfig.links.github, external: true },
+      {
+        label: "Report an issue",
+        href: siteConfig.links.newIssue,
+        external: true,
       },
-    },
-  };
+    ],
+  },
+];
+
+export function Footer() {
+  const pathname = usePathname();
+
+  // Docs pages have their own chrome and a right-hand resource rail.
+  if (pathname.startsWith("/docs")) return null;
 
   return (
-    <motion.footer
-      initial="hidden"
-      animate="visible"
-      variants={containerVariants}
-      className={`flex w-full items-center mt-14 text-sm transition-colors text-foreground/60 px-2 md:px-7 h-24 justify-center`}
-    >
-      {isHomePage && (
-        <div
-          className={`flex justify-center md:justify-between w-full md:w-auto`}
-        >
-          <span>Crafted by&nbsp;</span>
-          <a
-            className="hover:text-foreground/80 underline"
-            target="_blank"
-            href="https://nikhils.ca"
-          >
-            nikhils4
-          </a>
-          <span>, for the web!</span>
+    <footer className="mt-24 border-t bg-muted/20">
+      <div className="mx-auto max-w-(--breakpoint-2xl) px-4 py-14 md:px-8">
+        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+          <div>
+            <p className="font-display text-base font-bold tracking-tight">
+              {siteConfig.name}
+            </p>
+            <p className="mt-2 max-w-56 text-sm leading-relaxed text-muted-foreground">
+              Animated React components you can copy, paste, or install with the
+              shadcn CLI.
+            </p>
+            <a
+              href={siteConfig.links.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
+            >
+              <GitHubIcon className="size-4" />
+              GitHub
+            </a>
+          </div>
+
+          {columns.map((column) => (
+            <nav key={column.title} aria-label={column.title}>
+              <p className="text-xs font-semibold tracking-widest text-muted-foreground uppercase">
+                {column.title}
+              </p>
+              <ul className="mt-4 space-y-2.5">
+                {column.links.map((link) => (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      {...("external" in link && link.external
+                        ? { target: "_blank", rel: "noopener noreferrer" }
+                        : {})}
+                      className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          ))}
         </div>
-      )}
-    </motion.footer>
+
+        <div className="mt-12 flex flex-col items-center justify-between gap-3 border-t pt-6 text-sm text-muted-foreground sm:flex-row">
+          <p>
+            Crafted by{" "}
+            <a
+              className="font-medium text-foreground underline-offset-4 hover:underline"
+              target="_blank"
+              rel="noopener noreferrer"
+              href={siteConfig.author.url}
+            >
+              {siteConfig.author.name}
+            </a>
+            , for the web.
+          </p>
+          <p>MIT Licensed</p>
+        </div>
+      </div>
+    </footer>
   );
-};
+}

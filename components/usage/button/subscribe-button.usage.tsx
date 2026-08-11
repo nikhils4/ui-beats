@@ -6,6 +6,4 @@ const SubscribeButtonUsage = () => {
   return <SubscribeButton />;
 };
 
-SubscribeButtonUsage.stringVersion = `<SubscribeButton />`;
-
 export default SubscribeButtonUsage;

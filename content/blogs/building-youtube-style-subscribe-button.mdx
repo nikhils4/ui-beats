@@ -1,14 +1,25 @@
 ---
 title: "Building a YouTube-Style Subscribe Button in React"
-date: '2024-11-07'
+date: "2024-11-07"
 description: "Learn how to create YouTube's iconic subscribe button with React and Framer Motion. Master micro-interactions, confetti animations, and notification systems in this comprehensive guide to modern UI development."
-image: '/blogs/building-youtube-style-subscribe-button.png'
-imageAlt: 'Animated Subscribe Button Component Preview'
-author: 'Nikhil Singh'
-authorBio: 'Nikhil Singh is a software engineer and a tech enthusiast.'
-authorTwitter: '@nikhilScripts'
-categories: ['Web Development', 'React', 'Animation', 'Frontend']
-tags: ['React Subscribe Button', 'YouTube UI', 'Framer Motion', 'Micro-interactions', 'UI Components', 'TypeScript', 'Animation Effects', 'Social Proof UI', 'React Hooks', 'Modern Web Design']
+image: "/blogs/building-youtube-style-subscribe-button.png"
+imageAlt: "Animated Subscribe Button Component Preview"
+author: "Nikhil Singh"
+authorBio: "Nikhil Singh is a software engineer and a tech enthusiast."
+categories: ["Web Development", "React", "Animation", "Frontend"]
+tags:
+  [
+    "React Subscribe Button",
+    "YouTube UI",
+    "Framer Motion",
+    "Micro-interactions",
+    "UI Components",
+    "TypeScript",
+    "Animation Effects",
+    "Social Proof UI",
+    "React Hooks",
+    "Modern Web Design",
+  ]
 ---
 
 Looking to boost user engagement and create professional subscription systems? The subscribe button is a crucial UI component that can make or break user interaction. In this comprehensive guide, we'll build YouTube's iconic subscribe button from scratch using React and Framer Motion, complete with stunning animations and micro-interactions that drive user engagement.
@@ -48,7 +59,7 @@ export const SubscribeButton: React.FC<SubscribeButtonProps> = ({
   const { theme } = useTheme(); // Added theme management
 
   // ... rest of the component implementation
-}
+};
 ```
 
 ### 2. Crafting Engaging Micro-interactions
@@ -120,12 +131,12 @@ Top-tier applications need smooth color transitions. Our implementation handles 
 const buttonBackgroundColor = {
   light: isSubscribed
     ? isAnimating
-      ? [ /* Detailed color sequence for light theme */ ]
+      ? [/* Detailed color sequence for light theme */]
       : "rgb(211,211,211)"
     : "rgb(0,0,0)",
   dark: isSubscribed
     ? isAnimating
-      ? [ /* Detailed color sequence for dark theme */ ]
+      ? [/* Detailed color sequence for dark theme */]
       : "rgb(50,50,50)"
     : "rgb(200,200,200)",
 };
@@ -174,29 +185,26 @@ Every successful content platform needs a notification system:
 Here's how leading platforms are using this component:
 
 ### Content Platforms
+
 ```tsx
 <SubscribeButton
   onClick={() => {
-    trackAnalytics('subscription');
+    trackAnalytics("subscription");
     updateUserPreferences();
   }}
 />
 ```
 
 ### SaaS Applications
+
 ```tsx
-<SubscribeButton
-  text="Follow Updates"
-  className="saas-button shadow-lg"
-/>
+<SubscribeButton text="Follow Updates" className="saas-button shadow-lg" />
 ```
 
 ### Community Platforms
+
 ```tsx
-<SubscribeButton
-  text="Join Community"
-  onClick={() => initiateMembership()}
-/>
+<SubscribeButton text="Join Community" onClick={() => initiateMembership()} />
 ```
 
 ## Integration Guide
@@ -208,15 +216,13 @@ npm install framer-motion lucide-react next-themes
 ```
 
 ```tsx
-import { SubscribeButton } from './SubscribeButton';
-import { ThemeProvider } from 'next-themes';
+import { SubscribeButton } from "./SubscribeButton";
+import { ThemeProvider } from "next-themes";
 
 function App() {
   return (
     <ThemeProvider attribute="class">
-      <SubscribeButton
-        onClick={() => console.log('New subscriber!')}
-      />
+      <SubscribeButton onClick={() => console.log("New subscriber!")} />
     </ThemeProvider>
   );
 }
@@ -225,6 +231,7 @@ function App() {
 ## Looking Ahead
 
 The future of web UI is all about micro-interactions and user engagement. This subscribe button component sets the foundation for:
+
 - Advanced notification systems
 - Social proof mechanics
 - User engagement analytics

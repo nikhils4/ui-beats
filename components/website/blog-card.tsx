@@ -1,5 +1,5 @@
-import React from "react";
 import Link from "next/link";
+import { ArrowRight, Calendar, Clock, User } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -9,67 +9,74 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import {
-  CalendarIcon,
-  ClockIcon,
-  UserIcon,
-  ArrowRightIcon,
-} from "lucide-react";
-import { Post } from "contentlayer/generated";
+import { cn } from "@/lib/utils";
+import type { Post } from "@/lib/blog";
 
 interface BlogCardProps {
-  blog: Post;
+  post: Post;
   featured?: boolean;
 }
 
-const BlogCard: React.FC<BlogCardProps> = ({ blog, featured = false }) => {
+export default function BlogCard({ post, featured = false }: BlogCardProps) {
   return (
     <Card
-      className={`h-full flex flex-col ${
-        featured ? "col-span-2 md:col-span-3" : ""
-      }`}
+      className={cn(
+        "flex h-full flex-col",
+        featured && "md:col-span-2 lg:col-span-3",
+      )}
     >
       <CardHeader>
-        <div className="flex flex-wrap gap-2 mb-2">
-          {blog.categories.map((category) => (
+        <div className="mb-2 flex flex-wrap gap-2">
+          {post.categories.map((category) => (
             <Badge key={category} variant="secondary">
               {category}
             </Badge>
           ))}
         </div>
         <CardTitle className={featured ? "text-xl" : "text-lg"}>
-          {blog.title}
+          {post.title}
         </CardTitle>
       </CardHeader>
+
       <CardContent>
-        <p className="text-muted-foreground text-sm line-clamp-3">
-          {blog.description}
+        <p className="line-clamp-3 text-sm text-muted-foreground">
+          {post.description}
         </p>
-        <div className="flex items-center justify-between text-xs text-muted-foreground mt-4">
-          <div className="flex items-center">
-            <UserIcon className="mr-1 h-3 w-3" />
-            {blog.author}
-          </div>
-          <div className="flex items-center">
-            <CalendarIcon className="mr-1 h-3 w-3" />
-            {new Date(blog.date).toLocaleDateString()}
-          </div>
-          <div className="flex items-center">
-            <ClockIcon className="mr-1 h-3 w-3" />
-            {blog.readTime}
-          </div>
+        <div className="mt-4 flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-muted-foreground">
+          <span className="flex items-center">
+            <User className="mr-1 size-3" />
+            {post.author}
+          </span>
+          <span className="flex items-center">
+            <Calendar className="mr-1 size-3" />
+            {/* Fixed locale: `toLocaleDateString()` with no locale renders with
+                the server's locale on the server and the visitor's in the
+                browser, which is a hydration mismatch. */}
+            <time dateTime={post.date}>
+              {new Date(post.date).toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "short",
+                day: "numeric",
+                timeZone: "UTC",
+              })}
+            </time>
+          </span>
+          <span className="flex items-center">
+            <Clock className="mr-1 size-3" />
+            {post.readTime}
+          </span>
         </div>
       </CardContent>
+
       <CardFooter className="mt-auto">
-        <Link href={`/blogs/${blog.slug}`} passHref>
-          <Button variant="outline" className="w-full">
-            Read More
-            <ArrowRightIcon className="ml-2 h-4 w-4" />
-          </Button>
-        </Link>
+        <Button variant="outline" className="w-full" asChild>
+          <Link href={`/blogs/${post.slug}`}>
+            Read more
+            <span className="sr-only">: {post.title}</span>
+            <ArrowRight className="ml-2 size-4" />
+          </Link>
+        </Button>
       </CardFooter>
     </Card>
   );
-};
-
-export default BlogCard;
+}

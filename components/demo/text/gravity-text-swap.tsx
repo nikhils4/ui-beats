@@ -1,6 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence } from "motion/react";
 import { cn } from "@/lib/utils";
 
 interface GravityTextSwapProps {
@@ -16,19 +16,22 @@ const GravityTextSwap: React.FC<GravityTextSwapProps> = ({
   pauseDuration = 2,
   className = "",
 }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [, setCurrentIndex] = useState(0);
   const [currentText, setCurrentText] = useState(textArray[0]);
 
   useEffect(() => {
     if (textArray.length <= 1) return;
 
-    const intervalId = setInterval(() => {
-      setCurrentIndex((prevIndex) => {
-        const nextIndex = (prevIndex + 1) % textArray.length;
-        setCurrentText(textArray[nextIndex]);
-        return nextIndex;
-      });
-    }, (duration + pauseDuration) * 1000);
+    const intervalId = setInterval(
+      () => {
+        setCurrentIndex((prevIndex) => {
+          const nextIndex = (prevIndex + 1) % textArray.length;
+          setCurrentText(textArray[nextIndex] ?? "");
+          return nextIndex;
+        });
+      },
+      (duration + pauseDuration) * 1000,
+    );
 
     return () => clearInterval(intervalId);
   }, [textArray, duration, pauseDuration]);
@@ -44,7 +47,7 @@ const GravityTextSwap: React.FC<GravityTextSwapProps> = ({
           exit={{ opacity: 0 }}
           transition={{ duration: duration / 2 }}
         >
-          {currentText.split("").map((char, index) => (
+          {(currentText ?? "").split("").map((char, index) => (
             <motion.span
               key={index}
               className="inline-block"

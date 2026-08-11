@@ -1,0 +1,91 @@
+"use client";
+
+import { useRef, type ReactNode } from "react";
+import {
+  motion,
+  useMotionTemplate,
+  useMotionValue,
+  useReducedMotion,
+  useSpring,
+} from "motion/react";
+
+interface TiltCardProps {
+  children: ReactNode;
+  /** Maximum rotation in degrees at the edges of the card. */
+  maxTilt?: number;
+  /** Scale applied while the pointer is over the card. */
+  hoverScale?: number;
+  /** Strength of the specular highlight, 0 to 1. */
+  glareOpacity?: number;
+  className?: string;
+}
+
+/**
+ * A card that tilts toward the pointer in 3D, with a specular highlight that
+ * tracks the cursor.
+ */
+export function TiltCard({
+  children,
+  maxTilt = 12,
+  hoverScale = 1.03,
+  glareOpacity = 0.25,
+  className = "",
+}: TiltCardProps) {
+  const ref = useRef<HTMLDivElement>(null);
+  const prefersReducedMotion = useReducedMotion();
+
+  // Pointer position as CSS percentages, fed straight into the glare gradient.
+  const px = useMotionValue("50%");
+  const py = useMotionValue("50%");
+
+  const spring = { stiffness: 260, damping: 24, mass: 0.6 };
+  const rotateX = useSpring(useMotionValue(0), spring);
+  const rotateY = useSpring(useMotionValue(0), spring);
+  const scale = useSpring(useMotionValue(1), spring);
+
+  const glare = useMotionTemplate`radial-gradient(circle at ${px} ${py}, rgba(255,255,255,${glareOpacity}), transparent 60%)`;
+
+  const handlePointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
+    const element = ref.current;
+    if (!element || prefersReducedMotion) return;
+
+    const rect = element.getBoundingClientRect();
+    const x = (event.clientX - rect.left) / rect.width;
+    const y = (event.clientY - rect.top) / rect.height;
+
+    px.set(`${x * 100}%`);
+    py.set(`${y * 100}%`);
+
+    // Invert X so the card leans toward the cursor rather than away from it.
+    rotateX.set(-(y - 0.5) * 2 * maxTilt);
+    rotateY.set((x - 0.5) * 2 * maxTilt);
+  };
+
+  const reset = () => {
+    rotateX.set(0);
+    rotateY.set(0);
+    scale.set(1);
+  };
+
+  return (
+    <div style={{ perspective: 1000 }} className={className}>
+      <motion.div
+        ref={ref}
+        onPointerMove={handlePointerMove}
+        onPointerEnter={() => !prefersReducedMotion && scale.set(hoverScale)}
+        onPointerLeave={reset}
+        style={{ rotateX, rotateY, scale, transformStyle: "preserve-3d" }}
+        className="relative overflow-hidden rounded-2xl border bg-card p-6 shadow-lg"
+      >
+        <motion.div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-0"
+          style={{ background: glare }}
+        />
+        <div style={{ transform: "translateZ(40px)" }}>{children}</div>
+      </motion.div>
+    </div>
+  );
+}
+
+export default TiltCard;

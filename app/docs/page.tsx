@@ -1,7 +1,5 @@
 import { redirect } from "next/navigation";
 
-const Docs = () => {
-  redirect("/docs/getting-started");
-};
-
-export default Docs;
+export default function DocsIndexPage() {
+  redirect("/docs/getting-started/introduction");
+}

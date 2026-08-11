@@ -7,17 +7,9 @@ const GravityTextSwapUsage = () => {
       textArray={["Code", "Build", "Sleep", "Repeat"]}
       duration={0.5}
       pauseDuration={0.8}
-      className="text-md md:text-lg mb-4"
+      className="text-md mb-4 md:text-lg"
     />
   );
 };
-
-GravityTextSwapUsage.stringVersion =
-    `<GravityTextSwap
-  textArray={["Code", "Build", "Sleep", "Repeat"]}
-  duration={0.5}
-  pauseDuration={0.8}
-  className="text-md md:text-lg mb-4"
-/>`;
 
 export default GravityTextSwapUsage;

@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { motion, Variants, useInView } from "framer-motion";
+import { motion, Variants, useInView } from "motion/react";
 
 interface FadeInUnblurProps {
   children: React.ReactNode;

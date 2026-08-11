@@ -10,11 +10,7 @@ import {
 } from "@/components/ui/breadcrumb";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 
-export default function BreadcrumbGettingStarted({
-  page,
-}: {
-  page: string;
-}) {
+export default function BreadcrumbGettingStarted({ page }: { page: string }) {
   return (
     <Breadcrumb>
       <BreadcrumbList>

@@ -1,67 +1,62 @@
-"use client";
-import React from "react";
-import { Post } from "@/.contentlayer/generated";
-import { format } from "date-fns";
-import { CalendarIcon, UserIcon } from "lucide-react";
+import type { ReactNode } from "react";
 import Image from "next/image";
+import { Calendar, Clock } from "lucide-react";
+import type { Post } from "@/lib/blog";
 
-const BlogPost = ({
+/** Article shell: title block, hero image, then the rendered MDX body. */
+export default function BlogPost({
   children,
   post,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
   post: Post;
-}) => {
+}) {
   return (
-    <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-      <header className="mb-16 mt-16">
-        <h1 className="text-4xl sm:text-5xl font-bold mb-4 text-gray-900 dark:text-gray-100 leading-tight">
+    <article className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+      <header className="mt-16 mb-16">
+        <h1 className="mb-4 text-4xl leading-tight font-bold tracking-tight sm:text-5xl">
           {post.title}
         </h1>
-        {post.description && (
-          <p className="text-xl text-gray-500 dark:text-gray-400 mb-8 leading-relaxed">
-            {post.description}
-          </p>
-        )}
-        <div className="flex items-center mb-8">
-          <div>
-            {post.author && (
-              <p className="font-semibold text-gray-900 dark:text-gray-100">
-                {post.author}
-              </p>
-            )}
-            <div className="flex items-center text-sm text-gray-500 dark:text-gray-400 space-x-4">
-              <time className="flex items-center">
-                <CalendarIcon className="w-4 h-4 mr-1" />
-                {format(new Date(post.date), "MMM d, yyyy")}
-              </time>
-              <span className="flex items-center">
-                <UserIcon className="w-4 h-4 mr-1" />
-                {post.readTime || "5 min read"}
-              </span>
-            </div>
+        <p className="mb-8 text-xl leading-relaxed text-muted-foreground">
+          {post.description}
+        </p>
+        <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+          <p className="font-semibold">{post.author}</p>
+          <div className="flex items-center gap-4 text-sm text-muted-foreground">
+            <time dateTime={post.date} className="flex items-center">
+              <Calendar className="mr-1 size-4" />
+              {new Date(post.date).toLocaleDateString("en-US", {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+                timeZone: "UTC",
+              })}
+            </time>
+            <span className="flex items-center">
+              <Clock className="mr-1 size-4" />
+              {post.readTime}
+            </span>
           </div>
         </div>
       </header>
 
-      {post.image && (
+      {post.image ? (
         <div className="mb-12">
           <Image
             src={post.image}
-            alt={post.title}
+            alt={post.imageAlt}
             width={1200}
             height={630}
-            layout="responsive"
-            className="rounded-lg"
+            priority
+            sizes="(max-width: 1024px) 100vw, 1024px"
+            className="h-auto w-full rounded-lg"
           />
         </div>
-      )}
+      ) : null}
 
       <div className="prose prose-lg max-w-none dark:prose-invert">
         {children}
       </div>
     </article>
   );
-};
-
-export default BlogPost;
+}

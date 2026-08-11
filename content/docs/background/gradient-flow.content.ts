@@ -1,33 +1,11 @@
-import { ComponentConfigType } from "@/types/component-config.type";
-import { getAnimationPreview } from "@/lib/animation-preview";
+import type { ComponentConfig } from "@/types/component-config.type";
 
-const GradientFlowContent: ComponentConfigType = {
-  breadcrumbs: [
-    {
-      label: "Home",
-      href: "/",
-    },
-    {
-      label: "Docs",
-      href: "/docs",
-    },
-    {
-      label: "Background",
-    },
-  ],
+const GradientFlowContent: ComponentConfig = {
+  name: "gradient-flow",
+  category: "background",
   title: "Gradient Flow",
   description:
     "The GradientFlow component creates a flowing gradient animation effect for its children, adding visual interest to backgrounds or UI elements.",
-  usageCode: `${getAnimationPreview("gradient-flow", 1, true)}`,
-  installation: [
-    {
-      description: "Add the following code into your project",
-      isFullCode: true,
-    },
-    {
-      description: "Update the import paths according to your project setup",
-    },
-  ],
   props: [
     {
       prop: "children",
@@ -55,8 +33,7 @@ const GradientFlowContent: ComponentConfigType = {
       description: "Additional CSS classes for styling",
     },
   ],
-  credits:
-    "Credits to <a target='_blank' style='font-weight: bold' href='https://github.com/lappemic' rel='noreferrer noopener'>Michael</a> for this awesome component.",
+  credits: { name: "Michael", url: "https://github.com/lappemic" },
 };
 
 export default GradientFlowContent;

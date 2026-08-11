@@ -1,100 +1,97 @@
+import type { Metadata } from "next";
+import Link from "next/link";
 import BreadcrumbGettingStarted from "@/components/website/breadcrumb-getting-started";
-import { CodeSnippet } from "@/components/website/code-snippet";
+import { CodeBlock } from "@/components/website/code-block";
+import { absoluteUrl } from "@/lib/site";
 
-const Installation = () => {
+export const metadata: Metadata = {
+  title: "Installation",
+  description:
+    "Set up your project for UI Beats components: Tailwind CSS, Motion, and the cn helper.",
+  alternates: { canonical: absoluteUrl("/docs/getting-started/installation") },
+};
+
+export default function InstallationPage() {
   return (
-    <div className="md:container mx-auto pb-10">
+    <div className="mx-auto pb-10 md:container">
       <BreadcrumbGettingStarted page="Installation" />
-      <div className="space-y-2 mt-5">
+
+      <div className="mt-5 space-y-2">
         <h1 className="scroll-m-20 text-3xl font-bold tracking-tight">
           Installation
         </h1>
         <p className="text-base text-muted-foreground">
-          How to get started with UI Beats.
+          What your project needs before adding a component.
         </p>
       </div>
-      <div className="pb-12 pt-8">
-        <div className="mb-6">
-          <h2 className="font-semibold mb-2">1. Browse the Components</h2>
-          <p>
-            Visit the UI Beats component library and explore the various
-            components available.
-          </p>
-        </div>
 
-        <div>
-          <h2 className="font-semibold mb-2">2. Add the utility function</h2>
-          <p className="mb-4">
-            This step is optional and only needed if your component from UI
-            Beats uses the `cn` utility function.
+      <div className="space-y-10 pt-8 pb-12">
+        <section>
+          <h2 className="mb-3 text-xl font-semibold">Requirements</h2>
+          <p className="mb-4 leading-7">
+            UI Beats components are written for React 19 with Tailwind CSS v4
+            and Motion. Most components need only Motion; a few also use the{" "}
+            <code className="font-mono text-sm">cn</code> class helper. Each
+            component page lists exactly what it imports.
           </p>
-          <CodeSnippet language="bash" code={"npm i clsx tailwind-merge"} />
-          <div className="h-4 w-full"></div>
-          <CodeSnippet
-            language="typescript"
-            code={
-              'import {type ClassValue, clsx} from "clsx";\n' +
-              'import {twMerge} from "tailwind-merge";\n \n' +
-              "export function cn(...inputs: ClassValue[]) {\n" +
-              "  return twMerge(clsx(inputs));\n" +
-              "}"
-            }
+          <CodeBlock code="npm install motion" language="bash" />
+        </section>
+
+        <section>
+          <h2 className="mb-3 text-xl font-semibold">Tailwind CSS</h2>
+          <p className="mb-4 leading-7">
+            Follow the{" "}
+            <a
+              href="https://tailwindcss.com/docs/installation"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline underline-offset-4"
+            >
+              official Tailwind installation guide
+            </a>{" "}
+            for your framework. Components use standard utility classes plus the
+            shadcn design tokens (
+            <code className="font-mono text-sm">bg-background</code>,{" "}
+            <code className="font-mono text-sm">text-muted-foreground</code>,
+            …), so they inherit whatever theme you already have.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="mb-3 text-xl font-semibold">
+            The <code className="font-mono">cn</code> helper
+          </h2>
+          <p className="mb-4 leading-7">
+            Only needed for components that merge incoming{" "}
+            <code className="font-mono text-sm">className</code> props.
+          </p>
+          <CodeBlock code="npm install clsx tailwind-merge" language="bash" />
+          <CodeBlock
+            title="lib/utils.ts"
+            code={`import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
+
+export function cn(...inputs: ClassValue[]) {
+  return twMerge(clsx(inputs));
+}`}
           />
-        </div>
-      </div>
+        </section>
 
-      <div className="mb-6">
-        <h2 className="font-semibold mb-2">3. Copy the Code</h2>
-        <p>
-          Once you find a component you need, simply copy the code provided.
-        </p>
-      </div>
-
-      <div className="mb-6">
-        <h2 className="font-semibold mb-2">4. Paste into Your Project</h2>
-        <p>
-          Paste the copied code into your project files. Ensure that you have
-          the necessary dependencies installed (React, TypeScript, Tailwind CSS,
-          and Framer Motion).
-        </p>
-      </div>
-
-      <div className="mb-6">
-        <h2 className="font-semibold mb-2">5. Customize</h2>
-        <p>
-          Customize the component to fit your project&apos;s design and
-          functionality requirements. The code is now yours to modify as needed.
-        </p>
-      </div>
-
-      <div className="mb-6">
-        <h2 className="font-semibold mb-2">Dependencies Installation</h2>
-        <p className="mb-4">
-          If you&apos;re using a React project with TypeScript and Tailwind CSS,
-          you can easily integrate UI Beats components. Make sure you have the
-          following dependencies installed:
-        </p>
-        <CodeSnippet
-          language="bash"
-          code={
-            "npm install react react-dom typescript tailwindcss framer-motion"
-          }
-        />
-
-        <p className="mt-4">
-          Add Tailwind CSS to your project by following the{" "}
-          <a
-            rel="noopener noreferrer"
-            href="https://tailwindcss.com/docs/installation"
-            className="text-blue-500 underline"
-          >
-            official installation guide
-          </a>
-          .
-        </p>
+        <section>
+          <h2 className="mb-3 text-xl font-semibold">Adding a component</h2>
+          <p className="leading-7">
+            With the project set up, use the{" "}
+            <Link
+              href="/docs/getting-started/cli"
+              className="underline underline-offset-4"
+            >
+              CLI
+            </Link>{" "}
+            to add components, or copy the source from any component page and
+            adjust the import paths to match your project.
+          </p>
+        </section>
       </div>
     </div>
   );
-};
-
-export default Installation;
+}

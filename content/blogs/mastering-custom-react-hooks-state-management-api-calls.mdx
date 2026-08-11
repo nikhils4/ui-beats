@@ -1,14 +1,21 @@
 ---
 title: "Mastering Custom React Hooks: Simplify State Management and API Calls"
-date: '2024-09-22'
+date: "2024-09-22"
 description: Learn how to create and implement custom React hooks to streamline your state management and API calls. This comprehensive guide covers hook basics, best practices, and real-world examples for efficient React development.
-image: '/blogs/mastering-custom-react-hooks.png'
-imageAlt: 'Title of the blog with a colorful background'
-author: 'Nikhil Singh'
-authorBio: 'Nikhil Singh is a software engineer and a tech enthusiast.'
-authorTwitter: '@nikhilScripts'
-categories: ['Web Development', 'React', 'JavaScript', 'Frontend']
-tags: ['React Hooks', 'Custom Hooks', 'State Management', 'API Calls', 'JavaScript', 'React Best Practices']
+image: "/blogs/mastering-custom-react-hooks.png"
+imageAlt: "Title of the blog with a colorful background"
+author: "Nikhil Singh"
+authorBio: "Nikhil Singh is a software engineer and a tech enthusiast."
+categories: ["Web Development", "React", "JavaScript", "Frontend"]
+tags:
+  [
+    "React Hooks",
+    "Custom Hooks",
+    "State Management",
+    "API Calls",
+    "JavaScript",
+    "React Best Practices",
+  ]
 ---
 
 React Hooks have revolutionized the way we manage state and side effects in functional components. While React provides several built-in hooks, creating custom hooks can significantly enhance your development experience by encapsulating complex logic and promoting code reuse. In this guide, we'll explore how to create custom React hooks for state management and API calls, two common challenges in React development.
@@ -22,13 +29,13 @@ Custom hooks are JavaScript functions that start with "use" and may call other h
 Let's start by creating a custom hook for managing a toggle state, which is a common UI pattern.
 
 ```jsx
-import { useState, useCallback } from 'react';
+import { useState, useCallback } from "react";
 
 function useToggle(initialState = false) {
   const [state, setState] = useState(initialState);
 
   const toggle = useCallback(() => {
-    setState(prevState => !prevState);
+    setState((prevState) => !prevState);
   }, []);
 
   return [state, toggle];
@@ -40,17 +47,13 @@ export default useToggle;
 Using this custom hook in a component:
 
 ```jsx
-import React from 'react';
-import useToggle from './useToggle';
+import React from "react";
+import useToggle from "./useToggle";
 
 function ToggleComponent() {
   const [isOn, toggleIsOn] = useToggle();
 
-  return (
-    <button onClick={toggleIsOn}>
-      {isOn ? 'ON' : 'OFF'}
-    </button>
-  );
+  return <button onClick={toggleIsOn}>{isOn ? "ON" : "OFF"}</button>;
 }
 
 export default ToggleComponent;
@@ -61,7 +64,7 @@ export default ToggleComponent;
 Now, let's create a more complex custom hook for handling API calls. This hook will manage loading states, errors, and data fetching.
 
 ```jsx
-import { useState, useEffect } from 'react';
+import { useState, useEffect } from "react";
 
 function useFetch(url) {
   const [data, setData] = useState(null);
@@ -73,7 +76,7 @@ function useFetch(url) {
       try {
         const response = await fetch(url);
         if (!response.ok) {
-          throw new Error('Network response was not ok');
+          throw new Error("Network response was not ok");
         }
         const result = await response.json();
         setData(result);
@@ -96,11 +99,15 @@ export default useFetch;
 Using the `useFetch` hook in a component:
 
 ```jsx
-import React from 'react';
-import useFetch from './useFetch';
+import React from "react";
+import useFetch from "./useFetch";
 
 function UserProfile({ userId }) {
-  const { data: user, loading, error } = useFetch(`https://api.example.com/users/${userId}`);
+  const {
+    data: user,
+    loading,
+    error,
+  } = useFetch(`https://api.example.com/users/${userId}`);
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
@@ -121,37 +128,40 @@ export default UserProfile;
 Let's create a more advanced custom hook that combines state management with API calls, perfect for handling form submissions.
 
 ```jsx
-import { useState, useCallback } from 'react';
+import { useState, useCallback } from "react";
 
 function useSubmit(url) {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const submit = useCallback(async (formData) => {
-    setLoading(true);
-    setError(null);
-    try {
-      const response = await fetch(url, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
-      if (!response.ok) {
-        throw new Error('Submission failed');
+  const submit = useCallback(
+    async (formData) => {
+      setLoading(true);
+      setError(null);
+      try {
+        const response = await fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        });
+        if (!response.ok) {
+          throw new Error("Submission failed");
+        }
+        const result = await response.json();
+        setData(result);
+        return result;
+      } catch (err) {
+        setError(err);
+        throw err;
+      } finally {
+        setLoading(false);
       }
-      const result = await response.json();
-      setData(result);
-      return result;
-    } catch (err) {
-      setError(err);
-      throw err;
-    } finally {
-      setLoading(false);
-    }
-  }, [url]);
+    },
+    [url],
+  );
 
   return { submit, data, loading, error };
 }
@@ -162,19 +172,21 @@ export default useSubmit;
 Using the `useSubmit` hook in a form component:
 
 ```jsx
-import React, { useState } from 'react';
-import useSubmit from './useSubmit';
+import React, { useState } from "react";
+import useSubmit from "./useSubmit";
 
 function RegistrationForm() {
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const { submit, loading, error } = useSubmit('https://api.example.com/register');
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const { submit, loading, error } = useSubmit(
+    "https://api.example.com/register",
+  );
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       await submit({ username, email });
-      alert('Registration successful!');
+      alert("Registration successful!");
     } catch (err) {
       // Error is already set in the hook
     }
@@ -197,7 +209,7 @@ function RegistrationForm() {
         required
       />
       <button type="submit" disabled={loading}>
-        {loading ? 'Submitting...' : 'Register'}
+        {loading ? "Submitting..." : "Register"}
       </button>
       {error && <p>Error: {error.message}</p>}
     </form>

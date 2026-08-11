@@ -1,106 +1,58 @@
+import type { LucideIcon } from "lucide-react";
+import componentConfigs from "@/content/docs";
 import {
-  ArrowUpDown,
-  Book,
-  Component,
-  CreditCard,
-  LucideIcon,
-  MousePointer,
-  Palette,
-  Sparkles,
-} from "lucide-react";
+  CATEGORY_META,
+  CATEGORY_ORDER,
+  GETTING_STARTED,
+  isCategory,
+} from "@/config/categories";
 
-export const sideNav: {
-  subItems: { path: string; title: string; isNew?: boolean }[];
+export interface SideNavItem {
+  title: string;
+  path: string;
+  isNew?: boolean;
+}
+
+export interface SideNavSection {
   title: string;
   icon?: LucideIcon;
-}[] = [
+  subItems: SideNavItem[];
+}
+
+/**
+ * The sidebar, derived from the component registry rather than hand-listed.
+ *
+ * The old version was a hardcoded array that had already drifted: every
+ * `/docs/<category>` landing page indexed into it by a magic number
+ * (`sideNav[1]`, `sideNav[3]`, …) and all six of those numbers pointed at the
+ * wrong section. Deriving the nav means a new component shows up here — and in
+ * the sitemap, the command menu and the registry — automatically.
+ */
+export const sideNav: SideNavSection[] = [
   {
-    title: "Getting Started",
-    icon: Book,
-    subItems: [
-      {
-        title: "Introduction",
-        path: "/docs/getting-started/introduction",
-      },
-      {
-        title: "Installation",
-        path: "/docs/getting-started/installation",
-      },
-      {
-        title: "Contribute",
-        path: "/docs/getting-started/contribute",
-      },
-    ],
+    title: GETTING_STARTED.title,
+    icon: GETTING_STARTED.icon,
+    subItems: GETTING_STARTED.items.map((item) => ({ ...item })),
   },
-  {
-    title: "Animation",
-    icon: ArrowUpDown,
-    subItems: [
-      { title: "Bounce", path: "/docs/animation/bounce" },
-      { title: "Fade In", path: "/docs/animation/fade-in" },
-      { title: "Fade In Unblur", path: "/docs/animation/fade-in-unblur" },
-      { title: "Rotate In", path: "/docs/animation/rotate-in" },
-      { title: "Scale In", path: "/docs/animation/scale-in" },
-      { title: "Smooth Reveal", path: "/docs/animation/smooth-reveal" },
-    ],
-  },
-  {
-    title: "Background",
-    icon: Palette,
-    subItems: [
-      { title: "Gradient Flow", path: "/docs/background/gradient-flow" },
-      {
-        title: "Sparkling Grid",
-        path: "/docs/background/sparkling-grid",
-        isNew: true,
-      },
-    ],
-  },
-  {
-    title: "Button",
-    icon: MousePointer,
-    subItems: [
-      {
-        title: "Subscribe Button",
-        path: "/docs/button/subscribe-button",
-        isNew: true,
-      },
-    ],
-  },
-  {
-    title: "Card",
-    icon: CreditCard,
-    subItems: [
-      { title: "Flip Card", path: "/docs/card/flip-card" },
-      {
-        title: "Glowing Card",
-        path: "/docs/card/glowing-card",
-        isNew: true,
-      },
-      { title: "Morphing Card", path: "/docs/card/morphing-card" },
-    ],
-  },
-  {
-    title: "Component",
-    icon: Component,
-    subItems: [
-      { title: "Shimmer Effect", path: "/docs/component/shimmer-effect" },
-    ],
-  },
-  {
-    title: "Text",
-    icon: Sparkles,
-    subItems: [
-      {
-        title: "Gravity Text Swap",
-        path: "/docs/text/gravity-text-swap",
-      },
-      {
-        title: "Text Shine",
-        path: "/docs/text/text-shine",
-        isNew: true,
-      },
-      { title: "Text Writer", path: "/docs/text/text-writer" },
-    ],
-  },
+  ...CATEGORY_ORDER.map((category) => ({
+    title: CATEGORY_META[category].label,
+    icon: CATEGORY_META[category].icon,
+    subItems: componentConfigs
+      .filter((config) => config.category === category)
+      .sort((a, b) => a.title.localeCompare(b.title))
+      .map((config) => ({
+        title: config.title,
+        path: `/docs/${config.category}/${config.name}`,
+        ...(config.isNew ? { isNew: true as const } : {}),
+      })),
+  })).filter((section) => section.subItems.length > 0),
 ];
+
+/** First documented component in a category — used by category landing pages. */
+export function firstComponentPath(category: string): string | undefined {
+  if (!isCategory(category)) return undefined;
+  const label = CATEGORY_META[category].label;
+  return sideNav.find((s) => s.title === label)?.subItems[0]?.path;
+}
+
+export default sideNav;

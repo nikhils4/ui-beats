@@ -1,5 +1,5 @@
 "use client";
-import { motion, useScroll, useMotionValueEvent } from "framer-motion";
+import { motion, useScroll, useMotionValueEvent } from "motion/react";
 import confetti from "canvas-confetti";
 import { useState, useEffect } from "react";
 
@@ -42,7 +42,7 @@ export const ScrollProgress = () => {
 
   return (
     <motion.div
-      className="fixed top-0 left-0 right-0 h-[4px] bg-gradient-to-r from-blue-400 to-purple-400 origin-left"
+      className="fixed top-0 right-0 left-0 h-[4px] origin-left bg-gradient-to-r from-blue-400 to-purple-400"
       style={{ scaleX: scrollYProgress }}
     />
   );

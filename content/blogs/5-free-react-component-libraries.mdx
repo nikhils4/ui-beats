@@ -1,14 +1,22 @@
 ---
 title: "5 Free React Component Libraries and How to Use Them"
-date: '2024-09-14'
+date: "2024-09-14"
 description: Discover five popular free React component libraries and learn how to implement them in your projects. This guide covers installation, basic usage, and practical examples for each library.
-image: '/blogs/5-free-react-component-libraries.png'
-imageAlt: 'Title of the blog with a colorful background'
-author: 'Nikhil Singh'
-authorBio: 'Nikhil Singh is a software engineer and a tech enthusiast.'
-authorTwitter: '@nikhilScripts'
-categories: ['Web Development', 'React', 'UI Libraries', 'Frontend']
-tags: ['React', 'Component Libraries', 'Material-UI', 'Chakra UI', 'React Bootstrap', 'Ant Design', 'Semantic UI React']
+image: "/blogs/5-free-react-component-libraries.png"
+imageAlt: "Title of the blog with a colorful background"
+author: "Nikhil Singh"
+authorBio: "Nikhil Singh is a software engineer and a tech enthusiast."
+categories: ["Web Development", "React", "UI Libraries", "Frontend"]
+tags:
+  [
+    "React",
+    "Component Libraries",
+    "Material-UI",
+    "Chakra UI",
+    "React Bootstrap",
+    "Ant Design",
+    "Semantic UI React",
+  ]
 ---
 
 React's component-based architecture has revolutionized web development, making it easier to create reusable UI elements. In this article, we'll explore five popular free React component libraries and demonstrate how to use them in your projects. These libraries offer a treasure trove of react reusable components and free react components that can significantly speed up your development process.
@@ -20,6 +28,7 @@ Material-UI is one of the most popular React component libraries, implementing G
 ### Installation
 
 To install Material-UI, run the following command in your terminal:
+
 ```bash
 npm install @mui/material @emotion/react @emotion/styled
 ```
@@ -29,8 +38,8 @@ npm install @mui/material @emotion/react @emotion/styled
 Here's a simple example of how to use Material-UI components to create a login form:
 
 ```jsx
-import React from 'react';
-import { Button, TextField } from '@mui/material';
+import React from "react";
+import { Button, TextField } from "@mui/material";
 
 function LoginForm() {
   return (
@@ -64,8 +73,15 @@ npm i @chakra-ui/react @emotion/react @emotion/styled framer-motion
 Here's an example of how to create a sign-up form using Chakra UI components:
 
 ```jsx
-import React from 'react';
-import { ChakraProvider, Box, VStack, Heading, Input, Button } from '@chakra-ui/react';
+import React from "react";
+import {
+  ChakraProvider,
+  Box,
+  VStack,
+  Heading,
+  Input,
+  Button,
+} from "@chakra-ui/react";
 
 function App() {
   return (
@@ -104,9 +120,9 @@ npm install react-bootstrap bootstrap
 Here's how to create a simple navigation bar using React Bootstrap:
 
 ```jsx
-import React from 'react';
-import { Container, Navbar, Nav } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React from "react";
+import { Container, Navbar, Nav } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 function Navigation() {
   return (
@@ -145,40 +161,40 @@ npm install antd
 Here's an example of how to create a data table using Ant Design:
 
 ```jsx
-import React from 'react';
-import { Table } from 'antd';
-import 'antd/dist/antd.css';
+import React from "react";
+import { Table } from "antd";
+import "antd/dist/antd.css";
 
 const columns = [
   {
-    title: 'Name',
-    dataIndex: 'name',
-    key: 'name',
+    title: "Name",
+    dataIndex: "name",
+    key: "name",
   },
   {
-    title: 'Age',
-    dataIndex: 'age',
-    key: 'age',
+    title: "Age",
+    dataIndex: "age",
+    key: "age",
   },
   {
-    title: 'Address',
-    dataIndex: 'address',
-    key: 'address',
+    title: "Address",
+    dataIndex: "address",
+    key: "address",
   },
 ];
 
 const data = [
   {
     key: 1,
-    name: 'John Brown',
+    name: "John Brown",
     age: 32,
-    address: 'New York No. 1 Lake Park',
+    address: "New York No. 1 Lake Park",
   },
   {
     key: 2,
-    name: 'Jim Green',
+    name: "Jim Green",
     age: 42,
-    address: 'London No. 1 Bridge Street',
+    address: "London No. 1 Bridge Street",
   },
 ];
 
@@ -205,29 +221,34 @@ npm install semantic-ui-react semantic-ui-css
 
 Here's how to create a login form using Semantic UI React components:
 
-```jsx 
-import React from 'react';
-import { Button, Form, Grid, Header, Segment } from 'semantic-ui-react';
-import 'semantic-ui-css/semantic.min.css';
+```jsx
+import React from "react";
+import { Button, Form, Grid, Header, Segment } from "semantic-ui-react";
+import "semantic-ui-css/semantic.min.css";
 
 function LoginForm() {
   return (
-    <Grid textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
+    <Grid textAlign="center" style={{ height: "100vh" }} verticalAlign="middle">
       <Grid.Column style={{ maxWidth: 450 }}>
-        <Header as='h2' color='teal' textAlign='center'>
+        <Header as="h2" color="teal" textAlign="center">
           Log-in to your account
         </Header>
-        <Form size='large'>
+        <Form size="large">
           <Segment stacked>
-            <Form.Input fluid icon='user' iconPosition='left' placeholder='E-mail address' />
             <Form.Input
               fluid
-              icon='lock'
-              iconPosition='left'
-              placeholder='Password'
-              type='password'
+              icon="user"
+              iconPosition="left"
+              placeholder="E-mail address"
             />
-            <Button color='teal' fluid size='large'>
+            <Form.Input
+              fluid
+              icon="lock"
+              iconPosition="left"
+              placeholder="Password"
+              type="password"
+            />
+            <Button color="teal" fluid size="large">
               Login
             </Button>
           </Segment>

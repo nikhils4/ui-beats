@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { motion, useMotionValue, useTransform } from "framer-motion";
+import { motion, useMotionValue, useTransform } from "motion/react";
 import { cn } from "@/lib/utils";
 
 interface GlowingCardProps {
@@ -35,7 +35,7 @@ const GlowingCard: React.FC<GlowingCardProps> = ({
         rgba(0, 0, 0, 0) 70%
       ),
       linear-gradient(to right, #e2e8f0, #cbd5e0)
-    `
+    `,
   );
 
   const darkBackground = useTransform(
@@ -47,16 +47,16 @@ const GlowingCard: React.FC<GlowingCardProps> = ({
         rgba(255, 255, 255, 0) 70%
       ),
       linear-gradient(to right, #4a5568, #2d3748)
-    `
+    `,
   );
 
   return (
     <div className={cn("flex items-center justify-center", className)}>
       <motion.div
         className={cn(
-          "rounded-lg cursor-pointer relative overflow-hidden",
+          "relative cursor-pointer overflow-hidden rounded-lg",
           "transition-shadow duration-300",
-          "dark:hidden"
+          "dark:hidden",
         )}
         style={{
           width,
@@ -71,8 +71,8 @@ const GlowingCard: React.FC<GlowingCardProps> = ({
       >
         <motion.div
           className={cn(
-            "absolute inset-[1px] rounded-[7px] p-4 flex flex-col justify-between",
-            "bg-gray-100"
+            "absolute inset-[1px] flex flex-col justify-between rounded-[7px] p-4",
+            "bg-gray-100",
           )}
         >
           {children}
@@ -81,9 +81,9 @@ const GlowingCard: React.FC<GlowingCardProps> = ({
 
       <motion.div
         className={cn(
-          "rounded-lg cursor-pointer relative overflow-hidden",
+          "relative cursor-pointer overflow-hidden rounded-lg",
           "transition-shadow duration-300",
-          "hidden dark:block"
+          "hidden dark:block",
         )}
         style={{
           width,
@@ -98,8 +98,8 @@ const GlowingCard: React.FC<GlowingCardProps> = ({
       >
         <motion.div
           className={cn(
-            "absolute inset-[1px] rounded-[7px] p-4 flex flex-col justify-between",
-            "bg-gray-800"
+            "absolute inset-[1px] flex flex-col justify-between rounded-[7px] p-4",
+            "bg-gray-800",
           )}
         >
           {children}

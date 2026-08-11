@@ -1,33 +1,11 @@
-import { ComponentConfigType } from "@/types/component-config.type";
-import { getAnimationPreview } from "@/lib/animation-preview";
+import type { ComponentConfig } from "@/types/component-config.type";
 
-const TextWriterContent: ComponentConfigType = {
-  breadcrumbs: [
-    {
-      label: "Home",
-      href: "/",
-    },
-    {
-      label: "Docs",
-      href: "/docs",
-    },
-    {
-      label: "Text",
-    },
-  ],
+const TextWriterContent: ComponentConfig = {
+  name: "text-writer",
+  category: "text",
   title: "Text Writer",
   description:
     "The TextWriter component creates a typing animation effect for text, where characters appear one by one to mimic real-time typing.",
-  usageCode: `${getAnimationPreview("text-writer", 1, true)}`,
-  installation: [
-    {
-      description: "Add the following code into your project",
-      isFullCode: true,
-    },
-    {
-      description: "Update the import paths according to your project setup",
-    },
-  ],
   props: [
     {
       prop: "text",

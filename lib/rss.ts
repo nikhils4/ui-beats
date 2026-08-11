@@ -1,43 +1,54 @@
-import { Feed, FeedOptions, Item } from 'feed'
-import { allPosts, Post } from 'contentlayer/generated'
-
-const site_url = 'https://uibeats.com'
-
-const feedOptions: FeedOptions = {
-  title: 'UI Beats Blog',
-  description: 'Discover in-depth tutorials and guides on frontend development, UI/UX design, and web animations. Learn the latest techniques and best practices for creating stunning, interactive web experiences.',
-  id: site_url,
-  link: site_url,
-  image: `${site_url}/uibeats-social-media.png`,
-  favicon: `${site_url}/icon.png`,
-  copyright: `All rights reserved ${new Date().getFullYear()}, UI Beats`,
-  generator: 'Feed for Next.js',
-  feedLinks: {
-    rss2: `${site_url}/api/rss.xml`,
-  },
-}
+import { Feed, type FeedOptions, type Item } from "feed";
+import { getAllPosts } from "@/lib/blog";
+import { absoluteUrl, siteConfig } from "@/lib/site";
 
 export async function generateRssFeed(): Promise<Feed> {
-  const feed = new Feed(feedOptions)
+  const options: FeedOptions = {
+    title: `${siteConfig.name} Blog`,
+    description:
+      "In-depth tutorials and guides on frontend development, UI/UX design, and web animation.",
+    id: siteConfig.url,
+    link: siteConfig.url,
+    language: "en",
+    image: absoluteUrl(siteConfig.ogImage),
+    favicon: absoluteUrl("/icon.png"),
+    copyright: `All rights reserved ${new Date().getFullYear()}, ${siteConfig.name}`,
+    feedLinks: {
+      rss2: absoluteUrl("/api/rss.xml"),
+    },
+    author: {
+      name: siteConfig.author.name,
+      email: siteConfig.author.email,
+      link: siteConfig.author.url,
+    },
+  };
 
-  allPosts.forEach((post: Post) => {
+  const feed = new Feed(options);
+
+  for (const post of getAllPosts()) {
+    // The route is /blogs/<slug>. The old feed pointed at /blog/<slug>, so
+    // every item in it 404'd.
+    const url = absoluteUrl(`/blogs/${post.slug}`);
+
     const item: Item = {
       title: post.title,
-      id: `${site_url}/blog/${post.slug}`,
-      link: `${site_url}/blog/${post.slug}`,
+      id: url,
+      link: url,
       description: post.description,
-      content: post.body.raw,
       author: [
         {
-          name: 'Nikhil Singh',
-          email: 'hello@nikhils.ca',
-          link: 'https://nikhils.ca',
+          name: post.author,
+          email: siteConfig.author.email,
+          link: siteConfig.author.url,
         },
       ],
       date: new Date(post.date),
-    }
-    feed.addItem(item)
-  })
+      image: post.image ? absoluteUrl(post.image) : undefined,
+      category: post.categories.map((name) => ({ name })),
+    };
 
-  return feed
+    feed.addItem(item);
+  }
+
+  return feed;
 }

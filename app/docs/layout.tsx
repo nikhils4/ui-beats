@@ -1,166 +1,84 @@
-"use client";
-import { ReactNode, useEffect } from "react";
-import { SideNav } from "@/components/website/side-nav";
-import { ArrowRight, BookOpen, Bug, Edit3, Sparkles } from "lucide-react";
-import { motion } from "framer-motion";
-import { toast } from "sonner";
-import { SidebarProvider } from "@/components/ui/sidebar";
+import type { ReactNode } from "react";
 import Link from "next/link";
+import { BookOpen, Bug, Lightbulb } from "lucide-react";
+import { SidebarProvider } from "@/components/ui/sidebar";
+import { SideNav } from "@/components/website/side-nav";
 import { ShowcaseCard } from "@/components/website/showcase-card";
+import { SupportToast } from "@/components/website/support-toast";
+import { siteConfig } from "@/lib/site";
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: ReactNode;
-}>) {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        when: "beforeChildren",
-        staggerChildren: 0.2,
-      },
-    },
-  };
+const asideLinks = [
+  {
+    href: siteConfig.links.newIssue,
+    label: "Report an issue",
+    icon: Bug,
+    external: true,
+  },
+  {
+    href: siteConfig.links.newFeature,
+    label: "Request a feature",
+    icon: Lightbulb,
+    external: true,
+  },
+  { href: "/blogs", label: "Read the blog", icon: BookOpen, external: false },
+];
 
-  const itemVariants = {
-    hidden: { opacity: 0, x: -20 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: {
-        type: "spring",
-        stiffness: 100,
-        damping: 10,
-      },
-    },
-  };
-
-  const contentVariants = {
-    hidden: { opacity: 0, scale: 0.95 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: {
-        type: "spring",
-        stiffness: 100,
-        damping: 10,
-      },
-    },
-  };
-
-  useEffect(() => {
-    const hasShownToast = localStorage.getItem("supportToastShown");
-    if (!hasShownToast) {
-      const timer = setTimeout(() => {
-        toast("Show your support for UI Beats", {
-          description: "Keep building for good! ❤️",
-          duration: 30000,
-          action: {
-            label: "Star on GitHub",
-            onClick: () =>
-              window.open("https://github.com/nikhils4/ui-beats", "_blank"),
-          },
-          onDismiss: () => {
-            localStorage.setItem("supportToastShown", "true");
-          },
-          onAutoClose: () => {
-            localStorage.setItem("supportToastShown", "true");
-          },
-        });
-      }, 5000);
-
-      return () => clearTimeout(timer);
-    }
-  }, []);
-
+/**
+ * Docs shell.
+ *
+ * Layout note — this is where the content was overflowing. The right rail used
+ * to be `position: fixed`, which takes it out of normal flow, so the main
+ * column had the full width to centre itself in and its content ran underneath
+ * the rail on wide screens. The rail is a real flex item now and the main
+ * column simply gets less width; `sticky` keeps it parked while the page
+ * scrolls.
+ *
+ * `min-w-0` on the scrolling column matters just as much: a flex item defaults
+ * to `min-width: auto`, so a wide child (a code block or the props table)
+ * pushes the whole column wider than its share instead of scrolling inside it.
+ */
+export default function DocsLayout({ children }: { children: ReactNode }) {
   return (
     <SidebarProvider>
-      <motion.div
-        className="flex flex-col min-h-screen md:flex-row w-full md:w-auto overflow-x-hidden"
-        initial="hidden"
-        animate="visible"
-        variants={containerVariants}
-      >
-        <motion.aside variants={itemVariants}>
-          <SideNav />
-        </motion.aside>
-        <motion.div
-          variants={itemVariants}
-          className="flex flex-col flex-grow md:flex-row"
-        >
-          <motion.main
-            variants={contentVariants}
-            className="flex-grow p-4 md:p-6 lg:p-8 overflow-y-auto"
-          >
-            <motion.div
-              variants={contentVariants}
-              className="max-w-full md:max-w-3xl lg:max-w-4xl xl:max-w-4xl mx-auto"
-            >
-              {children}
-            </motion.div>
-          </motion.main>
-        </motion.div>
-        <motion.div
-          variants={itemVariants}
-          className="hidden xl:block w-80 px-8 fixed right-0 top-[25px] bottom-0 z-10"
-        >
-          <div className="space-y-2 mb-6">
-            <ul className="m-0 list-none">
-              <motion.li
-                variants={itemVariants}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="mt-0 pt-2"
-              >
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors"
-                  href="https://github.com/nikhils4/ui-beats/issues/new?assignees=&labels=&projects=&template=bug_report.md&title="
-                >
-                  <Bug className="h-4 w-4 mr-2" />
-                  Report an issue
-                </a>
-              </motion.li>
-              <motion.li
-                variants={itemVariants}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="mt-0 pt-2"
-              >
-                <a
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors"
-                  href="https://github.com/nikhils4/ui-beats/issues/new?assignees=&labels=&projects=&template=feature_request.md&title="
-                >
-                  <Edit3 className="h-4 w-4 mr-2" />
-                  Request a feature
-                </a>
-              </motion.li>
-              <motion.li
-                variants={itemVariants}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="mt-0 pt-2"
-              >
-                <Link
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors"
-                  href="/blogs"
-                >
-                  <BookOpen className="h-4 w-4 mr-2" />
-                  Blogs
-                </Link>
-              </motion.li>
-            </ul>
+      <SupportToast />
+      <div className="flex min-h-svh w-full">
+        <SideNav />
+
+        <div className="flex min-w-0 flex-1 justify-center">
+          <div className="flex w-full max-w-(--breakpoint-2xl) min-w-0 gap-8 px-4 md:px-8">
+            <main className="min-w-0 flex-1 py-8 lg:py-10">
+              <div className="mx-auto w-full max-w-3xl min-w-0">{children}</div>
+            </main>
+
+            <aside className="hidden w-64 shrink-0 py-10 xl:block">
+              <div className="sticky top-10 space-y-6">
+                <nav aria-label="Docs resources">
+                  <p className="mb-3 text-xs font-semibold tracking-widest text-muted-foreground uppercase">
+                    Resources
+                  </p>
+                  <ul className="space-y-1">
+                    {asideLinks.map(({ href, label, icon: Icon, external }) => (
+                      <li key={href}>
+                        <Link
+                          href={href}
+                          {...(external
+                            ? { target: "_blank", rel: "noopener noreferrer" }
+                            : {})}
+                          className="group -mx-2 flex items-center rounded-lg px-2 py-1.5 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+                        >
+                          <Icon className="mr-2 size-4 transition-colors group-hover:text-brand" />
+                          {label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </nav>
+                <ShowcaseCard />
+              </div>
+            </aside>
           </div>
-          <ShowcaseCard />
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
     </SidebarProvider>
   );
 }

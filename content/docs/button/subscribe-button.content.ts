@@ -1,33 +1,12 @@
-import { ComponentConfigType } from "@/types/component-config.type";
-import { getAnimationPreview } from "@/lib/animation-preview";
+import type { ComponentConfig } from "@/types/component-config.type";
 
-const SubscribeButtonContent: ComponentConfigType = {
-  breadcrumbs: [
-    {
-      label: "Home",
-      href: "/",
-    },
-    {
-      label: "Docs",
-      href: "/docs",
-    },
-    {
-      label: "Button",
-    },
-  ],
+const SubscribeButtonContent: ComponentConfig = {
+  name: "subscribe-button",
+  category: "button",
   title: "Subscribe Button",
   description:
     "The SubscribeButton component is an interactive button designed for subscription actions (more like Youtube Subscribe Button Animation), featuring customizable styles and animations.",
-  usageCode: `${getAnimationPreview("subscribe-button", 1, true)}`,
-  installation: [
-    {
-      description: "Add the following code into your project",
-      isFullCode: true,
-    },
-    {
-      description: "Update the import paths according to your project setup",
-    },
-  ],
+  isNew: true,
   props: [
     {
       prop: "onClick",

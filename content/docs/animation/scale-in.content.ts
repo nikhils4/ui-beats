@@ -1,33 +1,11 @@
-import { ComponentConfigType } from "@/types/component-config.type";
-import { getAnimationPreview } from "@/lib/animation-preview";
+import type { ComponentConfig } from "@/types/component-config.type";
 
-const ScaleInContent: ComponentConfigType = {
-  breadcrumbs: [
-    {
-      label: "Home",
-      href: "/",
-    },
-    {
-      label: "Docs",
-      href: "/docs",
-    },
-    {
-      label: "Animation",
-    },
-  ],
+const ScaleInContent: ComponentConfig = {
+  name: "scale-in",
+  category: "animation",
   title: "Scale In",
   description:
     "The ScaleIn component creates a smooth scale-in animation for its children when they enter the viewport.",
-  usageCode: `${getAnimationPreview("scale-in", 1, true)}`,
-  installation: [
-    {
-      description: "Add the following code into your project",
-      isFullCode: true,
-    },
-    {
-      description: "Update the import paths according to your project setup",
-    },
-  ],
   props: [
     {
       prop: "children",
@@ -66,8 +44,7 @@ const ScaleInContent: ComponentConfigType = {
       description: "Whether to trigger the animation only once",
     },
   ],
-  credits:
-    "Credits to <a target='_blank' style='font-weight: bold' href='https://github.com/lappemic' rel='noreferrer noopener'>Michael</a> for this awesome component.",
+  credits: { name: "Michael", url: "https://github.com/lappemic" },
 };
 
 export default ScaleInContent;

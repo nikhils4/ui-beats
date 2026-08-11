@@ -1,56 +1,52 @@
 "use client";
-import React from "react";
-import { motion } from "framer-motion";
+
+import { motion, useReducedMotion } from "motion/react";
 
 interface ShimmerEffectProps {
   width?: string | number;
   height?: string | number;
   borderRadius?: string | number;
+  /** Seconds for one sweep. */
   duration?: number;
   className?: string;
 }
 
-const ShimmerEffect: React.FC<ShimmerEffectProps> = ({
+/**
+ * A loading placeholder with a sweeping highlight.
+ *
+ * Both colours are derived from `currentColor`, so the placeholder works on a
+ * dark surface as well as a light one. The original hardcoded a black base and
+ * a white sweep, which disappeared entirely in dark mode.
+ */
+export function ShimmerEffect({
   width = "100%",
   height = "1rem",
-  borderRadius = "0.25rem",
+  borderRadius = "0.375rem",
   duration = 1.5,
   className = "",
-}) => {
+}: ShimmerEffectProps) {
+  const prefersReducedMotion = useReducedMotion();
+
   return (
     <div
-      style={{
-        width,
-        height,
-        borderRadius,
-        overflow: "hidden",
-        backgroundColor: "rgba(0, 0, 0, 0.1)",
-      }}
-      className={className}
+      style={{ width, height, borderRadius }}
+      className={`relative overflow-hidden bg-current/10 ${className}`}
       aria-hidden="true"
     >
-      <motion.div
-        style={{
-          width: "100%",
-          height: "100%",
-          background: `linear-gradient(
-            90deg,
-            rgba(255, 255, 255, 0) 0%,
-            rgba(255, 255, 255, 0.3) 50%,
-            rgba(255, 255, 255, 0) 100%
-          )`,
-        }}
-        animate={{
-          x: ["-100%", "100%"],
-        }}
-        transition={{
-          repeat: Infinity,
-          duration: duration,
-          ease: "linear",
-        }}
-      />
+      {prefersReducedMotion ? null : (
+        <motion.div
+          className="size-full"
+          style={{
+            background:
+              "linear-gradient(90deg, transparent 0%, currentColor 50%, transparent 100%)",
+            opacity: 0.18,
+          }}
+          animate={{ x: ["-100%", "100%"] }}
+          transition={{ repeat: Infinity, duration, ease: "linear" }}
+        />
+      )}
     </div>
   );
-};
+}
 
 export default ShimmerEffect;

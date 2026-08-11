@@ -1,55 +1,46 @@
-import { ComponentConfigType } from "@/types/component-config.type";
-import { getAnimationPreview } from "@/lib/animation-preview";
+import type { ComponentConfig } from "@/types/component-config.type";
 
-const TextShineContent: ComponentConfigType = {
-  breadcrumbs: [
-    {
-      label: "Home",
-      href: "/",
-    },
-    {
-      label: "Docs",
-      href: "/docs",
-    },
-    {
-      label: "Text",
-    },
-  ],
+const TextShineContent: ComponentConfig = {
+  name: "text-shine",
+  category: "text",
   title: "Text Shine",
   description:
-    "The Text Shine component is a simple text animation component where certain portion of the text shines in a specific color. ",
-  usageCode: `${getAnimationPreview("text-shine", 1, true)}`,
-  installation: [
-    {
-      description: "Add the following code into your project",
-      isFullCode: true,
-    },
-    {
-      description: "Update the import paths according to your project setup",
-    },
-  ],
+    "The TextShine component sweeps a coloured highlight across your text on a loop, drawing the eye without demanding a click.",
+  isNew: true,
   props: [
     {
       prop: "text",
       type: "string",
-      defaultValue: "'I am Shiny'",
-      description: "Text to be displayed",
+      defaultValue: "-",
+      description: "Text to be displayed (required)",
     },
     {
       prop: "shineColor",
       type: "string",
       defaultValue: "'#FFD700'",
-      description: "Shiny Color that appears on the text",
+      description: "Colour of the highlight that sweeps across the text",
+    },
+    {
+      prop: "baseColor",
+      type: "string",
+      defaultValue: "'var(--foreground)'",
+      description:
+        "Colour of the text itself. Defaults to the theme foreground so it stays legible in both themes",
     },
     {
       prop: "duration",
       type: "number",
       defaultValue: "5",
-      description: "Duration of time the shining animation should complete in.",
+      description: "Seconds for one sweep",
+    },
+    {
+      prop: "className",
+      type: "string",
+      defaultValue: "''",
+      description: "Additional CSS classes for styling",
     },
   ],
-  credits:
-    "Credits to <a target='_blank' style='font-weight: bold' href='https://github.com/divyaswormakai' rel='noreferrer noopener'>Divyaswor</a> for this awesome component.",
+  credits: { name: "Divyaswor", url: "https://github.com/divyaswormakai" },
 };
 
 export default TextShineContent;

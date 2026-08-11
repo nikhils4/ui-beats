@@ -37,3 +37,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# generated shadcn registry (built by `yarn registry:build`)
+/public/r
+
+# test artifacts
+/playwright-report
+/test-results
+/coverage

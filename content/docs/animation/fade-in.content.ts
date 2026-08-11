@@ -1,33 +1,11 @@
-import {ComponentConfigType} from "@/types/component-config.type";
-import {getAnimationPreview} from "@/lib/animation-preview";
+import type { ComponentConfig } from "@/types/component-config.type";
 
-const FadeInContent: ComponentConfigType = {
-  breadcrumbs: [
-    {
-      label: "Home",
-      href: "/",
-    },
-    {
-      label: "Docs",
-      href: "/docs",
-    },
-    {
-      label: "Animation",
-    },
-  ],
+const FadeInContent: ComponentConfig = {
+  name: "fade-in",
+  category: "animation",
   title: "Fade In",
   description:
     "The FadeIn component creates a smooth fade-in animation for its children when they enter the viewport.",
-  usageCode: `${getAnimationPreview("fade-in", 1, true)}`,
-  installation: [
-    {
-      description: "Add the following code into your project",
-      isFullCode: true,
-    },
-    {
-      description: "Update the import paths according to your project setup",
-    },
-  ],
   props: [
     {
       prop: "children",
@@ -60,8 +38,7 @@ const FadeInContent: ComponentConfigType = {
       description: "Whether to trigger the animation only once",
     },
   ],
-  credits:
-      "Credits to <a target='_blank' style='font-weight: bold' href='https://github.com/lappemic' rel='noreferrer noopener'>Michael</a> for this awesome component.",
+  credits: { name: "Michael", url: "https://github.com/lappemic" },
 };
 
 export default FadeInContent;

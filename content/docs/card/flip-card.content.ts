@@ -1,33 +1,11 @@
-import { ComponentConfigType } from "@/types/component-config.type";
-import { getAnimationPreview } from "@/lib/animation-preview";
+import type { ComponentConfig } from "@/types/component-config.type";
 
-const FlipCardContent: ComponentConfigType = {
-  breadcrumbs: [
-    {
-      label: "Home",
-      href: "/",
-    },
-    {
-      label: "Docs",
-      href: "/docs",
-    },
-    {
-      label: "Card",
-    },
-  ],
+const FlipCardContent: ComponentConfig = {
+  name: "flip-card",
+  category: "card",
   title: "Flip Card",
   description:
     "The FlipCard component creates an elegant, Apple-inspired interactive card that flips to reveal additional content. It features smooth animations, subtle gradients, and a clean design that's perfect for showcasing key information or features.",
-  usageCode: `${getAnimationPreview("flip-card", 1, true)}`,
-  installation: [
-    {
-      description: "Add the following code into your project",
-      isFullCode: true,
-    },
-    {
-      description: "Update the import paths according to your project setup",
-    },
-  ],
   props: [
     {
       prop: "frontContent",
@@ -67,8 +45,7 @@ const FlipCardContent: ComponentConfigType = {
       description: "Event that triggers the flip animation",
     },
   ],
-  credits:
-    "Credits to <a target='_blank' style='font-weight: bold' href='https://github.com/lappemic' rel='noreferrer noopener'>Michael</a> for this awesome component.",
+  credits: { name: "Michael", url: "https://github.com/lappemic" },
 };
 
 export default FlipCardContent;

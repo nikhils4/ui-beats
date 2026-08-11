@@ -5,6 +5,4 @@ const ShimmerEffectUsage = () => {
   return <ShimmerEffect width="200px" height="20px" duration={2} />;
 };
 
-ShimmerEffectUsage.stringVersion = `<ShimmerEffect width="200px" height="20px" duration={2} />`;
-
 export default ShimmerEffectUsage;

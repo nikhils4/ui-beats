@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import { Easing, motion } from "framer-motion";
+import { Easing, motion } from "motion/react";
 
 interface TextWriterProps {
   text: string;

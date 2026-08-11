@@ -1,125 +1,146 @@
 "use client";
-import { Button } from "@/components/ui/button";
-import { ChevronRight } from "lucide-react";
+
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
+import { ArrowRight, Sparkles } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { GitHubIcon } from "@/components/icons";
+import { CopyButton } from "@/components/website/copy-button";
+import { siteConfig } from "@/lib/site";
 
-export const HeroSection = () => {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
-      },
-    },
-  };
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.08, delayChildren: 0.1 },
+  },
+};
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.3,
-      },
-    },
-  };
+const itemVariants = {
+  hidden: { opacity: 0, y: 16 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.5, ease: [0.21, 0.47, 0.32, 0.98] as const },
+  },
+};
+
+interface HeroSectionProps {
+  componentCount: number;
+  latestComponent?: string;
+  latestHref?: string;
+}
+
+export function HeroSection({
+  componentCount,
+  latestComponent,
+  latestHref,
+}: HeroSectionProps) {
+  const installCommand = `npx shadcn@latest add ${siteConfig.url}/r/flip-card.json`;
 
   return (
-    <motion.div
-      className="mt-16 flex flex-col md:mt-20 h-full"
-      initial="hidden"
-      animate="visible"
-      variants={containerVariants}
-    >
-      <div className="flex flex-col items-start gap-6 px-7 pb-8 text-center md:items-center md:px-10">
-        <motion.div variants={itemVariants}>
-          <a
-            href="https://github.com/nikhils4/ui-beats"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <div className="group relative mx-auto flex max-w-fit flex-row items-center justify-center rounded-full bg-white/10 px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-medium backdrop-blur-sm transition-all duration-300 hover:bg-white/20 dark:bg-black/20 dark:hover:bg-black/30 border-transparent hover:border-blue-300/70 dark:hover:border-blue-600/70 border">
-              <motion.div
-                className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-400/10 to-purple-400/10 opacity-50 blur-sm transition-opacity"
-                animate={{
-                  background: [
-                    "linear-gradient(to right, rgba(96, 165, 250, 0.1), rgba(192, 132, 252, 0.1))",
-                    "linear-gradient(to right, rgba(192, 132, 252, 0.1), rgba(96, 165, 250, 0.1))",
-                    "linear-gradient(to right, rgba(96, 165, 250, 0.1), rgba(192, 132, 252, 0.1))",
-                  ],
-                }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                  ease: "linear",
-                }}
-              ></motion.div>
-              <span className="relative mr-1 sm:mr-2 text-blue-600 dark:text-blue-400 font-semibold">
-                Last Update
+    <section className="relative overflow-hidden">
+      {/* Ambient background: a grid that fades out toward the edges, plus two
+          slow-drifting colour washes. Purely decorative, so aria-hidden. */}
+      <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+        <div className="absolute inset-0 bg-grid [mask-image:radial-gradient(ellipse_60%_50%_at_50%_40%,black,transparent)] opacity-[0.35]" />
+        <div className="absolute top-[-12rem] left-1/2 size-[38rem] -translate-x-1/2 animate-aurora rounded-full bg-brand/20 blur-[110px]" />
+        <div className="absolute top-[-4rem] right-[8%] size-[24rem] animate-aurora rounded-full bg-accent-pink/15 blur-[100px] [animation-delay:-6s]" />
+        <div className="absolute top-[4rem] left-[6%] size-[22rem] animate-aurora rounded-full bg-accent-cyan/15 blur-[100px] [animation-delay:-12s]" />
+      </div>
+
+      <motion.div
+        className="relative mx-auto flex max-w-4xl flex-col items-center px-6 pt-24 pb-28 text-center md:pt-32"
+        initial="hidden"
+        animate="visible"
+        variants={containerVariants}
+      >
+        {latestComponent && latestHref ? (
+          <motion.div variants={itemVariants}>
+            <Link
+              href={latestHref}
+              className="group inline-flex items-center gap-2 rounded-full border border-border/70 bg-card/60 py-1 pr-3 pl-1 text-sm shadow-subtle backdrop-blur transition-colors hover:border-brand/40"
+            >
+              <span className="inline-flex items-center gap-1 rounded-full bg-brand px-2 py-0.5 text-[11px] font-semibold text-brand-foreground">
+                <Sparkles className="size-3" />
+                New
               </span>
-              <div
-                data-orientation="vertical"
-                role="none"
-                className="relative shrink-0 bg-gray-400 dark:bg-gray-500 w-px mx-1 sm:mx-2 h-2 sm:h-3 self-center"
-              ></div>
-              <span className="relative text-gray-700 dark:text-gray-200 ml-1 sm:ml-2">
-                Dec 06
+              <span className="text-muted-foreground transition-colors group-hover:text-foreground">
+                {latestComponent}
               </span>
-              <motion.div
-                className="relative ml-1 sm:ml-2 w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-green-500"
-                animate={{ scale: [1, 1.3, 1] }}
-                transition={{
-                  duration: 1.5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              />
-            </div>
-          </a>
-        </motion.div>
-        <motion.div
+              <ArrowRight className="size-3.5 text-muted-foreground transition-transform group-hover:translate-x-0.5" />
+            </Link>
+          </motion.div>
+        ) : null}
+
+        <motion.h1
           variants={itemVariants}
-          className="relative flex flex-col gap-10 md:items-center lg:flex-row md:mt-6"
+          className="mt-8 text-gradient text-5xl leading-[0.95] font-extrabold tracking-tighter text-balance sm:text-6xl md:text-7xl"
         >
-          <h1 className="text-black dark:text-white relative mx-0 max-w-[43.5rem] pt-5 md:mx-auto md:px-4 md:py-2 text-left tracking-tighter text-balance md:text-center font-semibold md:text-7xl lg:text-7xl sm:text-7xl text-5xl">
-            Supercharge your UI
-          </h1>
-        </motion.div>
+          Supercharge your UI
+        </motion.h1>
+
         <motion.p
           variants={itemVariants}
-          className="max-w-xl mt-6 mb-6 text-balance text-left text-base tracking-tight text-black dark:font-medium dark:text-white md:text-center md:text-lg "
+          className="mt-6 max-w-xl text-lg leading-relaxed text-balance text-muted-foreground"
         >
-          Implement <strong>responsive design patterns</strong> and create a{" "}
-          <strong>seamless user experience</strong> using our collection of{" "}
-          <strong>animated react components</strong>.
+          {componentCount} animated React components built with TypeScript,
+          Tailwind CSS and Motion. Install one with a single command, then make
+          it yours.
         </motion.p>
+
         <motion.div
           variants={itemVariants}
-          className="flex flex-col md:flex-row"
+          className="mt-9 flex w-full flex-col items-center gap-3 sm:w-auto sm:flex-row"
         >
-          <Link
-            rel="noopener noreferrer"
-            href="/docs/getting-started"
-            target="_blank"
+          <Button
+            size="lg"
+            asChild
+            className="w-full gap-2 shadow-brand sm:w-auto"
           >
-            <Button className="w-full">
-              Browse Components <ChevronRight className="w-4 h-4 ml-2" />
-            </Button>
-          </Link>
-          <a
-            href="https://github.com/nikhils4/ui-beats"
-            rel="noopener noreferrer"
-            target="_blank"
+            {/* This was `target="_blank"` on an internal route, which opened
+                the docs in a new tab and dropped client-side navigation. */}
+            <Link href="/docs/getting-started/introduction">
+              Browse components
+              <ArrowRight className="size-4" />
+            </Link>
+          </Button>
+          <Button
+            size="lg"
+            variant="outline"
+            asChild
+            className="w-full gap-2 sm:w-auto"
           >
-            <Button variant="outline" className="mt-7 md:mt-0 md:ml-5 w-full">
-              Contribute <ChevronRight className="w-4 h-4 ml-2" />
-            </Button>
-          </a>
+            <a
+              href={siteConfig.links.github}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <GitHubIcon className="size-4" />
+              Star on GitHub
+            </a>
+          </Button>
         </motion.div>
-      </div>
-    </motion.div>
+
+        <motion.div
+          variants={itemVariants}
+          className="group relative mt-10 w-full max-w-lg"
+        >
+          <div className="flex items-center gap-3 overflow-hidden rounded-xl border bg-card/70 py-3 pr-12 pl-4 text-left shadow-subtle backdrop-blur">
+            <span aria-hidden="true" className="text-brand select-none">
+              $
+            </span>
+            <code className="min-w-0 flex-1 truncate font-mono text-xs text-muted-foreground sm:text-sm">
+              npx shadcn@latest add {siteConfig.url}/r/flip-card.json
+            </code>
+          </div>
+          <CopyButton
+            value={installCommand}
+            label="Copy install command"
+            className="top-1/2 right-2 -translate-y-1/2"
+          />
+        </motion.div>
+      </motion.div>
+    </section>
   );
-};
+}

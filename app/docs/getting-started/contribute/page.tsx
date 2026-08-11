@@ -1,106 +1,109 @@
-import { CodeSnippet } from "@/components/website/code-snippet";
+import type { Metadata } from "next";
 import BreadcrumbGettingStarted from "@/components/website/breadcrumb-getting-started";
+import { CodeBlock } from "@/components/website/code-block";
+import { absoluteUrl, siteConfig } from "@/lib/site";
 
-const Contribute = () => {
+export const metadata: Metadata = {
+  title: "Contribute",
+  description:
+    "How to contribute a component to UI Beats — project setup, the four files a component needs, and the PR checklist.",
+  alternates: { canonical: absoluteUrl("/docs/getting-started/contribute") },
+};
+
+export default function ContributePage() {
   return (
-    <div className="md:container mx-auto pb-10">
+    <div className="mx-auto pb-10 md:container">
       <BreadcrumbGettingStarted page="Contribute" />
-      <div className="space-y-2 mt-5">
+
+      <div className="mt-5 space-y-2">
         <h1 className="scroll-m-20 text-3xl font-bold tracking-tight">
           Contribute
         </h1>
         <p className="text-base text-muted-foreground">
-          How to contribute to UI Beats.
+          Add a component, fix a bug, improve the docs.
         </p>
       </div>
-      <div className="pb-12 pt-8">
-        <div className="mb-6">
-          <h2 className="font-semibold mb-2">1. Fork the Repository</h2>
-          <p>Fork the ui-beats repository to your GitHub account.</p>
-        </div>
 
-        <div className="mb-6">
-          <h2 className="font-semibold mb-2">2. Clone Your Fork</h2>
-          <p className="mb-2">
-            Clone your forked repository to your local machine.
-          </p>
-          <CodeSnippet
+      <div className="space-y-10 pt-8 pb-12">
+        <section>
+          <h2 className="mb-3 text-xl font-semibold">Local setup</h2>
+          <CodeBlock
             language="bash"
-            code="git clone https://github.com/nikhils4/ui-beats"
+            code={`git clone ${siteConfig.links.github}.git
+cd ui-beats
+yarn install
+yarn dev`}
           />
-        </div>
-
-        <div className="mb-6">
-          <h2 className="font-semibold mb-2">3. Create a New Branch</h2>
-          <p className="mb-2">
-            Create a new branch for your feature or bug fix.
+          <p className="mt-3 text-sm text-muted-foreground">
+            Requires Node 20.9 or newer. Run <code>yarn typecheck</code>,{" "}
+            <code>yarn lint</code> and <code>yarn test</code> before opening a
+            PR — CI runs all three.
           </p>
-          <CodeSnippet
+        </section>
+
+        <section>
+          <h2 className="mb-3 text-xl font-semibold">Anatomy of a component</h2>
+          <p className="mb-4 leading-7">
+            A component is four files. Once they exist, the sidebar, the docs
+            page, the sitemap and the shadcn registry entry are all generated
+            from them — there is no central list to update.
+          </p>
+          <CodeBlock
             language="bash"
-            code="git checkout -b feature/your-feature-name"
+            code={`components/demo/<category>/<name>.tsx        # the component itself
+components/usage/<category>/<name>.usage.tsx # a runnable example
+content/docs/<category>/<name>.content.ts    # title, description, props table
+components/website/component-preview.tsx     # add one line to the preview map`}
           />
-        </div>
-
-        <div className="mb-6">
-          <h2 className="font-semibold mb-2">4. Make Your Changes</h2>
-          <p>
-            Make the necessary changes to the codebase. Ensure your code follows
-            the project&apos;s style and the standard guidelines.
+          <p className="mt-3 text-sm text-muted-foreground">
+            Then add the config to the array in{" "}
+            <code className="font-mono">content/docs/index.ts</code>.
           </p>
-        </div>
+        </section>
 
-        <div className="mb-6">
-          <h2 className="font-semibold mb-2">5. Commit Your Changes</h2>
-          <p className="mb-2">
-            Commit your changes with a clear and concise commit message.
-          </p>
-          <CodeSnippet
-            language="bash"
-            code='git commit -m "Add feature: your feature description"'
-          />
-        </div>
-
-        <div className="mb-6">
-          <h2 className="font-semibold mb-2">6. Push to Your Fork</h2>
-          <p className="mb-2">Push your changes to your forked repository.</p>
-          <CodeSnippet
-            language="bash"
-            code="git push origin feature/your-feature-name"
-          />
-        </div>
-
-        <div className="mb-6">
-          <h2 className="font-semibold mb-2">7. Create a Pull Request</h2>
-          <p>
-            Go to the original repository on GitHub and create a pull request.
-            Provide a clear description of your changes and any relevant
-            information.
-          </p>
-        </div>
-
-        <div className="mb-6">
-          <h2 className="font-semibold mb-2">Guidelines</h2>
-          <ul className="list-disc list-inside">
-            <li>Follow the code style and the standard guidelines.</li>
-            <li>Ensure your changes are well-documented in the PR.</li>
+        <section>
+          <h2 className="mb-3 text-xl font-semibold">Component guidelines</h2>
+          <ul className="list-outside list-disc space-y-2 pl-6 leading-7">
             <li>
-              Be respectful and collaborative in your interactions with other
-              contributors.
+              Type every prop. No <code className="font-mono">any</code>.
+            </li>
+            <li>
+              Keep dependencies minimal —{" "}
+              <code className="font-mono">motion</code> is fine, a new charting
+              library is not. Whatever the component imports becomes a
+              dependency for everyone who installs it.
+            </li>
+            <li>
+              Use the design tokens (
+              <code className="font-mono">bg-background</code>,{" "}
+              <code className="font-mono">text-muted-foreground</code>) rather
+              than hardcoded colours, so the component works in both themes.
+            </li>
+            <li>
+              Honour <code className="font-mono">prefers-reduced-motion</code>{" "}
+              for anything that animates continuously.
+            </li>
+            <li>
+              Give interactive elements accessible names and visible focus.
             </li>
           </ul>
-        </div>
+        </section>
 
-        <div className="mb-6">
-          <h2 className="font-semibold mb-2">Thank You for Contributing!</h2>
-          <p>
-            Your contributions help make UI Beats better for everyone. Whether
-            you&apos;re fixing bugs, adding new features, or improving
-            documentation, your efforts are appreciated.
+        <section>
+          <h2 className="mb-3 text-xl font-semibold">Opening a pull request</h2>
+          <CodeBlock
+            language="bash"
+            code={`git checkout -b feat/your-component
+git commit -m "feat(card): add tilt card"
+git push origin feat/your-component`}
+          />
+          <p className="mt-3 leading-7">
+            Include a screenshot or screen recording of the component in the PR
+            description. Contributors are credited on their component&apos;s
+            docs page.
           </p>
-        </div>
+        </section>
       </div>
     </div>
   );
-};
-
-export default Contribute;
+}

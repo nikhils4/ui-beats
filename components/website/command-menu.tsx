@@ -2,7 +2,6 @@
 import * as React from "react";
 import { useRouter } from "next/navigation";
 import { type DialogProps } from "@radix-ui/react-dialog";
-import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
 import { useTheme } from "next-themes";
 import { sideNav } from "@/config/side-nav";
 import { cn } from "@/lib/utils";
@@ -16,7 +15,7 @@ import {
   CommandList,
   CommandSeparator,
 } from "@/components/ui/command";
-import { CircleIcon, FileIcon, Search } from "lucide-react";
+import { Circle, FileText, Moon, Search, Sun } from "lucide-react";
 
 export function CommandMenu({
   small,
@@ -59,7 +58,7 @@ export function CommandMenu({
           variant="outline"
           size="icon"
           onClick={() => setOpen(true)}
-          className="rounded-md w-14 h-8"
+          className="h-8 w-14 rounded-md"
           {...props}
         >
           <Search className="h-[1.2rem] w-[1.2rem]" />
@@ -69,14 +68,14 @@ export function CommandMenu({
         <Button
           variant="outline"
           className={cn(
-            "relative h-8 w-full justify-start rounded-[0.5rem] bg-muted/50 text-sm font-normal text-muted-foreground shadow-none sm:pr-12 md:w-40 lg:w-64"
+            "relative h-8 w-full justify-start rounded-[0.5rem] bg-muted/50 text-sm font-normal text-muted-foreground shadow-none sm:pr-12 md:w-40 lg:w-64",
           )}
           onClick={() => setOpen(true)}
           {...props}
         >
           <span className="hidden lg:inline-flex">Search documentation...</span>
           <span className="inline-flex lg:hidden">Search...</span>
-          <kbd className="pointer-events-none absolute right-[0.3rem] top-[0.3rem] hidden h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium opacity-100 sm:flex">
+          <kbd className="pointer-events-none absolute top-[0.3rem] right-[0.3rem] hidden h-5 items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium opacity-100 select-none sm:flex">
             <span className="text-xs">⌘</span>K
           </kbd>
         </Button>
@@ -94,7 +93,7 @@ export function CommandMenu({
                   runCommand(() => router.push(navItem.path as string));
                 }}
               >
-                <FileIcon className="mr-2 h-4 w-4" />
+                <FileText className="mr-2 size-4" />
                 {navItem.title}
               </CommandItem>
             ))}
@@ -110,7 +109,7 @@ export function CommandMenu({
                   }}
                 >
                   <div className="mr-2 flex h-4 w-4 items-center justify-center">
-                    <CircleIcon className="h-3 w-3" />
+                    <Circle className="size-3" />
                   </div>
                   {item.title}
                 </CommandItem>
@@ -120,11 +119,11 @@ export function CommandMenu({
           <CommandSeparator />
           <CommandGroup heading="Theme">
             <CommandItem onSelect={() => runCommand(() => setTheme("light"))}>
-              <SunIcon className="mr-2 h-4 w-4" />
+              <Sun className="mr-2 size-4" />
               Light
             </CommandItem>
             <CommandItem onSelect={() => runCommand(() => setTheme("dark"))}>
-              <MoonIcon className="mr-2 h-4 w-4" />
+              <Moon className="mr-2 size-4" />
               Dark
             </CommandItem>
           </CommandGroup>

@@ -1,53 +1,51 @@
-import React from "react";
 import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Post } from "contentlayer/generated";
+import type { Post } from "@/lib/blog";
 
-interface RelatedPostsProps {
-  currentPost: Post;
-  allPosts: Post[];
-}
-
-const RelatedPosts: React.FC<RelatedPostsProps> = ({
-  currentPost,
-  allPosts,
-}) => {
-  const relatedPosts = allPosts
-    .filter(
-      (post) =>
-        post.slug !== currentPost.slug &&
-        post.categories.some((category) =>
-          currentPost.categories.includes(category)
-        )
-    )
-    .slice(0, 3);
+/**
+ * Related posts.
+ *
+ * Selection moved to `getRelatedPosts()` in the content layer — this component
+ * used to receive every post in the site and re-run the category matching
+ * itself, duplicating a filter the page had already run just to decide whether
+ * to render the section at all.
+ */
+export default function RelatedPosts({ posts }: { posts: Post[] }) {
+  if (posts.length === 0) return null;
 
   return (
-    <div className="mt-12">
-      <h2 className="text-2xl font-bold mb-6">Related Posts</h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {relatedPosts.map((post) => (
-          <Link key={post.slug} href={`/blogs/${post.slug}`} passHref>
-            <Card className="h-full hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
+    <section className="mt-12">
+      <h2 className="mb-6 text-2xl font-bold">Related Posts</h2>
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+        {posts.map((post) => (
+          <Link key={post.slug} href={`/blogs/${post.slug}`} className="group">
+            <Card className="h-full transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-lg">
               <CardHeader className="pb-2">
-                <CardTitle className="text-xl font-semibold line-clamp-2">{post.title}</CardTitle>
+                <CardTitle className="line-clamp-2 text-xl font-semibold">
+                  {post.title}
+                </CardTitle>
               </CardHeader>
               <CardContent>
-                <p className="text-sm text-muted-foreground line-clamp-3 mb-2">
+                <p className="mb-2 line-clamp-3 text-sm text-muted-foreground">
                   {post.description}
                 </p>
                 <div className="flex items-center text-xs text-muted-foreground">
                   <span>{post.readTime}</span>
                   <span className="mx-2">•</span>
-                  <span>{new Date(post.date).toLocaleDateString()}</span>
+                  <time dateTime={post.date}>
+                    {new Date(post.date).toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "short",
+                      day: "numeric",
+                      timeZone: "UTC",
+                    })}
+                  </time>
                 </div>
               </CardContent>
             </Card>
           </Link>
         ))}
       </div>
-    </div>
+    </section>
   );
-};
-
-export default RelatedPosts;
+}

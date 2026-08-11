@@ -1,5 +1,5 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 
 interface GradientFlowProps {
   children: React.ReactNode;
@@ -27,7 +27,7 @@ const GradientFlow: React.FC<GradientFlowProps> = ({
   return (
     <div
       className={`relative overflow-hidden ${
-        fullWidth ? "w-full h-full" : ""
+        fullWidth ? "h-full w-full" : ""
       } ${className}`}
     >
       <motion.div
@@ -55,7 +55,7 @@ const GradientFlow: React.FC<GradientFlowProps> = ({
           }}
         />
       )}
-      <div className="relative z-10 flex items-center justify-center w-full h-full backdrop-blur-sm">
+      <div className="relative z-10 flex h-full w-full items-center justify-center backdrop-blur-sm">
         {children}
       </div>
     </div>

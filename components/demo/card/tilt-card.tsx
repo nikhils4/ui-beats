@@ -43,6 +43,19 @@ export function TiltCard({
   const rotateY = useSpring(useMotionValue(0), spring);
   const scale = useSpring(useMotionValue(1), spring);
 
+  /*
+   * Visibility of the highlight, separate from its position.
+   *
+   * Without this the gradient was painted the whole time, parked at the
+   * card's centre — so the card sat there with a permanent bright blob on it
+   * whether or not a pointer was anywhere near. A highlight is a response to
+   * the pointer, so it starts at zero and fades in on enter.
+   */
+  const glareStrength = useSpring(useMotionValue(0), {
+    stiffness: 180,
+    damping: 26,
+  });
+
   const glare = useMotionTemplate`radial-gradient(circle at ${px} ${py}, rgba(255,255,255,${glareOpacity}), transparent 60%)`;
 
   const handlePointerMove = (event: React.PointerEvent<HTMLDivElement>) => {
@@ -61,10 +74,21 @@ export function TiltCard({
     rotateY.set((x - 0.5) * 2 * maxTilt);
   };
 
+  const enter = () => {
+    if (prefersReducedMotion) return;
+    scale.set(hoverScale);
+    glareStrength.set(1);
+  };
+
   const reset = () => {
     rotateX.set(0);
     rotateY.set(0);
     scale.set(1);
+    glareStrength.set(0);
+    // Recentre so the next hover fades in from the middle rather than
+    // sliding in from wherever the pointer last left.
+    px.set("50%");
+    py.set("50%");
   };
 
   return (
@@ -72,7 +96,7 @@ export function TiltCard({
       <motion.div
         ref={ref}
         onPointerMove={handlePointerMove}
-        onPointerEnter={() => !prefersReducedMotion && scale.set(hoverScale)}
+        onPointerEnter={enter}
         onPointerLeave={reset}
         style={{ rotateX, rotateY, scale, transformStyle: "preserve-3d" }}
         className="relative overflow-hidden rounded-2xl border bg-card p-6 shadow-lg"
@@ -80,7 +104,7 @@ export function TiltCard({
         <motion.div
           aria-hidden="true"
           className="pointer-events-none absolute inset-0"
-          style={{ background: glare }}
+          style={{ background: glare, opacity: glareStrength }}
         />
         <div style={{ transform: "translateZ(40px)" }}>{children}</div>
       </motion.div>

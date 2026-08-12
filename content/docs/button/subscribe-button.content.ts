@@ -7,6 +7,8 @@ const SubscribeButtonContent: ComponentConfig = {
   description:
     "The SubscribeButton component is an interactive button designed for subscription actions (more like Youtube Subscribe Button Animation), featuring customizable styles and animations.",
   isNew: true,
+  whenToUse:
+    "A high-feedback confirmation button modelled on YouTube's subscribe interaction. Use it where the state change is the point — following, subscribing, joining — rather than for ordinary form submits, where the celebration is out of proportion.",
   props: [
     {
       prop: "onClick",

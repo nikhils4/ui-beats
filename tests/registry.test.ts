@@ -97,6 +97,47 @@ describe("registry integrity", () => {
   });
 });
 
+describe("credits", () => {
+  it("uses an absolute https url", () => {
+    for (const entry of getRegistry()) {
+      if (!entry.credits) continue;
+      expect(entry.credits.url, entry.name).toMatch(/^https:\/\//);
+      expect(entry.credits.name.length, entry.name).toBeGreaterThan(0);
+    }
+  });
+
+  it("marks tool-written components as tools", () => {
+    // Guards against a tool being credited as a person, which would make the
+    // page copy and the schema.org author type both wrong.
+    for (const entry of getRegistry()) {
+      if (entry.credits?.name === "Claude Code") {
+        expect(entry.credits.kind, entry.name).toBe("tool");
+      }
+      if (entry.credits?.kind === "tool") {
+        expect(entry.credits.url).toMatch(/^https:\/\//);
+      }
+    }
+  });
+
+  it("credits every component that has no human contributor", () => {
+    // Every component should say where it came from, one way or another.
+    const uncredited = getRegistry()
+      .filter((entry) => !entry.credits)
+      .map((entry) => entry.name);
+
+    // Components carried over from before attribution was tracked.
+    const grandfathered = [
+      "smooth-reveal",
+      "sparkling-grid",
+      "subscribe-button",
+      "glowing-card",
+      "text-writer",
+    ];
+
+    expect(uncredited.sort()).toEqual(grandfathered.sort());
+  });
+});
+
 describe("component preview map", () => {
   it("has an entry for every registry component", () => {
     // The preview map is the one place a new component still has to be

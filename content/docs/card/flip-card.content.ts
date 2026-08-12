@@ -6,6 +6,8 @@ const FlipCardContent: ComponentConfig = {
   title: "Flip Card",
   description:
     "The FlipCard component creates an elegant, Apple-inspired interactive card that flips to reveal additional content. It features smooth animations, subtle gradients, and a clean design that's perfect for showcasing key information or features.",
+  whenToUse:
+    "Good when the back holds genuinely secondary detail: a definition, a statistic, a longer description. Never hide something essential behind a flip. Hover-triggered flips are unreachable on touch, so set triggerMode to 'click' if mobile matters.",
   props: [
     {
       prop: "frontContent",

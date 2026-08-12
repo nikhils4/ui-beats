@@ -6,6 +6,8 @@ const SmoothRevealContent: ComponentConfig = {
   title: "Smooth Reveal",
   description:
     "The SmoothReveal component creates a smooth reveal animation for its children when they enter the viewport.",
+  whenToUse:
+    "The workhorse for long scrolling pages. Match the direction to reading order — up for stacked sections, left or right for side-by-side columns — and keep distance under about 60px, past which the movement reads as a jump rather than a reveal.",
   props: [
     {
       prop: "children",

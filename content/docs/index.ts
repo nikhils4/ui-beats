@@ -7,6 +7,8 @@ import RotateIn from "./animation/rotate-in.content";
 import ScaleIn from "./animation/scale-in.content";
 import SmoothReveal from "./animation/smooth-reveal.content";
 import StaggerList from "./animation/stagger-list.content";
+import AnimatedBeam from "./background/animated-beam.content";
+import OrbitingElements from "./background/orbiting-elements.content";
 import GradientFlow from "./background/gradient-flow.content";
 import SparklingGrid from "./background/sparkling-grid.content";
 import MagneticButton from "./button/magnetic-button.content";
@@ -15,7 +17,11 @@ import FlipCard from "./card/flip-card.content";
 import GlowingCard from "./card/glowing-card.content";
 import MorphingCard from "./card/morphing-card.content";
 import TiltCard from "./card/tilt-card.content";
+import Dock from "./component/dock.content";
+import Marquee from "./component/marquee.content";
 import ShimmerEffect from "./component/shimmer-effect.content";
+import NumberTicker from "./text/number-ticker.content";
+import ScrollReveal from "./text/scroll-reveal.content";
 import GravityTextSwap from "./text/gravity-text-swap.content";
 import TextScramble from "./text/text-scramble.content";
 import TextShine from "./text/text-shine.content";
@@ -37,6 +43,8 @@ export const componentConfigs: ComponentConfig[] = [
   ScaleIn,
   SmoothReveal,
   StaggerList,
+  AnimatedBeam,
+  OrbitingElements,
   GradientFlow,
   SparklingGrid,
   MagneticButton,
@@ -45,7 +53,11 @@ export const componentConfigs: ComponentConfig[] = [
   GlowingCard,
   MorphingCard,
   TiltCard,
+  Dock,
+  Marquee,
   ShimmerEffect,
+  NumberTicker,
+  ScrollReveal,
   GravityTextSwap,
   TextScramble,
   TextShine,

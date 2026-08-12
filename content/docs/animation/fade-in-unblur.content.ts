@@ -6,6 +6,8 @@ const FadeInUnblurContent: ComponentConfig = {
   title: "Fade In Unblur",
   description:
     "The FadeInUnblur component creates a smooth fade-in while unblurring animation for its children when they enter the viewport.",
+  whenToUse:
+    "A fade with a defocus-to-focus feel, which buys a moment of anticipation. Good for hero imagery and product screenshots; too heavy for repeated list items, where the blur becomes tiring.",
   props: [
     {
       prop: "children",

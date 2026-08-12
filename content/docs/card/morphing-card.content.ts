@@ -6,6 +6,8 @@ const MorphingCardContent: ComponentConfig = {
   title: "Morphing Card",
   description:
     "The MorphingCard component creates an engaging, interactive card that smoothly transitions between different shapes and content. It features elegant 3D rotations, customizable gradients, and a clean design that's perfect for showcasing key information or features in a visually striking manner.",
+  whenToUse:
+    "For cycling through a small set of related ideas in one slot: three product pillars, three use cases. Because it advances on a timer, keep each piece of copy short enough to read inside one interval, and consider turning autoPlay off where the content matters.",
   props: [
     {
       prop: "width",

@@ -7,6 +7,8 @@ const TiltCardContent: ComponentConfig = {
   description:
     "The TiltCard component tilts toward the pointer in 3D and tracks it with a specular highlight, giving flat cards a tactile, physical feel.",
   isNew: true,
+  whenToUse:
+    "Adds physicality to a card that already deserves attention — a featured plan, a case study, a hero product shot. Use a low maxTilt of 10 to 15 degrees for text-heavy cards, since steeper angles make body copy hard to read at the corners.",
   props: [
     {
       prop: "children",
@@ -39,6 +41,11 @@ const TiltCardContent: ComponentConfig = {
       description: "Additional CSS classes for the outer perspective wrapper",
     },
   ],
+  credits: {
+    name: "Claude Code",
+    url: "https://claude.com/claude-code",
+    kind: "tool",
+  },
 };
 
 export default TiltCardContent;

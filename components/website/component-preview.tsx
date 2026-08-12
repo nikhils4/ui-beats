@@ -56,6 +56,14 @@ const previews: Record<string, PreviewComponent> = {
     () => import("@/components/usage/background/gradient-flow.usage"),
     { loading },
   ),
+  "background/orbiting-elements": dynamic(
+    () => import("@/components/usage/background/orbiting-elements.usage"),
+    { loading },
+  ),
+  "background/animated-beam": dynamic(
+    () => import("@/components/usage/background/animated-beam.usage"),
+    { loading },
+  ),
   "background/sparkling-grid": dynamic(
     () => import("@/components/usage/background/sparkling-grid.usage"),
     { loading },
@@ -88,8 +96,24 @@ const previews: Record<string, PreviewComponent> = {
     () => import("@/components/usage/component/shimmer-effect.usage"),
     { loading },
   ),
+  "component/marquee": dynamic(
+    () => import("@/components/usage/component/marquee.usage"),
+    { loading },
+  ),
+  "component/dock": dynamic(
+    () => import("@/components/usage/component/dock.usage"),
+    { loading },
+  ),
   "text/gravity-text-swap": dynamic(
     () => import("@/components/usage/text/gravity-text-swap.usage"),
+    { loading },
+  ),
+  "text/scroll-reveal": dynamic(
+    () => import("@/components/usage/text/scroll-reveal.usage"),
+    { loading },
+  ),
+  "text/number-ticker": dynamic(
+    () => import("@/components/usage/text/number-ticker.usage"),
     { loading },
   ),
   "text/text-shine": dynamic(

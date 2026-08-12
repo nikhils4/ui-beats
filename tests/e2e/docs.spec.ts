@@ -16,9 +16,34 @@ test.describe("docs navigation", () => {
    * `/docs/text` landed on an animation page, `/docs/button` on a background.
    */
   for (const category of CATEGORIES) {
-    test(`/docs/${category} lands inside ${category}`, async ({ page }) => {
+    test(`/docs/${category} is an indexable landing page`, async ({ page }) => {
       await page.goto(`/docs/${category}`);
-      await expect(page).toHaveURL(new RegExp(`/docs/${category}/[a-z-]+$`));
+
+      // These were bare redirects to the first component, so six URLs could
+      // never rank for the plural query people search before they know a
+      // component's name. They render in place now.
+      await expect(page).toHaveURL(new RegExp(`/docs/${category}$`));
+      await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
+      await expect(page.locator('link[rel="canonical"]')).toHaveAttribute(
+        "href",
+        new RegExp(`/docs/${category}$`),
+      );
+
+      // Every component link in the list must stay inside this category. The
+      // old hardcoded sideNav[n] redirects all pointed at the wrong section.
+      //
+      // Scoped to the <ul> deliberately: the breadcrumb is an <ol>, and its
+      // "Docs" link has the same path-segment count as a component link, so a
+      // looser selector picks it up and the assertion fails on the test's own
+      // sloppiness rather than on a real bug.
+      const hrefs = await page
+        .locator("main ul a[href^='/docs/']")
+        .evaluateAll((links) => links.map((l) => l.getAttribute("href") ?? ""));
+
+      expect(hrefs.length).toBeGreaterThan(0);
+      for (const href of hrefs) {
+        expect(href).toMatch(new RegExp(`^/docs/${category}/`));
+      }
     });
   }
 

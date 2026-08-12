@@ -7,6 +7,8 @@ const StaggerListContent: ComponentConfig = {
   description:
     "The StaggerList component animates its children into view one after another when the list enters the viewport, without requiring any changes to the children themselves.",
   isNew: true,
+  whenToUse:
+    "For any group that would otherwise arrive as a single slab: feature bullets, pricing tiers, navigation items. The stagger implies sequence and gives the eye somewhere to start. Drop stagger below 0.08s once the list runs past six items, or the last row arrives noticeably late.",
   props: [
     {
       prop: "children",
@@ -57,6 +59,11 @@ const StaggerListContent: ComponentConfig = {
       description: "Additional CSS classes for the container",
     },
   ],
+  credits: {
+    name: "Claude Code",
+    url: "https://claude.com/claude-code",
+    kind: "tool",
+  },
 };
 
 export default StaggerListContent;

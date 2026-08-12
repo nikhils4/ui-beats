@@ -6,6 +6,8 @@ const TextWriterContent: ComponentConfig = {
   title: "Text Writer",
   description:
     "The TextWriter component creates a typing animation effect for text, where characters appear one by one to mimic real-time typing.",
+  whenToUse:
+    "For interfaces that should feel composed live: terminal output, AI responses, onboarding. Enable loop only where the text is decorative; re-typing content someone is trying to read is frustrating.",
   props: [
     {
       prop: "text",

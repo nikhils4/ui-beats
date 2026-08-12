@@ -16,6 +16,13 @@ export interface ComponentProp {
 export interface ComponentCredits {
   name: string;
   url: string;
+  /**
+   * Whether the credit is a person or a tool.
+   *
+   * Only affects schema.org typing: crediting a tool as a `Person` in the
+   * structured data would be a plain lie to anything consuming it.
+   */
+  kind?: "person" | "tool";
 }
 
 /** An extra, component-specific installation step. */
@@ -40,6 +47,22 @@ export interface ComponentConfig {
   title: string;
   description: string;
   isNew?: boolean;
+  /**
+   * Render the preview edge to edge instead of centred.
+   *
+   * Was inferred from `category === "background"`, which is wrong: a beam or an
+   * orbit lives in the background category but is a centred diagram, and got
+   * pinned to the top-left of the stage.
+   */
+  fullBleedPreview?: boolean;
+  /**
+   * Guidance on where the component fits and where it does not.
+   *
+   * Also the fix for thin pages: a component page of one description plus a
+   * props table has almost no unique prose for a search engine to rank, which
+   * is why competitors outranked us on our own component names.
+   */
+  whenToUse?: string;
   props: ComponentProp[];
   credits?: ComponentCredits;
   /** Appended after the standard copy-the-code steps. */

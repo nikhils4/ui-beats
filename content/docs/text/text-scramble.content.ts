@@ -7,6 +7,8 @@ const TextScrambleContent: ComponentConfig = {
   description:
     "The TextScramble component decodes text one character at a time, cycling through random glyphs before each letter settles into place.",
   isNew: true,
+  whenToUse:
+    "A decode effect that suits technical and playful brands. It is decorative, so the settled text is what assistive technology announces. Keep the string short enough to finish before a reader looks away.",
   props: [
     {
       prop: "text",
@@ -45,6 +47,11 @@ const TextScrambleContent: ComponentConfig = {
       description: "Additional CSS classes for styling",
     },
   ],
+  credits: {
+    name: "Claude Code",
+    url: "https://claude.com/claude-code",
+    kind: "tool",
+  },
 };
 
 export default TextScrambleContent;

@@ -31,6 +31,7 @@ import {
   categoryLabel,
 } from "@/lib/registry";
 import { absoluteUrl, siteConfig } from "@/lib/site";
+import { componentKeywords, componentSeoTitle } from "@/lib/seo";
 import type { ComponentCategory } from "@/types/component-config.type";
 
 interface PageProps {
@@ -62,29 +63,25 @@ export async function generateMetadata({
   const entry = getComponent(category, component);
   if (!entry) return {};
 
-  const title = `${entry.title} — React ${categoryLabel(entry.category)} Component`;
+  const seoTitle = componentSeoTitle(entry);
   const url = absoluteUrl(entry.href);
 
   return {
-    title: entry.title,
+    // Leads with the phrase people actually search. The layout template
+    // appends " — UI Beats", so the brand still rides along.
+    title: seoTitle,
     description: entry.description,
-    keywords: [
-      entry.title,
-      `react ${entry.title.toLowerCase()}`,
-      `tailwind ${entry.title.toLowerCase()}`,
-      "react component",
-      "tailwind css",
-      "motion",
-      "animated component",
-    ],
+    keywords: componentKeywords(entry),
     alternates: { canonical: url },
     openGraph: {
-      title,
+      title: `${seoTitle} — ${siteConfig.name}`,
       description: entry.description,
       url,
       type: "article",
       siteName: siteConfig.name,
-      images: [{ url: siteConfig.ogImage, alt: `${entry.title} — UI Beats` }],
+      // No `images` here on purpose. Setting it overrides the generated
+      // opengraph-image.tsx alongside this file, which is what puts the
+      // component's own name in the social card.
     },
   };
 }
@@ -96,8 +93,7 @@ export default async function ComponentDocsPage({ params }: PageProps) {
   if (!entry) notFound();
 
   const label = categoryLabel(entry.category as ComponentCategory);
-  // Backgrounds render edge to edge; everything else is centred in the frame.
-  const fullBleed = entry.category === "background";
+  const fullBleed = entry.fullBleedPreview ?? false;
 
   // Previous/next within the category, for the footer pager.
   const siblings = getComponentsByCategory(entry.category as ComponentCategory);
@@ -105,10 +101,63 @@ export default async function ComponentDocsPage({ params }: PageProps) {
   const previous = index > 0 ? siblings[index - 1] : undefined;
   const next = index < siblings.length - 1 ? siblings[index + 1] : undefined;
 
+  /*
+   * SoftwareSourceCode JSON-LD.
+   *
+   * Tells search engines this page *is* a code component rather than an
+   * article about one, and exposes the language, license and dependencies —
+   * which is what makes a component page eligible for a code-flavoured result
+   * instead of a plain blue link.
+   */
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareSourceCode",
+    name: entry.title,
+    alternateName: componentSeoTitle(entry),
+    description: entry.description,
+    codeSampleType: "full solution",
+    programmingLanguage: "TypeScript",
+    runtimePlatform: "React",
+    url: absoluteUrl(entry.href),
+    license: "https://opensource.org/licenses/MIT",
+    isPartOf: {
+      "@type": "SoftwareApplication",
+      name: siteConfig.name,
+      applicationCategory: "DeveloperApplication",
+      url: siteConfig.url,
+      offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+    },
+    author: {
+      // A tool credited as a `Person` would be a straightforward lie to
+      // anything reading this markup.
+      "@type":
+        entry.credits?.kind === "tool" ? "SoftwareApplication" : "Person",
+      name: entry.credits?.name ?? siteConfig.author.name,
+      url: entry.credits?.url ?? siteConfig.author.url,
+    },
+    // The library is published and maintained by a person regardless of who
+    // wrote an individual component.
+    maintainer: {
+      "@type": "Person",
+      name: siteConfig.author.name,
+      url: siteConfig.author.url,
+    },
+    keywords: componentKeywords(entry).join(", "),
+    ...(entry.whenToUse ? { abstract: entry.whenToUse } : {}),
+    ...(entry.dependencies.length
+      ? { softwareRequirements: entry.dependencies.join(", ") }
+      : {}),
+  };
+
   return (
     // `min-w-0` prevents the wide children below (code blocks, props table)
     // from stretching this column past its share of the docs layout.
     <div className="w-full min-w-0 pb-16">
+      <script
+        type="application/ld+json"
+        // Built from registry data in this repo, never from user input.
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Breadcrumb>
         <BreadcrumbList className="text-xs">
           <SidebarTrigger className="mr-1 size-6" />
@@ -180,6 +229,17 @@ export default async function ComponentDocsPage({ params }: PageProps) {
         </TabsContent>
       </Tabs>
 
+      {entry.whenToUse ? (
+        <section className="mt-14 min-w-0">
+          <h2 className="mb-3 scroll-m-20 text-2xl font-semibold tracking-tight">
+            When to use {entry.title}
+          </h2>
+          <p className="max-w-2xl leading-relaxed text-muted-foreground">
+            {entry.whenToUse}
+          </p>
+        </section>
+      ) : null}
+
       <section className="mt-14 min-w-0">
         <h2 className="mb-1 scroll-m-20 text-2xl font-semibold tracking-tight">
           Installation
@@ -234,8 +294,14 @@ export default async function ComponentDocsPage({ params }: PageProps) {
         <section className="mt-14">
           <div className="rounded-xl border bg-muted/40 p-5">
             <h2 className="mb-1 scroll-m-20 text-sm font-semibold">Credits</h2>
+            {/*
+              "Thanks to X for contributing" only reads correctly for a person.
+              A neutral "Written by" covers both, and being explicit about which
+              components were written by a tool is worth saying plainly rather
+              than dressing up as a community contribution.
+            */}
             <p className="text-sm text-muted-foreground">
-              Thanks to{" "}
+              Written by{" "}
               <a
                 href={entry.credits.url}
                 target="_blank"
@@ -243,8 +309,10 @@ export default async function ComponentDocsPage({ params }: PageProps) {
                 className="font-medium text-brand underline-offset-4 hover:underline"
               >
                 {entry.credits.name}
-              </a>{" "}
-              for contributing this component.
+              </a>
+              {entry.credits.kind === "tool"
+                ? ", reviewed and maintained by the Nikhil."
+                : ". Thanks for the contribution."}
             </p>
           </div>
         </section>

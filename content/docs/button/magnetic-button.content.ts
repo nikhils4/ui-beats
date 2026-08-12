@@ -7,6 +7,8 @@ const MagneticButtonContent: ComponentConfig = {
   description:
     "The MagneticButton component drifts toward the pointer as it approaches and springs back when the pointer leaves, making calls to action feel responsive before they are even clicked.",
   isNew: true,
+  whenToUse:
+    "For the single most important action on a page. The pull only reads as intentional when nothing else competes nearby, so avoid placing two magnetic buttons side by side. It is a progressive enhancement — the button stays fully usable by keyboard and on touch, where the effect never fires.",
   props: [
     {
       prop: "children",
@@ -41,6 +43,11 @@ const MagneticButtonContent: ComponentConfig = {
         "Any other native button props, including onClick, type and disabled",
     },
   ],
+  credits: {
+    name: "Claude Code",
+    url: "https://claude.com/claude-code",
+    kind: "tool",
+  },
 };
 
 export default MagneticButtonContent;

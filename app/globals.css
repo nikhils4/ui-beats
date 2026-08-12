@@ -314,6 +314,15 @@
 /* ---------------------------------------------------------------------------
    Reusable surface + background treatments.
 --------------------------------------------------------------------------- */
+/*
+ * Gradient text.
+ *
+ * Careful with line-height: the glyphs are painted by this element's
+ * background, which stops at the padding box. Any part of a glyph outside that
+ * box has nothing painting it and disappears — so a `leading` under about 1.05
+ * silently eats descenders (g, y, p, q). Give the line room, and add a little
+ * padding-bottom on very tight display sizes.
+ */
 @utility text-gradient {
   background-image: linear-gradient(
     100deg,

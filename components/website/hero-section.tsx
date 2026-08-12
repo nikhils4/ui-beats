@@ -73,9 +73,17 @@ export function HeroSection({
           </motion.div>
         ) : null}
 
+        {/*
+          `leading-[0.95]` clipped the descenders on "g" and "y".
+          With `background-clip: text` the glyphs are painted by the element's
+          background, which only covers the padding box — so any part of a
+          glyph sitting outside that box has nothing to paint it and simply
+          vanishes. A line-height under 1 pushes descenders straight out.
+          Fixed by giving the line room and a little padding to paint into.
+        */}
         <motion.h1
           variants={itemVariants}
-          className="mt-8 text-gradient text-5xl leading-[0.95] font-extrabold tracking-tighter text-balance sm:text-6xl md:text-7xl"
+          className="mt-8 text-gradient pb-[0.12em] text-5xl leading-[1.06] font-extrabold tracking-tighter text-balance sm:text-6xl md:text-7xl"
         >
           Supercharge your UI
         </motion.h1>

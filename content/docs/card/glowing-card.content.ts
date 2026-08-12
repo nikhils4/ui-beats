@@ -7,6 +7,8 @@ const GlowingCardContent: ComponentConfig = {
   description:
     "The GlowingCard component creates an interactive card with a dynamic glow effect that follows the user's cursor, adding a sleek and modern touch to your UI.",
   isNew: true,
+  whenToUse:
+    "A pointer-tracking highlight for feature grids and pricing tables, where it rewards exploration. It is desktop-first by nature — on touch devices the glow never fires, so the card must still read well without it.",
   props: [
     {
       prop: "width",

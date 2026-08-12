@@ -7,6 +7,8 @@ const TextShineContent: ComponentConfig = {
   description:
     "The TextShine component sweeps a coloured highlight across your text on a loop, drawing the eye without demanding a click.",
   isNew: true,
+  whenToUse:
+    "A one-line highlight for a headline, badge or price. Because it loops, use it once per view — two shining elements compete and neither wins.",
   props: [
     {
       prop: "text",

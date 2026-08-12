@@ -36,6 +36,8 @@ interface RegistryItem {
   type: "registry:ui";
   title: string;
   description: string;
+  /** Who wrote this component, so attribution survives an install. */
+  author?: string;
   dependencies?: string[];
   registryDependencies?: string[];
   files: RegistryFile[];
@@ -101,6 +103,9 @@ function main() {
       type: "registry:ui",
       title: config.title,
       description: config.description,
+      ...(config.credits
+        ? { author: `${config.credits.name} (${config.credits.url})` }
+        : {}),
       ...(dependencies.length ? { dependencies } : {}),
       ...(registryDependencies.length ? { registryDependencies } : {}),
       files: [

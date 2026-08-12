@@ -81,14 +81,43 @@ describe("registry source reads stay inside their base directory", () => {
 });
 
 describe("html injection sinks", () => {
-  it("does not render component credits as raw HTML", () => {
-    // Credits used to be an HTML string piped through dangerouslySetInnerHTML
-    // and scrubbed with DOMPurify; they are structured data now.
+  it("only feeds JSON.stringify'd data to dangerouslySetInnerHTML", () => {
+    /*
+     * Credits used to be an HTML string piped through dangerouslySetInnerHTML
+     * and scrubbed with DOMPurify; they are structured data now. JSON-LD still
+     * legitimately uses the same API, so assert on the argument rather than
+     * banning the prop outright: every usage must be a JSON.stringify call.
+     */
+    const files = [
+      "app/docs/[category]/[component]/page.tsx",
+      "app/docs/[category]/page.tsx",
+      "app/blogs/[slug]/page.tsx",
+      "app/layout.tsx",
+    ];
+
+    for (const file of files) {
+      const source = fs.readFileSync(path.join(ROOT, file), "utf8");
+      const usages = [
+        ...source.matchAll(
+          /dangerouslySetInnerHTML=\{\{\s*__html:\s*([^}]+)\}\}/g,
+        ),
+      ];
+
+      for (const [, argument] of usages) {
+        expect(
+          argument?.trim().startsWith("JSON.stringify("),
+          `${file} passes non-JSON content to dangerouslySetInnerHTML: ${argument}`,
+        ).toBe(true);
+      }
+    }
+  });
+
+  it("never renders a credits field as HTML", () => {
     const docsPage = fs.readFileSync(
       path.join(ROOT, "app/docs/[category]/[component]/page.tsx"),
       "utf8",
     );
-    expect(docsPage).not.toContain("dangerouslySetInnerHTML");
+    expect(docsPage).not.toMatch(/__html:\s*[^}]*credits/);
   });
 
   it("has dropped the DOMPurify/JSDOM sanitiser entirely", () => {

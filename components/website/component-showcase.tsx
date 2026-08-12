@@ -1,14 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Home, Layers, Search, Settings } from "lucide-react";
 import { SparklingGrid } from "@/components/demo/background/sparkling-grid";
 import { TextShine } from "@/components/demo/text/text-shine";
 import { TextScramble } from "@/components/demo/text/text-scramble";
 import { TiltCard } from "@/components/demo/card/tilt-card";
 import { MagneticButton } from "@/components/demo/button/magnetic-button";
-import { ShimmerEffect } from "@/components/demo/component/shimmer-effect";
-import { StaggerList } from "@/components/demo/animation/stagger-list";
+import { Dock, DockItem } from "@/components/demo/component/dock";
+import { NumberTicker } from "@/components/demo/text/number-ticker";
 import GradientFlow from "@/components/demo/background/gradient-flow";
 import { cn } from "@/lib/utils";
 
@@ -149,34 +149,35 @@ export function ComponentShowcase({ total }: { total: number }) {
           </Tile>
 
           <Tile
-            href="/docs/component/shimmer-effect"
-            label="Shimmer Effect"
+            href="/docs/component/dock"
+            label="Dock"
             className="sm:col-span-2 lg:col-span-2"
           >
-            <div className="w-full space-y-2.5">
-              <ShimmerEffect height="0.75rem" width="55%" />
-              <ShimmerEffect height="0.75rem" />
-              <ShimmerEffect height="0.75rem" width="80%" />
-            </div>
+            <Dock size={34} magnification={56} reach={100}>
+              {[
+                { label: "Home", icon: Home },
+                { label: "Search", icon: Search },
+                { label: "Projects", icon: Layers },
+                { label: "Settings", icon: Settings },
+              ].map(({ label, icon: Icon }) => (
+                <DockItem key={label} label={label}>
+                  <Icon className="size-1/2 text-muted-foreground" />
+                </DockItem>
+              ))}
+            </Dock>
           </Tile>
 
           {/* Eighth tile is what makes the grid tile cleanly: seven items with
               these spans leave a hole in the last row at the lg breakpoint. */}
           <Tile
-            href="/docs/animation/stagger-list"
-            label="Stagger List"
+            href="/docs/text/number-ticker"
+            label="Number Ticker"
             className="sm:col-span-2 lg:col-span-2"
           >
-            <StaggerList stagger={0.12} className="w-full space-y-2">
-              {["Design", "Build", "Ship"].map((label) => (
-                <div
-                  key={label}
-                  className="rounded-lg bg-background/60 px-3 py-1.5 text-xs ring-1 ring-border/60"
-                >
-                  {label}
-                </div>
-              ))}
-            </StaggerList>
+            <div className="text-center">
+              <NumberTicker value={12480} className="text-3xl font-bold" />
+              <p className="mt-1 text-xs text-muted-foreground">Downloads</p>
+            </div>
           </Tile>
         </div>
       </div>

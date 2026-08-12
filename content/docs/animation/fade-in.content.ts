@@ -6,6 +6,8 @@ const FadeInContent: ComponentConfig = {
   title: "Fade In",
   description:
     "The FadeIn component creates a smooth fade-in animation for its children when they enter the viewport.",
+  whenToUse:
+    "The safest entrance animation, and the right default when you are unsure. Use it for body copy, images and anything below the fold that should feel considered rather than demand attention.",
   props: [
     {
       prop: "children",

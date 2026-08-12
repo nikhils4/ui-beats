@@ -17,7 +17,7 @@ export const siteConfig = {
   ogImage: "/uibeats-social-media.png",
   author: {
     name: "Nikhil Singh",
-    url: "https://nikhils.ca",
+    url: "https://nikhils4.vercel.app",
     email: "hello@nikhils.ca",
   },
   links: {

@@ -128,4 +128,4 @@ Found a vulnerability? Please follow [SECURITY.md](SECURITY.md) rather than open
 
 ## License
 
-[MIT](LICENSE.md) © [Nikhil Singh](https://nikhils.ca)
+[MIT](LICENSE.md) © [Nikhil Singh](https://nikhils4.vercel.app)

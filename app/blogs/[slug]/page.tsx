@@ -92,7 +92,7 @@ export default async function BlogPostPage({ params }: PageProps) {
   };
 
   return (
-    <div className="mx-auto max-w-full px-4 sm:px-6 md:max-w-4xl lg:max-w-5xl lg:px-8 xl:max-w-6xl">
+    <div className="mx-auto max-w-full px-4 pb-24 sm:px-6 md:max-w-4xl lg:max-w-5xl lg:px-8 xl:max-w-6xl">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

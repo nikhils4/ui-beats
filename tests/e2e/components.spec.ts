@@ -64,6 +64,13 @@ test.describe("Dock", () => {
     await page.goto("/docs/component/dock");
     const items = page.locator("main .h-80 [role='toolbar'] button");
 
+    /*
+     * `count()` does not auto-wait, and the preview is a `next/dynamic` chunk,
+     * so reading it straight after `goto` can land before the dock mounts and
+     * return 0. Wait for the first item, then count.
+     */
+    await expect(items.first()).toBeVisible();
+
     const count = await items.count();
     expect(count).toBeGreaterThan(0);
 

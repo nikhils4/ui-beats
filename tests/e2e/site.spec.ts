@@ -80,6 +80,8 @@ test.describe("accessibility basics", () => {
   test("images carry alt text", async ({ page }) => {
     await page.goto("/blogs");
     const images = page.locator("img");
+    // Same non-auto-waiting caveat as elsewhere: settle before counting.
+    await expect(images.first()).toBeVisible();
     const count = await images.count();
 
     for (let i = 0; i < count; i++) {

@@ -36,9 +36,12 @@ test.describe("docs navigation", () => {
       // "Docs" link has the same path-segment count as a component link, so a
       // looser selector picks it up and the assertion fails on the test's own
       // sloppiness rather than on a real bug.
-      const hrefs = await page
-        .locator("main ul a[href^='/docs/']")
-        .evaluateAll((links) => links.map((l) => l.getAttribute("href") ?? ""));
+      const links = page.locator("main ul a[href^='/docs/']");
+      await expect(links.first()).toBeVisible();
+
+      const hrefs = await links.evaluateAll((nodes) =>
+        nodes.map((node) => node.getAttribute("href") ?? ""),
+      );
 
       expect(hrefs.length).toBeGreaterThan(0);
       for (const href of hrefs) {
@@ -101,7 +104,20 @@ test.describe("component page", () => {
 
   test("sidebar links to another component", async ({ page }) => {
     await page.goto("/docs/animation/bounce");
-    await page.getByRole("link", { name: "Fade In", exact: true }).click();
+
+    /*
+     * On mobile the sidebar is an off-canvas Sheet that is not rendered at all
+     * until it is opened — the links are absent from the DOM, not merely
+     * hidden. Tapping the trigger is the real mobile navigation path, so open
+     * it rather than skipping the project.
+     */
+    const link = page.getByRole("link", { name: "Fade In", exact: true });
+
+    if ((await link.count()) === 0) {
+      await page.getByRole("button", { name: /toggle sidebar/i }).click();
+    }
+
+    await link.click();
     await expect(page).toHaveURL(/\/docs\/animation\/fade-in$/);
   });
 });

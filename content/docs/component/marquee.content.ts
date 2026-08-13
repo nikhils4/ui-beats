@@ -6,9 +6,9 @@ const MarqueeContent: ComponentConfig = {
   title: "Marquee",
   description:
     "The Marquee component scrolls its children in a seamless, infinite loop, with pause-on-hover and faded edges.",
-  isNew: true,
+  addedAt: "2026-08-12",
   whenToUse:
-    "The standard home for logo walls, testimonial rows and 'trusted by' strips \u2014 content a reader should notice without being asked to read it in order. Because the loop never stops, do not put anything essential in it, and keep the speed low enough that a passing glance can catch a single item.",
+    "The standard home for logo walls, testimonial rows and 'trusted by' strips, where a reader should notice the content without being asked to read it in order. The loop never stops, so nothing essential belongs in it. Keep the speed low enough that a passing glance can still catch a single item.",
   props: [
     {
       prop: "children",
@@ -52,6 +52,11 @@ const MarqueeContent: ComponentConfig = {
     name: "Claude Code",
     url: "https://claude.com/claude-code",
     kind: "tool",
+  },
+  playground: {
+    childrenSource: `    {logos.map((logo) => (
+      <Logo key={logo} name={logo} />
+    ))}`,
   },
 };
 

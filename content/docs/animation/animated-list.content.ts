@@ -6,9 +6,9 @@ const AnimatedListContent: ComponentConfig = {
   title: "Animated List",
   description:
     "The AnimatedList component streams its children in one at a time, springing each new entry into place and pushing the older ones down until they fall out of the bottom of the list.",
-  isNew: true,
+  addedAt: "2026-08-13",
   whenToUse:
-    "Use it on a landing page to show a product that produces a feed — notifications, orders, deploys, alerts — where a still screenshot cannot convey that things keep arriving. Only the visible window is mounted, so it costs the same after an hour as it does in its first second. If you wire it to real data rather than a scripted loop, set `live` so arrivals are announced instead of appearing silently to a screen reader.",
+    "Use it on a landing page when the product produces a feed of some kind: notifications, orders, deploys, alerts. A still screenshot cannot show that things keep arriving. Only the visible window stays mounted, so it costs the same after an hour as it does in its first second. If you wire it to real data instead of a scripted loop, set `live` so arrivals are announced to a screen reader.",
   props: [
     {
       prop: "children",
@@ -40,7 +40,7 @@ const AnimatedListContent: ComponentConfig = {
       type: "boolean",
       defaultValue: "false",
       description:
-        "Announce arrivals to screen readers — for genuinely live content",
+        "Announce arrivals to screen readers, for genuinely live content",
     },
     {
       prop: "className",
@@ -53,6 +53,11 @@ const AnimatedListContent: ComponentConfig = {
     name: "Claude Code",
     url: "https://claude.com/claude-code",
     kind: "tool",
+  },
+  playground: {
+    childrenSource: `  {notifications.map((item) => (
+    <Notification key={item.id} {...item} />
+  ))}`,
   },
 };
 

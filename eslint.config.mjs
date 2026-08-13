@@ -20,6 +20,9 @@ const config = [
       "test-results/**",
       "public/r/**",
       "next-env.d.ts",
+      // Standalone packages carry their own toolchain; the site's Next-flavoured
+      // rules do not apply to a stdio server that never touches the DOM.
+      "packages/**",
     ],
   },
 

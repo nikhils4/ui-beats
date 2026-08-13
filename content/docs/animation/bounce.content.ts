@@ -6,8 +6,9 @@ const BounceContent: ComponentConfig = {
   title: "Bounce",
   description:
     "The Bounce component adds a playful, elastic animation to its children when they enter the viewport.",
+  addedAt: "2024-08-04",
   whenToUse:
-    "Reach for Bounce when an element should feel physical on arrival — a price, a stat, a confirmation. The spring overshoot pulls the eye, so use it on one or two elements per screen rather than across a whole list, where the repeated overshoot reads as noise.",
+    "Reach for Bounce when an element should feel physical on arrival: a price, a stat, a confirmation. The spring overshoot pulls the eye, so use it on one or two elements per screen. Across a whole list the repeated overshoot just reads as noise.",
   props: [
     {
       prop: "children",
@@ -47,6 +48,10 @@ const BounceContent: ComponentConfig = {
     },
   ],
   credits: { name: "Michael", url: "https://github.com/lappemic" },
+  playground: {
+    childrenSource:
+      '  <p className="text-lg font-semibold">Supercharge your UI</p>',
+  },
 };
 
 export default BounceContent;

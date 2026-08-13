@@ -10,6 +10,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: absoluteUrl("/"), lastModified: now, priority: 1 },
     { url: absoluteUrl("/blogs"), lastModified: now, priority: 0.7 },
+    // A standalone free tool, and the query it targets ("cubic bezier
+    // editor") has nothing to do with the component pages, so it earns a
+    // priority of its own rather than trailing them.
+    { url: absoluteUrl("/motion-studio"), lastModified: now, priority: 0.9 },
     ...GETTING_STARTED.items.map((item) => ({
       url: absoluteUrl(item.path),
       lastModified: now,
@@ -27,6 +31,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.9,
   }));
 
+  const playgroundRoutes: MetadataRoute.Sitemap = getRegistry()
+    .filter((entry) => entry.hasPlayground)
+    .map((entry) => ({
+      url: absoluteUrl(`/playground/${entry.category}/${entry.name}`),
+      lastModified: now,
+      changeFrequency: "weekly" as const,
+      priority: 0.7,
+    }));
+
   const blogRoutes: MetadataRoute.Sitemap = getAllPosts().map((post) => ({
     url: absoluteUrl(`/blogs/${post.slug}`),
     lastModified: new Date(post.date),
@@ -34,5 +47,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.6,
   }));
 
-  return [...staticRoutes, ...componentRoutes, ...blogRoutes];
+  return [
+    ...staticRoutes,
+    ...componentRoutes,
+    ...playgroundRoutes,
+    ...blogRoutes,
+  ];
 }

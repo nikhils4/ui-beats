@@ -5,10 +5,10 @@ const BorderBeamContent: ComponentConfig = {
   category: "component",
   title: "Border Beam",
   description:
-    "The BorderBeam component wraps any content in a border traced by a travelling beam of light, following the container's rounded corners exactly and leaving the page around it completely still.",
-  isNew: true,
+    "The BorderBeam component wraps any content in a border traced by a travelling beam of light. It follows the container's rounded corners exactly, and nothing around it moves.",
+  addedAt: "2026-08-13",
   whenToUse:
-    "Use it to mark one element as the one worth looking at — a recommended pricing tier, a featured card, a call to action — where a static border would be ignored and a moving element would be a distraction. The beam animates a gradient inside the border only, so nothing reflows and surrounding text stays perfectly readable. Avoid putting several on one screen: two beams competing cancel the emphasis that makes a single one work.",
+    "Good for the one element you want looked at first: a recommended pricing tier, a featured card, a call to action. A static border gets ignored there, and anything that actually moves would be a distraction. Only the gradient inside the border animates, so nothing reflows and the text stays readable. Keep it to one per screen. Two beams competing cancel each other out.",
   props: [
     {
       prop: "children",
@@ -45,7 +45,7 @@ const BorderBeamContent: ComponentConfig = {
       type: "number",
       defaultValue: "70",
       description:
-        "Degrees of the border the beam covers — smaller reads as a sharper streak",
+        "Degrees of the border the beam covers; smaller reads as a sharper streak",
     },
     {
       prop: "glow",
@@ -65,6 +65,9 @@ const BorderBeamContent: ComponentConfig = {
     name: "Claude Code",
     url: "https://claude.com/claude-code",
     kind: "tool",
+  },
+  playground: {
+    childrenSource: '  <div className="p-6">Wrapped content</div>',
   },
 };
 

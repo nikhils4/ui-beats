@@ -6,9 +6,9 @@ const CardStackContent: ComponentConfig = {
   title: "Card Stack",
   description:
     "The CardStack component deals your content as a deck: drag the top card aside to throw it away, the cards behind rise a step, and the dismissed card loops around to the back.",
-  isNew: true,
+  addedAt: "2026-08-13",
   whenToUse:
-    "Use it for a small set of peer items a visitor browses rather than compares — testimonials, tips, onboarding steps. It is a poor fit for anything that must be scanned side by side or reached in a specific order, because only the top card is readable at a time. Only the visible cards are mounted, so deck size costs nothing; autoplay pauses on hover, focus and drag, and arrow keys advance it for anyone not using a pointer.",
+    "Use it for a small set of peer items people browse rather than compare: testimonials, tips, onboarding steps. It is a poor fit for anything that has to be scanned side by side or reached in a specific order, since only the top card is readable at a time. Only the visible cards are mounted, so deck size costs nothing. Autoplay pauses on hover, focus and drag, and arrow keys advance it for anyone not using a pointer.",
   props: [
     {
       prop: "children",
@@ -54,13 +54,18 @@ const CardStackContent: ComponentConfig = {
       type: "string",
       defaultValue: "''",
       description:
-        "Additional CSS classes applied to the stack — set its size here",
+        "Additional CSS classes applied to the stack. Set its size here",
     },
   ],
   credits: {
     name: "Claude Code",
     url: "https://claude.com/claude-code",
     kind: "tool",
+  },
+  playground: {
+    childrenSource: `  {cards.map((card) => (
+    <div key={card.id}>{card.title}</div>
+  ))}`,
   },
 };
 

@@ -45,9 +45,9 @@ export function Footer() {
   if (pathname.startsWith("/docs")) return null;
 
   // No top margin here on purpose. The footer is global chrome, so a margin
-  // would sit between it and whatever the page happens to end with — and on
-  // pages whose last section is full-bleed and tinted (the home page's index,
-  // also `bg-muted/20`), that margin rendered as a dark band of page background
+  // would sit between it and whatever the page happens to end with. On pages
+  // whose last section is full-bleed and tinted (the home page's index, also
+  // `bg-muted/20`), that margin rendered as a dark band of page background
   // sandwiched between two tinted blocks. Pages own their bottom spacing.
   return (
     <footer className="border-t bg-muted/20">

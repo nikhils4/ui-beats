@@ -5,10 +5,10 @@ const RetroGridContent: ComponentConfig = {
   category: "background",
   title: "Retro Grid",
   description:
-    "The RetroGrid component lays an infinite grid back in 3D and scrolls it toward the viewer, fading into a horizon — a synthwave backdrop drawn entirely in CSS.",
-  isNew: true,
+    "The RetroGrid component lays an infinite grid back in 3D and scrolls it toward the viewer, fading out into a horizon. A synthwave backdrop drawn entirely in CSS.",
+  addedAt: "2026-08-13",
   whenToUse:
-    "Use it behind a hero or a section header that needs depth without a background image to download. Lines are drawn with currentColor, so it takes the text colour of whatever wraps it and follows your theme with no JavaScript at all, and the horizon is a mask rather than a painted gradient so it works over any background. Keep the colour faint: it sits under your copy, and a grid bright enough to notice is a grid bright enough to compete with the words on top of it.",
+    "Put it behind a hero or a section header that needs depth without downloading a background image. The lines use currentColor, so the grid takes the text colour of whatever wraps it and follows your theme with no JavaScript at all. The horizon is a mask, not a painted gradient, so it works over any background. Keep the colour faint, or it starts competing with the copy sitting on top of it.",
   fullBleedPreview: true,
   props: [
     {
@@ -22,7 +22,7 @@ const RetroGridContent: ComponentConfig = {
       type: "number",
       defaultValue: "2.2",
       description:
-        "Seconds for the grid to travel one full cell — lower is faster",
+        "Seconds for the grid to travel one full cell (lower is faster)",
     },
     {
       prop: "angle",
@@ -48,7 +48,7 @@ const RetroGridContent: ComponentConfig = {
       type: "string",
       defaultValue: "''",
       description:
-        "Additional CSS classes — set the line colour here, e.g. text-brand/40",
+        "Additional CSS classes. Set the line colour here, e.g. text-brand/40",
     },
   ],
   credits: {

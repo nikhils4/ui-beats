@@ -4,7 +4,7 @@ test.describe("marketing pages", () => {
   test("home renders the hero and links into the docs", async ({ page }) => {
     await page.goto("/");
     await expect(
-      page.getByRole("heading", { name: /supercharge your ui/i }),
+      page.getByRole("heading", { name: /animated react components you own/i }),
     ).toBeVisible();
 
     await page.getByRole("link", { name: /browse components/i }).click();
@@ -87,5 +87,61 @@ test.describe("accessibility basics", () => {
     for (let i = 0; i < count; i++) {
       await expect(images.nth(i)).toHaveAttribute("alt", /.*/);
     }
+  });
+});
+
+test.describe("home showcase", () => {
+  /** Scroll the whole page so every lazily mounted demo has been created. */
+  const mountEverything = async (page: import("@playwright/test").Page) => {
+    await page.evaluate(async () => {
+      const step = window.innerHeight * 0.8;
+      for (let y = 0; y < document.body.scrollHeight; y += step) {
+        window.scrollTo(0, y);
+        await new Promise((resolve) => setTimeout(resolve, 150));
+      }
+      window.scrollTo(0, 0);
+    });
+  };
+
+  /*
+   * Regression: every tile used to be one big `<Link>` wrapped around its
+   * demo, which put the dock's buttons and the magnetic button inside an
+   * anchor — invalid markup, and it meant any attempt to play with a demo
+   * navigated away from the page instead.
+   */
+  test("never nests an interactive control inside a link", async ({ page }) => {
+    await page.goto("/");
+    await mountEverything(page);
+
+    const nested = await page.evaluate(
+      () =>
+        document.querySelectorAll("a button, a a, a [role='button']").length,
+    );
+    expect(nested).toBe(0);
+  });
+
+  test("playing with a demo does not navigate away", async ({ page }) => {
+    await page.goto("/");
+    await mountEverything(page);
+
+    const button = page.getByRole("button", { name: "Press anywhere" });
+    await button.scrollIntoViewIfNeeded();
+    await button.click();
+
+    await expect(page).toHaveURL(/\/$/);
+  });
+
+  test("mounts demos only once they are near the viewport", async ({
+    page,
+  }) => {
+    await page.goto("/");
+
+    // The dock lives most of the way down the showcase, so it must not be in
+    // the document while the visitor is still reading the hero.
+    const dock = page.locator("[role='toolbar'][aria-label='Dock']");
+    await expect(dock).toHaveCount(0);
+
+    await mountEverything(page);
+    await expect(dock).toHaveCount(1);
   });
 });

@@ -5,7 +5,7 @@ import type { Post } from "@/lib/blog";
 /**
  * Related posts.
  *
- * Selection moved to `getRelatedPosts()` in the content layer — this component
+ * Selection moved to `getRelatedPosts()` in the content layer. This component
  * used to receive every post in the site and re-run the category matching
  * itself, duplicating a filter the page had already run just to decide whether
  * to render the section at all.

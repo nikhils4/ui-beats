@@ -10,7 +10,7 @@ export function cn(...inputs: ClassValue[]) {
  *
  * Called from a server component and cached for an hour. The old version ran
  * in the browser on every page load against the unauthenticated API, which is
- * rate-limited to 60 requests/hour *per visitor IP* — so it returned 0 for
+ * rate-limited to 60 requests/hour *per visitor IP*, so it returned 0 for
  * anyone behind a shared NAT. `GITHUB_TOKEN` raises the limit further but is
  * optional.
  */

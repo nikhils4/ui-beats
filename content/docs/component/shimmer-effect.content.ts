@@ -6,6 +6,7 @@ const ShimmerEffectContent: ComponentConfig = {
   title: "Shimmer Effect",
   description:
     "The ShimmerEffect component creates a shimmering animation, ideal for loading placeholders or skeleton screens.",
+  addedAt: "2024-08-15",
   whenToUse:
     "Use for loading states shaped like the content that will replace them. A placeholder that matches the final layout feels faster than a spinner because nothing shifts when the data arrives.",
   props: [

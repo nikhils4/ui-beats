@@ -38,15 +38,22 @@ export const SideNav = ({ ...props }: React.ComponentProps<typeof Sidebar>) => {
   /*
    * The section containing the current page starts open.
    *
-   * This used to be hardcoded to `[0]` — "Getting Started" — so landing on any
-   * component page showed a sidebar with that component's own section
+   * This used to be hardcoded to `[0]`, i.e. "Getting Started", so landing on
+   * any component page showed a sidebar with that component's own section
    * collapsed, giving no indication of where you were and no way to reach a
    * sibling without expanding the section first.
    */
   const activeSectionIndex = Math.max(
     0,
     sideNav.findIndex((section) =>
-      section.subItems.some((item) => item.path === pathname),
+      section.subItems.some(
+        (item) =>
+          item.path === pathname ||
+          // Category landing pages (`/docs/card`) are not themselves nav items,
+          // so an exact match alone left the sidebar showing "Getting Started"
+          // while you were looking at the card index.
+          item.path.startsWith(`${pathname}/`),
+      ),
     ),
   );
 
@@ -84,9 +91,6 @@ export const SideNav = ({ ...props }: React.ComponentProps<typeof Sidebar>) => {
             <div className="flex w-full items-center justify-between">
               <Link href="/" className="flex items-center">
                 <span className="mr-2 font-bold">UI Beats</span>
-                <Badge className="text-[10px]" variant="outline">
-                  Beta
-                </Badge>
               </Link>
               <CommandMenu small />
             </div>
@@ -177,7 +181,7 @@ export const SideNav = ({ ...props }: React.ComponentProps<typeof Sidebar>) => {
           {state === "expanded" ? <ModeToggle variant="outline" /> : null}
           {/*
             The label used to render as "Star on" followed by a bare icon, with
-            the word "GitHub" hidden in an sr-only span — so it read as an
+            the word "GitHub" hidden in an sr-only span, so it read as an
             unfinished sentence. The visible text now says what it does.
           */}
           <Button

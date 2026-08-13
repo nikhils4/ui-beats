@@ -6,9 +6,9 @@ const ScratchToRevealContent: ComponentConfig = {
   title: "Scratch to Reveal",
   description:
     "The ScratchToReveal component covers your content in a foil the user rubs away with a pointer, firing onComplete and dropping the rest of the foil once enough has been cleared.",
-  isNew: true,
+  addedAt: "2026-08-13",
   whenToUse:
-    "Use it where the reveal is the point: a discount code, a giveaway result, a launch-day surprise. The delay it adds is deliberate, which makes it wrong for anything a user needs quickly or will meet more than once. It is a pointer interaction first, so it also exposes a keyboard path — Enter or Space clears the foil outright — and you should keep the content underneath meaningful for anyone who takes it.",
+    "Use it where the reveal is the point: a discount code, a giveaway result, a launch-day surprise. The delay is deliberate, which rules it out for anything a user needs quickly or will run into more than once. It is a pointer interaction first, but there is a keyboard path too. Enter or Space clears the foil outright, and whatever sits underneath should still be worth having for the people who get there that way.",
   props: [
     {
       prop: "children",
@@ -76,6 +76,9 @@ const ScratchToRevealContent: ComponentConfig = {
     name: "Claude Code",
     url: "https://claude.com/claude-code",
     kind: "tool",
+  },
+  playground: {
+    childrenSource: '  <div className="p-6">You found it</div>',
   },
 };
 

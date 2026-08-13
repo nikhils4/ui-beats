@@ -47,7 +47,10 @@ const CommandInput = React.forwardRef<
     <CommandPrimitive.Input
       ref={ref}
       className={cn(
-        "flex h-10 w-full rounded-md bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground disabled:cursor-not-allowed disabled:opacity-50",
+        // The dialog auto-focuses this input, so the global :focus-visible ring
+        // would draw a brand-coloured box around it the moment the modal opens.
+        // The input is the only focus target here — the border-b is enough.
+        "flex h-10 w-full rounded-md bg-transparent py-3 text-sm outline-none placeholder:text-muted-foreground focus-visible:ring-0 focus-visible:ring-offset-0 disabled:cursor-not-allowed disabled:opacity-50",
         className,
       )}
       {...props}

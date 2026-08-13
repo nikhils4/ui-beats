@@ -6,7 +6,7 @@ const SparklingGridContent: ComponentConfig = {
   title: "Sparkling Grid",
   description:
     "The SparklingGrid component creates an animated grid of dots that ripples outward on mount and sparkles at random, ideal for dynamic, atmospheric backgrounds.",
-  isNew: true,
+  addedAt: "2024-08-05",
   fullBleedPreview: true,
   whenToUse:
     "A technical, atmospheric backdrop that suits developer-facing heroes and empty states. It creates one element per grid cell, so raise gridSize on large surfaces to keep the node count sensible.",

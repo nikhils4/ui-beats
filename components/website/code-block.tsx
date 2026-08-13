@@ -50,7 +50,18 @@ export async function CodeBlock({
         </figcaption>
       ) : null}
 
-      <CopyButton value={code} className={title ? "top-12" : undefined} />
+      {/*
+        The button floats over the code, and a line longer than the column (an
+        install URL on a phone, say) used to run underneath it unreadably. A
+        translucent backdrop keeps the glyphs behind it from colliding.
+      */}
+      <CopyButton
+        value={code}
+        className={cn(
+          "bg-card/85 backdrop-blur-sm hover:bg-accent",
+          title && "top-12",
+        )}
+      />
 
       <div
         className={cn(

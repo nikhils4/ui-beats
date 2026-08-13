@@ -5,9 +5,10 @@ const GravityTextSwapContent: ComponentConfig = {
   category: "text",
   title: "Gravity Text Swap",
   description:
-    "The GravityTextSwap component creates a dynamic text animation where characters fall into place with a gravity-like effect, creating an engaging transition between words.",
+    "The GravityTextSwap component drops characters into place under a gravity-like fall, so one word gives way to the next instead of simply being replaced.",
+  addedAt: "2024-08-15",
   whenToUse:
-    "For a headline that cycles through a few words — audiences, use cases, verbs. Keep the words a similar length so the surrounding layout does not jump on every swap.",
+    "For a headline that cycles through a few words: audiences, use cases, verbs. Keep the words a similar length so the surrounding layout does not jump on every swap.",
   props: [
     {
       prop: "textArray",
@@ -36,6 +37,9 @@ const GravityTextSwapContent: ComponentConfig = {
     },
   ],
   credits: { name: "Michael", url: "https://github.com/lappemic" },
+  playground: {
+    fixedSource: '  textArray={["Supercharge", "your", "UI"]}',
+  },
 };
 
 export default GravityTextSwapContent;

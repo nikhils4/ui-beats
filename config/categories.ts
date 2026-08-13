@@ -43,6 +43,7 @@ export const GETTING_STARTED = {
     { title: "Introduction", path: "/docs/getting-started/introduction" },
     { title: "Installation", path: "/docs/getting-started/installation" },
     { title: "CLI", path: "/docs/getting-started/cli" },
+    { title: "MCP Server", path: "/docs/getting-started/mcp" },
     { title: "Contribute", path: "/docs/getting-started/contribute" },
   ],
 } as const;

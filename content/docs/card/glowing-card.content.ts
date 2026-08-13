@@ -5,10 +5,10 @@ const GlowingCardContent: ComponentConfig = {
   category: "card",
   title: "Glowing Card",
   description:
-    "The GlowingCard component creates an interactive card with a dynamic glow effect that follows the user's cursor, adding a sleek and modern touch to your UI.",
-  isNew: true,
+    "The GlowingCard component tracks the cursor across the card and paints a soft glow wherever it goes, so the surface reacts as the pointer moves over it.",
+  addedAt: "2024-08-29",
   whenToUse:
-    "A pointer-tracking highlight for feature grids and pricing tables, where it rewards exploration. It is desktop-first by nature — on touch devices the glow never fires, so the card must still read well without it.",
+    "A pointer-tracking highlight for feature grids and pricing tables, where it rewards exploration. It is desktop-first by nature. On touch devices the glow never fires, so the card has to read well without it.",
   props: [
     {
       prop: "width",
@@ -35,6 +35,9 @@ const GlowingCardContent: ComponentConfig = {
       description: "Additional CSS classes to apply to the card",
     },
   ],
+  playground: {
+    childrenSource: '  <div className="p-6">Move the pointer across me</div>',
+  },
 };
 
 export default GlowingCardContent;

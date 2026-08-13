@@ -1,8 +1,8 @@
 /**
  * Single source of truth for anything that used to be a hardcoded URL string.
  *
- * The old code spelled the origin six different ways — `uibeats.com` in
- * canonicals but `www.uibeats.com` in the sitemap — which split ranking
+ * The old code spelled the origin six different ways: `uibeats.com` in the
+ * canonicals but `www.uibeats.com` in the sitemap, which split ranking
  * signals between two hosts. Everything now derives from `siteConfig.url`.
  */
 export const siteConfig = {

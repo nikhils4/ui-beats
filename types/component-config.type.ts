@@ -1,3 +1,5 @@
+import type { PlaygroundOverrides } from "@/types/playground.type";
+
 /** A row in a component's props table. */
 export interface ComponentProp {
   prop: string;
@@ -46,7 +48,21 @@ export interface ComponentConfig {
   category: ComponentCategory;
   title: string;
   description: string;
-  isNew?: boolean;
+  /**
+   * The day this component was added, as `YYYY-MM-DD`.
+   *
+   * Replaces a hand-set `isNew` flag, which nothing ever cleared: Text Shine
+   * carried a "New" badge for the better part of two years, and the home page
+   * picked its featured component by taking the last flagged entry in registry
+   * order — an order that is by category, so the newest component was never
+   * the one on show. `isNew` is derived from this date now (see
+   * `config/recency.ts`) and expires on its own.
+   *
+   * Seeded from `git log --follow --diff-filter=A` on each component's source.
+   * Not read from git at build time on purpose: Vercel builds from a shallow
+   * clone, so the history a date would be derived from may not be there.
+   */
+  addedAt: string;
   /**
    * Render the preview edge to edge instead of centred.
    *
@@ -67,6 +83,15 @@ export interface ComponentConfig {
   credits?: ComponentCredits;
   /** Appended after the standard copy-the-code steps. */
   extraInstallation?: InstallationStep[];
+  /**
+   * Playground details that cannot be derived from the props table.
+   *
+   * Omit it entirely for a component whose props are all scalars — the tag
+   * comes from the name and the controls come from `props`. Whether a
+   * playground appears at all is decided by the presence of a harness under
+   * `components/playground/`, not by this field.
+   */
+  playground?: PlaygroundOverrides;
 }
 
 export type ComponentRegistry = Record<string, ComponentConfig>;

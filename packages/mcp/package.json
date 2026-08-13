@@ -1,0 +1,45 @@
+{
+  "name": "@uibeats/mcp",
+  "version": "0.1.0",
+  "description": "MCP server for UI Beats — let your coding agent search, read and install animated React components.",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "ui-beats",
+    "react",
+    "shadcn",
+    "components"
+  ],
+  "license": "MIT",
+  "author": "Nikhil Singh <hello@nikhils.ca> (https://nikhils.ca)",
+  "homepage": "https://uibeats.com",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nikhils4/ui-beats.git",
+    "directory": "packages/mcp"
+  },
+  "type": "module",
+  "bin": {
+    "uibeats-mcp": "dist/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "engines": {
+    "node": ">=20.9.0"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "prepublishOnly": "npm run build"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.30.0",
+    "zod": "^3.25.76"
+  },
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "typescript": "~5.9.3"
+  }
+}

@@ -36,6 +36,33 @@ The CLI writes the component into your project and installs the npm packages it 
 
 Prefer to copy and paste? Every component page has the full source under **Installation → Manual**.
 
+## Use it from your coding agent
+
+Most components get picked by whatever is writing the code. The MCP server puts the whole catalogue inside Claude Code, Cursor, Windsurf and anything else that speaks [MCP](https://modelcontextprotocol.io), so your agent can search for a component and read its real props instead of guessing.
+
+```bash
+claude mcp add uibeats -- npx -y @uibeats/mcp
+```
+
+It exposes four tools — `search_components`, `get_component`, `list_components` and `get_install_command`. See [`packages/mcp`](packages/mcp) or the [MCP docs](https://uibeats.com/docs/getting-started/mcp).
+
+For agents that only fetch URLs, the same content is served as plain text:
+
+| URL                          | What it is                                                   |
+| ---------------------------- | ------------------------------------------------------------ |
+| `/llms.txt`                  | Index of every component, linking to its markdown            |
+| `/llms-full.txt`             | Every component's props and full source, in one file         |
+| `/docs/<category>/<name>.md` | Any component page as markdown — just add `.md`              |
+| `/r/components.json`         | The catalogue as JSON, with props and guidance. CORS is open |
+
+## Tune before you copy
+
+Every component has a **playground** at `/playground/<category>/<name>`: the props table becomes a live control panel, the preview updates as you drag, and the snippet carries only what you actually changed. All 34 of them.
+
+The controls are derived from the same `props` array that renders the documentation table, so a control can never describe a prop the docs do not.
+
+Alongside it, **[Motion Studio](https://uibeats.com/motion-studio)** — a cubic-bezier and spring editor. Drag the curve or tune stiffness, damping and mass, watch it run on three properties at once, and copy the Motion `transition` or the CSS. Springs are integrated from the same damped-oscillator model Motion uses rather than approximated with a bezier, so the preview is the motion you will ship.
+
 ## Components
 
 34 components across six categories:
@@ -89,11 +116,20 @@ content/docs/index.ts                         add the config to the array
 components/website/component-preview.tsx      one line in the lazy preview map
 ```
 
+Optionally a fifth, to give it a playground:
+
+```
+components/playground/<category>/<name>.playground.tsx   renders it from live values
+components/website/playground-harnesses.tsx              one line in the lazy harness map
+```
+
 Everything else is generated:
 
 - **`lib/registry.ts`** joins each config with its source on disk and derives the npm dependency list from the component's own `import` statements.
+- **`lib/playground.ts`** turns the documented props table into controls — a string-literal union becomes a select, a `number` becomes a range with a bounded scale, a hex-defaulted colour prop becomes a swatch.
+- **`lib/agent-docs.ts`** renders the same registry data as markdown for `/llms.txt`, `/llms-full.txt` and the per-component `.md` routes.
 - **`config/side-nav.ts`** builds the sidebar from the same array.
-- **`scripts/build-registry.ts`** emits `public/r/*.json` for the shadcn CLI.
+- **`scripts/build-registry.ts`** emits `public/r/*.json` for the shadcn CLI, plus `components.json` for the MCP server.
 - **`app/docs/[category]/[component]/page.tsx`** statically generates one page per component, with real per-page metadata.
 
 ### Stack
@@ -105,7 +141,7 @@ Everything else is generated:
 | Animation    | Motion                                                   |
 | Content      | MDX via `next-mdx-remote`, frontmatter via `gray-matter` |
 | Highlighting | Shiki, at build time                                     |
-| Distribution | shadcn registry                                          |
+| Distribution | shadcn registry, MCP server, `llms.txt`                  |
 | Testing      | Vitest + Testing Library, Playwright                     |
 
 ## Contributing

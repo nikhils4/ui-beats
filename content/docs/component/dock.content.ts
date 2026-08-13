@@ -6,9 +6,9 @@ const DockContent: ComponentConfig = {
   title: "Dock",
   description:
     "The Dock component recreates the macOS dock: items swell as the pointer approaches, and each one names itself in a tooltip on hover or focus.",
-  isNew: true,
+  addedAt: "2026-08-12",
   whenToUse:
-    "Reach for a Dock when a small, fixed set of destinations deserves to feel like an object rather than a list — a tool palette, a demo launcher, a portfolio nav. Keep it under about eight items; past that the magnification has nowhere to breathe and the targets get hard to hit. Every item needs a label: the tooltip is the only thing naming an icon-only control, and it is what makes the dock usable by keyboard and legible on touch, where magnification never fires.",
+    "Reach for a Dock when a small, fixed set of destinations should feel like an object instead of a list: a tool palette, a demo launcher, a portfolio nav. Keep it under about eight items. Past that the magnification has nowhere to breathe and the targets get hard to hit. Every item needs a label, since the tooltip is the only thing naming an icon-only control. It is also what makes the dock usable by keyboard and legible on touch, where magnification never fires.",
   props: [
     {
       prop: "children",
@@ -77,6 +77,13 @@ const DockContent: ComponentConfig = {
     name: "Claude Code",
     url: "https://claude.com/claude-code",
     kind: "tool",
+  },
+  playground: {
+    childrenSource: `  {items.map(({ label, icon: Icon }) => (
+    <DockItem key={label} label={label}>
+      <Icon className="size-1/2" />
+    </DockItem>
+  ))}`,
   },
 };
 

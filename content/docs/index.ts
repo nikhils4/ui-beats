@@ -40,7 +40,7 @@ import TextWriter from "./text/text-writer.content";
  *
  * The sidebar, the sitemap, the command menu, the shadcn registry and the
  * static params for `/docs/[category]/[component]` are all derived from this
- * array — adding a component means adding one import here, not editing five
+ * array. Adding a component means adding one import here, not editing five
  * parallel maps.
  */
 export const componentConfigs: ComponentConfig[] = [

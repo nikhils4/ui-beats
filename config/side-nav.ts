@@ -6,6 +6,7 @@ import {
   GETTING_STARTED,
   isCategory,
 } from "@/config/categories";
+import { isRecentlyAdded } from "@/config/recency";
 
 export interface SideNavItem {
   title: string;
@@ -25,8 +26,8 @@ export interface SideNavSection {
  * The old version was a hardcoded array that had already drifted: every
  * `/docs/<category>` landing page indexed into it by a magic number
  * (`sideNav[1]`, `sideNav[3]`, …) and all six of those numbers pointed at the
- * wrong section. Deriving the nav means a new component shows up here — and in
- * the sitemap, the command menu and the registry — automatically.
+ * wrong section. Deriving the nav means a new component shows up here on its
+ * own, and in the sitemap, the command menu and the registry too.
  */
 export const sideNav: SideNavSection[] = [
   {
@@ -43,12 +44,14 @@ export const sideNav: SideNavSection[] = [
       .map((config) => ({
         title: config.title,
         path: `/docs/${config.category}/${config.name}`,
-        ...(config.isNew ? { isNew: true as const } : {}),
+        // Derived from the component's date rather than a flag someone has to
+        // remember to clear, so the badge ages out on its own.
+        ...(isRecentlyAdded(config.addedAt) ? { isNew: true as const } : {}),
       })),
   })).filter((section) => section.subItems.length > 0),
 ];
 
-/** First documented component in a category — used by category landing pages. */
+/** First documented component in a category, used by category landing pages. */
 export function firstComponentPath(category: string): string | undefined {
   if (!isCategory(category)) return undefined;
   const label = CATEGORY_META[category].label;

@@ -6,7 +6,6 @@ import { usePathname } from "next/navigation";
 import { motion } from "motion/react";
 import { Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import { CommandMenu } from "@/components/website/command-menu";
 import { ModeToggle } from "@/components/website/ui-theme-toggle";
 import { ScrollProgress } from "@/components/website/scroll-progress";
@@ -59,12 +58,6 @@ export function Header({ stars = 0 }: { stars?: number }) {
             <span className="font-display text-[15px] font-bold tracking-tight">
               {siteConfig.name}
             </span>
-            <Badge
-              variant="outline"
-              className="border-brand/25 bg-brand-subtle px-1.5 py-0 text-[10px] font-medium text-brand"
-            >
-              Beta
-            </Badge>
           </span>
         </Link>
 

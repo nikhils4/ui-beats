@@ -6,9 +6,9 @@ const OrbitingElementsContent: ComponentConfig = {
   title: "Orbiting Elements",
   description:
     "The OrbitingElements component places children evenly around a circle and rotates them around a centre point, keeping each one upright.",
-  isNew: true,
+  addedAt: "2026-08-12",
   whenToUse:
-    "For showing that several things revolve around one thing: integrations around a product, services around a platform, tools around a workflow. It reads best with a fixed centrepiece inside the orbit. Use two rings at different radii and speeds for depth, and keep each ring to three or four items so nothing collides.",
+    "For showing that several things revolve around one: integrations around a product, tools around a workflow. It reads best with a fixed centrepiece inside the orbit. Two rings at different radii and speeds give you depth, and three or four items per ring keeps them from colliding.",
   props: [
     {
       prop: "children",
@@ -57,6 +57,11 @@ const OrbitingElementsContent: ComponentConfig = {
     name: "Claude Code",
     url: "https://claude.com/claude-code",
     kind: "tool",
+  },
+  playground: {
+    childrenSource: `  {icons.map((Icon) => (
+    <Icon key={Icon.name} />
+  ))}`,
   },
 };
 

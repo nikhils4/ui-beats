@@ -3,6 +3,7 @@ import Link from "next/link";
 import { BookOpen, Bug, Lightbulb } from "lucide-react";
 import { SidebarProvider } from "@/components/ui/sidebar";
 import { SideNav } from "@/components/website/side-nav";
+import { DocsToc } from "@/components/website/docs-toc";
 import { ShowcaseCard } from "@/components/website/showcase-card";
 import { SupportToast } from "@/components/website/support-toast";
 import { siteConfig } from "@/lib/site";
@@ -26,7 +27,7 @@ const asideLinks = [
 /**
  * Docs shell.
  *
- * Layout note — this is where the content was overflowing. The right rail used
+ * Layout note: this is where the content was overflowing. The right rail used
  * to be `position: fixed`, which takes it out of normal flow, so the main
  * column had the full width to centre itself in and its content ran underneath
  * the rail on wide screens. The rail is a real flex item now and the main
@@ -51,7 +52,15 @@ export default function DocsLayout({ children }: { children: ReactNode }) {
             </main>
 
             <aside className="hidden w-64 shrink-0 py-10 xl:block">
-              <div className="sticky top-10 space-y-6">
+              {/*
+                Capped and scrollable: the rail holds a table of contents now,
+                and a long one on top of the resource links and the showcase
+                card would otherwise run off the bottom of a laptop screen with
+                no way to reach the end of it.
+              */}
+              <div className="sticky top-10 max-h-[calc(100svh-5rem)] space-y-8 overflow-y-auto pb-8">
+                <DocsToc />
+
                 <nav aria-label="Docs resources">
                   <p className="mb-3 text-xs font-semibold tracking-widest text-muted-foreground uppercase">
                     Resources
@@ -64,9 +73,23 @@ export default function DocsLayout({ children }: { children: ReactNode }) {
                           {...(external
                             ? { target: "_blank", rel: "noopener noreferrer" }
                             : {})}
-                          className="group -mx-2 flex items-center rounded-lg px-2 py-1.5 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+                          /*
+                            Alignment, twice over.
+
+                            The `-mx-2` this used to carry pulled the whole row
+                            eight pixels left of the "Resources" heading above
+                            it, so the hover fill bled out of the rail's column
+                            on one side only. And with no left padding, the
+                            labels sat a further twelve pixels left of the
+                            table-of-contents links directly above, which are
+                            inset past their rail border. `px-3` and no
+                            negative margin puts the fill flush with the
+                            headings and the labels on the same line as the
+                            contents links.
+                          */
+                          className="group flex items-center rounded-lg px-3 py-2 text-sm text-muted-foreground transition-colors duration-200 hover:bg-muted/60 hover:text-foreground"
                         >
-                          <Icon className="mr-2 size-4 transition-colors group-hover:text-brand" />
+                          <Icon className="mr-2.5 size-4 text-muted-foreground/70 transition-colors duration-200 group-hover:text-brand" />
                           {label}
                         </Link>
                       </li>

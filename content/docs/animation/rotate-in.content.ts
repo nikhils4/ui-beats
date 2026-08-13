@@ -6,8 +6,9 @@ const RotateInContent: ComponentConfig = {
   title: "Rotate In",
   description:
     "The RotateIn component creates a smooth rotation animation for its children when they enter the viewport.",
+  addedAt: "2024-08-04",
   whenToUse:
-    "Best on small, self-contained elements — icons, badges, logos, avatars. Rotating a block of text makes it briefly unreadable, so keep this for things that read as objects rather than as content.",
+    "Best on small, self-contained elements: icons, badges, logos, avatars. Rotating a block of text makes it briefly unreadable, so keep this for things that read as objects instead of as content.",
   props: [
     {
       prop: "children",
@@ -47,6 +48,10 @@ const RotateInContent: ComponentConfig = {
     },
   ],
   credits: { name: "Michael", url: "https://github.com/lappemic" },
+  playground: {
+    childrenSource:
+      '  <p className="text-lg font-semibold">Supercharge your UI</p>',
+  },
 };
 
 export default RotateInContent;

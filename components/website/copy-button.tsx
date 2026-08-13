@@ -9,6 +9,17 @@ interface CopyButtonProps {
   value: string;
   className?: string;
   label?: string;
+  /**
+   * Float over the content, for a code block with no header to sit in.
+   *
+   * This used to be unconditional, which quietly broke every caller that put
+   * the button inside a header row: `absolute` resolves against the nearest
+   * positioned ancestor, so a button written *inside* a flex strip jumped out
+   * of it and pinned itself to the corner of the whole card, hanging below the
+   * strip and across its bottom border. Those callers pass `floating={false}`
+   * and get a button that simply sits where it was written.
+   */
+  floating?: boolean;
 }
 
 /**
@@ -21,6 +32,7 @@ export function CopyButton({
   value,
   className,
   label = "Copy code",
+  floating = true,
 }: CopyButtonProps) {
   const [copied, setCopied] = useState(false);
 
@@ -48,7 +60,8 @@ export function CopyButton({
       onClick={copy}
       aria-label={copied ? "Copied" : label}
       className={cn(
-        "absolute top-3 right-3 z-10 size-7 opacity-70 transition-opacity hover:opacity-100",
+        "size-7 shrink-0 opacity-70 transition-opacity hover:opacity-100",
+        floating && "absolute top-3 right-3 z-10",
         className,
       )}
     >

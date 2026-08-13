@@ -6,9 +6,9 @@ const TiltCardContent: ComponentConfig = {
   title: "Tilt Card",
   description:
     "The TiltCard component tilts toward the pointer in 3D and tracks it with a specular highlight, giving flat cards a tactile, physical feel.",
-  isNew: true,
+  addedAt: "2026-08-11",
   whenToUse:
-    "Adds physicality to a card that already deserves attention — a featured plan, a case study, a hero product shot. Use a low maxTilt of 10 to 15 degrees for text-heavy cards, since steeper angles make body copy hard to read at the corners.",
+    "Adds physicality to a card that already deserves attention: a featured plan, a case study, a hero product shot. Use a low maxTilt of 10 to 15 degrees for text-heavy cards, since steeper angles make body copy hard to read at the corners.",
   props: [
     {
       prop: "children",
@@ -45,6 +45,11 @@ const TiltCardContent: ComponentConfig = {
     name: "Claude Code",
     url: "https://claude.com/claude-code",
     kind: "tool",
+  },
+  playground: {
+    childrenSource: `  <div className="p-6">
+    <p className="text-lg font-semibold">Tilt me</p>
+  </div>`,
   },
 };
 

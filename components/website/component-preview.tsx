@@ -5,10 +5,11 @@ import dynamic from "next/dynamic";
 import { RotateCw } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Skeleton } from "@/components/ui/skeleton";
+import { cn } from "@/lib/utils";
 
 /**
- * Previews take no props — they are self-contained examples. `object` (rather
- * than `Record<string, never>`) keeps them assignable from `next/dynamic`'s
+ * Previews take no props; they are self-contained examples. `object`, in place
+ * of `Record<string, never>`, keeps them assignable from `next/dynamic`'s
  * inferred component types.
  */
 type PreviewComponent = ComponentType<object>;
@@ -171,12 +172,15 @@ interface ComponentPreviewProps {
   name: string;
   /** Some previews (backgrounds) need to fill the frame edge to edge. */
   fullBleed?: boolean;
+  /** Lets a caller drop the frame when the preview already sits inside one. */
+  className?: string;
 }
 
 export function ComponentPreview({
   category,
   name,
   fullBleed = false,
+  className,
 }: ComponentPreviewProps) {
   // Remounting the preview is how the replay button restarts enter animations.
   const [runId, setRunId] = useState(0);
@@ -184,14 +188,24 @@ export function ComponentPreview({
 
   if (!Preview) {
     return (
-      <div className="flex h-72 items-center justify-center rounded-xl border text-sm text-muted-foreground">
+      <div
+        className={cn(
+          "flex h-72 items-center justify-center rounded-xl border text-sm text-muted-foreground",
+          className,
+        )}
+      >
         No preview available for this component.
       </div>
     );
   }
 
   return (
-    <div className="group relative h-80 w-full max-w-full overflow-hidden rounded-xl border bg-card shadow-subtle">
+    <div
+      className={cn(
+        "group relative h-80 w-full max-w-full overflow-hidden rounded-xl border bg-card shadow-subtle",
+        className,
+      )}
+    >
       {/* A faint dot grid gives the stage depth and makes transparent or
           light-on-light components legible. Backgrounds opt out. */}
       {!fullBleed ? (

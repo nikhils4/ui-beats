@@ -6,9 +6,9 @@ const RippleButtonContent: ComponentConfig = {
   title: "Ripple Button",
   description:
     "The RippleButton component sends a ripple out from the exact point it was pressed, sized to reach the button's farthest corner so the whole surface floods however near the edge you click.",
-  isNew: true,
+  addedAt: "2026-08-13",
   whenToUse:
-    "Use it for the primary action in a form or dialog, where confirming the press matters more than restraint — the ripple is the receipt for a click. It fires on pointer down rather than click, because the feedback belongs to the press, and keyboard activation ripples from the centre so Enter and Space are not silent. Ripples are removed as each animation ends, so a button that is hammered never accumulates nodes.",
+    "Use it for the primary action in a form or dialog, where confirming the press matters more than restraint. The ripple is the receipt for a click. It fires on pointer down rather than on click, because the feedback belongs to the press itself, and keyboard activation ripples from the centre so Enter and Space are not silent. Each ripple is removed as its animation ends, so a button someone hammers never accumulates nodes.",
   props: [
     {
       prop: "children",
@@ -26,7 +26,7 @@ const RippleButtonContent: ComponentConfig = {
       prop: "rippleColor",
       type: "string",
       defaultValue: '"rgba(255, 255, 255, 0.45)"',
-      description: "Colour of the ripple — any CSS colour",
+      description: "Colour of the ripple; any CSS colour works",
     },
     {
       prop: "duration",
@@ -63,6 +63,9 @@ const RippleButtonContent: ComponentConfig = {
     name: "Claude Code",
     url: "https://claude.com/claude-code",
     kind: "tool",
+  },
+  playground: {
+    childrenSource: "  Press me",
   },
 };
 

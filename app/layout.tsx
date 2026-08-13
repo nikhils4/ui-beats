@@ -10,13 +10,13 @@ import { Toaster } from "sonner";
 import "./globals.css";
 import { ThemeProvider } from "@/context/theme-provider";
 import { SiteHeader } from "@/components/website/site-header";
-import { Footer } from "@/components/website/footer";
+import { SiteFooter } from "@/components/website/site-footer";
 import { siteConfig, absoluteUrl } from "@/lib/site";
 
 /*
  * Type pairing.
  *
- * Bricolage Grotesque carries the headings — it has real personality at large
+ * Bricolage Grotesque carries the headings. It has real personality at large
  * sizes without the "default framework template" look Geist had picked up.
  * Instrument Sans handles UI and body text, where it stays quiet and legible
  * at 14–17px. JetBrains Mono is the code face: a true 1/l/I distinction and a
@@ -91,8 +91,8 @@ export const metadata: Metadata = {
     ],
   },
   // Note: Next still derives `twitter:card` / `twitter:image` from `openGraph`
-  // below. That is framework behaviour with no opt-out in the Metadata API —
-  // it only affects how a shared link renders, and suppressing it would mean
+  // below. That is framework behaviour with no opt-out in the Metadata API.
+  // It only affects how a shared link renders, and suppressing it would mean
   // dropping Open Graph, which Slack, Discord and LinkedIn also read.
   robots: {
     index: true,
@@ -145,7 +145,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       <body
         className={`${fontSans.variable} ${fontDisplay.variable} ${fontMono.variable} font-sans antialiased`}
       >
-        {/* Dark is the default. `enableSystem={false}` matters — with it on,
+        {/* Dark is the default. `enableSystem={false}` matters: with it on,
             next-themes resolves "system" for anyone who has not chosen, and
             light-mode visitors would never see the dark default. */}
         <ThemeProvider
@@ -162,7 +162,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           </a>
           <SiteHeader />
           <div id="main-content">{children}</div>
-          <Footer />
+          <SiteFooter />
           <Toaster richColors closeButton />
         </ThemeProvider>
         <script

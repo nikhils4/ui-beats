@@ -54,7 +54,7 @@ export function BlogList({ posts, categories }: BlogListProps) {
             transition={{ duration: 0.25 }}
             className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"
           >
-            {/* Keyed by slug — the old list keyed by array index, so filtering
+            {/* Keyed by slug. The old list keyed by array index, so filtering
                 reused card state across different posts. */}
             {filtered.map((post) => (
               <BlogCard key={post.slug} post={post} featured={post.featured} />

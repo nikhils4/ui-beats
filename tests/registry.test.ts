@@ -5,10 +5,12 @@ import componentConfigs from "@/content/docs";
 import {
   getComponent,
   getComponentsByCategory,
+  getNewestComponents,
   getRegistry,
   isCategory,
 } from "@/lib/registry";
 import { CATEGORY_ORDER } from "@/config/categories";
+import { isRecentlyAdded, parseAddedAt } from "@/config/recency";
 
 const ROOT = process.cwd();
 
@@ -154,5 +156,59 @@ describe("component preview map", () => {
         `component-preview.tsx is missing "${entry.category}/${entry.name}"`,
       ).toBe(true);
     }
+  });
+});
+
+describe("added dates", () => {
+  it("dates every component", () => {
+    for (const entry of getRegistry()) {
+      expect(
+        parseAddedAt(entry.addedAt),
+        `${entry.name} has an unusable addedAt: ${entry.addedAt}`,
+      ).not.toBeNull();
+    }
+  });
+
+  it("never dates a component in the future", () => {
+    // A typo in the year is otherwise invisible until it pins itself to the
+    // top of the home page forever.
+    const now = Date.now();
+    for (const entry of getRegistry()) {
+      const added = parseAddedAt(entry.addedAt);
+      expect(added, entry.name).not.toBeNull();
+      expect(
+        added!.getTime(),
+        `${entry.name} is dated ahead of today`,
+      ).toBeLessThanOrEqual(now);
+    }
+  });
+
+  it("derives isNew from the date rather than a hand-set flag", () => {
+    for (const entry of getRegistry()) {
+      expect(entry.isNew, entry.name).toBe(isRecentlyAdded(entry.addedAt));
+    }
+  });
+
+  /*
+   * Regression: the home page took the last entry carrying an `isNew` flag,
+   * and the registry is ordered by category — so the featured component was
+   * whichever flagged component sat last in the text category, which had been
+   * Text Shine, added in 2024.
+   */
+  it("features the genuinely newest component", () => {
+    const [newest] = getNewestComponents(1);
+    const latest = getRegistry()
+      .map((entry) => entry.addedAt)
+      .sort()
+      .at(-1);
+
+    expect(newest).toBeDefined();
+    expect(newest?.addedAt).toBe(latest);
+  });
+
+  it("returns the newest components in order", () => {
+    const dates = getNewestComponents(5).map((entry) => entry.addedAt);
+    expect(dates).toHaveLength(5);
+    expect([...dates].sort().reverse()).toEqual(dates);
   });
 });

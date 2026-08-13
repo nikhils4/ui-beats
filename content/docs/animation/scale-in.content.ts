@@ -6,8 +6,9 @@ const ScaleInContent: ComponentConfig = {
   title: "Scale In",
   description:
     "The ScaleIn component creates a smooth scale-in animation for its children when they enter the viewport.",
+  addedAt: "2024-08-04",
   whenToUse:
-    "Use when an element should feel like it is arriving out of the page rather than sliding onto it — modals, cards, images. Keep scaleFrom between 0.9 and 0.95; anything lower reads as a zoom rather than an entrance.",
+    "Use it when an element should feel like it is arriving out of the page instead of sliding onto it: modals, cards, images. Keep scaleFrom between 0.9 and 0.95. Anything lower reads as a zoom, not an entrance.",
   props: [
     {
       prop: "children",
@@ -47,6 +48,10 @@ const ScaleInContent: ComponentConfig = {
     },
   ],
   credits: { name: "Michael", url: "https://github.com/lappemic" },
+  playground: {
+    childrenSource:
+      '  <p className="text-lg font-semibold">Supercharge your UI</p>',
+  },
 };
 
 export default ScaleInContent;

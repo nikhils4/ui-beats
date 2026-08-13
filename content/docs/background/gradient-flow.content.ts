@@ -6,6 +6,7 @@ const GradientFlowContent: ComponentConfig = {
   title: "Gradient Flow",
   description:
     "The GradientFlow component creates a flowing gradient animation effect for its children, adding visual interest to backgrounds or UI elements.",
+  addedAt: "2024-08-15",
   fullBleedPreview: true,
   whenToUse:
     "A calm, always-moving backdrop for heroes and call-to-action sections. Because it never settles, keep it behind large type and avoid placing dense body copy on top of it.",
@@ -37,6 +38,10 @@ const GradientFlowContent: ComponentConfig = {
     },
   ],
   credits: { name: "Michael", url: "https://github.com/lappemic" },
+  playground: {
+    childrenSource:
+      '  <h1 className="text-4xl font-bold text-white">Supercharge your UI</h1>',
+  },
 };
 
 export default GradientFlowContent;

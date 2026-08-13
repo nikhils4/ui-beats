@@ -60,8 +60,8 @@ export default async function BlogPostPage({ params }: PageProps) {
    * Article JSON-LD as a real script tag.
    *
    * The old page stashed this under Metadata's `other.structuredData`, which
-   * renders as `<meta name="structuredData" content="{...}">` — a shape no
-   * search engine parses as JSON-LD, so the markup was never actually read.
+   * renders as `<meta name="structuredData" content="{...}">`. No search
+   * engine parses that as JSON-LD, so the markup was never actually read.
    */
   const jsonLd = {
     "@context": "https://schema.org",

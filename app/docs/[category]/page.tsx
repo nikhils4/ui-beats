@@ -2,17 +2,12 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
 import { Badge } from "@/components/ui/badge";
-import { SidebarTrigger } from "@/components/ui/sidebar";
 import { CodeBlock } from "@/components/website/code-block";
+import { DocsBreadcrumb } from "@/components/website/docs-breadcrumb";
+import { DocsPageHeader } from "@/components/website/docs-page-header";
+import { DocsSection } from "@/components/website/docs-section";
+import { CATEGORY_META } from "@/config/categories";
 import {
   CATEGORY_ORDER,
   categoryLabel,
@@ -83,6 +78,7 @@ export default async function CategoryPage({ params }: PageProps) {
 
   const label = categoryLabel(category as ComponentCategory);
   const title = categorySeoTitle(label, category);
+  const CategoryIcon = CATEGORY_META[category].icon;
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -115,86 +111,89 @@ export default async function CategoryPage({ params }: PageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <Breadcrumb>
-        <BreadcrumbList className="text-xs">
-          <SidebarTrigger className="mr-1 size-6" />
-          <BreadcrumbItem>
-            <BreadcrumbLink href="/docs/getting-started/introduction">
-              Docs
-            </BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbPage className="font-medium">{label}</BreadcrumbPage>
-          </BreadcrumbItem>
-        </BreadcrumbList>
-      </Breadcrumb>
+      <DocsBreadcrumb
+        items={[
+          { label: "Docs", href: "/docs/getting-started/introduction" },
+          { label },
+        ]}
+      />
 
-      <header className="mt-8 mb-10">
-        <h1 className="text-4xl font-bold tracking-tighter text-balance">
-          {title}
-        </h1>
-        <p className="mt-3 max-w-2xl text-base leading-relaxed text-balance text-muted-foreground">
-          {CATEGORY_INTRO[category]}
-        </p>
-        <p className="mt-4 text-sm text-muted-foreground">
+      <DocsPageHeader
+        // The eyebrow names the *kind* of page rather than repeating the
+        // category: the title already opens with the category name, and
+        // "Card / React Card Components" reads as a stutter.
+        eyebrow={
+          <span className="inline-flex items-center gap-1.5 text-xs font-semibold tracking-widest text-brand uppercase">
+            <CategoryIcon className="size-3.5" />
+            Category
+          </span>
+        }
+        title={title}
+        description={CATEGORY_INTRO[category]}
+      >
+        <p className="text-xs text-muted-foreground">
           {items.length} component{items.length === 1 ? "" : "s"} · free and
           MIT-licensed · install with the shadcn CLI
         </p>
-      </header>
+      </DocsPageHeader>
 
-      <ul className="divide-y divide-border/60 border-y border-border/60">
-        {items.map((item) => (
-          <li key={item.name}>
-            <Link
-              href={item.href}
-              className="group -mx-3 flex items-start gap-4 rounded-lg px-3 py-5 transition-colors hover:bg-accent/50"
-            >
-              <div className="min-w-0 flex-1">
-                <h2 className="flex flex-wrap items-center gap-2 text-base font-semibold tracking-tight">
-                  {item.title}
-                  {item.isNew ? (
-                    <Badge
-                      variant="outline"
-                      className="border-brand/25 bg-brand-subtle text-[10px] text-brand"
-                    >
-                      New
-                    </Badge>
-                  ) : null}
-                </h2>
-                <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
-                  {item.description}
-                </p>
-                <p className="mt-2 flex flex-wrap gap-1.5">
-                  {item.dependencies.map((dep) => (
-                    <span
-                      key={dep}
-                      className="rounded-full border bg-muted/50 px-2 py-0.5 font-mono text-[10px] text-muted-foreground"
-                    >
-                      {dep}
-                    </span>
-                  ))}
-                </p>
-              </div>
-              <ArrowRight className="mt-1 size-4 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-brand" />
-            </Link>
-          </li>
-        ))}
-      </ul>
+      <DocsSection
+        id="components"
+        title="Components"
+        description={`Every ${label.toLowerCase()} component in the library, with the packages each one pulls in.`}
+      >
+        <ul className="divide-y divide-border/60 border-y border-border/60">
+          {items.map((item) => (
+            <li key={item.name}>
+              <Link
+                href={item.href}
+                className="group -mx-3 flex items-start gap-4 rounded-lg px-3 py-5 transition-colors hover:bg-accent/50"
+              >
+                <div className="min-w-0 flex-1">
+                  {/* An `h3`: these sit under the "Components" heading above,
+                      so promoting them to `h2` would flatten the outline. */}
+                  <h3 className="flex flex-wrap items-center gap-2 text-base font-semibold tracking-tight">
+                    {item.title}
+                    {item.isNew ? (
+                      <Badge
+                        variant="outline"
+                        className="border-brand/25 bg-brand-subtle text-[10px] text-brand"
+                      >
+                        New
+                      </Badge>
+                    ) : null}
+                  </h3>
+                  <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+                    {item.description}
+                  </p>
+                  <p className="mt-2 flex flex-wrap gap-1.5">
+                    {item.dependencies.map((dep) => (
+                      <span
+                        key={dep}
+                        className="rounded-full border bg-muted/50 px-2 py-0.5 font-mono text-[10px] text-muted-foreground"
+                      >
+                        {dep}
+                      </span>
+                    ))}
+                  </p>
+                </div>
+                <ArrowRight className="mt-1 size-4 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-brand" />
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </DocsSection>
 
-      <section className="mt-12">
-        <h2 className="mb-1 text-xl font-semibold tracking-tight">
-          Install any of them
-        </h2>
-        <p className="mb-4 text-sm text-muted-foreground">
-          Every component here is installable with the shadcn CLI, which also
-          resolves its npm dependencies.
-        </p>
+      <DocsSection
+        id="installation"
+        title="Install any of them"
+        description="Every component here is installable with the shadcn CLI, which also resolves its npm dependencies."
+      >
         <CodeBlock
           language="bash"
           code={`npx shadcn@latest add ${absoluteUrl(`/r/${items[0]!.name}.json`)}`}
         />
-      </section>
+      </DocsSection>
     </div>
   );
 }

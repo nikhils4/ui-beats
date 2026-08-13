@@ -75,11 +75,45 @@ function detectDependencies(source: string): {
   };
 }
 
+/**
+ * One entry in `components.json` — the catalogue the MCP server reads.
+ *
+ * The shadcn `registry.json` deliberately stays inside its own schema, so the
+ * props table and the guidance prose that an agent needs in order to *pick*
+ * the right component live here instead of being smuggled into that file.
+ *
+ * Deliberately no `source`: this is a search index, and the source is already
+ * served two ways (`/r/<name>.json` and `/docs/<cat>/<name>.md`). Duplicating
+ * 34 components of source here would triple the file an agent downloads just
+ * to find out which component it wants.
+ */
+interface CatalogueEntry {
+  name: string;
+  title: string;
+  category: string;
+  description: string;
+  whenToUse?: string;
+  docs: string;
+  markdown: string;
+  install: string;
+  registry: string;
+  dependencies: string[];
+  registryDependencies: string[];
+  props: {
+    prop: string;
+    type: string;
+    defaultValue: string;
+    description: string;
+  }[];
+  author?: string;
+}
+
 function main() {
   fs.rmSync(OUT_DIR, { recursive: true, force: true });
   fs.mkdirSync(OUT_DIR, { recursive: true });
 
   const items: RegistryItem[] = [];
+  const catalogue: CatalogueEntry[] = [];
 
   for (const config of componentConfigs) {
     const sourcePath = path.join(
@@ -123,6 +157,24 @@ function main() {
       path.join(OUT_DIR, `${config.name}.json`),
       `${JSON.stringify(item, null, 2)}\n`,
     );
+
+    catalogue.push({
+      name: config.name,
+      title: config.title,
+      category: config.category,
+      description: config.description,
+      ...(config.whenToUse ? { whenToUse: config.whenToUse } : {}),
+      docs: `${SITE_URL}/docs/${config.category}/${config.name}`,
+      markdown: `${SITE_URL}/docs/${config.category}/${config.name}.md`,
+      install: `npx shadcn@latest add ${SITE_URL}/r/${config.name}.json`,
+      registry: `${SITE_URL}/r/${config.name}.json`,
+      dependencies,
+      registryDependencies,
+      props: config.props,
+      ...(config.credits
+        ? { author: `${config.credits.name} (${config.credits.url})` }
+        : {}),
+    });
   }
 
   // The index the shadcn CLI reads to resolve names and list what is available.
@@ -146,8 +198,31 @@ function main() {
     `${JSON.stringify(registry, null, 2)}\n`,
   );
 
+  /*
+   * The catalogue the MCP server fetches on startup.
+   *
+   * Shipping it as a static file rather than an API route means the MCP server
+   * needs no backend of its own, and the existing CORS + cache headers on
+   * `/r/:path*.json` already apply to it.
+   */
+  fs.writeFileSync(
+    path.join(OUT_DIR, "components.json"),
+    `${JSON.stringify(
+      {
+        name: "ui-beats",
+        homepage: SITE_URL,
+        license: "MIT",
+        count: catalogue.length,
+        categories: [...new Set(catalogue.map((entry) => entry.category))],
+        components: catalogue,
+      },
+      null,
+      2,
+    )}\n`,
+  );
+
   console.log(
-    `registry: wrote ${items.length} items + registry.json to public/r/`,
+    `registry: wrote ${items.length} items + registry.json + components.json to public/r/`,
   );
 }
 

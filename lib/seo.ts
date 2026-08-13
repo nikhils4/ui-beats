@@ -3,7 +3,7 @@ import type { ComponentCategory } from "@/types/component-config.type";
 /**
  * Search-facing titles for component pages.
  *
- * The pages used to be titled "Flip Card — UI Beats", which only competes for
+ * The pages used to be titled "Flip Card | UI Beats", which only competes for
  * a query nobody types. People search "react flip card component" and "react
  * text shine animation", so the title leads with those words and keeps the
  * brand as the suffix.
@@ -88,8 +88,8 @@ export const CATEGORY_INTRO: Record<ComponentCategory, string> = {
     "Animated background layers for React. Drop one behind a hero or section and layer your content above it.",
   button:
     "Interactive React buttons with motion built in, for the moments where a call to action should feel alive.",
-  card: "React card components with depth, motion and hover behaviour — for feature grids, pricing and showcases.",
+  card: "React card components with depth, motion and hover behaviour, for feature grids, pricing and showcases.",
   component:
     "Utility React components for the states between content: loading placeholders, skeletons and effects.",
-  text: "React text animation components — typing, scrambling, shining and swapping — for headlines that hold attention.",
+  text: "React text animation components for headlines that hold attention: typing, scrambling, shining and swapping.",
 };

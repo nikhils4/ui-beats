@@ -6,9 +6,9 @@ const NumberTickerContent: ComponentConfig = {
   title: "Number Ticker",
   description:
     "The NumberTicker component counts a number up when it scrolls into view, with locale-aware formatting.",
-  isNew: true,
+  addedAt: "2026-08-12",
   whenToUse:
-    "For statistics that are the point of a section \u2014 users, uptime, revenue, downloads. The count implies growth, so it flatters numbers that are meant to impress and is wasted on ordinary values. Give it room to be read: a ticker inside a dense table is just a distraction.",
+    "For statistics that are the point of a section: users, uptime, revenue, downloads. The count implies growth, so it flatters a number meant to impress and is wasted on an ordinary one. Give it room to be read. A ticker inside a dense table is just a distraction.",
   props: [
     {
       prop: "value",
@@ -63,6 +63,11 @@ const NumberTickerContent: ComponentConfig = {
     name: "Claude Code",
     url: "https://claude.com/claude-code",
     kind: "tool",
+  },
+  playground: {
+    defaults: {
+      value: 12480,
+    },
   },
 };
 

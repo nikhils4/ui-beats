@@ -6,7 +6,7 @@ const StaggerListContent: ComponentConfig = {
   title: "Stagger List",
   description:
     "The StaggerList component animates its children into view one after another when the list enters the viewport, without requiring any changes to the children themselves.",
-  isNew: true,
+  addedAt: "2026-08-11",
   whenToUse:
     "For any group that would otherwise arrive as a single slab: feature bullets, pricing tiers, navigation items. The stagger implies sequence and gives the eye somewhere to start. Drop stagger below 0.08s once the list runs past six items, or the last row arrives noticeably late.",
   props: [
@@ -63,6 +63,11 @@ const StaggerListContent: ComponentConfig = {
     name: "Claude Code",
     url: "https://claude.com/claude-code",
     kind: "tool",
+  },
+  playground: {
+    childrenSource: `  {items.map((item) => (
+    <li key={item}>{item}</li>
+  ))}`,
   },
 };
 

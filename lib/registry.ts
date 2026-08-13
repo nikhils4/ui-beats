@@ -5,6 +5,7 @@ import path from "node:path";
 import { cache } from "react";
 import componentConfigs from "@/content/docs";
 import { CATEGORY_META, CATEGORY_ORDER } from "@/config/categories";
+import { byNewest, isRecentlyAdded } from "@/config/recency";
 import type {
   ComponentCategory,
   ComponentConfig,
@@ -13,6 +14,7 @@ import type {
 const ROOT = process.cwd();
 const DEMO_DIR = path.join(ROOT, "components", "demo");
 const USAGE_DIR = path.join(ROOT, "components", "usage");
+const PLAYGROUND_DIR = path.join(ROOT, "components", "playground");
 
 export { CATEGORY_META, CATEGORY_ORDER, isCategory } from "@/config/categories";
 
@@ -47,9 +49,18 @@ function readContained(baseDir: string, relativePath: string): string | null {
 }
 
 export interface RegistryEntry extends ComponentConfig {
+  /**
+   * Whether the component still counts as new, derived from `addedAt`.
+   *
+   * Was a hand-set flag on each config that nothing ever cleared, so a
+   * component kept its "New" badge indefinitely. Two years, in Text Shine's
+   * case. Deriving it means the badge expires without anyone remembering to
+   * remove it.
+   */
+  isNew: boolean;
   /** Route this component is documented at. */
   href: string;
-  /** Source of the component itself — what a user copies into their project. */
+  /** Source of the component itself, i.e. what a user copies into a project. */
   source: string;
   /** Source of the runnable example shown in the "Code" tab. */
   usage: string;
@@ -59,6 +70,14 @@ export interface RegistryEntry extends ComponentConfig {
   registryDependencies: string[];
   demoPath: string;
   usagePath: string;
+  /**
+   * Whether an interactive playground exists for this component.
+   *
+   * Derived from the presence of the harness file rather than a flag in the
+   * content config, so adding `components/playground/<cat>/<name>.playground.tsx`
+   * is the whole of the work. There is no second place to remember to update.
+   */
+  hasPlayground: boolean;
 }
 
 /** Packages that ship with any React app and never need installing. */
@@ -121,14 +140,35 @@ export const getRegistry = cache((): RegistryEntry[] =>
 
     return {
       ...config,
+      isNew: isRecentlyAdded(config.addedAt),
       href: `/docs/${config.category}/${config.name}`,
       source,
       usage: usage ?? "",
       demoPath,
       usagePath,
+      hasPlayground: fs.existsSync(
+        path.join(
+          PLAYGROUND_DIR,
+          `${config.category}`,
+          `${config.name}.playground.tsx`,
+        ),
+      ),
       ...detectDependencies(source, usage ?? ""),
     };
   }),
+);
+
+/**
+ * The most recently added components, newest first.
+ *
+ * What the home page's "New" pill points at. It used to take the last entry
+ * carrying an `isNew` flag, and since the registry is ordered by category
+ * rather than by date, that was whichever flagged component happened to sit
+ * last in the text category, never the newest thing in the library.
+ */
+export const getNewestComponents = cache((count = 1): RegistryEntry[] =>
+  // `sort` is stable, so components added on the same day keep registry order.
+  [...getRegistry()].sort(byNewest).slice(0, count),
 );
 
 export const getComponent = cache(

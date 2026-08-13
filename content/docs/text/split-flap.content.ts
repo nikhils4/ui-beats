@@ -6,9 +6,9 @@ const SplitFlapContent: ComponentConfig = {
   title: "Split Flap",
   description:
     "The SplitFlap component turns text into a mechanical departure board, each column riffling through the alphabet until it reaches its letter, a beat behind the column to its left.",
-  isNew: true,
+  addedAt: "2026-08-13",
   whenToUse:
-    "Use it for a short headline, a status line, or a word that changes on a timer — anything where the arrival of the text is worth watching. It is the wrong choice for body copy or anything a visitor needs immediately, since a board takes a moment to land. Columns step toward their target rather than showing random glyphs, so the flip always resolves; the flaps themselves are decorative, and the real text is exposed once to screen readers rather than being read out mid-flip.",
+    "Use it for a short headline, a status line, or a word that changes on a timer, where watching the text arrive is part of the appeal. It is wrong for body copy or anything a visitor needs immediately, because a board takes a moment to land. Columns step toward their target instead of cycling random glyphs, so the flip always resolves. The flaps are decorative: a screen reader gets the finished text once, not a running commentary on the way there.",
   props: [
     {
       prop: "text",
@@ -40,13 +40,18 @@ const SplitFlapContent: ComponentConfig = {
       type: "string",
       defaultValue: "''",
       description:
-        "Additional CSS classes — set the font size here, the flaps scale with it",
+        "Additional CSS classes. Set the font size here; the flaps scale with it",
     },
   ],
   credits: {
     name: "Claude Code",
     url: "https://claude.com/claude-code",
     kind: "tool",
+  },
+  playground: {
+    defaults: {
+      text: "UI BEATS",
+    },
   },
 };
 

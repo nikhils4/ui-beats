@@ -6,9 +6,9 @@ const ScrollRevealContent: ComponentConfig = {
   title: "Scroll Reveal",
   description:
     "The ScrollReveal component lights up text word by word as the reader scrolls past it, tied to scroll position rather than a timer.",
-  isNew: true,
+  addedAt: "2026-08-12",
   whenToUse:
-    "Best on a single statement you want read slowly \u2014 a mission line, a manifesto, a section opener. Because the reveal is bound to the scrollbar, the reader controls the pace and can scroll back. Keep it to one or two sentences; a full paragraph turns reading into work.",
+    "Best on a single statement you want read slowly: a mission line, a manifesto, a section opener. The reveal is bound to the scrollbar, so the reader sets the pace and can scroll back. Keep it to one or two sentences. A full paragraph turns reading into work.",
   props: [
     {
       prop: "children",
@@ -39,6 +39,9 @@ const ScrollRevealContent: ComponentConfig = {
     name: "Claude Code",
     url: "https://claude.com/claude-code",
     kind: "tool",
+  },
+  playground: {
+    childrenSource: "  Every component is yours to own once you copy it.",
   },
 };
 

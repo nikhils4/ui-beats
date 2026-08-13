@@ -6,9 +6,9 @@ const MagneticButtonContent: ComponentConfig = {
   title: "Magnetic Button",
   description:
     "The MagneticButton component drifts toward the pointer as it approaches and springs back when the pointer leaves, making calls to action feel responsive before they are even clicked.",
-  isNew: true,
+  addedAt: "2026-08-11",
   whenToUse:
-    "For the single most important action on a page. The pull only reads as intentional when nothing else competes nearby, so avoid placing two magnetic buttons side by side. It is a progressive enhancement — the button stays fully usable by keyboard and on touch, where the effect never fires.",
+    "For the single most important action on a page. The pull only reads as intentional when nothing else competes nearby, so avoid placing two magnetic buttons side by side. Treat it as a progressive enhancement: the button stays fully usable by keyboard and on touch, where the effect never fires at all.",
   props: [
     {
       prop: "children",
@@ -47,6 +47,9 @@ const MagneticButtonContent: ComponentConfig = {
     name: "Claude Code",
     url: "https://claude.com/claude-code",
     kind: "tool",
+  },
+  playground: {
+    childrenSource: "  Come closer",
   },
 };
 

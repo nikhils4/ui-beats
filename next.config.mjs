@@ -33,6 +33,18 @@ const nextConfig = {
       },
     ];
   },
+  async rewrites() {
+    return [
+      // Agent-facing markdown. `/docs/card/flip-card.md` cannot be a route
+      // segment of its own — `[component]/page.tsx` already occupies that
+      // level — so the extension is matched here and mapped onto the handler
+      // at `app/md/[category]/[component]/route.ts`.
+      {
+        source: "/docs/:category/:component.md",
+        destination: "/md/:category/:component",
+      },
+    ];
+  },
   async redirects() {
     return [
       // The RSS feed used to emit /blog/<slug> while the route was /blogs/<slug>,

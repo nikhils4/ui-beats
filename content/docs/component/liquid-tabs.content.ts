@@ -6,9 +6,9 @@ const LiquidTabsContent: ComponentConfig = {
   title: "Liquid Tabs",
   description:
     "The LiquidTabs component is a tab switcher whose selection pill flows between tabs, stretching in proportion to how fast it is travelling and settling back into shape as it lands.",
-  isNew: true,
+  addedAt: "2026-08-13",
   whenToUse:
-    "Use it anywhere a segmented control or tab bar carries a handful of peer views — a dashboard's sections, a pricing period toggle, a filter row. The deformation is derived from the pill's own velocity, so a hop to the neighbouring tab barely bends and a jump across the row stretches hard; that difference is what tells the user how far the selection moved. It renders as a `tablist` with roving tab focus and arrow-key selection, so give each panel an `id` and point the tab at it with `aria-controls` when you pair it with content.",
+    "Use it anywhere a segmented control or tab bar carries a handful of peer views: a dashboard's sections, a pricing period toggle, a filter row. The deformation comes from the pill's own velocity, so a hop to the neighbouring tab barely bends while a jump across the row stretches hard. That difference is what tells the user how far the selection moved. It renders as a `tablist` with roving tab focus and arrow-key selection, so give each panel an `id` and point the tab at it with `aria-controls` when you pair it with content.",
   props: [
     {
       prop: "items",
@@ -52,6 +52,18 @@ const LiquidTabsContent: ComponentConfig = {
     name: "Claude Code",
     url: "https://claude.com/claude-code",
     kind: "tool",
+  },
+  playground: {
+    // `value` puts the component into controlled mode, where it only ever
+    // changes if the parent passes a new one. A playground that set it would
+    // hand the reader a tab strip that looks broken, and a snippet missing the
+    // `onValueChange` that has to come with it.
+    exclude: ["value"],
+    fixedSource: `  items={[
+    { label: "Preview", value: "preview" },
+    { label: "Code", value: "code" },
+    { label: "Props", value: "props" },
+  ]}`,
   },
 };
 

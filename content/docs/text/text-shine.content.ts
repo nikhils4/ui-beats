@@ -6,9 +6,9 @@ const TextShineContent: ComponentConfig = {
   title: "Text Shine",
   description:
     "The TextShine component sweeps a coloured highlight across your text on a loop, drawing the eye without demanding a click.",
-  isNew: true,
+  addedAt: "2024-10-24",
   whenToUse:
-    "A one-line highlight for a headline, badge or price. Because it loops, use it once per view — two shining elements compete and neither wins.",
+    "A one-line highlight for a headline, badge or price. Because it loops, use it once per view. Two shining elements compete and neither one wins.",
   props: [
     {
       prop: "text",
@@ -43,6 +43,11 @@ const TextShineContent: ComponentConfig = {
     },
   ],
   credits: { name: "Divyaswor", url: "https://github.com/divyaswormakai" },
+  playground: {
+    defaults: {
+      text: "Shine on",
+    },
+  },
 };
 
 export default TextShineContent;

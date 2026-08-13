@@ -35,7 +35,7 @@ export default async function OpengraphImage({
 
   /*
    * Satori treats each JSX child as a separate node and requires an explicit
-   * display on any element with more than one — and `foo {bar} baz` is three
+   * display on any element with more than one, and `foo {bar} baz` is three
    * children, not one string. Everything interpolated is joined here so each
    * element receives a single text node.
    */

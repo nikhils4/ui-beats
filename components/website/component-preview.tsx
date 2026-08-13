@@ -24,6 +24,10 @@ const loading = () => <Skeleton className="size-full" />;
  * into every page.
  */
 const previews: Record<string, PreviewComponent> = {
+  "animation/animated-list": dynamic(
+    () => import("@/components/usage/animation/animated-list.usage"),
+    { loading },
+  ),
   "animation/bounce": dynamic(
     () => import("@/components/usage/animation/bounce.usage"),
     { loading },
@@ -64,8 +68,16 @@ const previews: Record<string, PreviewComponent> = {
     () => import("@/components/usage/background/animated-beam.usage"),
     { loading },
   ),
+  "background/retro-grid": dynamic(
+    () => import("@/components/usage/background/retro-grid.usage"),
+    { loading },
+  ),
   "background/sparkling-grid": dynamic(
     () => import("@/components/usage/background/sparkling-grid.usage"),
+    { loading },
+  ),
+  "button/ripple-button": dynamic(
+    () => import("@/components/usage/button/ripple-button.usage"),
     { loading },
   ),
   "button/subscribe-button": dynamic(
@@ -74,6 +86,10 @@ const previews: Record<string, PreviewComponent> = {
   ),
   "button/magnetic-button": dynamic(
     () => import("@/components/usage/button/magnetic-button.usage"),
+    { loading },
+  ),
+  "card/card-stack": dynamic(
+    () => import("@/components/usage/card/card-stack.usage"),
     { loading },
   ),
   "card/flip-card": dynamic(
@@ -104,6 +120,18 @@ const previews: Record<string, PreviewComponent> = {
     () => import("@/components/usage/component/dock.usage"),
     { loading },
   ),
+  "component/border-beam": dynamic(
+    () => import("@/components/usage/component/border-beam.usage"),
+    { loading },
+  ),
+  "component/liquid-tabs": dynamic(
+    () => import("@/components/usage/component/liquid-tabs.usage"),
+    { loading },
+  ),
+  "component/scratch-to-reveal": dynamic(
+    () => import("@/components/usage/component/scratch-to-reveal.usage"),
+    { loading },
+  ),
   "text/gravity-text-swap": dynamic(
     () => import("@/components/usage/text/gravity-text-swap.usage"),
     { loading },
@@ -114,6 +142,10 @@ const previews: Record<string, PreviewComponent> = {
   ),
   "text/number-ticker": dynamic(
     () => import("@/components/usage/text/number-ticker.usage"),
+    { loading },
+  ),
+  "text/split-flap": dynamic(
+    () => import("@/components/usage/text/split-flap.usage"),
     { loading },
   ),
   "text/text-shine": dynamic(

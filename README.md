@@ -38,16 +38,16 @@ Prefer to copy and paste? Every component page has the full source under **Insta
 
 ## Components
 
-26 components across six categories:
+34 components across six categories:
 
-| Category       | Components                                                                              |
-| -------------- | --------------------------------------------------------------------------------------- |
-| **Animation**  | Bounce, Fade In, Fade In Unblur, Rotate In, Scale In, Smooth Reveal, Stagger List       |
-| **Background** | Animated Beam, Gradient Flow, Orbiting Elements, Sparkling Grid                         |
-| **Button**     | Magnetic Button, Subscribe Button                                                       |
-| **Card**       | Flip Card, Glowing Card, Morphing Card, Tilt Card                                       |
-| **Component**  | Dock, Marquee, Shimmer Effect                                                           |
-| **Text**       | Gravity Text Swap, Number Ticker, Scroll Reveal, Text Scramble, Text Shine, Text Writer |
+| Category       | Components                                                                                          |
+| -------------- | --------------------------------------------------------------------------------------------------- |
+| **Animation**  | Animated List, Bounce, Fade In, Fade In Unblur, Rotate In, Scale In, Smooth Reveal, Stagger List    |
+| **Background** | Animated Beam, Gradient Flow, Orbiting Elements, Retro Grid, Sparkling Grid                         |
+| **Button**     | Magnetic Button, Ripple Button, Subscribe Button                                                    |
+| **Card**       | Card Stack, Flip Card, Glowing Card, Morphing Card, Tilt Card                                       |
+| **Component**  | Border Beam, Dock, Liquid Tabs, Marquee, Scratch to Reveal, Shimmer Effect                          |
+| **Text**       | Gravity Text Swap, Number Ticker, Scroll Reveal, Split Flap, Text Scramble, Text Shine, Text Writer |
 
 ## Local development
 
@@ -116,7 +116,7 @@ Contributions are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md) and the [co
 
 Every component says where it came from. The `credits` field on each component's config drives the Credits block on its docs page, the `author` field in its registry JSON, and the `author` in its structured data.
 
-Ten components — Tilt Card, Text Scramble, Magnetic Button, Stagger List, Dock, Marquee, Number Ticker, Scroll Reveal, Orbiting Elements and Animated Beam — were written with [Claude Code](https://claude.com/claude-code) and are credited as such rather than presented as community contributions. They are reviewed and maintained here like any other component.
+Eighteen components — Tilt Card, Text Scramble, Magnetic Button, Stagger List, Dock, Marquee, Number Ticker, Scroll Reveal, Orbiting Elements, Animated Beam, Animated List, Border Beam, Card Stack, Liquid Tabs, Retro Grid, Ripple Button, Scratch to Reveal and Split Flap — were written with [Claude Code](https://claude.com/claude-code) and are credited as such rather than presented as community contributions. They are reviewed and maintained here like any other component.
 
 <a href="https://github.com/nikhils4/ui-beats/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=nikhils4/ui-beats" alt="Contributors" />

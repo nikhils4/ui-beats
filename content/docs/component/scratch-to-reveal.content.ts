@@ -1,0 +1,82 @@
+import type { ComponentConfig } from "@/types/component-config.type";
+
+const ScratchToRevealContent: ComponentConfig = {
+  name: "scratch-to-reveal",
+  category: "component",
+  title: "Scratch to Reveal",
+  description:
+    "The ScratchToReveal component covers your content in a foil the user rubs away with a pointer, firing onComplete and dropping the rest of the foil once enough has been cleared.",
+  isNew: true,
+  whenToUse:
+    "Use it where the reveal is the point: a discount code, a giveaway result, a launch-day surprise. The delay it adds is deliberate, which makes it wrong for anything a user needs quickly or will meet more than once. It is a pointer interaction first, so it also exposes a keyboard path — Enter or Space clears the foil outright — and you should keep the content underneath meaningful for anyone who takes it.",
+  props: [
+    {
+      prop: "children",
+      type: "React.ReactNode",
+      defaultValue: "-",
+      description: "Content hidden under the foil",
+    },
+    {
+      prop: "width",
+      type: "number",
+      defaultValue: "300",
+      description: "Width of the scratch area, in pixels",
+    },
+    {
+      prop: "height",
+      type: "number",
+      defaultValue: "200",
+      description: "Height of the scratch area, in pixels",
+    },
+    {
+      prop: "brushSize",
+      type: "number",
+      defaultValue: "22",
+      description: "Radius of the scratching brush, in pixels",
+    },
+    {
+      prop: "threshold",
+      type: "number",
+      defaultValue: "0.55",
+      description:
+        "Fraction of the foil (0–1) that must be cleared before the rest falls away",
+    },
+    {
+      prop: "coverFrom",
+      type: "string",
+      defaultValue: '"#9ca3af"',
+      description: "Start colour of the foil gradient",
+    },
+    {
+      prop: "coverTo",
+      type: "string",
+      defaultValue: '"#4b5563"',
+      description: "End colour of the foil gradient",
+    },
+    {
+      prop: "label",
+      type: "string",
+      defaultValue: '"Scratch here"',
+      description: "Prompt printed on the foil, scratched away with it",
+    },
+    {
+      prop: "onComplete",
+      type: "() => void",
+      defaultValue: "-",
+      description: "Fired once, when the threshold is crossed",
+    },
+    {
+      prop: "className",
+      type: "string",
+      defaultValue: "''",
+      description: "Additional CSS classes applied to the card",
+    },
+  ],
+  credits: {
+    name: "Claude Code",
+    url: "https://claude.com/claude-code",
+    kind: "tool",
+  },
+};
+
+export default ScratchToRevealContent;

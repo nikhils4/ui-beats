@@ -25,7 +25,7 @@ export function BuiltForYourWorkflow() {
         </div>
 
         <div className="mt-12 grid gap-4 lg:grid-cols-2">
-          <div className="flex flex-col rounded-2xl border bg-card p-6 shadow-subtle sm:p-8">
+          <div className="flex min-w-0 flex-col rounded-2xl border bg-card p-6 shadow-subtle sm:p-8">
             <span className="flex size-10 items-center justify-center rounded-lg border border-brand/20 bg-brand-subtle text-brand">
               <Bot className="size-5" />
             </span>
@@ -55,7 +55,7 @@ export function BuiltForYourWorkflow() {
             </Link>
           </div>
 
-          <div className="flex flex-col rounded-2xl border bg-card p-6 shadow-subtle sm:p-8">
+          <div className="flex min-w-0 flex-col rounded-2xl border bg-card p-6 shadow-subtle sm:p-8">
             <span className="flex size-10 items-center justify-center rounded-lg border border-brand/20 bg-brand-subtle text-brand">
               <SlidersHorizontal className="size-5" />
             </span>

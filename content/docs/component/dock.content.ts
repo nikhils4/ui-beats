@@ -81,7 +81,7 @@ const DockContent: ComponentConfig = {
   playground: {
     childrenSource: `  {items.map(({ label, icon: Icon }) => (
     <DockItem key={label} label={label}>
-      <Icon className="size-1/2" />
+      <Icon className="size-1/2 text-muted-foreground" />
     </DockItem>
   ))}`,
   },

@@ -7,20 +7,18 @@ import type { PlaygroundHarnessProps } from "@/types/playground.type";
 /**
  * Playground harness for TiltCard.
  *
- * Supplies whatever the component needs beyond its scalar props — children,
- * object literals — and lets the control panel drive the rest.
+ * Mirrors `components/usage/card/tilt-card.usage.tsx` so the studio and
+ * the docs page show the same demo. The component takes its props from the
+ * control panel; everything around it is identical.
  */
 export default function TiltCardPlayground({ values }: PlaygroundHarnessProps) {
   const props = asProps(TiltCard, values);
 
   return (
-    <TiltCard
-      {...props}
-      className="w-64 rounded-2xl border bg-card p-6 shadow-subtle"
-    >
-      <p className="text-lg font-semibold">Tilt me</p>
-      <p className="mt-1 text-sm text-muted-foreground">
-        Move the pointer across the card.
+    <TiltCard {...props} className="w-64">
+      <h3 className="text-lg font-semibold">Tilt Card</h3>
+      <p className="mt-2 text-sm text-muted-foreground">
+        Move your cursor across the card to tilt it in 3D.
       </p>
     </TiltCard>
   );

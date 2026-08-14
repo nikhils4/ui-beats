@@ -2,21 +2,23 @@
 
 import Bounce from "@/components/demo/animation/bounce";
 import { asProps } from "@/lib/playground";
-import { StageCopy } from "@/components/playground/stage";
 import type { PlaygroundHarnessProps } from "@/types/playground.type";
 
 /**
  * Playground harness for Bounce.
  *
- * Supplies whatever the component needs beyond its scalar props — children,
- * object literals — and lets the control panel drive the rest.
+ * Mirrors `components/usage/animation/bounce.usage.tsx` so the studio and
+ * the docs page show the same demo. The component takes its props from the
+ * control panel; everything around it is identical.
  */
 export default function BouncePlayground({ values }: PlaygroundHarnessProps) {
   const props = asProps(Bounce, values);
 
   return (
     <Bounce {...props}>
-      <StageCopy />
+      <p className="text-md md:text-lg">
+        This content will bounce when visible
+      </p>
     </Bounce>
   );
 }

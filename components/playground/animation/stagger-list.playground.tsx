@@ -2,14 +2,15 @@
 
 import StaggerList from "@/components/demo/animation/stagger-list";
 import { asProps } from "@/lib/playground";
-import { StageList } from "@/components/playground/stage";
+import { StaggerItems } from "@/components/playground/demo-content";
 import type { PlaygroundHarnessProps } from "@/types/playground.type";
 
 /**
  * Playground harness for StaggerList.
  *
- * Supplies whatever the component needs beyond its scalar props — children,
- * object literals — and lets the control panel drive the rest.
+ * Mirrors `components/usage/animation/stagger-list.usage.tsx` so the studio and
+ * the docs page show the same demo. The component takes its props from the
+ * control panel; everything around it is identical.
  */
 export default function StaggerListPlayground({
   values,
@@ -18,7 +19,7 @@ export default function StaggerListPlayground({
 
   return (
     <StaggerList {...props} className="space-y-2">
-      <StageList />
+      <StaggerItems />
     </StaggerList>
   );
 }

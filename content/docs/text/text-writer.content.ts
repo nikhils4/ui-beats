@@ -79,7 +79,7 @@ const TextWriterContent: ComponentConfig = {
   ],
   playground: {
     defaults: {
-      text: "npm run ship",
+      text: "Welcome to UI Beats",
     },
   },
 };

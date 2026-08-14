@@ -49,7 +49,7 @@ const MagneticButtonContent: ComponentConfig = {
     kind: "tool",
   },
   playground: {
-    childrenSource: "  Come closer",
+    childrenSource: "  Hover me",
   },
 };
 

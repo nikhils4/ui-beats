@@ -7,8 +7,9 @@ import type { PlaygroundHarnessProps } from "@/types/playground.type";
 /**
  * Playground harness for ScrollReveal.
  *
- * Supplies whatever the component needs beyond its scalar props — children,
- * object literals — and lets the control panel drive the rest.
+ * Mirrors `components/usage/text/scroll-reveal.usage.tsx` so the studio and
+ * the docs page show the same demo. The component takes its props from the
+ * control panel; everything around it is identical.
  */
 export default function ScrollRevealPlayground({
   values,
@@ -18,9 +19,10 @@ export default function ScrollRevealPlayground({
   return (
     <ScrollReveal
       {...props}
-      className="max-w-md text-center text-xl font-medium"
+      className="max-w-md text-xl leading-relaxed font-semibold md:text-2xl"
     >
-      Every component is yours to own once you copy it.
+      Scroll and every word arrives in turn, tied to the scrollbar rather than
+      to a timer.
     </ScrollReveal>
   );
 }

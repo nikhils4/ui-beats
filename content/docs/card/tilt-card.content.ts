@@ -47,9 +47,7 @@ const TiltCardContent: ComponentConfig = {
     kind: "tool",
   },
   playground: {
-    childrenSource: `  <div className="p-6">
-    <p className="text-lg font-semibold">Tilt me</p>
-  </div>`,
+    childrenSource: '  <p className="text-lg font-semibold">Tilt me</p>',
   },
 };
 

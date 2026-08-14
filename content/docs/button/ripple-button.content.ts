@@ -65,7 +65,7 @@ const RippleButtonContent: ComponentConfig = {
     kind: "tool",
   },
   playground: {
-    childrenSource: "  Press me",
+    childrenSource: "  Press anywhere",
   },
 };
 

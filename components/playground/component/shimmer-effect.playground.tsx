@@ -7,19 +7,14 @@ import type { PlaygroundHarnessProps } from "@/types/playground.type";
 /**
  * Playground harness for ShimmerEffect.
  *
- * Supplies whatever the component needs beyond its scalar props — children,
- * object literals — and lets the control panel drive the rest.
+ * Mirrors `components/usage/component/shimmer-effect.usage.tsx` so the studio and
+ * the docs page show the same demo. The component takes its props from the
+ * control panel; everything around it is identical.
  */
 export default function ShimmerEffectPlayground({
   values,
 }: PlaygroundHarnessProps) {
   const props = asProps(ShimmerEffect, values);
 
-  return (
-    <div className="w-64 space-y-3">
-      <ShimmerEffect {...props} height={14} />
-      <ShimmerEffect {...props} height={14} width="80%" />
-      <ShimmerEffect {...props} height={14} width="60%" />
-    </div>
-  );
+  return <ShimmerEffect {...props} />;
 }

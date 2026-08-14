@@ -44,7 +44,7 @@ const FadeInUnblurContent: ComponentConfig = {
   credits: { name: "Divyaswor", url: "https://github.com/divyaswormakai" },
   playground: {
     childrenSource:
-      '  <p className="text-lg font-semibold">Supercharge your UI</p>',
+      '  <p className="text-md md:text-lg">This content fades in while unblurring when it enters the viewport</p>',
   },
 };
 

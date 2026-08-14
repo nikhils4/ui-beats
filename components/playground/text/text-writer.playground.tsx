@@ -7,13 +7,14 @@ import type { PlaygroundHarnessProps } from "@/types/playground.type";
 /**
  * Playground harness for TextWriter.
  *
- * Supplies whatever the component needs beyond its scalar props — children,
- * object literals — and lets the control panel drive the rest.
+ * Mirrors `components/usage/text/text-writer.usage.tsx` so the studio and
+ * the docs page show the same demo. The component takes its props from the
+ * control panel; everything around it is identical.
  */
 export default function TextWriterPlayground({
   values,
 }: PlaygroundHarnessProps) {
   const props = asProps(TextWriter, values);
 
-  return <TextWriter {...props} className="text-2xl font-semibold" />;
+  return <TextWriter {...props} className="text-md md:text-lg" />;
 }

@@ -39,8 +39,9 @@ const GradientFlowContent: ComponentConfig = {
   ],
   credits: { name: "Michael", url: "https://github.com/lappemic" },
   playground: {
-    childrenSource:
-      '  <h1 className="text-4xl font-bold text-white">Supercharge your UI</h1>',
+    childrenSource: `  <div className="text-md text-white md:text-lg">
+    Flowing Gradient Background
+  </div>`,
   },
 };
 

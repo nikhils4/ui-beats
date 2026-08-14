@@ -54,7 +54,7 @@ const TextScrambleContent: ComponentConfig = {
   },
   playground: {
     defaults: {
-      text: "DECODING",
+      text: "Supercharge your UI",
     },
   },
 };

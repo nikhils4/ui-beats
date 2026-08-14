@@ -2,14 +2,14 @@
 
 import GradientFlow from "@/components/demo/background/gradient-flow";
 import { asProps } from "@/lib/playground";
-import { StageCopy } from "@/components/playground/stage";
 import type { PlaygroundHarnessProps } from "@/types/playground.type";
 
 /**
  * Playground harness for GradientFlow.
  *
- * Supplies whatever the component needs beyond its scalar props — children,
- * object literals — and lets the control panel drive the rest.
+ * Mirrors `components/usage/background/gradient-flow.usage.tsx` so the studio and
+ * the docs page show the same demo. The component takes its props from the
+ * control panel; everything around it is identical.
  */
 export default function GradientFlowPlayground({
   values,
@@ -17,9 +17,9 @@ export default function GradientFlowPlayground({
   const props = asProps(GradientFlow, values);
 
   return (
-    <GradientFlow {...props} className="size-full rounded-lg">
-      <div className="flex size-full items-center justify-center">
-        <StageCopy inverted />
+    <GradientFlow {...props} className="size-full">
+      <div className="text-md text-white md:text-lg">
+        Flowing Gradient Background
       </div>
     </GradientFlow>
   );

@@ -7,8 +7,9 @@ import type { PlaygroundHarnessProps } from "@/types/playground.type";
 /**
  * Playground harness for SubscribeButton.
  *
- * Supplies whatever the component needs beyond its scalar props — children,
- * object literals — and lets the control panel drive the rest.
+ * Mirrors `components/usage/button/subscribe-button.usage.tsx` so the studio and
+ * the docs page show the same demo. The component takes its props from the
+ * control panel; everything around it is identical.
  */
 export default function SubscribeButtonPlayground({
   values,

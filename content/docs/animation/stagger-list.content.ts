@@ -65,8 +65,10 @@ const StaggerListContent: ComponentConfig = {
     kind: "tool",
   },
   playground: {
-    childrenSource: `  {items.map((item) => (
-    <li key={item}>{item}</li>
+    childrenSource: `  {["Design", "Build", "Animate", "Ship"].map((label) => (
+    <div key={label} className="rounded-lg border bg-card px-4 py-2 text-sm">
+      {label}
+    </div>
   ))}`,
   },
 };

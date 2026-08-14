@@ -52,9 +52,9 @@ const MorphingCardContent: ComponentConfig = {
   credits: { name: "Michael", url: "https://github.com/lappemic" },
   playground: {
     fixedSource: `  contents={[
-    { shape: "rectangle", title: "Copy", description: "Take the source." },
-    { shape: "circle", title: "Own", description: "Change what you like." },
-    { shape: "hexagon", title: "Ship", description: "No version to pin." },
+    { shape: "rectangle", title: "Rectangle", description: "A clean rectangular shape." },
+    { shape: "circle", title: "Circle", description: "A perfect circle." },
+    { shape: "hexagon", title: "Hexagon", description: "A six-sided shape." },
   ]}`,
   },
 };

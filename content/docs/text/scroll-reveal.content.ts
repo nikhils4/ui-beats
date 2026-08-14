@@ -41,7 +41,8 @@ const ScrollRevealContent: ComponentConfig = {
     kind: "tool",
   },
   playground: {
-    childrenSource: "  Every component is yours to own once you copy it.",
+    childrenSource: `  Scroll and every word arrives in turn, tied to the scrollbar rather than to
+  a timer.`,
   },
 };
 

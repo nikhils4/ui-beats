@@ -50,7 +50,7 @@ const BounceContent: ComponentConfig = {
   credits: { name: "Michael", url: "https://github.com/lappemic" },
   playground: {
     childrenSource:
-      '  <p className="text-lg font-semibold">Supercharge your UI</p>',
+      '  <p className="text-md md:text-lg">This content will bounce when visible</p>',
   },
 };
 

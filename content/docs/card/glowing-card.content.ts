@@ -36,7 +36,8 @@ const GlowingCardContent: ComponentConfig = {
     },
   ],
   playground: {
-    childrenSource: '  <div className="p-6">Move the pointer across me</div>',
+    childrenSource: `  <div className="mb-2 text-sm font-semibold">Glowing Card</div>
+  <div className="text-xs">Hover to see the glow follow your cursor.</div>`,
   },
 };
 

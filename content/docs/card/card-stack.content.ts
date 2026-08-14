@@ -63,8 +63,8 @@ const CardStackContent: ComponentConfig = {
     kind: "tool",
   },
   playground: {
-    childrenSource: `  {cards.map((card) => (
-    <div key={card.id}>{card.title}</div>
+    childrenSource: `  {quotes.map(({ quote, name }) => (
+    <Quote key={name} quote={quote} name={name} />
   ))}`,
   },
 };

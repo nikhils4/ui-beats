@@ -38,7 +38,7 @@ const GravityTextSwapContent: ComponentConfig = {
   ],
   credits: { name: "Michael", url: "https://github.com/lappemic" },
   playground: {
-    fixedSource: '  textArray={["Supercharge", "your", "UI"]}',
+    fixedSource: '  textArray={["Code", "Build", "Sleep", "Repeat"]}',
   },
 };
 

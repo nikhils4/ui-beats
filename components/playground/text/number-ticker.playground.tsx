@@ -7,8 +7,9 @@ import type { PlaygroundHarnessProps } from "@/types/playground.type";
 /**
  * Playground harness for NumberTicker.
  *
- * Supplies whatever the component needs beyond its scalar props — children,
- * object literals — and lets the control panel drive the rest.
+ * Mirrors `components/usage/text/number-ticker.usage.tsx` so the studio and
+ * the docs page show the same demo. The component takes its props from the
+ * control panel; everything around it is identical.
  */
 export default function NumberTickerPlayground({
   values,
@@ -16,6 +17,9 @@ export default function NumberTickerPlayground({
   const props = asProps(NumberTicker, values);
 
   return (
-    <NumberTicker {...props} className="text-4xl font-bold tabular-nums" />
+    <div className="text-center">
+      <NumberTicker {...props} className="text-3xl font-bold" />
+      <p className="mt-1 text-xs text-muted-foreground">Downloads</p>
+    </div>
   );
 }

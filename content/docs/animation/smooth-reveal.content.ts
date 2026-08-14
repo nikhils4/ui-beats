@@ -55,7 +55,7 @@ const SmoothRevealContent: ComponentConfig = {
   ],
   playground: {
     childrenSource:
-      '  <p className="text-lg font-semibold">Supercharge your UI</p>',
+      '  <p className="text-md md:text-lg">This content will smoothly reveal on scroll</p>',
   },
 };
 

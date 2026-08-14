@@ -2,21 +2,23 @@
 
 import RotateIn from "@/components/demo/animation/rotate-in";
 import { asProps } from "@/lib/playground";
-import { StageCopy } from "@/components/playground/stage";
 import type { PlaygroundHarnessProps } from "@/types/playground.type";
 
 /**
  * Playground harness for RotateIn.
  *
- * Supplies whatever the component needs beyond its scalar props — children,
- * object literals — and lets the control panel drive the rest.
+ * Mirrors `components/usage/animation/rotate-in.usage.tsx` so the studio and
+ * the docs page show the same demo. The component takes its props from the
+ * control panel; everything around it is identical.
  */
 export default function RotateInPlayground({ values }: PlaygroundHarnessProps) {
   const props = asProps(RotateIn, values);
 
   return (
     <RotateIn {...props}>
-      <StageCopy />
+      <p className="text-md md:text-lg">
+        This content will rotate in when visible
+      </p>
     </RotateIn>
   );
 }

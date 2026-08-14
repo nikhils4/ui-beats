@@ -7,8 +7,9 @@ import type { PlaygroundHarnessProps } from "@/types/playground.type";
 /**
  * Playground harness for FlipCard.
  *
- * Supplies whatever the component needs beyond its scalar props — children,
- * object literals — and lets the control panel drive the rest.
+ * Mirrors `components/usage/card/flip-card.usage.tsx` so the studio and
+ * the docs page show the same demo. The component takes its props from the
+ * control panel; everything around it is identical.
  */
 export default function FlipCardPlayground({ values }: PlaygroundHarnessProps) {
   const props = asProps(FlipCard, values);
@@ -16,7 +17,10 @@ export default function FlipCardPlayground({ values }: PlaygroundHarnessProps) {
   return (
     <FlipCard
       {...props}
-      frontContent={{ title: "Discover", subtitle: "Hover to learn more" }}
+      frontContent={{
+        title: "Discover",
+        subtitle: "Hover to learn more",
+      }}
       backContent={{
         title: "UI Beats",
         description:

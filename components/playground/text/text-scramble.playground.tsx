@@ -7,13 +7,14 @@ import type { PlaygroundHarnessProps } from "@/types/playground.type";
 /**
  * Playground harness for TextScramble.
  *
- * Supplies whatever the component needs beyond its scalar props — children,
- * object literals — and lets the control panel drive the rest.
+ * Mirrors `components/usage/text/text-scramble.usage.tsx` so the studio and
+ * the docs page show the same demo. The component takes its props from the
+ * control panel; everything around it is identical.
  */
 export default function TextScramblePlayground({
   values,
 }: PlaygroundHarnessProps) {
   const props = asProps(TextScramble, values);
 
-  return <TextScramble {...props} className="text-2xl font-semibold" />;
+  return <TextScramble {...props} className="text-xl font-bold md:text-2xl" />;
 }

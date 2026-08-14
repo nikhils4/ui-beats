@@ -2,14 +2,14 @@
 
 import SmoothReveal from "@/components/demo/animation/smooth-reveal";
 import { asProps } from "@/lib/playground";
-import { StageCopy } from "@/components/playground/stage";
 import type { PlaygroundHarnessProps } from "@/types/playground.type";
 
 /**
  * Playground harness for SmoothReveal.
  *
- * Supplies whatever the component needs beyond its scalar props — children,
- * object literals — and lets the control panel drive the rest.
+ * Mirrors `components/usage/animation/smooth-reveal.usage.tsx` so the studio and
+ * the docs page show the same demo. The component takes its props from the
+ * control panel; everything around it is identical.
  */
 export default function SmoothRevealPlayground({
   values,
@@ -18,7 +18,9 @@ export default function SmoothRevealPlayground({
 
   return (
     <SmoothReveal {...props}>
-      <StageCopy />
+      <p className="text-md md:text-lg">
+        This content will smoothly reveal on scroll
+      </p>
     </SmoothReveal>
   );
 }

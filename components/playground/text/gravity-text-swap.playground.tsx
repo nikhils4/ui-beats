@@ -7,8 +7,9 @@ import type { PlaygroundHarnessProps } from "@/types/playground.type";
 /**
  * Playground harness for GravityTextSwap.
  *
- * Supplies whatever the component needs beyond its scalar props — children,
- * object literals — and lets the control panel drive the rest.
+ * Mirrors `components/usage/text/gravity-text-swap.usage.tsx` so the studio and
+ * the docs page show the same demo. The component takes its props from the
+ * control panel; everything around it is identical.
  */
 export default function GravityTextSwapPlayground({
   values,
@@ -18,8 +19,8 @@ export default function GravityTextSwapPlayground({
   return (
     <GravityTextSwap
       {...props}
-      textArray={["Supercharge", "your", "UI"]}
-      className="text-3xl font-bold"
+      textArray={["Code", "Build", "Sleep", "Repeat"]}
+      className="text-md md:text-lg"
     />
   );
 }

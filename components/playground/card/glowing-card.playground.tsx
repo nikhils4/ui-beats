@@ -7,8 +7,9 @@ import type { PlaygroundHarnessProps } from "@/types/playground.type";
 /**
  * Playground harness for GlowingCard.
  *
- * Supplies whatever the component needs beyond its scalar props — children,
- * object literals — and lets the control panel drive the rest.
+ * Mirrors `components/usage/card/glowing-card.usage.tsx` so the studio and
+ * the docs page show the same demo. The component takes its props from the
+ * control panel; everything around it is identical.
  */
 export default function GlowingCardPlayground({
   values,
@@ -17,9 +18,12 @@ export default function GlowingCardPlayground({
 
   return (
     <GlowingCard {...props}>
-      <div className="flex size-full items-center justify-center p-6 text-center">
-        <p className="text-sm font-medium">Move the pointer across me</p>
+      <div className="mb-2 text-sm font-semibold">Glowing Card</div>
+      <div className="text-xs">
+        Hover over this card to see the glowing effect. The glow follows your
+        cursor movement.
       </div>
+      <div className="mt-auto text-right text-xs">Next</div>
     </GlowingCard>
   );
 }

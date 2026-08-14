@@ -2,13 +2,18 @@
 
 import OrbitingElements from "@/components/demo/background/orbiting-elements";
 import { asProps } from "@/lib/playground";
+import {
+  OrbitingCentre,
+  OrbitingItems,
+} from "@/components/playground/demo-content";
 import type { PlaygroundHarnessProps } from "@/types/playground.type";
 
 /**
  * Playground harness for OrbitingElements.
  *
- * Supplies whatever the component needs beyond its scalar props — children,
- * object literals — and lets the control panel drive the rest.
+ * Mirrors `components/usage/background/orbiting-elements.usage.tsx` so the studio and
+ * the docs page show the same demo. The component takes its props from the
+ * control panel; everything around it is identical.
  */
 export default function OrbitingElementsPlayground({
   values,
@@ -16,15 +21,11 @@ export default function OrbitingElementsPlayground({
   const props = asProps(OrbitingElements, values);
 
   return (
-    <OrbitingElements {...props}>
-      {["A", "B", "C"].map((label) => (
-        <div
-          key={label}
-          className="flex size-9 items-center justify-center rounded-full border bg-card text-xs font-semibold shadow-subtle"
-        >
-          {label}
-        </div>
-      ))}
-    </OrbitingElements>
+    <div className="relative flex size-full items-center justify-center">
+      <OrbitingCentre />
+      <OrbitingElements {...props}>
+        <OrbitingItems />
+      </OrbitingElements>
+    </div>
   );
 }

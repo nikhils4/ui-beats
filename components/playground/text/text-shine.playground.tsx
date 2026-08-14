@@ -7,13 +7,14 @@ import type { PlaygroundHarnessProps } from "@/types/playground.type";
 /**
  * Playground harness for TextShine.
  *
- * Supplies whatever the component needs beyond its scalar props — children,
- * object literals — and lets the control panel drive the rest.
+ * Mirrors `components/usage/text/text-shine.usage.tsx` so the studio and
+ * the docs page show the same demo. The component takes its props from the
+ * control panel; everything around it is identical.
  */
 export default function TextShinePlayground({
   values,
 }: PlaygroundHarnessProps) {
   const props = asProps(TextShine, values);
 
-  return <TextShine {...props} className="text-3xl font-bold" />;
+  return <TextShine {...props} />;
 }

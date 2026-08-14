@@ -2,14 +2,14 @@
 
 import FadeInUnblur from "@/components/demo/animation/fade-in-unblur";
 import { asProps } from "@/lib/playground";
-import { StageCopy } from "@/components/playground/stage";
 import type { PlaygroundHarnessProps } from "@/types/playground.type";
 
 /**
  * Playground harness for FadeInUnblur.
  *
- * Supplies whatever the component needs beyond its scalar props — children,
- * object literals — and lets the control panel drive the rest.
+ * Mirrors `components/usage/animation/fade-in-unblur.usage.tsx` so the studio and
+ * the docs page show the same demo. The component takes its props from the
+ * control panel; everything around it is identical.
  */
 export default function FadeInUnblurPlayground({
   values,
@@ -18,7 +18,9 @@ export default function FadeInUnblurPlayground({
 
   return (
     <FadeInUnblur {...props}>
-      <StageCopy />
+      <p className="text-md md:text-lg">
+        This content fades in while unblurring when it enters the viewport
+      </p>
     </FadeInUnblur>
   );
 }

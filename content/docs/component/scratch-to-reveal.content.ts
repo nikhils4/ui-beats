@@ -78,7 +78,9 @@ const ScratchToRevealContent: ComponentConfig = {
     kind: "tool",
   },
   playground: {
-    childrenSource: '  <div className="p-6">You found it</div>',
+    childrenSource: `  <div className="text-center">
+    <p className="font-mono text-2xl font-bold text-brand">BEATS-30</p>
+  </div>`,
   },
 };
 

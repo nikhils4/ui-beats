@@ -54,9 +54,9 @@ const MarqueeContent: ComponentConfig = {
     kind: "tool",
   },
   playground: {
-    childrenSource: `    {logos.map((logo) => (
-      <Logo key={logo} name={logo} />
-    ))}`,
+    childrenSource: `  {logos.map((name) => (
+    <Logo key={name} name={name} />
+  ))}`,
   },
 };
 

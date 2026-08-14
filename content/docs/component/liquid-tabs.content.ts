@@ -54,15 +54,12 @@ const LiquidTabsContent: ComponentConfig = {
     kind: "tool",
   },
   playground: {
-    // `value` puts the component into controlled mode, where it only ever
-    // changes if the parent passes a new one. A playground that set it would
-    // hand the reader a tab strip that looks broken, and a snippet missing the
-    // `onValueChange` that has to come with it.
     exclude: ["value"],
     fixedSource: `  items={[
-    { label: "Preview", value: "preview" },
-    { label: "Code", value: "code" },
-    { label: "Props", value: "props" },
+    { label: "Overview", value: "overview" },
+    { label: "Analytics", value: "analytics" },
+    { label: "Reports", value: "reports" },
+    { label: "Settings", value: "settings" },
   ]}`,
   },
 };

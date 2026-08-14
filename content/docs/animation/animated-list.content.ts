@@ -55,8 +55,8 @@ const AnimatedListContent: ComponentConfig = {
     kind: "tool",
   },
   playground: {
-    childrenSource: `  {notifications.map((item) => (
-    <Notification key={item.id} {...item} />
+    childrenSource: `  {events.map(({ icon: Icon, title, meta }) => (
+    <Notification key={title} icon={Icon} title={title} meta={meta} />
   ))}`,
   },
 };

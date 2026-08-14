@@ -2,21 +2,23 @@
 
 import ScaleIn from "@/components/demo/animation/scale-in";
 import { asProps } from "@/lib/playground";
-import { StageCopy } from "@/components/playground/stage";
 import type { PlaygroundHarnessProps } from "@/types/playground.type";
 
 /**
  * Playground harness for ScaleIn.
  *
- * Supplies whatever the component needs beyond its scalar props — children,
- * object literals — and lets the control panel drive the rest.
+ * Mirrors `components/usage/animation/scale-in.usage.tsx` so the studio and
+ * the docs page show the same demo. The component takes its props from the
+ * control panel; everything around it is identical.
  */
 export default function ScaleInPlayground({ values }: PlaygroundHarnessProps) {
   const props = asProps(ScaleIn, values);
 
   return (
     <ScaleIn {...props}>
-      <StageCopy />
+      <p className="text-md md:text-lg">
+        This content will scale in when visible
+      </p>
     </ScaleIn>
   );
 }

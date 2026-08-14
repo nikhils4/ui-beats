@@ -45,7 +45,7 @@ const TextShineContent: ComponentConfig = {
   credits: { name: "Divyaswor", url: "https://github.com/divyaswormakai" },
   playground: {
     defaults: {
-      text: "Shine on",
+      text: "I am Shiny",
     },
   },
 };

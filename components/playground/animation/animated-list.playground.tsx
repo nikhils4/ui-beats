@@ -2,14 +2,15 @@
 
 import AnimatedList from "@/components/demo/animation/animated-list";
 import { asProps } from "@/lib/playground";
-import { StageList } from "@/components/playground/stage";
+import { EventItems } from "@/components/playground/demo-content";
 import type { PlaygroundHarnessProps } from "@/types/playground.type";
 
 /**
  * Playground harness for AnimatedList.
  *
- * Supplies whatever the component needs beyond its scalar props — children,
- * object literals — and lets the control panel drive the rest.
+ * Mirrors `components/usage/animation/animated-list.usage.tsx` so the studio and
+ * the docs page show the same demo. The component takes its props from the
+ * control panel; everything around it is identical.
  */
 export default function AnimatedListPlayground({
   values,
@@ -17,8 +18,10 @@ export default function AnimatedListPlayground({
   const props = asProps(AnimatedList, values);
 
   return (
-    <AnimatedList {...props} className="w-64">
-      <StageList />
-    </AnimatedList>
+    <div className="w-full max-w-sm">
+      <AnimatedList {...props}>
+        <EventItems />
+      </AnimatedList>
+    </div>
   );
 }

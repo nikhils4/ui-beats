@@ -67,7 +67,9 @@ const BorderBeamContent: ComponentConfig = {
     kind: "tool",
   },
   playground: {
-    childrenSource: '  <div className="p-6">Wrapped content</div>',
+    childrenSource: `  <div className="p-6">
+    <h3 className="text-sm font-semibold">Pro plan</h3>
+  </div>`,
   },
 };
 

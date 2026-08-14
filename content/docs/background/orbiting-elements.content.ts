@@ -59,8 +59,10 @@ const OrbitingElementsContent: ComponentConfig = {
     kind: "tool",
   },
   playground: {
-    childrenSource: `  {icons.map((Icon) => (
-    <Icon key={Icon.name} />
+    childrenSource: `  {[Atom, Cpu, Boxes].map((Icon, index) => (
+    <Orbit key={index}>
+      <Icon className="size-4 text-muted-foreground" />
+    </Orbit>
   ))}`,
   },
 };

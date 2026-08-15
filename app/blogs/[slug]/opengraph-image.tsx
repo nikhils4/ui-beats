@@ -44,23 +44,19 @@ export default async function OpengraphImage({
   });
 
   return new ImageResponse(
-    (
-      <OgCard
-        eyebrow="/ Blog"
-        title={post.title}
-        body={clamp(post.description, 150)}
-        footerLeft={
-          <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-            <div style={{ color: og.brand, fontWeight: 600 }}>
-              {post.author}
-            </div>
-            <div style={{ color: og.faint }}>·</div>
-            <div style={{ color: og.muted }}>{date}</div>
-          </div>
-        }
-        footerRight={post.readTime}
-      />
-    ),
+    <OgCard
+      eyebrow="/ Blog"
+      title={post.title}
+      body={clamp(post.description, 150)}
+      footerLeft={
+        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+          <div style={{ color: og.brand, fontWeight: 600 }}>{post.author}</div>
+          <div style={{ color: og.faint }}>·</div>
+          <div style={{ color: og.muted }}>{date}</div>
+        </div>
+      }
+      footerRight={post.readTime}
+    />,
     size,
   );
 }

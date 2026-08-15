@@ -41,19 +41,17 @@ export default async function OpengraphImage({
   const count = getComponentsByCategory(category).length;
 
   return new ImageResponse(
-    (
-      <OgCard
-        eyebrow="/ Components"
-        title={`${label} Components`}
-        body={clamp(CATEGORY_INTRO[category], 150)}
-        footerLeft={
-          <div style={{ color: og.brand, fontWeight: 600 }}>
-            {`${count} component${count === 1 ? "" : "s"}`}
-          </div>
-        }
-        footerRight={`uibeats.com/docs/${category}`}
-      />
-    ),
+    <OgCard
+      eyebrow="/ Components"
+      title={`${label} Components`}
+      body={clamp(CATEGORY_INTRO[category], 150)}
+      footerLeft={
+        <div style={{ color: og.brand, fontWeight: 600 }}>
+          {`${count} component${count === 1 ? "" : "s"}`}
+        </div>
+      }
+      footerRight={`uibeats.com/docs/${category}`}
+    />,
     size,
   );
 }

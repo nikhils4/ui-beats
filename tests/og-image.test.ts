@@ -60,7 +60,11 @@ describe("open graph cards are not silently suppressed", () => {
    */
   it("never sets openGraph.images in a segment that generates a card", () => {
     const offenders = pageFiles().filter((page) => {
-      const sibling = path.join(ROOT, path.dirname(page), "opengraph-image.tsx");
+      const sibling = path.join(
+        ROOT,
+        path.dirname(page),
+        "opengraph-image.tsx",
+      );
       if (!fs.existsSync(sibling)) return false;
       return setsImages(fs.readFileSync(path.join(ROOT, page), "utf8"));
     });
@@ -144,7 +148,9 @@ describe("open graph cards stay on brand", () => {
       // dimensions and alt text.
       expect(source, card).toMatch(/export const alt =/);
       expect(source, card).toMatch(/export const size = OG_SIZE/);
-      expect(source, card).toMatch(/export const contentType = OG_CONTENT_TYPE/);
+      expect(source, card).toMatch(
+        /export const contentType = OG_CONTENT_TYPE/,
+      );
     }
   });
 

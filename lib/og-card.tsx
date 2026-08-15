@@ -23,7 +23,10 @@ export function clamp(text: string, max: number): string {
  * Custom React Hooks: State Management & API Calls". A single fixed size
  * either wastes the canvas on the short ones or overflows on the long ones.
  */
-function headlineSize(title: string): { fontSize: number; letterSpacing: number } {
+function headlineSize(title: string): {
+  fontSize: number;
+  letterSpacing: number;
+} {
   if (title.length <= 24) return { fontSize: 86, letterSpacing: -3.5 };
   if (title.length <= 40) return { fontSize: 74, letterSpacing: -3 };
   if (title.length <= 62) return { fontSize: 60, letterSpacing: -2 };
@@ -72,7 +75,9 @@ export function OgCard({
       </div>
 
       <div style={{ display: "flex", flexDirection: "column" }}>
-        <div style={{ ...ogHeadline, fontSize, letterSpacing, lineHeight: 1.05 }}>
+        <div
+          style={{ ...ogHeadline, fontSize, letterSpacing, lineHeight: 1.05 }}
+        >
           {title}
         </div>
         {body ? (

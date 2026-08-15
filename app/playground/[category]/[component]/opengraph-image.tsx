@@ -40,19 +40,17 @@ export default async function OpengraphImage({
   }
 
   return new ImageResponse(
-    (
-      <OgCard
-        eyebrow="/ Playground"
-        title={`${entry.title} Playground`}
-        body={`Tune ${entry.title} live — every prop as a control, the code updating as you go.`}
-        footerLeft={
-          <div style={{ color: og.brand, fontWeight: 600 }}>
-            {`uibeats.com/playground/${entry.category}/${entry.name}`}
-          </div>
-        }
-        footerRight="Live controls"
-      />
-    ),
+    <OgCard
+      eyebrow="/ Playground"
+      title={`${entry.title} Playground`}
+      body={`Tune ${entry.title} live — every prop as a control, the code updating as you go.`}
+      footerLeft={
+        <div style={{ color: og.brand, fontWeight: 600 }}>
+          {`uibeats.com/playground/${entry.category}/${entry.name}`}
+        </div>
+      }
+      footerRight="Live controls"
+    />,
     size,
   );
 }

@@ -19,16 +19,14 @@ export const contentType = OG_CONTENT_TYPE;
  */
 export default function OpengraphImage() {
   return new ImageResponse(
-    (
-      <OgCard
-        title="Supercharge your UI"
-        body={siteConfig.description}
-        footerLeft={
-          <div style={{ color: og.brand, fontWeight: 600 }}>uibeats.com</div>
-        }
-        footerRight="React · TypeScript · Tailwind CSS · Motion"
-      />
-    ),
+    <OgCard
+      title="Supercharge your UI"
+      body={siteConfig.description}
+      footerLeft={
+        <div style={{ color: og.brand, fontWeight: 600 }}>uibeats.com</div>
+      }
+      footerRight="React · TypeScript · Tailwind CSS · Motion"
+    />,
     size,
   );
 }

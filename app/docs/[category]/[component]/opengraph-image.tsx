@@ -35,23 +35,21 @@ export default async function OpengraphImage({
   const install = `npx shadcn@latest add uibeats.com/r/${entry?.name ?? "component"}.json`;
 
   return new ImageResponse(
-    (
-      <OgCard
-        eyebrow={label ? `/ ${label}` : undefined}
-        title={entry?.title ?? siteConfig.name}
-        body={clamp(entry?.description ?? siteConfig.description, 140)}
-        footerLeft={
-          /*
-           * Satori counts each JSX child as its own node, so the `$` and the
-           * command are separate elements rather than one interpolated string.
-           */
-          <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-            <div style={{ color: og.faint }}>$</div>
-            <div style={{ color: og.brand }}>{install}</div>
-          </div>
-        }
-      />
-    ),
+    <OgCard
+      eyebrow={label ? `/ ${label}` : undefined}
+      title={entry?.title ?? siteConfig.name}
+      body={clamp(entry?.description ?? siteConfig.description, 140)}
+      footerLeft={
+        /*
+         * Satori counts each JSX child as its own node, so the `$` and the
+         * command are separate elements rather than one interpolated string.
+         */
+        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+          <div style={{ color: og.faint }}>$</div>
+          <div style={{ color: og.brand }}>{install}</div>
+        </div>
+      }
+    />,
     size,
   );
 }

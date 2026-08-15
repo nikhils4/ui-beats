@@ -17,19 +17,17 @@ export default function OpengraphImage() {
   const count = getAllPosts().length;
 
   return new ImageResponse(
-    (
-      <OgCard
-        eyebrow="/ Blog"
-        title="Frontend, design & animation"
-        body="Tutorials and guides on frontend development, UI/UX design, and web animation."
-        footerLeft={
-          <div style={{ color: og.brand, fontWeight: 600 }}>
-            {`${count} post${count === 1 ? "" : "s"}`}
-          </div>
-        }
-        footerRight="uibeats.com/blogs"
-      />
-    ),
+    <OgCard
+      eyebrow="/ Blog"
+      title="Frontend, design & animation"
+      body="Tutorials and guides on frontend development, UI/UX design, and web animation."
+      footerLeft={
+        <div style={{ color: og.brand, fontWeight: 600 }}>
+          {`${count} post${count === 1 ? "" : "s"}`}
+        </div>
+      }
+      footerRight="uibeats.com/blogs"
+    />,
     size,
   );
 }

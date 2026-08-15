@@ -68,9 +68,21 @@ const GlowingCard: React.FC<GlowingCardProps> = ({
 
   return (
     <div className={cn("flex items-center justify-center", className)}>
+      {/*
+       * Both radii come from `--radius` so the 1px ring stays 1px all the way
+       * round, corners included.
+       *
+       * The inner was a hardcoded `rounded-[7px]` against an outer `rounded-lg`.
+       * That paired correctly when `rounded-lg` meant 8px, but `--radius-lg`
+       * resolves to `--radius` (12px here), and an inner corner 4px too square
+       * pushes out into the corner and covers the gradient behind it. The glow
+       * ran along all four edges and vanished at all four corners. Deriving the
+       * inner radius also means the ring survives a project whose `--radius` is
+       * nothing like this one's.
+       */}
       <motion.div
         className={cn(
-          "relative cursor-pointer overflow-hidden rounded-lg",
+          "relative cursor-pointer overflow-hidden rounded-[var(--radius)]",
           "transition-shadow duration-300",
         )}
         style={{
@@ -84,7 +96,7 @@ const GlowingCard: React.FC<GlowingCardProps> = ({
       >
         <motion.div
           className={cn(
-            "absolute inset-[1px] flex flex-col justify-between rounded-[7px] p-4",
+            "absolute inset-[1px] flex flex-col justify-between rounded-[calc(var(--radius)-1px)] p-4",
             "bg-card text-card-foreground",
           )}
         >

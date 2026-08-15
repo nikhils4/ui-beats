@@ -34,9 +34,16 @@ export function shadcnCommand(name: string): string {
  * v0 fetches the registry item itself, so this passes the URL rather than the
  * source — the chat starts with the real component, its dependencies and its
  * `cssVars`, not a paraphrase of them.
+ *
+ * `v0.app`, not the `v0.dev` every other registry still links to. The old host
+ * answers this path with a redirect to `v0.dev/api/auth/login?next=v0.app/...`,
+ * which signs the reader in on one origin and then hands them to another that
+ * cannot see the cookie just set. The sign-in gate reappears, its confirm
+ * button disables itself, and the hand-off ends there. Same endpoint, one
+ * origin, no cross-domain hop.
  */
 export function v0Url(name: string): string {
-  return `https://v0.dev/chat/api/open?url=${encodeURIComponent(registryUrl(name))}`;
+  return `https://v0.app/chat/api/open?url=${encodeURIComponent(registryUrl(name))}`;
 }
 
 /**

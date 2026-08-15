@@ -14,7 +14,15 @@ import { cn } from "@/lib/utils";
  */
 type PreviewComponent = ComponentType<object>;
 
-const loading = () => <Skeleton className="size-full" />;
+/**
+ * The stage renders immediately; the preview inside it does not, because every
+ * one is a separate `next/dynamic` chunk. `data-preview-loading` marks that gap
+ * so the visual suite can tell "not here yet" from "here and not yet animated",
+ * which look identical for an entrance that starts at opacity zero.
+ */
+const loading = () => (
+  <Skeleton data-preview-loading="" className="size-full" />
+);
 
 /**
  * Lazy map of live previews, keyed by `<category>/<name>`.

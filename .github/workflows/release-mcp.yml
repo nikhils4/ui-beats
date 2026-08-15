@@ -27,15 +27,26 @@ jobs:
 
       - uses: actions/setup-node@v5
         with:
-          # Trusted publishing needs Node >= 22.14 and npm >= 11.5.1.
-          node-version: "22"
+          # 24, not the 22 the CI workflow uses: trusted publishing needs npm
+          # >= 11.5.1, and Node 22 still bundles npm 10.
+          node-version: "24"
           registry-url: "https://registry.npmjs.org"
           # The repo root is a Yarn 4 workspace; only this package uses npm, so
           # the default lockfile-based cache lookup would fail at the root.
           package-manager-cache: false
 
+      # Belt and braces: the bundled npm satisfies the floor today, but a publish
+      # that fails on it does so only after building, at the very last step.
+      - name: Ensure npm supports trusted publishing
+        run: |
+          npm install -g npm@latest
+          echo "node $(node --version) / npm $(npm --version)"
+
+      # `npm install`, not `npm ci`: this package's lockfile is deliberately
+      # gitignored (see .gitignore, "standalone packages"), and `npm ci` refuses
+      # to run without one.
       - name: Install dependencies
-        run: npm ci
+        run: npm install --no-audit --no-fund
 
       - name: Verify the tag matches the package version
         run: |

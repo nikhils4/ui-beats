@@ -10,7 +10,12 @@ export async function generateRssFeed(): Promise<Feed> {
     id: siteConfig.url,
     link: siteConfig.url,
     language: "en",
-    image: absoluteUrl(siteConfig.ogImage),
+    /*
+     * The square mark, not `siteConfig.ogImage`. A feed reader renders this as
+     * the channel avatar next to every item, which is a logo slot — the 1200x630
+     * social card it used to point at was letterboxed into a thumbnail there.
+     */
+    image: absoluteUrl("/uibeats-icon.png"),
     favicon: absoluteUrl("/icon.png"),
     copyright: `All rights reserved ${new Date().getFullYear()}, ${siteConfig.name}`,
     feedLinks: {

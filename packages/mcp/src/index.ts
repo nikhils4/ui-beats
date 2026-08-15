@@ -105,7 +105,14 @@ server.registerTool(
           "What the component should do, in plain words, or its exact name.",
         ),
       category: z
-        .enum(["animation", "background", "button", "card", "component", "text"])
+        .enum([
+          "animation",
+          "background",
+          "button",
+          "card",
+          "component",
+          "text",
+        ])
         .optional()
         .describe("Restrict results to one category."),
       limit: z
@@ -124,7 +131,9 @@ server.registerTool(
       const matches = searchComponents(catalogue, query, { category, limit });
 
       if (!matches.length) {
-        const names = catalogue.components.map((entry) => entry.name).join(", ");
+        const names = catalogue.components
+          .map((entry) => entry.name)
+          .join(", ");
         return textResult(
           `No component matched "${query}"${category ? ` in category "${category}"` : ""}.\n\nThe full catalogue is: ${names}`,
         );
@@ -181,7 +190,14 @@ server.registerTool(
       "List every component in the catalogue, grouped by category. Use this to see what is available before searching.",
     inputSchema: {
       category: z
-        .enum(["animation", "background", "button", "card", "component", "text"])
+        .enum([
+          "animation",
+          "background",
+          "button",
+          "card",
+          "component",
+          "text",
+        ])
         .optional()
         .describe("List only this category."),
     },
@@ -201,7 +217,8 @@ server.registerTool(
           `## ${current} (${entries.length})`,
           "",
           ...entries.map(
-            (entry) => `- \`${entry.name}\` — ${entry.title}: ${entry.description}`,
+            (entry) =>
+              `- \`${entry.name}\` — ${entry.title}: ${entry.description}`,
           ),
         ].join("\n");
       });

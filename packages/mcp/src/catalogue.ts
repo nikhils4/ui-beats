@@ -61,7 +61,9 @@ async function fetchJson(url: string): Promise<unknown> {
     headers: { accept: "application/json" },
   });
   if (!response.ok) {
-    throw new Error(`GET ${url} failed: ${response.status} ${response.statusText}`);
+    throw new Error(
+      `GET ${url} failed: ${response.status} ${response.statusText}`,
+    );
   }
   return response.json();
 }
@@ -72,7 +74,9 @@ export async function loadCatalogue(): Promise<Catalogue> {
 
   inFlight = (async () => {
     try {
-      const value = (await fetchJson(`${ORIGIN}/r/components.json`)) as Catalogue;
+      const value = (await fetchJson(
+        `${ORIGIN}/r/components.json`,
+      )) as Catalogue;
       if (!Array.isArray(value?.components)) {
         throw new Error("components.json did not contain a components array");
       }
@@ -101,7 +105,9 @@ export async function fetchComponentMarkdown(
   const url = `${ORIGIN}/docs/${entry.category}/${entry.name}.md`;
   const response = await fetch(url, { headers: { accept: "text/markdown" } });
   if (!response.ok) {
-    throw new Error(`GET ${url} failed: ${response.status} ${response.statusText}`);
+    throw new Error(
+      `GET ${url} failed: ${response.status} ${response.statusText}`,
+    );
   }
   return response.text();
 }
@@ -114,14 +120,80 @@ export async function fetchComponentMarkdown(
  * query returns the whole library ranked by prose length.
  */
 const STOPWORDS = new Set([
-  "a", "add", "an", "and", "any", "anything", "are", "as", "at", "be", "build",
-  "but", "by", "can", "component", "components", "create", "do", "does", "for",
-  "from", "get", "has", "have", "help", "how", "i", "in", "into", "is", "it",
-  "its", "like", "make", "me", "my", "need", "of", "on", "one", "or", "over",
-  "please", "react", "should", "show", "so", "some", "something", "that",
-  "the", "then", "there", "these", "they", "thing", "things", "this", "to",
-  "up", "use", "used", "using", "want", "was", "we", "what", "when", "which",
-  "will", "with", "would", "you", "your",
+  "a",
+  "add",
+  "an",
+  "and",
+  "any",
+  "anything",
+  "are",
+  "as",
+  "at",
+  "be",
+  "build",
+  "but",
+  "by",
+  "can",
+  "component",
+  "components",
+  "create",
+  "do",
+  "does",
+  "for",
+  "from",
+  "get",
+  "has",
+  "have",
+  "help",
+  "how",
+  "i",
+  "in",
+  "into",
+  "is",
+  "it",
+  "its",
+  "like",
+  "make",
+  "me",
+  "my",
+  "need",
+  "of",
+  "on",
+  "one",
+  "or",
+  "over",
+  "please",
+  "react",
+  "should",
+  "show",
+  "so",
+  "some",
+  "something",
+  "that",
+  "the",
+  "then",
+  "there",
+  "these",
+  "they",
+  "thing",
+  "things",
+  "this",
+  "to",
+  "up",
+  "use",
+  "used",
+  "using",
+  "want",
+  "was",
+  "we",
+  "what",
+  "when",
+  "which",
+  "will",
+  "with",
+  "would",
+  "you",
+  "your",
 ]);
 
 function tokenize(value: string): string[] {
@@ -141,7 +213,8 @@ function tokenize(value: string): string[] {
  * Not a stemmer — just enough that an agent's phrasing does not cost a match.
  */
 function fold(token: string): string {
-  if (token.length > 4 && token.endsWith("ies")) return `${token.slice(0, -3)}y`;
+  if (token.length > 4 && token.endsWith("ies"))
+    return `${token.slice(0, -3)}y`;
   if (token.length > 3 && token.endsWith("es")) return token.slice(0, -2);
   if (token.length > 3 && token.endsWith("s")) return token.slice(0, -1);
   if (token.length > 5 && token.endsWith("ing")) return token.slice(0, -3);
@@ -218,7 +291,9 @@ export function searchComponents(
   const ranked = pool
     .map((entry) => ({ entry, value: score(entry, tokens) }))
     .filter((row) => row.value > 0)
-    .sort((a, b) => b.value - a.value || a.entry.name.localeCompare(b.entry.name));
+    .sort(
+      (a, b) => b.value - a.value || a.entry.name.localeCompare(b.entry.name),
+    );
 
   if (!ranked.length) return [];
 

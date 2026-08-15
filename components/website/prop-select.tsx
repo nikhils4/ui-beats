@@ -42,7 +42,7 @@ export function PropSelect({
           id={id}
           type="button"
           className={cn(
-            "flex w-full items-center gap-2 rounded-lg border bg-background px-2.5 py-1.5 text-left font-mono text-xs shadow-subtle outline-none transition-colors",
+            "flex w-full items-center gap-2 rounded-lg border bg-background px-2.5 py-1.5 text-left font-mono text-xs shadow-subtle transition-colors outline-none",
             "hover:border-brand/40 focus-visible:border-brand focus-visible:ring-2 focus-visible:ring-brand/30",
             className,
           )}

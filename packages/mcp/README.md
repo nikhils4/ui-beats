@@ -28,12 +28,12 @@ Cursor, Windsurf, Claude Desktop and anything else that reads an
 
 ## Tools
 
-| Tool                  | What it does                                                              |
-| --------------------- | ------------------------------------------------------------------------- |
-| `search_components`   | Rank the catalogue against a plain-language query or a name               |
-| `get_component`       | Full docs for one component: props table, usage example, complete source  |
-| `list_components`     | Everything available, grouped by category                                 |
-| `get_install_command` | The exact `shadcn` command, plus the npm packages it pulls in             |
+| Tool                  | What it does                                                             |
+| --------------------- | ------------------------------------------------------------------------ |
+| `search_components`   | Rank the catalogue against a plain-language query or a name              |
+| `get_component`       | Full docs for one component: props table, usage example, complete source |
+| `list_components`     | Everything available, grouped by category                                |
+| `get_install_command` | The exact `shadcn` command, plus the npm packages it pulls in            |
 
 A typical exchange: the agent calls `search_components("card that flips")`,
 then `get_component("flip-card")` to read the real props before writing any
@@ -52,9 +52,9 @@ a fallback so a brief network failure does not break every tool call.
 
 ## Configuration
 
-| Variable      | Default               | Purpose                                    |
-| ------------- | --------------------- | ------------------------------------------ |
-| `UIBEATS_URL` | `https://uibeats.com` | Point at a local `next dev` while working  |
+| Variable      | Default               | Purpose                                   |
+| ------------- | --------------------- | ----------------------------------------- |
+| `UIBEATS_URL` | `https://uibeats.com` | Point at a local `next dev` while working |
 
 ```bash
 UIBEATS_URL=http://localhost:3000 npx @uibeats/mcp

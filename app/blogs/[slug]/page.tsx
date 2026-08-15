@@ -25,7 +25,6 @@ export async function generateMetadata({
   if (!post) return {};
 
   const url = absoluteUrl(`/blogs/${post.slug}`);
-  const image = post.image ? absoluteUrl(post.image) : siteConfig.ogImage;
 
   return {
     title: post.title,
@@ -43,7 +42,10 @@ export async function generateMetadata({
       tags: post.tags,
       url,
       siteName: siteConfig.name,
-      images: [{ url: image, alt: post.imageAlt }],
+      // No `images` here on purpose: `opengraph-image.tsx` in this segment
+      // generates the card. The post's `image` frontmatter stays the in-page
+      // hero; setting it here as well would win over the generated card and
+      // put the old 16:9 personal-brand art back in the unfurl.
     },
   };
 }

@@ -49,9 +49,10 @@ describe("cubicBezier", () => {
       let previous = -Infinity;
       for (let i = 0; i <= 20; i++) {
         const value = ease(i / 20);
-        expect(value, `${preset.name} dipped at ${i / 20}`).toBeGreaterThanOrEqual(
-          previous - 1e-6,
-        );
+        expect(
+          value,
+          `${preset.name} dipped at ${i / 20}`,
+        ).toBeGreaterThanOrEqual(previous - 1e-6);
         previous = value;
       }
     }
@@ -137,7 +138,10 @@ describe("matchPreset", () => {
 });
 
 describe("snippets", () => {
-  const tween = { points: [0.42, 0, 0.58, 1] as [number, number, number, number], duration: 0.6 };
+  const tween = {
+    points: [0.42, 0, 0.58, 1] as [number, number, number, number],
+    duration: 0.6,
+  };
   const spring = { stiffness: 260, damping: 24, mass: 1 };
 
   it("emits a Motion tween with its ease array", () => {

@@ -35,9 +35,9 @@ describe("deriveControls", () => {
   it("does not treat an open union as a select", () => {
     // `string | undefined` is not a closed set of choices, so a dropdown of
     // ["string", "undefined"] would be nonsense.
-    expect(deriveControls([prop("label", "string | undefined")], config)).toEqual(
-      [],
-    );
+    expect(
+      deriveControls([prop("label", "string | undefined")], config),
+    ).toEqual([]);
   });
 
   it("maps booleans, numbers and strings to their controls", () => {
@@ -87,7 +87,10 @@ describe("deriveControls", () => {
     });
 
     it("does not mark an optional prop as required", () => {
-      const [control] = deriveControls([prop("delay", "number", "0.2")], config);
+      const [control] = deriveControls(
+        [prop("delay", "number", "0.2")],
+        config,
+      );
       expect(control).toMatchObject({ required: false });
     });
 
@@ -146,24 +149,36 @@ describe("deriveControls", () => {
 
   describe("number ranges", () => {
     it("scales a duration to seconds rather than 0-100", () => {
-      const [control] = deriveControls([prop("duration", "number", "0.5")], config);
+      const [control] = deriveControls(
+        [prop("duration", "number", "0.5")],
+        config,
+      );
       expect(control).toMatchObject({ min: 0, max: 4, step: 0.05, unit: "s" });
     });
 
     it("bounds an opacity to 0-1", () => {
-      const [control] = deriveControls([prop("opacity", "number", "0.6")], config);
+      const [control] = deriveControls(
+        [prop("opacity", "number", "0.6")],
+        config,
+      );
       expect(control).toMatchObject({ min: 0, max: 1, step: 0.01 });
     });
 
     it("lets a rotation go negative", () => {
-      const [control] = deriveControls([prop("rotate", "number", "12")], config);
+      const [control] = deriveControls(
+        [prop("rotate", "number", "12")],
+        config,
+      );
       expect(control).toMatchObject({ min: -180, max: 180 });
     });
 
     it("always contains the documented default", () => {
       // A default outside the inferred window would sit pinned at one end of
       // the slider with no way back to it.
-      const [control] = deriveControls([prop("duration", "number", "9")], config);
+      const [control] = deriveControls(
+        [prop("duration", "number", "9")],
+        config,
+      );
       expect(control).toMatchObject({ min: 0, max: 9, value: 9 });
     });
 
@@ -228,10 +243,13 @@ describe("generateSnippet", () => {
     });
     expect(snippet).toBe("<Demo\n  once={false}\n/>");
 
-    const inverted = deriveControls([prop("pauseOnHover", "boolean", "false")], config);
-    expect(
-      generateSnippet(config, inverted, { pauseOnHover: true }),
-    ).toBe("<Demo\n  pauseOnHover\n/>");
+    const inverted = deriveControls(
+      [prop("pauseOnHover", "boolean", "false")],
+      config,
+    );
+    expect(generateSnippet(config, inverted, { pauseOnHover: true })).toBe(
+      "<Demo\n  pauseOnHover\n/>",
+    );
   });
 
   it("keeps the fixed props the harness supplies", () => {

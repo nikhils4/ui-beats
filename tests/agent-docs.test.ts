@@ -93,7 +93,9 @@ describe("llmsIndex", () => {
   });
 
   it("uses absolute URLs throughout", () => {
-    const links = [...index.matchAll(/\]\(([^)]+)\)/g)].map((match) => match[1]!);
+    const links = [...index.matchAll(/\]\(([^)]+)\)/g)].map(
+      (match) => match[1]!,
+    );
     expect(links.length).toBeGreaterThan(0);
     for (const link of links) {
       expect(link.startsWith("http"), `relative link: ${link}`).toBe(true);

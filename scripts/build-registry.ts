@@ -15,7 +15,9 @@ import componentConfigs from "../content/docs";
 
 const ROOT = process.cwd();
 const OUT_DIR = path.join(ROOT, "public", "r");
+const WELL_KNOWN_DIR = path.join(ROOT, "public", ".well-known");
 const DEMO_DIR = path.join(ROOT, "components", "demo");
+const MCP_PKG = path.join(ROOT, "packages", "mcp", "package.json");
 
 const SITE_URL = (
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://uibeats.com"
@@ -106,6 +108,59 @@ interface CatalogueEntry {
     description: string;
   }[];
   author?: string;
+}
+
+/**
+ * The MCP server card, at `/.well-known/mcp.json`.
+ *
+ * Lets an agent that only knows the domain discover that a UI Beats MCP server
+ * exists and how to run it, instead of needing someone to have read the README.
+ *
+ * `packages` rather than `remotes`: this server is stdio, spawned by the client
+ * from npm — there is no HTTP endpoint to advertise. Name and version are read
+ * off the package itself so a release cannot leave this file stale.
+ */
+function writeServerCard() {
+  const pkg = JSON.parse(fs.readFileSync(MCP_PKG, "utf8")) as {
+    name: string;
+    version: string;
+    description: string;
+  };
+
+  const card = {
+    $schema:
+      "https://static.modelcontextprotocol.io/schemas/2025-10-17/server.schema.json",
+    // Reverse-DNS, exactly one slash, per the schema.
+    name: "com.uibeats/mcp",
+    title: "UI Beats",
+    description: pkg.description,
+    version: pkg.version,
+    websiteUrl: SITE_URL,
+    repository: {
+      url: "https://github.com/nikhils4/ui-beats",
+      source: "github",
+      // Stable across renames, and changes if the repo is deleted and recreated.
+      id: "825856991",
+      subfolder: "packages/mcp",
+    },
+    packages: [
+      {
+        registryType: "npm",
+        identifier: pkg.name,
+        version: pkg.version,
+        transport: { type: "stdio" },
+      },
+    ],
+  };
+
+  fs.rmSync(WELL_KNOWN_DIR, { recursive: true, force: true });
+  fs.mkdirSync(WELL_KNOWN_DIR, { recursive: true });
+  fs.writeFileSync(
+    path.join(WELL_KNOWN_DIR, "mcp.json"),
+    `${JSON.stringify(card, null, 2)}\n`,
+  );
+
+  return `${pkg.name}@${pkg.version}`;
 }
 
 function main() {
@@ -221,9 +276,12 @@ function main() {
     )}\n`,
   );
 
+  const server = writeServerCard();
+
   console.log(
     `registry: wrote ${items.length} items + registry.json + components.json to public/r/`,
   );
+  console.log(`registry: wrote .well-known/mcp.json for ${server}`);
 }
 
 main();

@@ -56,7 +56,9 @@ export async function generateMetadata({
       url,
       type: "website",
       siteName: siteConfig.name,
-      images: [{ url: siteConfig.ogImage, alt: `${label} components` }],
+      // No `images` here on purpose: `opengraph-image.tsx` in this segment
+      // generates the card. An explicit `images` set alongside it wins and
+      // would pin all six categories back to one shared image.
     },
   };
 }

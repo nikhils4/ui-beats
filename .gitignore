@@ -38,8 +38,9 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# generated shadcn registry (built by `yarn registry:build`)
+# generated shadcn registry + MCP server card (built by `yarn registry:build`)
 /public/r
+/public/.well-known
 
 # test artifacts
 /playwright-report

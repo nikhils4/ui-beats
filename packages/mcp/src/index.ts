@@ -20,6 +20,7 @@ import {
   findComponent,
   loadCatalogue,
   searchComponents,
+  type Catalogue,
   type CatalogueComponent,
 } from "./catalogue.js";
 
@@ -67,6 +68,65 @@ function summarize(entry: CatalogueComponent): string {
     .join("\n");
 }
 
+/**
+ * A category filter, checked against the catalogue rather than a literal union.
+ *
+ * This was a `z.enum` of six values. The site shipped a seventh — `block` — and
+ * the schema then rejected the one word an agent would reach for to find the
+ * three blocks, while the site's own docs listed them under exactly that name.
+ * Nothing about the server needed to change for the components themselves to
+ * appear, which is the point of reading the catalogue live; hardcoding the
+ * categories was the one place that quietly opted out of it.
+ *
+ * The catalogue states its own categories and is already loaded before any
+ * filter is applied, so it can answer this. A new category now works against
+ * the published server on the day the site deploys it.
+ */
+const CATEGORY_DESCRIPTION =
+  "Restrict results to one category, e.g. 'card' or 'block'. Omit to search everything; list_components shows the current set.";
+
+function rejectUnknownCategory(catalogue: Catalogue, category?: string) {
+  if (!category || catalogue.categories.includes(category)) return null;
+  return errorResult(
+    `No category "${category}". The catalogue has: ${catalogue.categories.join(", ")}.`,
+  );
+}
+
+/**
+ * Where the CLI puts the file, and what else arrives with it.
+ *
+ * A block is not one file: it composes other UI Beats components, and the CLI
+ * installs those alongside it. Reporting `components/ui/<name>.tsx` for
+ * everything named the wrong directory for all three blocks and never
+ * mentioned the parts, so an agent would write imports against files it had
+ * not been told existed.
+ */
+function installNotes(entry: CatalogueComponent): string[] {
+  const target =
+    entry.category === "block"
+      ? `components/blocks/${entry.name}.tsx`
+      : `components/ui/${entry.name}.tsx`;
+
+  // Bare entries are shadcn's own items (`utils`); a URL is a UI Beats
+  // component, whose name is the last path segment without the extension.
+  const parts = entry.registryDependencies
+    .filter((dep) => dep.includes("://"))
+    .map((dep) =>
+      dep
+        .split("/")
+        .pop()
+        ?.replace(/\.json$/, ""),
+    )
+    .filter((name): name is string => Boolean(name));
+
+  return [
+    `Writes \`${target}\` and installs its dependencies.`,
+    parts.length
+      ? `\nAlso installs into \`components/ui/\`: ${parts.join(", ")}.`
+      : "",
+  ].filter(Boolean);
+}
+
 function textResult(text: string) {
   return { content: [{ type: "text" as const, text }] };
 }
@@ -104,22 +164,17 @@ server.registerTool(
         .describe(
           "What the component should do, in plain words, or its exact name.",
         ),
-      category: z
-        .enum([
-          "animation",
-          "background",
-          "button",
-          "card",
-          "component",
-          "text",
-        ])
-        .optional()
-        .describe("Restrict results to one category."),
+      category: z.string().optional().describe(CATEGORY_DESCRIPTION),
+      /*
+       * No ceiling. This was `.max(34)`, written when the catalogue held 34
+       * components; it now holds more, so asking for all of them failed
+       * validation. The result is bounded by the pool either way — a limit
+       * past the end of it just returns the pool.
+       */
       limit: z
         .number()
         .int()
         .min(1)
-        .max(34)
         .optional()
         .describe("Maximum number of results (default 10)."),
     },
@@ -128,6 +183,9 @@ server.registerTool(
   async ({ query, category, limit }) =>
     guard(async () => {
       const catalogue = await loadCatalogue();
+      const rejected = rejectUnknownCategory(catalogue, category);
+      if (rejected) return rejected;
+
       const matches = searchComponents(catalogue, query, { category, limit });
 
       if (!matches.length) {
@@ -190,22 +248,18 @@ server.registerTool(
       "List every component in the catalogue, grouped by category. Use this to see what is available before searching.",
     inputSchema: {
       category: z
-        .enum([
-          "animation",
-          "background",
-          "button",
-          "card",
-          "component",
-          "text",
-        ])
+        .string()
         .optional()
-        .describe("List only this category."),
+        .describe("List only this category, e.g. 'card' or 'block'."),
     },
     annotations: { readOnlyHint: true, openWorldHint: true },
   },
   async ({ category }) =>
     guard(async () => {
       const catalogue = await loadCatalogue();
+      const rejected = rejectUnknownCategory(catalogue, category);
+      if (rejected) return rejected;
+
       const categories = category ? [category] : catalogue.categories;
 
       const sections = categories.map((current) => {
@@ -262,7 +316,7 @@ server.registerTool(
           `npx shadcn@latest add ${ORIGIN}/r/${entry.name}.json`,
           `\`\`\``,
           "",
-          `Writes \`components/ui/${entry.name}.tsx\` and installs its dependencies.`,
+          ...installNotes(entry),
           entry.dependencies.length
             ? `\nnpm dependencies: ${entry.dependencies.join(", ")}`
             : `\nNo extra npm dependencies.`,

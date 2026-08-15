@@ -3,7 +3,7 @@ import { Studio } from "@/components/website/studio";
 import { getStudioComponents } from "@/lib/studio";
 import { absoluteUrl, siteConfig } from "@/lib/site";
 
-const title = "Motion Studio — cubic bezier and spring editor for React";
+const title = "Motion Studio: cubic bezier and spring editor for React";
 const description =
   "Tune any UI Beats component live, shape its easing curve or spring, and copy the code. Free, no sign-up.";
 

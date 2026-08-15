@@ -83,7 +83,7 @@ export default async function BlogPostPage({ params }: PageProps) {
       name: siteConfig.name,
       logo: {
         "@type": "ImageObject",
-        url: absoluteUrl("/uibeats-logo.png"),
+        url: absoluteUrl("/brand-mark.png"),
       },
     },
     mainEntityOfPage: {

@@ -32,7 +32,7 @@ const MorphingCardContent: ComponentConfig = {
     {
       prop: "colorScheme",
       type: "{ from: string; to: string; }",
-      defaultValue: "{ from: '#4F46E5', to: '#7C3AED' }",
+      defaultValue: "{ from: 'var(--brand)', to: 'var(--accent-pink)' }",
       description: "Gradient color scheme for the card background",
     },
     {

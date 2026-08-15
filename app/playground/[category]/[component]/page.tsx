@@ -38,7 +38,7 @@ export async function generateMetadata({
   if (!entry) return {};
 
   const title = `${entry.title} Playground`;
-  const description = `Tune ${entry.title} live — every prop as a control, the code updating as you go. Shape its easing in Motion Studio.`;
+  const description = `Tune ${entry.title} live: every prop as a control, the code updating as you go. Shape its easing in Motion Studio.`;
   const url = absoluteUrl(`/playground/${entry.category}/${entry.name}`);
 
   return {
@@ -54,7 +54,7 @@ export async function generateMetadata({
     ],
     alternates: { canonical: url },
     openGraph: {
-      title: `${title} — ${siteConfig.name}`,
+      title: `${title} · ${siteConfig.name}`,
       description,
       url,
       type: "website",

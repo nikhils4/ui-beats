@@ -9,6 +9,24 @@
  */
 const COMPONENT_CATEGORIES = "animation|background|button|card|component|text";
 
+/**
+ * The canonical host, and the `www.` variant that must fold into it.
+ *
+ * Both hosts served a full 200 for every page, so the site existed twice as far
+ * as a crawler was concerned. The canonical tags already pointed at the apex,
+ * but a canonical is a hint a search engine may ignore and a 301 is a fact it
+ * cannot. Derived rather than hardcoded so a preview deployment does not
+ * redirect itself at production.
+ *
+ * `WWW_HOST` is null when the configured origin is already a `www.` host or a
+ * bare hostname with no apex to fold into, which drops the rule entirely
+ * instead of emitting one that would loop.
+ */
+const SITE_HOST = new URL(
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://uibeats.com",
+).host;
+const WWW_HOST = SITE_HOST.startsWith("www.") ? null : `www.${SITE_HOST}`;
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
@@ -103,6 +121,24 @@ const nextConfig = {
       // keeps any already-syndicated links working.
       { source: "/blog/:slug", destination: "/blogs/:slug", permanent: true },
       { source: "/blog", destination: "/blogs", permanent: true },
+      /*
+       * Fold `www.` into the apex, permanently.
+       *
+       * Matching on `has: [{ type: "host" }]` rather than in a proxy keeps this
+       * at the CDN edge, where a redirect costs nothing to serve. The
+       * destination is absolute because a relative one would keep the request
+       * on `www.` and loop.
+       */
+      ...(WWW_HOST
+        ? [
+            {
+              source: "/:path*",
+              has: [{ type: "host", value: WWW_HOST }],
+              destination: `https://${SITE_HOST}/:path*`,
+              permanent: true,
+            },
+          ]
+        : []),
     ];
   },
 };

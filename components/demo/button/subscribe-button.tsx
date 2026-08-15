@@ -1,7 +1,7 @@
 "use client";
 import { BellIcon } from "lucide-react";
 import { useState, useEffect } from "react";
-import { AnimatePresence, motion } from "motion/react";
+import { AnimatePresence, motion, useReducedMotion } from "motion/react";
 import { useTheme } from "next-themes";
 
 interface SubscribeButtonProps {
@@ -18,6 +18,7 @@ export const SubscribeButton: React.FC<SubscribeButtonProps> = ({
   const [isSubscribed, setIsSubscribed] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
   const { theme, systemTheme } = useTheme();
+  const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
     if (isAnimating) {
@@ -29,7 +30,10 @@ export const SubscribeButton: React.FC<SubscribeButtonProps> = ({
   }, [isAnimating]);
 
   const handleClick = () => {
-    if (!isSubscribed) {
+    // `isAnimating` drives both the particle burst and the 17-stop colour
+    // cycle through the button. Never entering it under reduced motion leaves
+    // the click doing exactly what it says — subscribing — with no fireworks.
+    if (!isSubscribed && !prefersReducedMotion) {
       setIsAnimating(true);
     }
     setIsSubscribed(!isSubscribed);
@@ -149,7 +153,7 @@ export const SubscribeButton: React.FC<SubscribeButtonProps> = ({
 
   return (
     <motion.div className="relative w-fit">
-      {isSubscribed ? createCircles() : null}
+      {isSubscribed && !prefersReducedMotion ? createCircles() : null}
       <motion.button
         onClick={handleClick}
         layout
@@ -186,10 +190,14 @@ export const SubscribeButton: React.FC<SubscribeButtonProps> = ({
               className={`flex items-center ${currentTheme === "dark" ? buttonTextColor.dark : buttonTextColor.light}`}
             >
               <motion.div
-                animate={{
-                  rotate: [0, -15, 15, -15, 15, -15, 15, 0],
-                  transition: { duration: 0.7, delay: 0.2 },
-                }}
+                animate={
+                  prefersReducedMotion
+                    ? undefined
+                    : {
+                        rotate: [0, -15, 15, -15, 15, -15, 15, 0],
+                        transition: { duration: 0.7, delay: 0.2 },
+                      }
+                }
                 style={{ transformOrigin: "top center" }}
               >
                 <BellIcon className="mr-2 h-4 w-4" />

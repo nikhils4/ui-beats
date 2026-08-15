@@ -11,21 +11,27 @@ import StaggerList from "./animation/stagger-list.content";
 import AnimatedBeam from "./background/animated-beam.content";
 import OrbitingElements from "./background/orbiting-elements.content";
 import GradientFlow from "./background/gradient-flow.content";
+import Meteors from "./background/meteors.content";
 import RetroGrid from "./background/retro-grid.content";
 import SparklingGrid from "./background/sparkling-grid.content";
+import LoadingButton from "./button/loading-button.content";
 import MagneticButton from "./button/magnetic-button.content";
 import RippleButton from "./button/ripple-button.content";
+import ShimmerButton from "./button/shimmer-button.content";
 import SubscribeButton from "./button/subscribe-button.content";
 import CardStack from "./card/card-stack.content";
 import FlipCard from "./card/flip-card.content";
 import GlowingCard from "./card/glowing-card.content";
 import MorphingCard from "./card/morphing-card.content";
 import TiltCard from "./card/tilt-card.content";
+import AvatarStack from "./component/avatar-stack.content";
+import BentoGrid from "./component/bento-grid.content";
 import BorderBeam from "./component/border-beam.content";
 import Dock from "./component/dock.content";
 import LiquidTabs from "./component/liquid-tabs.content";
 import Marquee from "./component/marquee.content";
 import ScratchToReveal from "./component/scratch-to-reveal.content";
+import ScrollProgress from "./component/scroll-progress.content";
 import ShimmerEffect from "./component/shimmer-effect.content";
 import NumberTicker from "./text/number-ticker.content";
 import ScrollReveal from "./text/scroll-reveal.content";
@@ -55,21 +61,27 @@ export const componentConfigs: ComponentConfig[] = [
   AnimatedBeam,
   OrbitingElements,
   GradientFlow,
+  Meteors,
   RetroGrid,
   SparklingGrid,
+  LoadingButton,
   MagneticButton,
   RippleButton,
+  ShimmerButton,
   SubscribeButton,
   CardStack,
   FlipCard,
   GlowingCard,
   MorphingCard,
   TiltCard,
+  AvatarStack,
+  BentoGrid,
   BorderBeam,
   Dock,
   LiquidTabs,
   Marquee,
   ScratchToReveal,
+  ScrollProgress,
   ShimmerEffect,
   NumberTicker,
   ScrollReveal,

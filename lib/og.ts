@@ -35,9 +35,9 @@ export const og = {
 } as const;
 
 /**
- * The logo's rainbow arcs read as sound waves coming off the `b`. The mark
- * itself is deliberately absent from the cards, so this sweep carries the
- * same idea typographically.
+ * The brand mark is four equalizer bars running brand-to-pink. The mark itself
+ * is deliberately absent from the cards, so this sweep carries the same ramp
+ * typographically.
  */
 export const OG_ACCENT_SWEEP = `linear-gradient(90deg, ${og.brand}, ${og.accentPink}, ${og.cyan})`;
 

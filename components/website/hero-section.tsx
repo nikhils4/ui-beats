@@ -112,15 +112,18 @@ export function HeroSection({
           <span className="text-gradient">you own</span>
         </motion.h1>
 
-        {/* One line. The hero was carrying a two-line paragraph, a three-item
-            proof row and the ticker underneath it, which left five things
-            competing under the headline. */}
+        {/*
+          Six words.
+          This carried a full sentence explaining that you can edit the code
+          after copying it, which is the same claim the headline already makes
+          and the install line below demonstrates. The hero's job is to land
+          the idea, not to argue it.
+        */}
         <motion.p
           variants={itemVariants}
-          className="mt-5 max-w-md text-lg leading-relaxed text-balance text-muted-foreground"
+          className="mt-5 text-lg text-muted-foreground"
         >
-          {componentCount} components. Copy one in, then change whatever you
-          like — it is your file now.
+          {componentCount} components. Copy, paste, ship.
         </motion.p>
 
         <motion.div

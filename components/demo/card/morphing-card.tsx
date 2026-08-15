@@ -1,5 +1,7 @@
+"use client";
+
 import React, { useState, useEffect, useCallback } from "react";
-import { motion, AnimatePresence } from "motion/react";
+import { motion, AnimatePresence, useReducedMotion } from "motion/react";
 import { ArrowRight, Pause, Play } from "lucide-react";
 import { useTheme } from "next-themes";
 
@@ -27,16 +29,42 @@ const shapeVariants = {
   hexagon: { borderRadius: "24% 76% 24% 76% / 32% 32% 68% 68%", rotate: 240 },
 };
 
+/**
+ * The same shapes without the third of a turn between them.
+ *
+ * The silhouette is the point of this component and it survives; the rotation
+ * is decoration on top of it, and a 120° sweep of a 300px card is the single
+ * most vestibular-provoking thing in the library.
+ */
+const staticShapeVariants = {
+  rectangle: { borderRadius: "16px", rotate: 0 },
+  circle: { borderRadius: "50%", rotate: 0 },
+  hexagon: { borderRadius: "24% 76% 24% 76% / 32% 32% 68% 68%", rotate: 0 },
+};
+
 const MorphingCard: React.FC<MorphingCardProps> = ({
   width = "300px",
   height = "300px",
   contents,
-  colorScheme = { from: "#4F46E5", to: "#7C3AED" },
+  // Themed by default rather than pinned to two indigo hex values, so an
+  // installed card picks up the project's accent instead of ours.
+  colorScheme = { from: "var(--brand)", to: "var(--accent-pink)" },
   autoPlay = true,
   interval = 3000,
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(autoPlay);
+  /**
+   * `null` until the play control is touched.
+   *
+   * After that it is the user's decision and outranks everything else, which
+   * is the distinction reduced motion actually draws: a carousel that starts
+   * advancing on its own is the problem, and one the reader deliberately
+   * started is not. Derived rather than held in state and corrected by an
+   * effect, so the preference resolving does not cost a second render.
+   */
+  const [playingOverride, setPlayingOverride] = useState<boolean | null>(null);
+  const prefersReducedMotion = useReducedMotion();
+  const isPlaying = playingOverride ?? (autoPlay && !prefersReducedMotion);
 
   const nextShape = useCallback(() => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % contents.length);
@@ -65,10 +93,18 @@ const MorphingCard: React.FC<MorphingCardProps> = ({
         style={{
           background: `linear-gradient(135deg, ${colorScheme.from}, ${colorScheme.to})`,
         }}
-        animate={shapeVariants[currentContent.shape]}
-        transition={{ duration: 0.8, ease: [0.4, 0, 0.2, 1] }}
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
+        animate={
+          prefersReducedMotion
+            ? staticShapeVariants[currentContent.shape]
+            : shapeVariants[currentContent.shape]
+        }
+        transition={
+          prefersReducedMotion
+            ? { duration: 0 }
+            : { duration: 0.8, ease: [0.4, 0, 0.2, 1] }
+        }
+        whileHover={prefersReducedMotion ? undefined : { scale: 1.05 }}
+        whileTap={prefersReducedMotion ? undefined : { scale: 0.95 }}
       >
         {/* This empty div will handle the shape morphing */}
       </motion.div>
@@ -77,10 +113,12 @@ const MorphingCard: React.FC<MorphingCardProps> = ({
           <motion.div
             key={currentIndex}
             className="flex h-full w-full flex-col items-center justify-center p-6"
-            initial={{ opacity: 0, y: 20 }}
+            initial={prefersReducedMotion ? false : { opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.5 }}
+            exit={
+              prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: -20 }
+            }
+            transition={{ duration: prefersReducedMotion ? 0 : 0.5 }}
           >
             <h3 className="mb-4 text-center text-xl font-semibold text-white">
               {currentContent.title}
@@ -106,7 +144,7 @@ const MorphingCard: React.FC<MorphingCardProps> = ({
         className={`absolute top-4 right-4 rounded-full p-2 text-white ${currentTheme !== "dark" ? "bg-gray-800 hover:bg-gray-500" : "bg-white/20 hover:bg-white/30"}`}
         onClick={(e) => {
           e.stopPropagation();
-          setIsPlaying(!isPlaying);
+          setPlayingOverride(!isPlaying);
         }}
       >
         {isPlaying ? <Pause size={14} /> : <Play size={14} />}

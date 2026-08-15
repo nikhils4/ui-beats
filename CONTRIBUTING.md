@@ -29,7 +29,20 @@ A `pre-commit` hook runs ESLint and Prettier over staged files.
 
 ## Adding a component
 
-A component is four files, plus one line in the preview map.
+Start here:
+
+```bash
+yarn new:component --name flip-clock --category component
+```
+
+It writes all four files, registers them in the three maps that need to know,
+and leaves a stub that compiles, renders and passes the suite — so your first
+run of `yarn test` tells you about your component rather than about a wiring
+mistake. Then replace the TODOs.
+
+The rest of this section describes what those files are, for when you want to
+know rather than to be handed one. A component is four files, plus one line in
+the preview map.
 
 ### 1. The component — `components/demo/<category>/<name>.tsx`
 
@@ -100,12 +113,24 @@ shadcn registry entry are all derived from there.
   dependency for everyone who installs it. `motion` is fine; a new charting
   library is not.
 - **Use the design tokens** (`bg-background`, `text-muted-foreground`, `border`)
-  rather than hardcoded colours, so the component works in both themes.
+  rather than hardcoded colours, so the component works in both themes — and in
+  the themes of the projects it gets installed into, which is the harder half.
+  A colour shadcn does not define has to be declared in `config/tokens.ts` so
+  the registry can ship it; the build fails on a `var(--whatever)` that nothing
+  defines, because that renders correctly here and breaks on install.
 - **Never call `Math.random()` or `Date.now()` during render.** They differ
   between the server and the browser and cause hydration mismatches. Use
   `useId()` for stable variation.
 - **Format dates with an explicit locale and `timeZone`.** Same reason.
-- **Honour `prefers-reduced-motion`** for anything that animates continuously.
+- **Honour `prefers-reduced-motion`.** Not only for loops — for anything that
+  moves. `tests/reduced-motion.test.ts` fails the build if a component does not
+  consult the preference, or consults it and ignores the answer.
+
+  What to do with it is a judgement. An entrance should be settled from the
+  first frame rather than merely instant, or the content sits invisible until
+  it scrolls into view. Something the user explicitly starts may still animate.
+  Something that withholds content — a typewriter — should show all of it.
+
 - **Give interactive elements accessible names** and a visible focus style.
 
 ## Commit messages

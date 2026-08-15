@@ -3,7 +3,7 @@ import { siteConfig } from "@/lib/site";
 import { OG_CONTENT_TYPE, OG_SIZE, og } from "@/lib/og";
 import { OgCard } from "@/lib/og-card";
 
-export const alt = `${siteConfig.name} — animated React components`;
+export const alt = `${siteConfig.name}: animated React components`;
 export const size = OG_SIZE;
 export const contentType = OG_CONTENT_TYPE;
 

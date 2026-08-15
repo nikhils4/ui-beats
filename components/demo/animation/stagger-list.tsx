@@ -1,7 +1,12 @@
 "use client";
 
 import { useRef, type ReactNode } from "react";
-import { motion, useInView, type Variants } from "motion/react";
+import {
+  motion,
+  useInView,
+  useReducedMotion,
+  type Variants,
+} from "motion/react";
 
 interface StaggerListProps {
   children: ReactNode;
@@ -48,23 +53,34 @@ export function StaggerList({
 }: StaggerListProps) {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once, amount: 0.15 });
+  const prefersReducedMotion = useReducedMotion();
 
+  /*
+   * The stagger goes too, not just the travel. A long list under reduced
+   * motion would otherwise still reveal itself one row at a time over several
+   * seconds, which is the same distraction the setting asks to be spared.
+   */
   const container: Variants = {
     hidden: {},
-    visible: {
-      transition: { staggerChildren: stagger, delayChildren: delay },
-    },
+    visible: prefersReducedMotion
+      ? {}
+      : { transition: { staggerChildren: stagger, delayChildren: delay } },
   };
 
-  const item: Variants = {
-    hidden: { opacity: 0, ...offsetFor(direction, distance) },
-    visible: {
-      opacity: 1,
-      x: 0,
-      y: 0,
-      transition: { duration, ease: [0.21, 0.47, 0.32, 0.98] },
-    },
-  };
+  const item: Variants = prefersReducedMotion
+    ? {
+        hidden: { opacity: 1, x: 0, y: 0 },
+        visible: { opacity: 1, x: 0, y: 0 },
+      }
+    : {
+        hidden: { opacity: 0, ...offsetFor(direction, distance) },
+        visible: {
+          opacity: 1,
+          x: 0,
+          y: 0,
+          transition: { duration, ease: [0.21, 0.47, 0.32, 0.98] },
+        },
+      };
 
   return (
     <motion.div

@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 import { OG_CONTENT_TYPE, OG_SIZE, og } from "@/lib/og";
 import { OgCard } from "@/lib/og-card";
 
-export const alt = "Motion Studio — cubic bezier and spring editor";
+export const alt = "Motion Studio: cubic bezier and spring editor";
 export const size = OG_SIZE;
 export const contentType = OG_CONTENT_TYPE;
 

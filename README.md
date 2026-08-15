@@ -57,7 +57,7 @@ For agents that only fetch URLs, the same content is served as plain text:
 
 ## Tune before you copy
 
-Every component has a **playground** at `/playground/<category>/<name>`: the props table becomes a live control panel, the preview updates as you drag, and the snippet carries only what you actually changed. All 34 of them.
+Every component has a **playground** at `/playground/<category>/<name>`: the props table becomes a live control panel, the preview updates as you drag, and the snippet carries only what you actually changed. All 40 of them.
 
 The controls are derived from the same `props` array that renders the documentation table, so a control can never describe a prop the docs do not.
 
@@ -65,16 +65,36 @@ Alongside it, **[Motion Studio](https://uibeats.com/motion-studio)** — a cubic
 
 ## Components
 
-34 components across six categories:
+40 components across six categories:
 
-| Category       | Components                                                                                          |
-| -------------- | --------------------------------------------------------------------------------------------------- |
-| **Animation**  | Animated List, Bounce, Fade In, Fade In Unblur, Rotate In, Scale In, Smooth Reveal, Stagger List    |
-| **Background** | Animated Beam, Gradient Flow, Orbiting Elements, Retro Grid, Sparkling Grid                         |
-| **Button**     | Magnetic Button, Ripple Button, Subscribe Button                                                    |
-| **Card**       | Card Stack, Flip Card, Glowing Card, Morphing Card, Tilt Card                                       |
-| **Component**  | Border Beam, Dock, Liquid Tabs, Marquee, Scratch to Reveal, Shimmer Effect                          |
-| **Text**       | Gravity Text Swap, Number Ticker, Scroll Reveal, Split Flap, Text Scramble, Text Shine, Text Writer |
+| Category       | Components                                                                                                            |
+| -------------- | --------------------------------------------------------------------------------------------------------------------- |
+| **Animation**  | Animated List, Bounce, Fade In, Fade In Unblur, Rotate In, Scale In, Smooth Reveal, Stagger List                      |
+| **Background** | Animated Beam, Gradient Flow, Meteors, Orbiting Elements, Retro Grid, Sparkling Grid                                  |
+| **Button**     | Loading Button, Magnetic Button, Ripple Button, Shimmer Button, Subscribe Button                                      |
+| **Card**       | Card Stack, Flip Card, Glowing Card, Morphing Card, Tilt Card                                                         |
+| **Component**  | Avatar Stack, Bento Grid, Border Beam, Dock, Liquid Tabs, Marquee, Scratch to Reveal, Scroll Progress, Shimmer Effect |
+| **Text**       | Gravity Text Swap, Number Ticker, Scroll Reveal, Split Flap, Text Scramble, Text Shine, Text Writer                   |
+
+### Motion you can switch off
+
+Every component honours `prefers-reduced-motion`. Not "most of them" — the
+whole registry, checked in CI: `tests/reduced-motion.test.ts` fails the build
+if a component ships without consulting the preference, or reads it and then
+animates anyway.
+
+What that means per component is a judgement, not a switch. An entrance is
+settled from the first frame. A carousel stops advancing on its own but still
+moves when you press the button. Flip Card still turns, because the back face
+is the point — it just cuts instead of sweeping.
+
+### Themed by your tokens, not ours
+
+Components read shadcn's own variables — `--card`, `--border`,
+`--muted-foreground` — so an installed component wears your palette. The few
+that need a colour shadcn does not define ship it with them: `cssVars` in the
+registry item, merged into your stylesheet by the CLI. See `config/tokens.ts`;
+the build fails on a component that reads a variable nothing defines.
 
 ## Local development
 
@@ -101,10 +121,20 @@ The site runs at [http://localhost:3000](http://localhost:3000).
 | `yarn typecheck`      | `tsc --noEmit`                                         |
 | `yarn test`           | Vitest unit tests                                      |
 | `yarn test:e2e`       | Playwright end-to-end tests against a production build |
+| `yarn test:visual`    | Motion frame diffs against the committed baselines     |
 | `yarn format`         | Prettier                                               |
 | `yarn registry:build` | Regenerate `public/r/` from the component source       |
+| `yarn new:component`  | Scaffold a component and wire it into every registry   |
 
 ## How it fits together
+
+```bash
+yarn new:component --name flip-clock --category component
+```
+
+That writes the four files below, registers them in all three maps, and leaves
+a stub that compiles and passes the suite. The rest of this section is what it
+does, for when you need to do it by hand.
 
 Adding a component means adding **four files**. The sidebar, the docs page, the sitemap, the command menu and the shadcn registry entry are all derived from them — there is no central list to keep in sync.
 

@@ -26,7 +26,7 @@ const MorphingCardUsage = () => {
             "Witness the evolution of design and functionality in real-time.",
         },
       ]}
-      colorScheme={{ from: "#4F46E5", to: "#7C3AED" }}
+      colorScheme={{ from: "var(--brand)", to: "var(--accent-pink)" }}
       autoPlay={true}
       interval={4000}
     />

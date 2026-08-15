@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import { Easing, motion } from "motion/react";
+import { Easing, motion, useReducedMotion } from "motion/react";
 
 interface TextWriterProps {
   text: string;
@@ -18,7 +18,9 @@ const TextWriter: React.FC<TextWriterProps> = ({
   text,
   delay = 0.05,
   className = "",
-  cursorColor = "#000",
+  // Was `#000`: a black caret on a dark background, i.e. invisible in dark
+  // mode. `currentColor` matches whatever the text beside it is using.
+  cursorColor = "currentColor",
   cursorWidth = "2px",
   cursorStyle = "solid",
   eraseOnComplete = false,
@@ -28,11 +30,30 @@ const TextWriter: React.FC<TextWriterProps> = ({
   const [displayText, setDisplayText] = useState("");
   const [isWriting, setIsWriting] = useState(true);
   const textRef = useRef<HTMLSpanElement>(null);
+  const prefersReducedMotion = useReducedMotion();
   const stepEasing: Easing = (t) => Math.floor(t * 2) / 2;
+
+  /*
+   * Reduced motion gets the whole sentence at once.
+   *
+   * This is the one component here where the animation withholds content
+   * rather than decorating it: mid-effect, the DOM genuinely contains half a
+   * word. Typing it out character by character — and, with `loop`, deleting it
+   * again forever — is unreadable for anyone who asked the browser to stop
+   * moving things, so they get the finished text and no cursor.
+   *
+   * Derived during render rather than pushed into state from the effect: the
+   * typing state is simply not consulted, so there is nothing to synchronise
+   * and no cascading render to trigger.
+   */
+  const shownText = prefersReducedMotion ? text : displayText;
+  const showCursor = isWriting && !prefersReducedMotion;
 
   useEffect(() => {
     let timeoutId: NodeJS.Timeout;
     let currentIndex = 0;
+
+    if (prefersReducedMotion) return;
 
     const writeText = () => {
       if (currentIndex <= text.length) {
@@ -66,12 +87,12 @@ const TextWriter: React.FC<TextWriterProps> = ({
     writeText();
 
     return () => clearTimeout(timeoutId);
-  }, [text, delay, eraseOnComplete, eraseDelay, loop]);
+  }, [text, delay, eraseOnComplete, eraseDelay, loop, prefersReducedMotion]);
 
   return (
     <span className={`inline-flex items-center ${className}`}>
-      <span ref={textRef}>{displayText}</span>
-      {isWriting && (
+      <span ref={textRef}>{shownText}</span>
+      {showCursor && (
         <motion.span
           style={{
             width: cursorWidth,

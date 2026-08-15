@@ -7,7 +7,7 @@
  */
 export const siteConfig = {
   name: "UI Beats",
-  title: "UI Beats — Supercharge your UI",
+  title: "UI Beats · Animated React components you own",
   description:
     "Beautifully designed, animated React components built with React, TypeScript, Tailwind CSS and Motion. Copy, paste, or install with the shadcn CLI.",
   url: (process.env.NEXT_PUBLIC_SITE_URL ?? "https://uibeats.com").replace(

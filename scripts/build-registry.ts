@@ -12,6 +12,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import componentConfigs from "../content/docs";
+import { cssVarsFor, unknownTokensFor } from "../config/tokens";
 
 const ROOT = process.cwd();
 const OUT_DIR = path.join(ROOT, "public", "r");
@@ -42,6 +43,13 @@ interface RegistryItem {
   author?: string;
   dependencies?: string[];
   registryDependencies?: string[];
+  /**
+   * Theme tokens the CLI merges into the user's stylesheet on install.
+   *
+   * Only the ones this component actually reads — see `config/tokens.ts` for
+   * why a component's own inline variables are not in here.
+   */
+  cssVars?: { light: Record<string, string>; dark: Record<string, string> };
   files: RegistryFile[];
 }
 
@@ -186,6 +194,23 @@ function main() {
     const content = fs.readFileSync(sourcePath, "utf8");
     const { dependencies, registryDependencies } = detectDependencies(content);
 
+    /*
+     * A dangling token is a broken install that looks fine here, because this
+     * origin defines every variable the site has ever used. Failing the build
+     * is the only place the difference is visible.
+     */
+    const unknown = unknownTokensFor(content);
+    if (unknown.length) {
+      throw new Error(
+        `Registry: "${config.name}" reads ${unknown
+          .map((name) => `--${name}`)
+          .join(", ")}, which no installed project would define. Add it to ` +
+          `BEATS_TOKENS in config/tokens.ts, or use a shadcn base token.`,
+      );
+    }
+
+    const cssVars = cssVarsFor(content);
+
     const item: RegistryItem = {
       $schema: "https://ui.shadcn.com/schema/registry-item.json",
       name: config.name,
@@ -197,6 +222,7 @@ function main() {
         : {}),
       ...(dependencies.length ? { dependencies } : {}),
       ...(registryDependencies.length ? { registryDependencies } : {}),
+      ...(cssVars ? { cssVars } : {}),
       files: [
         {
           path: `components/demo/${config.category}/${config.name}.tsx`,

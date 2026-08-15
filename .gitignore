@@ -47,6 +47,12 @@ next-env.d.ts
 /test-results
 /coverage
 
+# Visual baselines are committed for the CI platform only. A developer running
+# `yarn test:visual` locally generates a darwin set, which is theirs and would
+# only ever conflict with somebody else's.
+/tests/visual/__screenshots__/darwin
+/tests/visual/__screenshots__/win32
+
 # standalone packages (own toolchain)
 /packages/*/dist
 /packages/*/node_modules

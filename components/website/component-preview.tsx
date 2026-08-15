@@ -77,6 +77,10 @@ const previews: Record<string, PreviewComponent> = {
     () => import("@/components/usage/background/sparkling-grid.usage"),
     { loading },
   ),
+  "background/meteors": dynamic(
+    () => import("@/components/usage/background/meteors.usage"),
+    { loading },
+  ),
   "button/ripple-button": dynamic(
     () => import("@/components/usage/button/ripple-button.usage"),
     { loading },
@@ -87,6 +91,14 @@ const previews: Record<string, PreviewComponent> = {
   ),
   "button/magnetic-button": dynamic(
     () => import("@/components/usage/button/magnetic-button.usage"),
+    { loading },
+  ),
+  "button/shimmer-button": dynamic(
+    () => import("@/components/usage/button/shimmer-button.usage"),
+    { loading },
+  ),
+  "button/loading-button": dynamic(
+    () => import("@/components/usage/button/loading-button.usage"),
     { loading },
   ),
   "card/card-stack": dynamic(
@@ -131,6 +143,18 @@ const previews: Record<string, PreviewComponent> = {
   ),
   "component/scratch-to-reveal": dynamic(
     () => import("@/components/usage/component/scratch-to-reveal.usage"),
+    { loading },
+  ),
+  "component/bento-grid": dynamic(
+    () => import("@/components/usage/component/bento-grid.usage"),
+    { loading },
+  ),
+  "component/avatar-stack": dynamic(
+    () => import("@/components/usage/component/avatar-stack.usage"),
+    { loading },
+  ),
+  "component/scroll-progress": dynamic(
+    () => import("@/components/usage/component/scroll-progress.usage"),
     { loading },
   ),
   "text/gravity-text-swap": dynamic(
@@ -201,6 +225,11 @@ export function ComponentPreview({
 
   return (
     <div
+      // The visual-regression suite frames every capture on this element, so
+      // a snapshot is of the component rather than of the page around it.
+      // Structural selectors were doing the job before and broke whenever the
+      // stage picked up a wrapper.
+      data-preview-stage={`${category}/${name}`}
       className={cn(
         "group relative h-80 w-full max-w-full overflow-hidden rounded-xl border bg-card shadow-subtle",
         className,

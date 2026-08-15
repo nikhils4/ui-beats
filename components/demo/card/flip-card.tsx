@@ -1,6 +1,6 @@
 "use client";
 import React, { useRef, useState } from "react";
-import { motion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -29,6 +29,7 @@ const FlipCard: React.FC<FlipCardProps> = ({
 }) => {
   const [isFlipped, setIsFlipped] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
+  const prefersReducedMotion = useReducedMotion();
 
   const toggleFlip = () => {
     if (triggerMode === "click") {
@@ -47,8 +48,8 @@ const FlipCard: React.FC<FlipCardProps> = ({
 
   const faceClassNames = cn(
     "absolute flex h-full w-full flex-col items-center justify-center p-6",
-    "rounded-2xl border border-gray-200 shadow-lg backface-hidden",
-    "overflow-hidden dark:border-gray-700",
+    "rounded-2xl border border-border shadow-lg backface-hidden",
+    "overflow-hidden",
   );
 
   return (
@@ -68,35 +69,39 @@ const FlipCard: React.FC<FlipCardProps> = ({
         className="relative h-full w-full rounded-2xl"
         style={{ transformStyle: "preserve-3d" }}
         animate={{ transform: isFlipped ? rotateValue : "none" }}
-        transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
+        /*
+         * The card still turns under reduced motion — it just cuts rather than
+         * sweeps. Suppressing the flip outright would leave the back face
+         * permanently unreachable, which is a different bug from a calm one:
+         * the component exists to show what is written on the other side.
+         */
+        transition={
+          prefersReducedMotion
+            ? { duration: 0 }
+            : { duration: 0.6, ease: [0.23, 1, 0.32, 1] }
+        }
       >
         <div
-          className={cn(
-            faceClassNames,
-            "bg-gradient-to-br from-white to-gray-100 dark:from-gray-800 dark:to-gray-900",
-          )}
+          className={cn(faceClassNames, "bg-gradient-to-br from-card to-muted")}
         >
-          <h3 className="mb-2 text-2xl font-semibold text-gray-800 dark:text-white">
+          <h3 className="mb-2 text-2xl font-semibold text-card-foreground">
             {frontContent.title}
           </h3>
           {frontContent.subtitle && (
-            <p className="text-sm text-gray-600 dark:text-gray-300">
+            <p className="text-sm text-muted-foreground">
               {frontContent.subtitle}
             </p>
           )}
-          <ArrowRight className="absolute right-4 bottom-4 h-6 w-6 text-gray-400 dark:text-gray-500" />
+          <ArrowRight className="absolute right-4 bottom-4 h-6 w-6 text-muted-foreground" />
         </div>
         <div
-          className={cn(
-            faceClassNames,
-            "bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800",
-          )}
+          className={cn(faceClassNames, "bg-gradient-to-br from-muted to-card")}
           style={{ transform: rotateValue, backfaceVisibility: "hidden" }}
         >
-          <h3 className="mb-3 text-xl font-semibold text-gray-800 dark:text-white">
+          <h3 className="mb-3 text-xl font-semibold text-card-foreground">
             {backContent.title}
           </h3>
-          <p className="text-center text-sm text-gray-600 dark:text-gray-300">
+          <p className="text-center text-sm text-muted-foreground">
             {backContent.description}
           </p>
         </div>

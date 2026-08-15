@@ -212,7 +212,7 @@ export function llmsIndex(): string {
 /** `/llms-full.txt`: every component document concatenated. */
 export function llmsFull(): string {
   const header = [
-    `# ${siteConfig.name} — full documentation`,
+    `# ${siteConfig.name}: full documentation`,
     "",
     `> ${siteConfig.description}`,
     "",

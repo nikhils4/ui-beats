@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     "Tutorials and guides on frontend development, UI/UX design, and web animation.",
   alternates: { canonical: absoluteUrl("/blogs") },
   openGraph: {
-    title: `Blog — ${siteConfig.name}`,
+    title: `Blog · ${siteConfig.name}`,
     description:
       "Tutorials and guides on frontend development, UI/UX design, and web animation.",
     url: absoluteUrl("/blogs"),

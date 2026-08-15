@@ -19,6 +19,7 @@ import { DocsBreadcrumb } from "@/components/website/docs-breadcrumb";
 import { DocsPageHeader } from "@/components/website/docs-page-header";
 import { DocsSection } from "@/components/website/docs-section";
 import { InstallTabs } from "@/components/website/install-tabs";
+import { OpenInV0 } from "@/components/website/open-in";
 import { PropsTable } from "@/components/website/props-table";
 import { CATEGORY_META } from "@/config/categories";
 import {
@@ -72,7 +73,7 @@ export async function generateMetadata({
     keywords: componentKeywords(entry),
     alternates: { canonical: url },
     openGraph: {
-      title: `${seoTitle} — ${siteConfig.name}`,
+      title: `${seoTitle} · ${siteConfig.name}`,
       description: entry.description,
       url,
       type: "article",
@@ -344,8 +345,11 @@ export default async function ComponentDocsPage({ params }: PageProps) {
       <DocsSection
         id="installation"
         title="Installation"
-        description="Add it with the CLI, or copy the source into your project."
+        description="Add it with the CLI, open it in v0, or copy the source into your project."
       >
+        <div className="mb-4">
+          <OpenInV0 name={entry.name} />
+        </div>
         <InstallTabs entry={entry} />
       </DocsSection>
 

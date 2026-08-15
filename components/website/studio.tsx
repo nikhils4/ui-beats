@@ -340,7 +340,7 @@ export function Studio({ components, initial, className }: StudioProps) {
           {tab === "props" ? (
             <PlaygroundSnippet
               code={componentSnippet}
-              title={`${component?.title ?? "Component"} — your configuration`}
+              title={`${component?.title ?? "Component"}: your configuration`}
               className="lg:col-span-2 lg:overflow-y-auto"
             />
           ) : (
@@ -568,7 +568,7 @@ export function Studio({ components, initial, className }: StudioProps) {
 
                     <p className="border-t pt-4 text-[11px] leading-snug text-muted-foreground">
                       Less damping bounces. More stiffness arrives sooner. Mass
-                      is inertia — raise it and everything feels heavier.
+                      is inertia. Raise it and everything feels heavier.
                     </p>
                   </>
                 )}

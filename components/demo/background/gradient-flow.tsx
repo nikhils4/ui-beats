@@ -1,5 +1,7 @@
+"use client";
+
 import React from "react";
-import { motion } from "motion/react";
+import { motion, useReducedMotion } from "motion/react";
 
 interface GradientFlowProps {
   children: React.ReactNode;
@@ -20,6 +22,8 @@ const GradientFlow: React.FC<GradientFlowProps> = ({
   radialOverlay = true,
   blurAmount = "10px",
 }) => {
+  const prefersReducedMotion = useReducedMotion();
+
   const gradientString = `linear-gradient(135deg, ${colors.join(", ")})`;
   const radialGradient =
     "radial-gradient(circle at 50% 50%, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%)";
@@ -37,14 +41,26 @@ const GradientFlow: React.FC<GradientFlowProps> = ({
           backgroundSize: "400% 400%",
           filter: `blur(${blurAmount})`,
         }}
-        animate={{
-          backgroundPosition: ["0% 0%", "100% 100%", "0% 0%"],
-        }}
-        transition={{
-          duration: duration,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
+        /*
+         * The gradient still renders under reduced motion, it just stops
+         * travelling. This is a decorative backdrop that content sits on top
+         * of, so removing it outright would change the contrast behind the
+         * children rather than only calming the page.
+         */
+        animate={
+          prefersReducedMotion
+            ? undefined
+            : { backgroundPosition: ["0% 0%", "100% 100%", "0% 0%"] }
+        }
+        transition={
+          prefersReducedMotion
+            ? undefined
+            : {
+                duration: duration,
+                repeat: Infinity,
+                ease: "easeInOut",
+              }
+        }
       />
       {radialOverlay && (
         <div

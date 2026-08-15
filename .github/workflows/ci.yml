@@ -115,3 +115,43 @@ jobs:
           name: playwright-report
           path: playwright-report/
           retention-days: 7
+
+  visual:
+    name: Motion frames
+    runs-on: ubuntu-latest
+    # Kept out of the required set until the Linux baselines are committed.
+    # The first run of this job writes them and fails, per Playwright's own
+    # bootstrap: download `visual-baselines` below, commit the PNGs, then
+    # delete this line so a real diff can block a merge.
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v5
+
+      - run: corepack enable
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: yarn
+
+      - run: yarn install --immutable
+
+      - name: Install Playwright browsers
+        run: yarn playwright install --with-deps chromium
+
+      # Baselines are platform-specific — see `snapshotPathTemplate` in
+      # playwright.config.ts. This runner is the only platform whose set is
+      # committed, which is why the suite runs here and not on a developer's
+      # machine.
+      - name: Compare motion frames
+        run: yarn test:visual
+
+      - name: Upload diffs and any newly written baselines
+        if: ${{ !cancelled() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: visual-baselines
+          path: |
+            playwright-report/
+            tests/visual/__screenshots__/
+          retention-days: 7

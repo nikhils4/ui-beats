@@ -1,10 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion } from "motion/react";
 import { Star } from "lucide-react";
+import { BrandLockup } from "@/components/brand";
 import { Button } from "@/components/ui/button";
 import { CommandMenu } from "@/components/website/command-menu";
 import { ModeToggle } from "@/components/website/ui-theme-toggle";
@@ -46,19 +46,9 @@ export function Header({ stars = 0 }: { stars?: number }) {
     >
       {showScrollProgress ? <ScrollProgress /> : null}
       <div className="mx-auto flex h-16 max-w-(--breakpoint-2xl) items-center gap-6 px-4 md:px-8">
-        <Link className="flex shrink-0 items-center gap-2.5" href="/">
-          <Image
-            src="/uibeats-logo.png"
-            width={26}
-            height={26}
-            alt=""
-            className="rounded-md bg-white shadow-subtle"
-          />
-          <span className="flex items-center gap-2">
-            <span className="font-display text-[15px] font-bold tracking-tight">
-              {siteConfig.name}
-            </span>
-          </span>
+        <Link className="flex shrink-0 items-center" href="/">
+          <BrandLockup />
+          <span className="sr-only">{siteConfig.name} home</span>
         </Link>
 
         <nav

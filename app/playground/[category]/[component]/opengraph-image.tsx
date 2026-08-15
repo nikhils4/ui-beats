@@ -43,7 +43,7 @@ export default async function OpengraphImage({
     <OgCard
       eyebrow="/ Playground"
       title={`${entry.title} Playground`}
-      body={`Tune ${entry.title} live — every prop as a control, the code updating as you go.`}
+      body={`Tune ${entry.title} live: every prop as a control, the code updating as you go.`}
       footerLeft={
         <div style={{ color: og.brand, fontWeight: 600 }}>
           {`uibeats.com/playground/${entry.category}/${entry.name}`}

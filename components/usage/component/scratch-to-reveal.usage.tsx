@@ -31,7 +31,7 @@ const ScratchToRevealUsage = () => {
 
       <p className="text-xs text-muted-foreground">
         {won
-          ? "Nice — the rest fell away on its own."
+          ? "Nice. The rest fell away on its own."
           : "Drag across the foil."}
       </p>
     </div>

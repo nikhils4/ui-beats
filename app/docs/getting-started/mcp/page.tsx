@@ -3,6 +3,7 @@ import { CodeBlock } from "@/components/website/code-block";
 import { DocsBreadcrumb } from "@/components/website/docs-breadcrumb";
 import { DocsPageHeader } from "@/components/website/docs-page-header";
 import { DocsSection } from "@/components/website/docs-section";
+import { McpInstallButtons } from "@/components/website/open-in";
 import { getRegistry } from "@/lib/registry";
 import { absoluteUrl, siteConfig } from "@/lib/site";
 
@@ -25,7 +26,7 @@ const TOOLS = [
   {
     name: "search_components",
     description:
-      'Rank the catalogue against a plain-language query — "a card that flips", "number counting up" — or an exact name.',
+      'Rank the catalogue against a plain-language query ("a card that flips", "number counting up") or an exact name.',
   },
   {
     name: "get_component",
@@ -64,7 +65,7 @@ export default function McpPage() {
       <p className="mt-8 max-w-2xl leading-7">
         Most components now get chosen by whatever is writing the code, not by
         someone browsing a gallery. The UI Beats MCP server puts the whole
-        catalogue — {registry.length} components, their props and their source —
+        catalogue ({registry.length} components, their props and their source)
         inside Claude Code, Cursor, Windsurf, or any other client that speaks{" "}
         <a
           href="https://modelcontextprotocol.io"
@@ -81,15 +82,12 @@ export default function McpPage() {
       <DocsSection
         id="install"
         title="Install"
-        description="One command for Claude Code; a config block for everything else."
+        description="One click for Cursor and VS Code, one command for Claude Code, a config block for everything else."
       >
-        <CodeBlock
-          code="claude mcp add uibeats -- npx -y @uibeats/mcp"
-          language="bash"
-        />
+        <McpInstallButtons className="mb-6" />
 
         <p className="mt-6 mb-2 text-sm text-muted-foreground">
-          For Cursor, Windsurf, Claude Desktop and anything else that reads an{" "}
+          For Windsurf, Claude Desktop and anything else that reads an{" "}
           <code className="font-mono text-xs">mcpServers</code> block:
         </p>
         <CodeBlock
@@ -162,7 +160,7 @@ export default function McpPage() {
                 /docs/&lt;category&gt;/&lt;name&gt;.md
               </dt>
               <dd className="mt-1 text-sm text-muted-foreground">
-                Any component page as markdown — add{" "}
+                Any component page as markdown. Add{" "}
                 <code className="font-mono text-xs">.md</code> to its URL.
               </dd>
             </div>

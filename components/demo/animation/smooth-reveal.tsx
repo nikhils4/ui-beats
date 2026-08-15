@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { cubicBezier, motion, useInView } from "motion/react";
+import { cubicBezier, motion, useInView, useReducedMotion } from "motion/react";
 
 type SmoothRevealProps = {
   children: React.ReactNode;
@@ -23,6 +23,7 @@ const SmoothReveal: React.FC<SmoothRevealProps> = ({
 }) => {
   const ref = React.useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once, amount: 0.1 });
+  const prefersReducedMotion = useReducedMotion();
 
   const getDirectionalProps = () => {
     switch (direction) {
@@ -40,22 +41,29 @@ const SmoothReveal: React.FC<SmoothRevealProps> = ({
 
   const customEasing = cubicBezier(0.2, 0.0, 0.0, 1.0);
 
-  const variants = {
-    hidden: {
-      opacity: 0,
-      ...getDirectionalProps(),
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      x: 0,
-      transition: {
-        duration: duration,
-        ease: customEasing,
-        delay: delay,
-      },
-    },
-  };
+  // 100px of travel by default — the largest displacement of any entrance
+  // here, and the one most worth removing when asked to.
+  const variants = prefersReducedMotion
+    ? {
+        hidden: { opacity: 1, x: 0, y: 0 },
+        visible: { opacity: 1, x: 0, y: 0 },
+      }
+    : {
+        hidden: {
+          opacity: 0,
+          ...getDirectionalProps(),
+        },
+        visible: {
+          opacity: 1,
+          y: 0,
+          x: 0,
+          transition: {
+            duration: duration,
+            ease: customEasing,
+            delay: delay,
+          },
+        },
+      };
 
   return (
     <motion.div

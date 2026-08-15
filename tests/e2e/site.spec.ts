@@ -4,7 +4,10 @@ test.describe("marketing pages", () => {
   test("home renders the hero and links into the docs", async ({ page }) => {
     await page.goto("/");
     await expect(
-      page.getByRole("heading", { name: /animated react components you own/i }),
+      // Matches the stable half of the headline. Pinning the whole sentence
+      // means every copy tweak fails a test that is really here to check the
+      // hero rendered at all.
+      page.getByRole("heading", { name: /animated react components/i }),
     ).toBeVisible();
 
     await page.getByRole("link", { name: /browse components/i }).click();
@@ -77,8 +80,25 @@ test.describe("accessibility basics", () => {
     ).toBeAttached();
   });
 
+  /*
+   * A blog post, not the blog index.
+   *
+   * This used to load `/blogs` and assert an image was visible before checking
+   * alt text. That passed only because the site header carried a raster logo,
+   * so every page was guaranteed one `<img>`; the blog *cards* have never
+   * rendered images. When the logo became an inline SVG the page dropped to
+   * zero images and the test failed without anything about image
+   * accessibility having changed. A post body is where the images actually
+   * are, so that is what is worth asserting on.
+   */
   test("images carry alt text", async ({ page }) => {
     await page.goto("/blogs");
+    await page
+      .getByRole("link", { name: /read more/i })
+      .first()
+      .click();
+    await expect(page).toHaveURL(/\/blogs\/[a-z0-9-]+$/);
+
     const images = page.locator("img");
     // Same non-auto-waiting caveat as elsewhere: settle before counting.
     await expect(images.first()).toBeVisible();

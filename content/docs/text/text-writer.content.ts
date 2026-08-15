@@ -37,7 +37,7 @@ const TextWriterContent: ComponentConfig = {
     {
       prop: "cursorColor",
       type: "string",
-      defaultValue: "'#000'",
+      defaultValue: "'currentColor'",
       description: "Color of the typing cursor",
     },
     {

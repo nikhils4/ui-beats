@@ -42,7 +42,7 @@ export const EVENTS = [
   },
   {
     icon: CreditCard,
-    title: "Payment received — $49.00",
+    title: "Payment received · $49.00",
     meta: "1m ago",
     tone: "text-emerald-500",
   },
@@ -180,6 +180,52 @@ export const TABS = [
   { label: "Analytics", value: "analytics" },
   { label: "Reports", value: "reports" },
   { label: "Settings", value: "settings" },
+];
+
+/* -- component/avatar-stack -------------------------------------------- */
+
+export const TEAM = [
+  { name: "Ava Chen" },
+  { name: "Marcus Hale" },
+  { name: "Priya Nair" },
+  { name: "Diego Ramos" },
+  { name: "Yuki Tanaka" },
+  { name: "Noor Haddad" },
+  { name: "Sam Okafor" },
+];
+
+/* -- component/bento-grid ---------------------------------------------- */
+
+export const BENTO_CELLS = [
+  {
+    title: "Copy, paste, own it",
+    body: "Every component lands in your repo as plain source you can edit.",
+    colSpan: 2,
+  },
+  {
+    title: "Motion included",
+    body: "Animation is part of the component, not a wrapper bolted on later.",
+    colSpan: 1,
+  },
+  {
+    title: "Themed by default",
+    body: "Colours come from your own tokens.",
+    colSpan: 1,
+  },
+  {
+    title: "Documented properly",
+    body: "Every prop has a table, a playground, and a reason to exist.",
+    colSpan: 2,
+  },
+];
+
+/* -- component/scroll-progress ----------------------------------------- */
+
+export const ARTICLE = [
+  "Motion is a language, and most interfaces speak it badly.",
+  "A transition that runs too long reads as lag. One that skips a frame reads as a bug.",
+  "The fix is to move only what actually changed, and to move it the shortest distance that still explains itself.",
+  "Everything else holds still, so the one thing that moved is the thing you notice.",
 ];
 
 /* -- component/marquee ------------------------------------------------- */

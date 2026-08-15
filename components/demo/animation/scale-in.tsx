@@ -1,6 +1,11 @@
 "use client";
 import React from "react";
-import { motion, useInView, type Variants } from "motion/react";
+import {
+  motion,
+  useInView,
+  useReducedMotion,
+  type Variants,
+} from "motion/react";
 
 interface ScaleInProps {
   children: React.ReactNode;
@@ -21,19 +26,23 @@ const ScaleIn: React.FC<ScaleInProps> = ({
 }) => {
   const ref = React.useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once, amount: 0.1 });
+  const prefersReducedMotion = useReducedMotion();
 
-  const variants: Variants = {
-    hidden: { scale: scaleFrom, opacity: 0 },
-    visible: {
-      scale: 1,
-      opacity: 1,
-      transition: {
-        duration: duration,
-        delay: delay,
-        ease: [0.215, 0.61, 0.355, 1],
-      },
-    },
-  };
+  // Settled at full size from the first frame, in view or not.
+  const variants: Variants = prefersReducedMotion
+    ? { hidden: { scale: 1, opacity: 1 }, visible: { scale: 1, opacity: 1 } }
+    : {
+        hidden: { scale: scaleFrom, opacity: 0 },
+        visible: {
+          scale: 1,
+          opacity: 1,
+          transition: {
+            duration: duration,
+            delay: delay,
+            ease: [0.215, 0.61, 0.355, 1],
+          },
+        },
+      };
 
   return (
     <motion.div

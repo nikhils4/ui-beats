@@ -14,12 +14,16 @@ import {
 } from "lucide-react";
 import { AnimatedList } from "@/components/demo/animation/animated-list";
 import { AnimatedBeam } from "@/components/demo/background/animated-beam";
+import { Meteors } from "@/components/demo/background/meteors";
 import { OrbitingElements } from "@/components/demo/background/orbiting-elements";
 import { RetroGrid } from "@/components/demo/background/retro-grid";
 import { SparklingGrid } from "@/components/demo/background/sparkling-grid";
+import { LoadingButton } from "@/components/demo/button/loading-button";
 import { MagneticButton } from "@/components/demo/button/magnetic-button";
 import { RippleButton } from "@/components/demo/button/ripple-button";
+import { ShimmerButton } from "@/components/demo/button/shimmer-button";
 import { SubscribeButton } from "@/components/demo/button/subscribe-button";
+import { AvatarStack } from "@/components/demo/component/avatar-stack";
 import { CardStack } from "@/components/demo/card/card-stack";
 import FlipCard from "@/components/demo/card/flip-card";
 import GlowingCard from "@/components/demo/card/glowing-card";
@@ -232,6 +236,19 @@ const DOCK_ITEMS = [
   { label: "Settings", icon: Settings },
 ];
 
+const TEAM = [
+  { name: "Ava Chen" },
+  { name: "Marcus Hale" },
+  { name: "Priya Nair" },
+  { name: "Diego Ramos" },
+  { name: "Yuki Tanaka" },
+  { name: "Sam Okafor" },
+];
+
+/** Stands in for the request the Loading Button would normally be awaiting. */
+const wait = (ms: number) =>
+  new Promise<void>((resolve) => setTimeout(resolve, ms));
+
 export function ComponentShowcase({ total }: { total: number }) {
   return (
     <section className="relative border-t border-border/60">
@@ -306,6 +323,22 @@ export function ComponentShowcase({ total }: { total: number }) {
                 </p>
               </div>
             </BorderBeam>
+          </Tile>
+
+          <Tile
+            href="/docs/background/meteors"
+            label="Meteors"
+            bleed
+            className="sm:col-span-2 sm:row-span-2 lg:col-span-2"
+          >
+            <div className="relative size-full overflow-hidden bg-neutral-950">
+              <Meteors count={18} color="#c4b5fd" trailLength={70} />
+              <div className="relative z-10 flex size-full items-center justify-center pb-6">
+                <span className="text-2xl font-bold tracking-tighter text-white">
+                  Night shift
+                </span>
+              </div>
+            </div>
           </Tile>
 
           <Tile
@@ -389,6 +422,39 @@ export function ComponentShowcase({ total }: { total: number }) {
             className="sm:col-span-2 lg:col-span-2"
           >
             <RippleButton>Press anywhere</RippleButton>
+          </Tile>
+
+          <Tile
+            href="/docs/button/shimmer-button"
+            label="Shimmer Button"
+            interactive
+            className="sm:col-span-2 lg:col-span-2"
+          >
+            <ShimmerButton shimmerWidth={35}>Get started</ShimmerButton>
+          </Tile>
+
+          <Tile
+            href="/docs/button/loading-button"
+            label="Loading Button"
+            interactive
+            className="sm:col-span-2 lg:col-span-2"
+          >
+            <LoadingButton
+              onAction={() => wait(1400)}
+              loadingText="Publishing"
+              successText="Published"
+            >
+              Publish changes
+            </LoadingButton>
+          </Tile>
+
+          <Tile
+            href="/docs/component/avatar-stack"
+            label="Avatar Stack"
+            interactive
+            className="sm:col-span-2 lg:col-span-2"
+          >
+            <AvatarStack avatars={TEAM} max={4} size={44} />
           </Tile>
 
           <Tile
@@ -549,9 +615,16 @@ export function ComponentShowcase({ total }: { total: number }) {
             </OrbitingElements>
           </Tile>
 
+          {/*
+            `interactive`, because the glow follows the pointer. Without it the
+            tile lays a full-cover link over the demo at z-30, and that link
+            swallows every pointer event the card needs to track: the component
+            rendered, but the one thing it does never happened.
+          */}
           <Tile
             href="/docs/card/glowing-card"
             label="Glowing Card"
+            interactive
             className="sm:col-span-2 lg:col-span-2"
           >
             <GlowingCard width={220} height={124}>

@@ -12,7 +12,7 @@ const events = [
   },
   {
     icon: CreditCard,
-    title: "Payment received — $49.00",
+    title: "Payment received · $49.00",
     meta: "1m ago",
     tone: "text-emerald-500",
   },

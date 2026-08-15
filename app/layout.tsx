@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     default: siteConfig.title,
     // Component pages set a bare title; this gives them a consistent suffix
     // instead of the old `document.title = ...` effect that crawlers never ran.
-    template: `%s — ${siteConfig.name}`,
+    template: `%s · ${siteConfig.name}`,
   },
   description: siteConfig.description,
   applicationName: siteConfig.name,
@@ -86,7 +86,7 @@ export const metadata: Metadata = {
         url: siteConfig.ogImage,
         width: 1200,
         height: 630,
-        alt: `${siteConfig.name} — ${siteConfig.description}`,
+        alt: `${siteConfig.name}: ${siteConfig.description}`,
       },
     ],
   },
@@ -105,10 +105,12 @@ export const metadata: Metadata = {
       "max-video-preview": -1,
     },
   },
-  icons: {
-    icon: "/uibeats-icon.png",
-    apple: "/apple-icon.png",
-  },
+  /*
+   * No `icons` key on purpose. It used to point at the checked-in PNGs of the
+   * retired logo, and an explicit entry here outranks Next's file-based icons,
+   * so `app/icon.tsx` and `app/apple-icon.tsx` would have generated the new
+   * mark and then never been linked. Leaving it out lets those two files win.
+   */
 };
 
 export const viewport: Viewport = {

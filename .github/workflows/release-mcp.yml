@@ -1,0 +1,75 @@
+name: Release MCP
+
+# Tagged `mcp-v*` rather than `v*`: this repo also ships the website, so a bare
+# version tag would be ambiguous about what is being released.
+on:
+  push:
+    tags:
+      - "mcp-v*"
+
+# `id-token: write` is what lets npm's trusted publishing exchange a GitHub OIDC
+# token for publish rights. Without it the publish falls back to looking for an
+# NPM_TOKEN that deliberately does not exist here.
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  publish:
+    name: Publish @uibeats/mcp
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: packages/mcp
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          # Trusted publishing needs Node >= 22.14 and npm >= 11.5.1.
+          node-version: "22"
+          registry-url: "https://registry.npmjs.org"
+          # The repo root is a Yarn 4 workspace; only this package uses npm, so
+          # the default lockfile-based cache lookup would fail at the root.
+          package-manager-cache: false
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Verify the tag matches the package version
+        run: |
+          tag="${GITHUB_REF_NAME#mcp-v}"
+          pkg=$(node -p "require('./package.json').version")
+          echo "tag: $tag / package.json: $pkg"
+          test "$tag" = "$pkg" || {
+            echo "::error::tag mcp-v$tag does not match package.json $pkg"
+            exit 1
+          }
+
+      - name: Build
+        run: npm run build
+
+      - name: Smoke test the built server
+        run: |
+          printf '%s\n' \
+            '{"jsonrpc":"2.0","id":1,"method":"initialize","params":{"protocolVersion":"2024-11-05","capabilities":{},"clientInfo":{"name":"ci","version":"1"}}}' \
+            '{"jsonrpc":"2.0","method":"notifications/initialized"}' \
+            '{"jsonrpc":"2.0","id":2,"method":"tools/list"}' \
+            | node dist/index.js > handshake.json
+          node -e "
+            const lines = require('fs').readFileSync('handshake.json', 'utf8').trim().split('\n');
+            const list = lines.map(JSON.parse).find((m) => m.id === 2);
+            const names = (list?.result?.tools ?? []).map((t) => t.name).sort();
+            const want = ['get_component','get_install_command','list_components','search_components'];
+            if (names.join() !== want.join()) {
+              console.error('::error::expected ' + want.join() + ', got ' + names.join());
+              process.exit(1);
+            }
+            console.log('tools ok: ' + names.join(', '));
+          "
+
+      # No NODE_AUTH_TOKEN: trusted publishing authenticates via OIDC, and npm
+      # attaches provenance automatically when it does.
+      - name: Publish
+        run: npm publish

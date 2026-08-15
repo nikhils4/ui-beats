@@ -124,11 +124,6 @@ jobs:
   visual:
     name: Motion frames
     runs-on: ubuntu-latest
-    # Kept out of the required set until the Linux baselines are committed.
-    # The first run of this job writes them and fails, per Playwright's own
-    # bootstrap: download `visual-baselines` below, commit the PNGs, then
-    # delete this line so a real diff can block a merge.
-    continue-on-error: true
     steps:
       - uses: actions/checkout@v5
 

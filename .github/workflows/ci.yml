@@ -5,6 +5,11 @@ on:
     branches: [main]
   pull_request:
     branches: [main]
+  # Manual trigger, so the visual job's baseline bootstrap can be re-run
+  # without pushing a commit to provoke it. Linux baselines cannot be
+  # generated on a developer's machine (see `snapshotPathTemplate`), so this
+  # workflow is the only place they come from.
+  workflow_dispatch:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}

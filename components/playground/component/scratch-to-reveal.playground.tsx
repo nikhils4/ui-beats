@@ -35,9 +35,7 @@ export default function ScratchToRevealPlayground({
       </ScratchToReveal>
 
       <p className="text-xs text-muted-foreground">
-        {won
-          ? "Nice. The rest fell away on its own."
-          : "Drag across the foil."}
+        {won ? "Nice. The rest fell away on its own." : "Drag across the foil."}
       </p>
     </div>
   );

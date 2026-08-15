@@ -79,7 +79,8 @@ export default defineConfig({
      * `E2E_REUSE_SERVER=1` to keep a server between runs while iterating on a
      * spec, which is the case the old default was quietly optimising for.
      */
-    reuseExistingServer: !process.env.CI && process.env.E2E_REUSE_SERVER === "1",
+    reuseExistingServer:
+      !process.env.CI && process.env.E2E_REUSE_SERVER === "1",
     timeout: 300_000,
   },
 });

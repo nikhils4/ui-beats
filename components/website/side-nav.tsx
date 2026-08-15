@@ -24,7 +24,7 @@ import {
   CollapsibleTrigger,
 } from "@/components/ui/collapsible";
 import { Button } from "../ui/button";
-import { ChevronDown, Search, X } from "lucide-react";
+import { ChevronDown, Search, SearchX, X } from "lucide-react";
 import { BeatsMark, BrandLockup } from "@/components/brand";
 import { GitHubIcon } from "@/components/icons";
 import { siteConfig } from "@/lib/site";
@@ -82,7 +82,8 @@ export const SideNav = ({ ...props }: React.ComponentProps<typeof Sidebar>) => {
 
   // While filtering, every surviving section is open: a match hidden inside a
   // collapsed section is a match the reader cannot see.
-  const isOpen = (index: number) => trimmed !== "" || openMenuIndices.includes(index);
+  const isOpen = (index: number) =>
+    trimmed !== "" || openMenuIndices.includes(index);
 
   return (
     <Sidebar collapsible="icon" {...props}>
@@ -113,28 +114,36 @@ export const SideNav = ({ ...props }: React.ComponentProps<typeof Sidebar>) => {
             menu for jumping straight to a page; this is for narrowing the list
             you are already looking at. */}
         {state === "expanded" ? (
-          <div className="relative px-2 pb-2">
-            <Search className="pointer-events-none absolute top-1/2 left-4 size-3.5 -translate-y-1/2 text-muted-foreground" />
-            <SidebarInput
-              value={query}
-              onChange={(event) => setQuery(event.target.value)}
-              onKeyDown={(event) => {
-                if (event.key === "Escape") setQuery("");
-              }}
-              placeholder="Filter components"
-              aria-label="Filter components"
-              className="h-8 pr-8 pl-8 text-xs"
-            />
-            {query ? (
-              <button
-                type="button"
-                onClick={() => setQuery("")}
-                aria-label="Clear filter"
-                className="absolute top-1/2 right-4 -translate-y-1/2 rounded-sm p-0.5 text-muted-foreground transition-colors hover:text-foreground"
-              >
-                <X className="size-3.5" />
-              </button>
-            ) : null}
+          <div className="px-2 pb-2">
+            {/*
+              The padding is on the wrapper and the positioning context is the
+              inner div. With `pb-2` on the same element as `relative`, the
+              icons' `top-1/2` resolved against a box 8px taller than the
+              input, so both sat four pixels below its centre line.
+            */}
+            <div className="relative">
+              <Search className="pointer-events-none absolute top-1/2 left-2.5 size-3.5 -translate-y-1/2 text-muted-foreground" />
+              <SidebarInput
+                value={query}
+                onChange={(event) => setQuery(event.target.value)}
+                onKeyDown={(event) => {
+                  if (event.key === "Escape") setQuery("");
+                }}
+                placeholder="Filter components"
+                aria-label="Filter components"
+                className="h-9 rounded-lg pr-8 pl-8 text-xs shadow-none"
+              />
+              {query ? (
+                <button
+                  type="button"
+                  onClick={() => setQuery("")}
+                  aria-label="Clear filter"
+                  className="absolute top-1/2 right-2 -translate-y-1/2 rounded-md p-1 text-muted-foreground transition-colors hover:bg-sidebar-accent hover:text-foreground"
+                >
+                  <X className="size-3.5" />
+                </button>
+              ) : null}
+            </div>
           </div>
         ) : null}
       </SidebarHeader>
@@ -147,9 +156,22 @@ export const SideNav = ({ ...props }: React.ComponentProps<typeof Sidebar>) => {
         }}
       >
         {sections.length === 0 ? (
-          <p className="px-2 py-6 text-center text-xs text-muted-foreground">
-            Nothing matches &ldquo;{query.trim()}&rdquo;.
-          </p>
+          <div className="flex flex-col items-center gap-2 px-3 py-10 text-center">
+            <SearchX className="size-5 text-muted-foreground/60" />
+            <p className="text-xs text-muted-foreground">
+              No component matches{" "}
+              <span className="font-medium text-foreground">
+                &ldquo;{query.trim()}&rdquo;
+              </span>
+            </p>
+            <button
+              type="button"
+              onClick={() => setQuery("")}
+              className="text-xs font-medium text-brand transition-opacity hover:opacity-80"
+            >
+              Clear filter
+            </button>
+          </div>
         ) : null}
 
         <SidebarMenu className="space-y-2">
@@ -176,9 +198,16 @@ export const SideNav = ({ ...props }: React.ComponentProps<typeof Sidebar>) => {
                 <SidebarMenuItem>
                   <CollapsibleTrigger asChild>
                     <div className="flex w-full justify-center">
+                      {/*
+                        Styled as a group label rather than a nav item. These
+                        sit directly above the component links and used to
+                        share their weight and size, so the eye could not tell
+                        a heading from a destination and the whole list read as
+                        one flat run of forty-odd rows.
+                      */}
                       <SidebarMenuButton
                         tooltip={title}
-                        className="text-sm"
+                        className="h-8 text-[11px] font-semibold tracking-wider text-muted-foreground uppercase hover:text-foreground [&>svg]:size-3.5 [&>svg]:text-muted-foreground"
                         onClick={() => {
                           // Clicking an icon in the collapsed rail expands the
                           // sidebar. It no longer collapses every other
@@ -194,11 +223,11 @@ export const SideNav = ({ ...props }: React.ComponentProps<typeof Sidebar>) => {
                       >
                         {Icon && <Icon />}
                         {title}
-                        <span className="ml-auto flex items-center gap-1.5">
-                          <span className="text-[11px] tabular-nums text-muted-foreground">
+                        <span className="ml-auto flex items-center gap-1">
+                          <span className="rounded-full bg-sidebar-accent px-1.5 py-0.5 text-[10px] leading-none font-medium text-muted-foreground tabular-nums">
                             {subItems.length}
                           </span>
-                          <ChevronDown className="size-4 transition-transform group-data-[state=open]/collapsible:rotate-180" />
+                          <ChevronDown className="size-3.5 shrink-0 opacity-50 transition-transform group-data-[state=open]/collapsible:rotate-180" />
                         </span>
                       </SidebarMenuButton>
                     </div>
@@ -210,17 +239,17 @@ export const SideNav = ({ ...props }: React.ComponentProps<typeof Sidebar>) => {
                           <SidebarMenuSubButton
                             asChild
                             isActive={pathname === path}
-                            className="text-xs"
+                            className="text-xs transition-colors data-[active=true]:bg-brand/10 data-[active=true]:font-medium data-[active=true]:text-brand"
                           >
                             <Link
                               href={path}
                               className="flex items-center justify-between gap-2"
                             >
-                              {itemTitle}
+                              <span className="truncate">{itemTitle}</span>
                               {isNew && (
                                 <Badge
                                   variant="outline"
-                                  className="px-1.5 py-0 text-[10px]"
+                                  className="shrink-0 border-brand/30 px-1.5 py-0 text-[10px] font-medium text-brand"
                                 >
                                   New
                                 </Badge>

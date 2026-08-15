@@ -26,7 +26,12 @@ const HOVER_SCALE = [
 ];
 
 /** Staggered so the bars move as a meter rather than snapping together. */
-const HOVER_DELAY = ["delay-0", "delay-[40ms]", "delay-[80ms]", "delay-[120ms]"];
+const HOVER_DELAY = [
+  "delay-0",
+  "delay-[40ms]",
+  "delay-[80ms]",
+  "delay-[120ms]",
+];
 
 interface BeatsMarkProps {
   className?: string;

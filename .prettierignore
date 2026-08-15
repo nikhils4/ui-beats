@@ -1,6 +1,10 @@
 .next
 node_modules
 coverage
+
+# Machine-local editor state. Ignored by a global gitignore rather than this
+# repo's, so it never reaches CI, but it still fails `format:check` locally.
+.claude/settings.local.json
 playwright-report
 test-results
 public/r

@@ -621,13 +621,21 @@ export function ComponentShowcase({ total }: { total: number }) {
             swallows every pointer event the card needs to track: the component
             rendered, but the one thing it does never happened.
           */}
+          {/*
+            Two rows, like the other card tiles.
+            A single 11rem row leaves about 128px inside the tile's padding, so
+            a card had to shrink to 124px to fit and sat wedged against its own
+            edges with the label strip crowding the bottom. There was also
+            nowhere for the glow to fall off, which is the thing the tile is
+            meant to sell.
+          */}
           <Tile
             href="/docs/card/glowing-card"
             label="Glowing Card"
             interactive
-            className="sm:col-span-2 lg:col-span-2"
+            className="sm:col-span-2 sm:row-span-2 lg:col-span-2"
           >
-            <GlowingCard width={220} height={124}>
+            <GlowingCard width={236} height={224}>
               <div className="flex size-full flex-col justify-center p-5">
                 <p className="text-sm font-semibold">Follow the pointer</p>
                 <p className="mt-1 text-xs text-muted-foreground">

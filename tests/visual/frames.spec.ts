@@ -43,6 +43,18 @@ for (const config of componentConfigs) {
     const stage = page.locator(`[data-preview-stage="${key}"]`);
     await expect(stage).toBeVisible();
 
+    /*
+     * The stage is server-rendered and visible at once; the preview inside it
+     * is a `next/dynamic` chunk that lands later, behind a skeleton. Asserting
+     * on the stage alone let frame 0 race that chunk, capturing the skeleton
+     * about one run in forty — a different component each time, which is what
+     * made this suite look flaky rather than broken.
+     *
+     * The wait is free: the clock is frozen, so nothing animates while the
+     * chunk loads and frame 0 is still frame 0 when it arrives.
+     */
+    await expect(stage.locator("[data-preview-loading]")).toHaveCount(0);
+
     for (const at of FRAMES_MS) {
       // `runFor` advances by a delta, so each step moves from the previous
       // frame to this one rather than restarting from zero.

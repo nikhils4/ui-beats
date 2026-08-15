@@ -16,7 +16,7 @@ describe("v0 hand-off", () => {
     // v0 resolves the item itself, so it gets the dependencies and cssVars
     // with it. A docs URL would hand it a web page to scrape instead.
     const url = v0Url("flip-card");
-    expect(url).toContain("v0.dev/chat/api/open?url=");
+    expect(url).toContain("v0.app/chat/api/open?url=");
     expect(decodeURIComponent(url.split("url=")[1]!)).toBe(
       `${siteConfig.url}/r/flip-card.json`,
     );
@@ -24,6 +24,13 @@ describe("v0 hand-off", () => {
 
   it("encodes the registry URL rather than splicing it in raw", () => {
     expect(v0Url("flip-card")).not.toContain("https://uibeats.com/r");
+  });
+
+  it("skips the legacy host, which signs the reader in on the wrong origin", () => {
+    // v0.dev answers this path by redirecting to its own login with
+    // `next=v0.app/...`. The cookie lands on v0.dev, the request lands on
+    // v0.app, and the reader is stuck on a sign-in gate that never clears.
+    expect(v0Url("flip-card")).not.toContain("v0.dev");
   });
 
   it("resolves for every component in the registry", () => {

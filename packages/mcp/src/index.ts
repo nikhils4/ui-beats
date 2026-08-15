@@ -10,6 +10,7 @@
  *
  *     npx -y @uibeats/mcp
  */
+import { createRequire } from "node:module";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { z } from "zod";
@@ -22,7 +23,14 @@ import {
   type CatalogueComponent,
 } from "./catalogue.js";
 
-const VERSION = "0.1.0";
+/**
+ * Read off package.json rather than hardcoded, so `npm version` is the single
+ * place a release is stamped. A duplicated constant silently reports the old
+ * version to every client from the first bump onwards.
+ */
+const VERSION = (
+  createRequire(import.meta.url)("../package.json") as { version: string }
+).version;
 
 const server = new McpServer(
   { name: "uibeats", version: VERSION },

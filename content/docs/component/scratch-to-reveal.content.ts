@@ -8,7 +8,7 @@ const ScratchToRevealContent: ComponentConfig = {
     "The ScratchToReveal component covers your content in a foil the user rubs away with a pointer, firing onComplete and dropping the rest of the foil once enough has been cleared.",
   addedAt: "2026-08-13",
   whenToUse:
-    "Use it where the reveal is the point: a discount code, a giveaway result, a launch-day surprise. The delay is deliberate, which rules it out for anything a user needs quickly or will run into more than once. It is a pointer interaction first, but there is a keyboard path too. Enter or Space clears the foil outright, and whatever sits underneath should still be worth having for the people who get there that way.",
+    "For a reward worth uncovering: a discount code, a giveaway result, a launch-day surprise. The delay rules it out for anything needed quickly.",
   props: [
     {
       prop: "children",

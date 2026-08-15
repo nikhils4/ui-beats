@@ -3,6 +3,7 @@ import {
   Book,
   Component,
   CreditCard,
+  LayoutTemplate,
   MousePointer,
   Palette,
   Sparkles,
@@ -23,14 +24,30 @@ export const CATEGORY_META: Record<
 > = {
   animation: { label: "Animation", icon: ArrowUpDown },
   background: { label: "Background", icon: Palette },
+  block: { label: "Block", icon: LayoutTemplate },
   button: { label: "Button", icon: MousePointer },
   card: { label: "Card", icon: CreditCard },
   component: { label: "Component", icon: Component },
   text: { label: "Text", icon: Sparkles },
 };
 
-/** Display order for categories in the sidebar. */
-export const CATEGORY_ORDER = Object.keys(CATEGORY_META) as ComponentCategory[];
+/**
+ * Display order for categories in the sidebar.
+ *
+ * Blocks lead. They are whole sections assembled from the primitives below
+ * them, so they are both the thing most visitors are actually shopping for and
+ * the shortest path to seeing what the rest of the library can do. Everything
+ * after them stays alphabetical.
+ */
+export const CATEGORY_ORDER: ComponentCategory[] = [
+  "block",
+  "animation",
+  "background",
+  "button",
+  "card",
+  "component",
+  "text",
+];
 
 export function isCategory(value: string): value is ComponentCategory {
   return Object.prototype.hasOwnProperty.call(CATEGORY_META, value);

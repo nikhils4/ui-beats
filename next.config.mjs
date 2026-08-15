@@ -7,7 +7,8 @@
  * content-negotiate onto a dead route. `tests/seo.test.ts` fails if this drifts
  * from the registry's real categories.
  */
-const COMPONENT_CATEGORIES = "animation|background|button|card|component|text";
+const COMPONENT_CATEGORIES =
+  "animation|background|block|button|card|component|text";
 
 /**
  * The canonical host, and the `www.` variant that must fold into it.

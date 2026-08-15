@@ -8,7 +8,7 @@ const RetroGridContent: ComponentConfig = {
     "The RetroGrid component lays an infinite grid back in 3D and scrolls it toward the viewer, fading out into a horizon. A synthwave backdrop drawn entirely in CSS.",
   addedAt: "2026-08-13",
   whenToUse:
-    "Put it behind a hero or a section header that needs depth without downloading a background image. The lines use currentColor, so the grid takes the text colour of whatever wraps it and follows your theme with no JavaScript at all. The horizon is a mask, not a painted gradient, so it works over any background. Keep the colour faint, or it starts competing with the copy sitting on top of it.",
+    "Behind a hero or a section header that needs depth without downloading a background image. Keep the colour faint or it competes with the copy on top.",
   fullBleedPreview: true,
   props: [
     {

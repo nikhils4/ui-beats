@@ -8,7 +8,7 @@ const DockContent: ComponentConfig = {
     "The Dock component recreates the macOS dock: items swell as the pointer approaches, and each one names itself in a tooltip on hover or focus.",
   addedAt: "2026-08-12",
   whenToUse:
-    "Reach for a Dock when a small, fixed set of destinations should feel like an object instead of a list: a tool palette, a demo launcher, a portfolio nav. Keep it under about eight items. Past that the magnification has nowhere to breathe and the targets get hard to hit. Every item needs a label, since the tooltip is the only thing naming an icon-only control. It is also what makes the dock usable by keyboard and legible on touch, where magnification never fires.",
+    "For a small fixed set of destinations that should feel like an object: a tool palette, a demo launcher, a portfolio nav. Keep it under eight items.",
   props: [
     {
       prop: "children",

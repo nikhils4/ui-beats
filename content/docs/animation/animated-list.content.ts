@@ -8,7 +8,7 @@ const AnimatedListContent: ComponentConfig = {
     "The AnimatedList component streams its children in one at a time, springing each new entry into place and pushing the older ones down until they fall out of the bottom of the list.",
   addedAt: "2026-08-13",
   whenToUse:
-    "Use it on a landing page when the product produces a feed of some kind: notifications, orders, deploys, alerts. A still screenshot cannot show that things keep arriving. Only the visible window stays mounted, so it costs the same after an hour as it does in its first second. If you wire it to real data instead of a scripted loop, set `live` so arrivals are announced to a screen reader.",
+    "For a product that produces a feed: notifications, orders, deploys, alerts. A still screenshot cannot show that things keep arriving.",
   props: [
     {
       prop: "children",

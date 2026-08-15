@@ -19,8 +19,11 @@ describe("markdown alternate link", () => {
    * copy honest: add a seventh category and the header silently stops applying
    * to it, which is exactly the kind of omission nobody notices.
    */
+  // `\s*` rather than a single space: the declaration is long enough that
+  // Prettier wraps it onto the next line, and the assertion is about the
+  // categories listed, not about where the formatter put the string.
   it("advertises the markdown twin for every real category", () => {
-    const match = config.match(/const COMPONENT_CATEGORIES = "([^"]+)"/);
+    const match = config.match(/const COMPONENT_CATEGORIES =\s*"([^"]+)"/);
     expect(match).not.toBeNull();
 
     const declared = match![1]!.split("|").sort();
@@ -33,7 +36,7 @@ describe("markdown alternate link", () => {
    * `dynamicParams = false`, so advertising one would point agents at a 404.
    */
   it("does not match the getting-started section", () => {
-    const match = config.match(/const COMPONENT_CATEGORIES = "([^"]+)"/);
+    const match = config.match(/const COMPONENT_CATEGORIES =\s*"([^"]+)"/);
     expect(match![1]!.split("|")).not.toContain("getting-started");
   });
 

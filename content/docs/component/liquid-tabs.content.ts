@@ -8,7 +8,7 @@ const LiquidTabsContent: ComponentConfig = {
     "The LiquidTabs component is a tab switcher whose selection pill flows between tabs, stretching in proportion to how fast it is travelling and settling back into shape as it lands.",
   addedAt: "2026-08-13",
   whenToUse:
-    "Use it anywhere a segmented control or tab bar carries a handful of peer views: a dashboard's sections, a pricing period toggle, a filter row. The deformation comes from the pill's own velocity, so a hop to the neighbouring tab barely bends while a jump across the row stretches hard. That difference is what tells the user how far the selection moved. It renders as a `tablist` with roving tab focus and arrow-key selection, so give each panel an `id` and point the tab at it with `aria-controls` when you pair it with content.",
+    "For a handful of peer views: dashboard sections, a filter row, a pricing period toggle. Keep it under about six tabs so the indicator has room to travel.",
   props: [
     {
       prop: "items",

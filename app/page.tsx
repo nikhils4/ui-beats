@@ -1,4 +1,5 @@
 import { HeroSection } from "@/components/website/hero-section";
+import { BlocksShowcase } from "@/components/website/blocks-showcase";
 import { ComponentShowcase } from "@/components/website/component-showcase";
 import { OwnTheCode } from "@/components/website/own-the-code";
 import { BuiltForYourWorkflow } from "@/components/website/built-for-your-workflow";
@@ -34,7 +35,12 @@ export default function HomePage() {
         duplicating the ticker in the hero, which already links every single
         component. Neither was earning the scroll it cost.
       */}
+      {/* The live grid goes first. Blocks are the shortest path to a finished
+          section, but they are sold in words, and words landing before anyone
+          has seen a single component running is an argument with nothing
+          behind it. Show the parts, then say they also come assembled. */}
       <ComponentShowcase total={registry.length} />
+      <BlocksShowcase />
       <OwnTheCode />
       <BuiltForYourWorkflow />
       <FinalCta componentCount={registry.length} />

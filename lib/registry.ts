@@ -6,6 +6,7 @@ import { cache } from "react";
 import componentConfigs from "@/content/docs";
 import { CATEGORY_META, CATEGORY_ORDER } from "@/config/categories";
 import { byNewest, isRecentlyAdded } from "@/config/recency";
+import { detectDependencies } from "@/lib/registry-deps";
 import type {
   ComponentCategory,
   ComponentConfig,
@@ -68,6 +69,14 @@ export interface RegistryEntry extends ComponentConfig {
   dependencies: string[];
   /** shadcn registry items the component depends on (e.g. `utils`). */
   registryDependencies: string[];
+  /**
+   * Other UI Beats components this one composes, by name.
+   *
+   * Empty for every primitive; a block lists the parts it is assembled from,
+   * which the docs page shows so a reader can see what an install brings with
+   * it before running it.
+   */
+  beatsDependencies: string[];
   demoPath: string;
   usagePath: string;
   /**
@@ -80,48 +89,14 @@ export interface RegistryEntry extends ComponentConfig {
   hasPlayground: boolean;
 }
 
-/** Packages that ship with any React app and never need installing. */
-const IMPLICIT_DEPS = new Set(["react", "react-dom", "next"]);
-
-/**
- * Derive the npm dependency list from the component's own import statements
- * instead of maintaining it by hand, where it would silently drift.
+/*
+ * Dependency detection lives in `lib/registry-deps.ts`, shared with
+ * `scripts/build-registry.ts`. It used to be copied into both, which was fine
+ * while the rule was "skip anything starting with `@/`" but stopped being fine
+ * once a block's imports of other components became real registry
+ * dependencies. The docs and the published registry have to agree about what
+ * an install pulls in.
  */
-function detectDependencies(...sources: string[]): {
-  dependencies: string[];
-  registryDependencies: string[];
-} {
-  const dependencies = new Set<string>();
-  const registryDependencies = new Set<string>();
-  const importRe = /from\s+["']([^"']+)["']/g;
-
-  for (const source of sources) {
-    for (const match of source.matchAll(importRe)) {
-      const specifier = match[1];
-      if (!specifier) continue;
-
-      if (specifier.startsWith("@/lib/utils")) {
-        registryDependencies.add("utils");
-        continue;
-      }
-      // Relative imports and other in-repo aliases are inlined by the user.
-      if (specifier.startsWith(".") || specifier.startsWith("@/")) continue;
-
-      // Scoped packages keep two segments; bare packages keep one.
-      const segments = specifier.split("/");
-      const pkg = specifier.startsWith("@")
-        ? segments.slice(0, 2).join("/")
-        : (segments[0] ?? specifier);
-
-      if (!IMPLICIT_DEPS.has(pkg)) dependencies.add(pkg);
-    }
-  }
-
-  return {
-    dependencies: [...dependencies].sort(),
-    registryDependencies: [...registryDependencies].sort(),
-  };
-}
 
 /** The full registry: hand-authored config joined with source read off disk. */
 export const getRegistry = cache((): RegistryEntry[] =>
@@ -138,6 +113,8 @@ export const getRegistry = cache((): RegistryEntry[] =>
       );
     }
 
+    const detected = detectDependencies(source, usage ?? "");
+
     return {
       ...config,
       isNew: isRecentlyAdded(config.addedAt),
@@ -153,7 +130,15 @@ export const getRegistry = cache((): RegistryEntry[] =>
           `${config.name}.playground.tsx`,
         ),
       ),
-      ...detectDependencies(source, usage ?? ""),
+      ...detected,
+      /*
+       * The usage file is scanned too, and a usage file imports the very
+       * component it demonstrates. Without this filter every component would
+       * list itself as one of its own dependencies.
+       */
+      beatsDependencies: detected.beatsDependencies.filter(
+        (name) => name !== config.name,
+      ),
     };
   }),
 );

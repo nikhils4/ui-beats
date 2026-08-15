@@ -25,6 +25,17 @@ const loading = () => <Skeleton className="size-full" />;
  * into every page.
  */
 const previews: Record<string, PreviewComponent> = {
+  "block/hero": dynamic(() => import("@/components/usage/block/hero.usage"), {
+    loading,
+  }),
+  "block/pricing": dynamic(
+    () => import("@/components/usage/block/pricing.usage"),
+    { loading },
+  ),
+  "block/feature-grid": dynamic(
+    () => import("@/components/usage/block/feature-grid.usage"),
+    { loading },
+  ),
   "animation/animated-list": dynamic(
     () => import("@/components/usage/animation/animated-list.usage"),
     { loading },
@@ -231,7 +242,16 @@ export function ComponentPreview({
       // stage picked up a wrapper.
       data-preview-stage={`${category}/${name}`}
       className={cn(
-        "group relative h-80 w-full max-w-full overflow-hidden rounded-xl border bg-card shadow-subtle",
+        "group relative w-full max-w-full overflow-hidden rounded-xl border bg-card shadow-subtle",
+        /*
+         * A block is a whole page section, not a widget. In the 20rem stage
+         * every other component uses, Pricing showed its heading and the top
+         * inch of its cards — not the feature lists, not the buttons, and not
+         * the Border Beam tracing the recommended tier, which is the entire
+         * reason that block exists. Blocks get a stage tall enough to be
+         * judged, and scroll rather than crop if they still exceed it.
+         */
+        category === "block" ? "h-[38rem] overflow-y-auto" : "h-80",
         className,
       )}
     >

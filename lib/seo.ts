@@ -13,6 +13,9 @@ import type { ComponentCategory } from "@/types/component-config.type";
 const CATEGORY_SUFFIX: Record<ComponentCategory, string[]> = {
   animation: ["Animation"],
   background: ["Background"],
+  // Not "Component": a block is a whole section, and "section" is the word
+  // people type when they want one.
+  block: ["Section"],
   button: ["Button"],
   card: ["Card", "Component"],
   component: ["Component"],
@@ -75,6 +78,9 @@ export function categorySeoTitle(label: string, category: string): string {
   if (category === "background") return "React Animated Backgrounds";
   if (category === "animation") return "React Animation Components";
   if (category === "text") return "React Text Animation Components";
+  // "React Block Components" competes for nothing. People search for the
+  // section they want to build.
+  if (category === "block") return "React Landing Page Sections";
   // The "component" category is the catch-all bucket; the naive template
   // produced "React Component Components".
   if (category === "component") return "React Utility Components";
@@ -86,6 +92,8 @@ export const CATEGORY_INTRO: Record<ComponentCategory, string> = {
     "Entrance and scroll-triggered animations for React. Each one wraps your existing markup, so you can add motion without restructuring a component.",
   background:
     "Animated background layers for React. Drop one behind a hero or section and layer your content above it.",
+  block:
+    "Whole landing page sections, assembled from the components in this library. Install one and it brings its parts with it, then edit the section like any other file in your project.",
   button:
     "Interactive React buttons with motion built in, for the moments where a call to action should feel alive.",
   card: "React card components with depth, motion and hover behaviour, for feature grids, pricing and showcases.",

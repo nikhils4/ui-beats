@@ -13,6 +13,8 @@ import fs from "node:fs";
 import path from "node:path";
 import componentConfigs from "../content/docs";
 import { cssVarsFor, unknownTokensFor } from "../config/tokens";
+import { detectDependencies, publishableSource } from "../lib/registry-deps";
+import { siteConfig } from "../lib/site";
 
 const ROOT = process.cwd();
 const OUT_DIR = path.join(ROOT, "public", "r");
@@ -24,19 +26,40 @@ const SITE_URL = (
   process.env.NEXT_PUBLIC_SITE_URL ?? "https://uibeats.com"
 ).replace(/\/$/, "");
 
-const IMPLICIT_DEPS = new Set(["react", "react-dom", "next"]);
+/**
+ * Where each kind of item installs, and what shadcn should call it.
+ *
+ * A block is a whole section rather than a primitive, so it lands in
+ * `components/blocks/` and is typed `registry:block`. The distinction is not
+ * cosmetic: it is what stops a hero section being filed next to `button.tsx`
+ * in someone's UI folder.
+ */
+const ITEM_KIND = {
+  component: {
+    itemType: "registry:ui",
+    fileType: "registry:ui",
+    dir: "components/ui",
+  },
+  block: {
+    itemType: "registry:block",
+    fileType: "registry:component",
+    dir: "components/blocks",
+  },
+} as const;
+
+type ItemKind = keyof typeof ITEM_KIND;
 
 interface RegistryFile {
   path: string;
   content: string;
-  type: "registry:ui";
+  type: string;
   target: string;
 }
 
 interface RegistryItem {
   $schema: string;
   name: string;
-  type: "registry:ui";
+  type: string;
   title: string;
   description: string;
   /** Who wrote this component, so attribution survives an install. */
@@ -53,36 +76,31 @@ interface RegistryItem {
   files: RegistryFile[];
 }
 
-/** Read the npm packages a component imports, so users get them installed. */
-function detectDependencies(source: string): {
-  dependencies: string[];
-  registryDependencies: string[];
-} {
-  const dependencies = new Set<string>();
-  const registryDependencies = new Set<string>();
+/**
+ * A UI Beats component named as an absolute registry URL.
+ *
+ * shadcn resolves a `registryDependencies` entry that looks like a URL by
+ * fetching it, which is how a block installed from here brings its own parts
+ * with it rather than landing broken in a project that has none of them.
+ */
+function registryUrlFor(name: string): string {
+  return `${SITE_URL}/r/${name}.json`;
+}
 
-  for (const match of source.matchAll(/from\s+["']([^"']+)["']/g)) {
-    const specifier = match[1];
-    if (!specifier) continue;
-
-    if (specifier.startsWith("@/lib/utils")) {
-      registryDependencies.add("utils");
-      continue;
-    }
-    if (specifier.startsWith(".") || specifier.startsWith("@/")) continue;
-
-    const segments = specifier.split("/");
-    const pkg = specifier.startsWith("@")
-      ? segments.slice(0, 2).join("/")
-      : (segments[0] ?? specifier);
-
-    if (!IMPLICIT_DEPS.has(pkg)) dependencies.add(pkg);
-  }
-
-  return {
-    dependencies: [...dependencies].sort(),
-    registryDependencies: [...registryDependencies].sort(),
-  };
+/**
+ * Who wrote a component, always answered.
+ *
+ * `credits` is only set for components someone else wrote, so five of the
+ * author's own were shipping with no `author` at all — the field simply
+ * vanished on those entries, which reads as missing data to anything consuming
+ * the catalogue rather than as different provenance.
+ */
+function authorFor(config: {
+  credits?: { name: string; url: string };
+}): string {
+  return config.credits
+    ? `${config.credits.name} (${config.credits.url})`
+    : `${siteConfig.author.name} (${siteConfig.author.url})`;
 }
 
 /**
@@ -191,8 +209,31 @@ function main() {
       );
     }
 
-    const content = fs.readFileSync(sourcePath, "utf8");
-    const { dependencies, registryDependencies } = detectDependencies(content);
+    const source = fs.readFileSync(sourcePath, "utf8");
+    // What an installed project sees: a block's imports of its own parts get
+    // repointed from `components/demo/<category>/` to `components/ui/`, where
+    // the CLI will have just written them.
+    const content = publishableSource(source);
+    const { dependencies, registryDependencies, beatsDependencies } =
+      detectDependencies(source);
+
+    const kind: ItemKind = config.category === "block" ? "block" : "component";
+    const { itemType, fileType, dir } = ITEM_KIND[kind];
+
+    for (const dependency of beatsDependencies) {
+      const exists = componentConfigs.some((c) => c.name === dependency);
+      if (!exists) {
+        throw new Error(
+          `Registry: "${config.name}" imports "${dependency}", which is not a documented component. ` +
+            `A block may only compose things the registry can actually install.`,
+        );
+      }
+    }
+
+    const allRegistryDeps = [
+      ...registryDependencies,
+      ...beatsDependencies.map(registryUrlFor),
+    ];
 
     /*
      * A dangling token is a broken install that looks fine here, because this
@@ -214,21 +255,21 @@ function main() {
     const item: RegistryItem = {
       $schema: "https://ui.shadcn.com/schema/registry-item.json",
       name: config.name,
-      type: "registry:ui",
+      type: itemType,
       title: config.title,
       description: config.description,
-      ...(config.credits
-        ? { author: `${config.credits.name} (${config.credits.url})` }
-        : {}),
+      author: authorFor(config),
       ...(dependencies.length ? { dependencies } : {}),
-      ...(registryDependencies.length ? { registryDependencies } : {}),
+      ...(allRegistryDeps.length
+        ? { registryDependencies: allRegistryDeps }
+        : {}),
       ...(cssVars ? { cssVars } : {}),
       files: [
         {
           path: `components/demo/${config.category}/${config.name}.tsx`,
           content,
-          type: "registry:ui",
-          target: `components/ui/${config.name}.tsx`,
+          type: fileType,
+          target: `${dir}/${config.name}.tsx`,
         },
       ],
     };
@@ -250,11 +291,9 @@ function main() {
       install: `npx shadcn@latest add ${SITE_URL}/r/${config.name}.json`,
       registry: `${SITE_URL}/r/${config.name}.json`,
       dependencies,
-      registryDependencies,
+      registryDependencies: allRegistryDeps,
       props: config.props,
-      ...(config.credits
-        ? { author: `${config.credits.name} (${config.credits.url})` }
-        : {}),
+      author: authorFor(config),
     });
   }
 
@@ -263,14 +302,19 @@ function main() {
     $schema: "https://ui.shadcn.com/schema/registry.json",
     name: "ui-beats",
     homepage: SITE_URL,
-    items: items.map(({ files: _files, $schema: _schema, ...rest }) => ({
+    /*
+     * Derived from each item's own file entries rather than rebuilt from its
+     * name. The old version hardcoded `components/ui/<name>.tsx`, which was
+     * true of every item right up until blocks started installing to
+     * `components/blocks/`, at which point the index would have advertised a
+     * path no block actually writes to.
+     */
+    items: items.map(({ files, $schema: _schema, ...rest }) => ({
       ...rest,
-      files: [
-        {
-          path: `components/ui/${rest.name}.tsx`,
-          type: "registry:ui" as const,
-        },
-      ],
+      files: files.map((file) => ({
+        path: file.target,
+        type: file.type,
+      })),
     })),
   };
 

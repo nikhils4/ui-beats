@@ -13,7 +13,13 @@ import { Footer } from "@/components/website/footer";
  * that space. Those routes carry the header, the picker and links out to the
  * docs, so nothing here is the only path to anywhere.
  */
-const FULL_SCREEN = [/^\/motion-studio\/?$/, /^\/playground\//];
+const FULL_SCREEN = [
+  /^\/motion-studio\/?$/,
+  /^\/playground\//,
+  // A block preview is the block and nothing else, which is the entire point
+  // of having the route.
+  /^\/preview\//,
+];
 
 export function SiteFooter() {
   const pathname = usePathname();

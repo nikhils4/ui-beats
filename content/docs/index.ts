@@ -8,6 +8,9 @@ import RotateIn from "./animation/rotate-in.content";
 import ScaleIn from "./animation/scale-in.content";
 import SmoothReveal from "./animation/smooth-reveal.content";
 import StaggerList from "./animation/stagger-list.content";
+import FeatureGrid from "./block/feature-grid.content";
+import Hero from "./block/hero.content";
+import Pricing from "./block/pricing.content";
 import AnimatedBeam from "./background/animated-beam.content";
 import OrbitingElements from "./background/orbiting-elements.content";
 import GradientFlow from "./background/gradient-flow.content";
@@ -50,6 +53,9 @@ import TextWriter from "./text/text-writer.content";
  * parallel maps.
  */
 export const componentConfigs: ComponentConfig[] = [
+  FeatureGrid,
+  Hero,
+  Pricing,
   AnimatedList,
   Bounce,
   FadeIn,

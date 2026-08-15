@@ -8,7 +8,7 @@ const AnimatedBeamContent: ComponentConfig = {
     "The AnimatedBeam component draws a curved line between any two elements and sends a gradient pulse along it, remeasuring whenever the layout moves.",
   addedAt: "2026-08-12",
   whenToUse:
-    "For architecture and integration diagrams, where the point is that data moves between two things. Because the path is measured from live element geometry it survives responsive reflow, so it holds up in a diagram that stacks on mobile. Stagger the delay across several beams so the pulses read as flow rather than as a single blink.",
+    "For architecture and integration diagrams, where the point is that data moves between two things. The path is measured live, so it survives reflow.",
   props: [
     {
       prop: "containerRef",

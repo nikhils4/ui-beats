@@ -1,32 +1,34 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import BorderBeamUsage from "@/components/usage/component/border-beam.usage";
 import { CodeBlock } from "@/components/website/code-block";
 import { getComponent } from "@/lib/registry";
 import { siteConfig } from "@/lib/site";
 
 const STEPS = [
   {
-    title: "Run one command",
-    body: "The CLI grabs the component and installs the packages it needs.",
+    title: "Run one command.",
+    body: "The CLI installs the packages it needs.",
   },
   {
-    title: "The file lands in your repo",
-    body: "At components/ui/border-beam.tsx. It shows up in your next diff.",
+    title: "The file lands in your repo.",
+    body: "At components/ui/border-beam.tsx, in your next diff.",
   },
   {
-    title: "Change anything",
-    body: "No wrapper API, no version to pin. Rename it, cut the props you do not want.",
+    title: "Change anything.",
+    body: "No wrapper API, no version to pin.",
   },
 ];
 
 /**
  * The "you own the code" pitch, made with the actual code.
  *
- * The preview and the snippet are the same file the docs page shows, read out
- * of the registry instead of copied into this component. A landing page with a
- * hand-written approximation of the API goes stale the first time the API
- * changes.
+ * The snippet is the same file the docs page shows, read out of the registry
+ * instead of copied into this component. A landing page with a hand-written
+ * approximation of the API goes stale the first time the API changes.
+ *
+ * No live preview here, deliberately: Border Beam already runs in a tile in
+ * the showcase above, and a second copy of it cost this section a 18rem panel
+ * to say something the reader had just seen. The claim is about the file.
  */
 export async function OwnTheCode() {
   const entry = getComponent("component", "border-beam");
@@ -48,46 +50,35 @@ export async function OwnTheCode() {
   );
 
   return (
-    <section className="border-t border-border/60 bg-muted/20">
+    <section className="border-t border-border/60">
       <div className="mx-auto max-w-(--breakpoint-xl) px-4 py-20 md:px-8">
-        <div className="max-w-2xl">
-          <p className="text-xs font-semibold tracking-[0.2em] text-brand uppercase">
-            Copy, paste, own
-          </p>
-          <h2 className="mt-3 text-3xl font-bold tracking-tighter text-balance sm:text-4xl">
-            Every component is a file in your project
-          </h2>
-          <p className="mt-4 leading-relaxed text-muted-foreground">
-            There is nothing to import from node_modules. The CLI writes the
-            source into your repo, and from then on it is yours.
-          </p>
-        </div>
+        <div className="grid gap-10 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1fr)] lg:items-center lg:gap-16">
+          <div className="max-w-md">
+            <p className="text-xs font-semibold tracking-[0.2em] text-brand uppercase">
+              Copy, paste, own
+            </p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tighter text-balance sm:text-4xl">
+              Every component is a file in your project
+            </h2>
+            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
+              Nothing to import from node_modules. The CLI writes the source
+              into your repo, and from then on it is yours.
+            </p>
 
-        <div className="mt-12 grid gap-6 lg:grid-cols-2 lg:items-start">
-          <div className="flex flex-col gap-6">
-            {/* The live component, at the same size the docs page renders it. */}
-            <div className="relative flex h-72 items-center justify-center overflow-hidden rounded-xl border bg-card shadow-subtle">
-              <div
-                aria-hidden="true"
-                className="absolute inset-0 bg-dots [mask-image:radial-gradient(ellipse_70%_70%_at_50%_50%,black,transparent)] opacity-60"
-              />
-              <div className="relative z-10">
-                <BorderBeamUsage />
-              </div>
-            </div>
-
-            <ol className="grid gap-5">
+            {/* Numbered by a mono index rather than a filled circle: three
+                short lines should read as a caption, not a feature list. */}
+            <ol className="mt-8 grid gap-3">
               {STEPS.map((step, index) => (
-                <li key={step.title} className="flex gap-4">
-                  <span className="flex size-7 shrink-0 items-center justify-center rounded-full border border-brand/30 bg-brand-subtle font-mono text-xs font-semibold text-brand">
-                    {index + 1}
+                <li key={step.title} className="flex gap-3 text-sm">
+                  <span className="pt-px font-mono text-xs text-brand/70">
+                    0{index + 1}
                   </span>
-                  <div>
-                    <p className="text-sm font-semibold">{step.title}</p>
-                    <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
-                      {step.body}
-                    </p>
-                  </div>
+                  <p className="leading-relaxed text-muted-foreground">
+                    <span className="font-medium text-foreground">
+                      {step.title}
+                    </span>{" "}
+                    {step.body}
+                  </p>
                 </li>
               ))}
             </ol>
@@ -98,7 +89,7 @@ export async function OwnTheCode() {
             <CodeBlock
               code={usage}
               title={`${entry.name}.usage.tsx`}
-              maxHeight="24rem"
+              maxHeight="20rem"
             />
             <p className="mt-3 text-sm text-muted-foreground">
               That is the whole API.{" "}

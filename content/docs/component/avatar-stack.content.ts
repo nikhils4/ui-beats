@@ -8,7 +8,7 @@ const AvatarStackContent: ComponentConfig = {
     "The AvatarStack component overlaps a row of avatars into a single group, collapses everyone past a limit into a +N chip, and lifts an avatar clear of its neighbours on hover without the row changing width.",
   addedAt: "2026-08-15",
   whenToUse:
-    "For social proof beside a headline, the members of a shared document, or the assignees on a task: any short list of people where the group matters more than the individuals. It reads as a group up to about eight faces; past that the overlap hides too much of each one and a plain list serves better. Give every entry a real name even when you pass an image: the name is what a screen reader announces, and the initials fallback is built from it.",
+    "For social proof beside a headline, or the people on a shared document. It reads as a group up to about eight faces, and worse after that.",
   props: [
     {
       prop: "avatars",

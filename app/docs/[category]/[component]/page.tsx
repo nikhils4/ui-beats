@@ -4,8 +4,10 @@ import Link from "next/link";
 import {
   ArrowLeft,
   ArrowRight,
+  Blocks,
   Code2,
   Eye,
+  Maximize2,
   Package,
   PencilLine,
   Scale,
@@ -231,6 +233,43 @@ export default async function ComponentDocsPage({ params }: PageProps) {
             </dd>
           </div>
 
+          {/*
+            What else lands in the project.
+            `Dependencies` above is npm packages only, so a block advertised
+            "lucide-react" and said nothing about the components the install
+            also writes — the single most important thing about a block, and
+            until now visible only on the home page.
+          */}
+          {entry.beatsDependencies.length ? (
+            <div className="flex flex-wrap items-center gap-2">
+              <dt className="flex items-center gap-1.5">
+                <Blocks aria-hidden="true" className="size-3.5" />
+                Installs
+              </dt>
+              <dd className="flex flex-wrap items-center gap-1.5">
+                {entry.beatsDependencies.map((dep) => {
+                  const part = getRegistry().find((item) => item.name === dep);
+                  return part ? (
+                    <Link
+                      key={dep}
+                      href={part.href}
+                      className="rounded-full border bg-muted/60 px-2 py-0.5 font-mono text-[11px] text-foreground/80 transition-colors hover:border-brand/40 hover:text-foreground"
+                    >
+                      {dep}
+                    </Link>
+                  ) : (
+                    <span
+                      key={dep}
+                      className="rounded-full border bg-muted/60 px-2 py-0.5 font-mono text-[11px] text-foreground/80"
+                    >
+                      {dep}
+                    </span>
+                  );
+                })}
+              </dd>
+            </div>
+          ) : null}
+
           <div className="flex items-center gap-1.5">
             <dt className="flex items-center gap-1.5">
               <SlidersHorizontal aria-hidden="true" className="size-3.5" />
@@ -277,10 +316,26 @@ export default async function ComponentDocsPage({ params }: PageProps) {
               </TabsTrigger>
             </TabsList>
 
-            {/* The registry name, i.e. what you type after `shadcn add`. */}
-            <span className="hidden pr-2 font-mono text-[11px] text-muted-foreground sm:block">
-              {entry.name}
-            </span>
+            <div className="flex items-center gap-3 pr-2">
+              {/*
+                Blocks only. A page section cannot be judged in a stage this
+                size, and its responsive behaviour only happens at real widths.
+              */}
+              {entry.category === "block" ? (
+                <Link
+                  href={`/preview/${entry.category}/${entry.name}`}
+                  className="inline-flex items-center gap-1.5 text-[11px] font-medium text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  <Maximize2 className="size-3.5" />
+                  Full page
+                </Link>
+              ) : null}
+
+              {/* The registry name, i.e. what you type after `shadcn add`. */}
+              <span className="hidden font-mono text-[11px] text-muted-foreground sm:block">
+                {entry.name}
+              </span>
+            </div>
           </div>
 
           <TabsContent value="preview" className="mt-0 min-w-0">
@@ -330,17 +385,16 @@ export default async function ComponentDocsPage({ params }: PageProps) {
         </Link>
       ) : null}
 
-      {entry.whenToUse ? (
-        <DocsSection
-          id="when-to-use"
-          tocLabel="When to use"
-          title={`When to use ${entry.title}`}
-        >
-          <p className="max-w-2xl leading-relaxed text-muted-foreground">
-            {entry.whenToUse}
-          </p>
-        </DocsSection>
-      ) : null}
+      {/*
+        No "When to use" section.
+        The guidance still exists on every entry and is still served where it
+        earns its keep: `abstract` in this page's JSON-LD, the markdown twin at
+        `<page>.md`, `/llms-full.txt`, and the `components.json` the MCP server
+        reads. What it did not earn was a heading and a paragraph on a page
+        people scan rather than read. Note it is the structured data carrying
+        it, not a meta tag: Next drops `abstract` from the Metadata API without
+        emitting anything.
+      */}
 
       <DocsSection
         id="installation"
@@ -383,7 +437,27 @@ export default async function ComponentDocsPage({ params }: PageProps) {
               ? ", reviewed and maintained by Nikhil."
               : ". Thanks for the contribution."}
           </p>
-        ) : null}
+        ) : (
+          /*
+            Five components carry no `credits` because they are the author's
+            own, and the byline simply vanished on those pages while the other
+            thirty-eight had one. An attribution line that appears on most
+            pages and not others reads as missing data rather than as a
+            different provenance, so the default states the provenance.
+          */
+          <p className="text-sm text-muted-foreground">
+            Written and maintained by{" "}
+            <a
+              href={siteConfig.author.url}
+              target="_blank"
+              rel="noreferrer noopener"
+              className="font-medium text-brand underline-offset-4 hover:underline"
+            >
+              {siteConfig.author.name}
+            </a>
+            .
+          </p>
+        )}
 
         <div className="mt-4 flex flex-wrap items-center gap-x-6 gap-y-2 text-xs text-muted-foreground">
           <a

@@ -8,7 +8,7 @@ const SplitFlapContent: ComponentConfig = {
     "The SplitFlap component turns text into a mechanical departure board, each column riffling through the alphabet until it reaches its letter, a beat behind the column to its left.",
   addedAt: "2026-08-13",
   whenToUse:
-    "Use it for a short headline, a status line, or a word that changes on a timer, where watching the text arrive is part of the appeal. It is wrong for body copy or anything a visitor needs immediately, because a board takes a moment to land. Columns step toward their target instead of cycling random glyphs, so the flip always resolves. The flaps are decorative: a screen reader gets the finished text once, not a running commentary on the way there.",
+    "For a short headline or status line that changes on a timer, where watching it arrive is part of the appeal. Wrong for anything needed immediately.",
   props: [
     {
       prop: "text",

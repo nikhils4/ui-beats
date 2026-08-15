@@ -8,7 +8,7 @@ const BentoGridContent: ComponentConfig = {
     "The BentoGrid component arranges cards of different sizes into the asymmetric layout known as a bento box, with each cell declaring how many columns and rows it spans and every card collapsing to full width on small screens.",
   addedAt: "2026-08-15",
   whenToUse:
-    "For a feature section where the items are genuinely not equal, such as one headline capability beside three supporting ones. The layout's job is to rank them, so it only works if you actually mean the ranking: four cards of identical weight in an uneven grid look arbitrary, and a plain equal grid says more. Keep spans to two or three columns at most; a card spanning the full width stops reading as part of the arrangement and becomes a banner sitting inside it.",
+    "For a feature section where the items are not equal, since the layout is what ranks them. Keep spans to two or three columns.",
   props: [
     {
       prop: "children",

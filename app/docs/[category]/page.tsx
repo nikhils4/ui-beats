@@ -142,7 +142,7 @@ export default async function CategoryPage({ params }: PageProps) {
       <DocsSection
         id="components"
         title="Components"
-        description={`Every ${label.toLowerCase()} component in the library, with the packages each one pulls in.`}
+        description={`Every ${label.toLowerCase()} in the library, with everything each one pulls in.`}
       >
         <ul className="divide-y divide-border/60 border-y border-border/60">
           {items.map((item) => (
@@ -173,6 +173,17 @@ export default async function CategoryPage({ params }: PageProps) {
                       <span
                         key={dep}
                         className="rounded-full border bg-muted/50 px-2 py-0.5 font-mono text-[10px] text-muted-foreground"
+                      >
+                        {dep}
+                      </span>
+                    ))}
+                    {/* The components an install also writes. Only blocks have
+                        any, and for a block it matters more than the npm
+                        packages beside it. */}
+                    {item.beatsDependencies.map((dep) => (
+                      <span
+                        key={dep}
+                        className="rounded-full border border-brand/25 bg-brand-subtle px-2 py-0.5 font-mono text-[10px] text-brand"
                       >
                         {dep}
                       </span>

@@ -9,7 +9,7 @@ const MeteorsContent: ComponentConfig = {
   addedAt: "2026-08-15",
   fullBleedPreview: true,
   whenToUse:
-    "Behind a hero, a pricing panel or an empty state that reads as flat on its own, anywhere you want depth without a picture to load. It is at its best on a dark surface, where the heads have something to glow against; over a light background the streaks wash out and a higher `count` only makes the frame look dusty. Keep the count modest behind text: every streak is an animated element, and forty of them competing with a paragraph costs legibility as well as frames. Nothing moves at all under `prefers-reduced-motion`.",
+    "Behind a hero or an empty state that reads flat on its own. Best on a dark surface, and keep the count low behind text.",
   props: [
     {
       prop: "count",

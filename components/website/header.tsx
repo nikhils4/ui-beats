@@ -30,8 +30,11 @@ const navLinks = [
 export function Header({ stars = 0 }: { stars?: number }) {
   const pathname = usePathname();
 
-  // Docs pages have their own sidebar chrome.
-  if (pathname.startsWith("/docs")) return null;
+  // Docs pages have their own sidebar chrome; a block preview has none by
+  // design, so the section is judged at the real width with nothing above it.
+  if (pathname.startsWith("/docs") || pathname.startsWith("/preview")) {
+    return null;
+  }
 
   // Derived during render instead of in a `useEffect`, so the progress bar is
   // correct on first paint rather than one frame late.

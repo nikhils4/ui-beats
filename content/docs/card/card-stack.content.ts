@@ -8,7 +8,7 @@ const CardStackContent: ComponentConfig = {
     "The CardStack component deals your content as a deck: drag the top card aside to throw it away, the cards behind rise a step, and the dismissed card loops around to the back.",
   addedAt: "2026-08-13",
   whenToUse:
-    "Use it for a small set of peer items people browse rather than compare: testimonials, tips, onboarding steps. It is a poor fit for anything that has to be scanned side by side or reached in a specific order, since only the top card is readable at a time. Only the visible cards are mounted, so deck size costs nothing. Autoplay pauses on hover, focus and drag, and arrow keys advance it for anyone not using a pointer.",
+    "For a small set of peer items people browse rather than compare: testimonials, tips, onboarding steps. Only the top card is readable at a time.",
   props: [
     {
       prop: "children",

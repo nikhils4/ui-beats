@@ -8,7 +8,7 @@ const ShimmerButtonContent: ComponentConfig = {
     "The ShimmerButton component sweeps a band of light across its face on a loop, giving a call to action a slow pulse of movement without asking the reader to hover, click or scroll first.",
   addedAt: "2026-08-15",
   whenToUse:
-    "For the one action you want noticed on a quiet screen: a hero call to action, an upgrade prompt, an empty state's only button. The loop draws the eye continuously, so a second shimmering button on the same screen cancels the effect of the first and two competing pulses read as decoration rather than emphasis. Pair it with a plain secondary button rather than another shimmer. The sweep stops entirely under `prefers-reduced-motion`, leaving an ordinary button behind.",
+    "For the one action you want noticed on a quiet screen. A second shimmering button cancels out the first, so pair it with a plain secondary.",
   props: [
     {
       prop: "children",

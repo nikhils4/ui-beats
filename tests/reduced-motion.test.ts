@@ -21,8 +21,32 @@ describe("reduced motion", () => {
     expect(registry.length).toBeGreaterThan(0);
   });
 
+  /**
+   * Does this entry animate anything itself?
+   *
+   * A block can be a pure arrangement: Pricing lays out cards and delegates
+   * every moving part to Border Beam and Shimmer Button, which are separate
+   * registry items that this same test already covers. Demanding a guard from
+   * a file with nothing to guard would mean inventing a `useReducedMotion`
+   * that reads the preference and then has no animation to suppress, which is
+   * exactly the box-ticking import the next test exists to catch.
+   *
+   * The exemption is deliberately narrow: it needs both no Motion of its own
+   * *and* at least one UI Beats component it delegates to. A component that
+   * simply forgot to animate anything is not covered by it.
+   */
+  const animatesDirectly = (entry: (typeof registry)[number]) =>
+    entry.source.includes("motion/react") ||
+    entry.source.includes("<motion.") ||
+    entry.source.includes("animate=") ||
+    entry.source.includes("@keyframes") ||
+    entry.source.includes("animate-");
+
   it("consults the preference in every component", () => {
     const offenders = registry
+      .filter(
+        (entry) => animatesDirectly(entry) || !entry.beatsDependencies.length,
+      )
       .filter(
         (entry) =>
           !entry.source.includes("useReducedMotion") &&
@@ -37,6 +61,24 @@ describe("reduced motion", () => {
       offenders,
       `no reduced-motion handling: ${offenders.join(", ")}`,
     ).toEqual([]);
+  });
+
+  it("only exempts blocks that genuinely delegate their motion", () => {
+    // An exemption nobody can see is an exemption nobody maintains. Anything
+    // skipped above has to be a composition with no animation of its own.
+    const exempt = registry.filter(
+      (entry) => !animatesDirectly(entry) && entry.beatsDependencies.length > 0,
+    );
+
+    for (const entry of exempt) {
+      expect(entry.category, `${entry.name} is exempt but is not a block`).toBe(
+        "block",
+      );
+      expect(
+        entry.beatsDependencies.length,
+        `${entry.name} is exempt but composes nothing`,
+      ).toBeGreaterThan(0);
+    }
   });
 
   it("uses the value it reads", () => {

@@ -35,7 +35,13 @@ export interface InstallationStep {
 }
 
 export type ComponentCategory =
-  "animation" | "background" | "button" | "card" | "component" | "text";
+  | "animation"
+  | "background"
+  | "block"
+  | "button"
+  | "card"
+  | "component"
+  | "text";
 
 /**
  * The hand-authored half of a registry entry: one file per component under

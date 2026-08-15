@@ -8,7 +8,7 @@ const ScrollProgressContent: ComponentConfig = {
     "The ScrollProgress component fills a thin bar as the reader moves through a page or a panel, scaling a single transform rather than resizing an element so it costs nothing on the scroll frame.",
   addedAt: "2026-08-15",
   whenToUse:
-    "On anything long enough that the scrollbar alone does not answer 'how much is left', such as a blog post, changelog or terms page. It earns its place when the answer is not already obvious, so skip it on a short marketing page, where a bar that jumps to full after one flick just draws attention to how little there was. Pass `container` to track a scrollable panel and place the component inside a `relative` wrapper around that panel, not inside the panel itself; omit `container` and the bar fixes itself to the viewport and tracks the whole page.",
+    "For long reads where the scrollbar alone does not answer how much is left. Pass a container to track a panel, or omit it to track the whole page.",
   props: [
     {
       prop: "container",

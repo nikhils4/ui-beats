@@ -8,7 +8,7 @@ const LoadingButtonContent: ComponentConfig = {
     "The LoadingButton component runs one async action and reports on it in place: it swaps to a spinner while the request is open, confirms with a tick when it resolves, and returns to its resting label on its own.",
   addedAt: "2026-08-15",
   whenToUse:
-    "For any button that fires a request, whether that is submitting a form, saving a draft or sending an invite. It owns the busy state itself, which closes the two bugs a hand-rolled version usually ships with: a second click landing while the first request is still open, and the spinner never clearing when the request fails. Reach for it only where the work is genuinely asynchronous; on an instant action the success tick appears and vanishes so fast it reads as a glitch. For a toggle that flips between two settled states rather than performing work, use Subscribe Button instead.",
+    "For any button that fires a request. It owns the busy state, so a second click while the first is still open is ignored, and a failure returns it to idle.",
   props: [
     {
       prop: "children",

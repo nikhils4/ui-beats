@@ -8,7 +8,7 @@ const BorderBeamContent: ComponentConfig = {
     "The BorderBeam component wraps any content in a border traced by a travelling beam of light. It follows the container's rounded corners exactly, and nothing around it moves.",
   addedAt: "2026-08-13",
   whenToUse:
-    "Good for the one element you want looked at first: a recommended pricing tier, a featured card, a call to action. A static border gets ignored there, and anything that actually moves would be a distraction. Only the gradient inside the border animates, so nothing reflows and the text stays readable. Keep it to one per screen. Two beams competing cancel each other out.",
+    "For the one element you want looked at first: a recommended tier, a featured card, a call to action. Keep it to one per screen.",
   props: [
     {
       prop: "children",

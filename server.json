@@ -1,0 +1,24 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "com.uibeats/mcp",
+  "title": "UI Beats",
+  "description": "MCP server for UI Beats. Let your coding agent search, read and install animated React components.",
+  "version": "0.1.2",
+  "websiteUrl": "https://uibeats.com",
+  "repository": {
+    "url": "https://github.com/nikhils4/ui-beats",
+    "source": "github",
+    "id": "825856991",
+    "subfolder": "packages/mcp"
+  },
+  "packages": [
+    {
+      "registryType": "npm",
+      "identifier": "@uibeats/mcp",
+      "version": "0.1.2",
+      "transport": {
+        "type": "stdio"
+      }
+    }
+  ]
+}

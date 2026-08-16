@@ -164,7 +164,7 @@ function writeServerCard() {
 
   const card = {
     $schema:
-      "https://static.modelcontextprotocol.io/schemas/2025-10-17/server.schema.json",
+      "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
     // Reverse-DNS, exactly one slash, per the schema.
     name: "com.uibeats/mcp",
     title: "UI Beats",
@@ -188,12 +188,18 @@ function writeServerCard() {
     ],
   };
 
+  const serialised = `${JSON.stringify(card, null, 2)}\n`;
+
   fs.rmSync(WELL_KNOWN_DIR, { recursive: true, force: true });
   fs.mkdirSync(WELL_KNOWN_DIR, { recursive: true });
-  fs.writeFileSync(
-    path.join(WELL_KNOWN_DIR, "mcp.json"),
-    `${JSON.stringify(card, null, 2)}\n`,
-  );
+  fs.writeFileSync(path.join(WELL_KNOWN_DIR, "mcp.json"), serialised);
+
+  // The same card at the repo root, because `mcp-publisher publish` reads
+  // `server.json` from the working directory and nothing else. Writing it here
+  // rather than copying it by hand at release time is the same argument as the
+  // rest of this file: two copies that can disagree eventually do, and the one
+  // that goes stale is the one nobody looks at.
+  fs.writeFileSync(path.join(ROOT, "server.json"), serialised);
 
   return `${pkg.name}@${pkg.version}`;
 }

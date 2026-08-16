@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 import {
   deriveControls,
+  formatNumber,
   generateSnippet,
   initialValues,
   isDirty,
@@ -188,6 +189,34 @@ describe("deriveControls", () => {
         ranges: { speed: { min: 10, max: 400, step: 10 } },
       });
       expect(control).toMatchObject({ min: 10, max: 400, step: 10 });
+    });
+
+    it("takes a signed override for a prop the name rules read as unsigned", () => {
+      // Animated Beam's `curvature` is the live case: no rule matches the
+      // name, so it fell back to a window starting at zero and the beam could
+      // only bow one way.
+      const [control] = deriveControls([prop("curvature", "number", "0")], {
+        ...config,
+        ranges: { curvature: { min: -100, max: 100, unit: "px" } },
+      });
+      expect(control).toMatchObject({ min: -100, max: 100, unit: "px" });
+    });
+  });
+
+  describe("formatNumber", () => {
+    it("keeps the zeros of a round integer", () => {
+      // `/\.?0+$/` over the whole string labelled 90 as "9" and 100 as "1".
+      expect(formatNumber(90, 1)).toBe("90");
+      expect(formatNumber(100, 1)).toBe("100");
+      expect(formatNumber(-40, 1)).toBe("-40");
+      expect(formatNumber(0, 1)).toBe("0");
+    });
+
+    it("trims float noise to the step's precision", () => {
+      expect(formatNumber(0.30000000000000004, 0.05)).toBe("0.3");
+      expect(formatNumber(1, 0.01)).toBe("1");
+      expect(formatNumber(0, 0.01)).toBe("0");
+      expect(formatNumber(1.5, 0.05)).toBe("1.5");
     });
   });
 

@@ -87,6 +87,16 @@ const AnimatedBeamContent: ComponentConfig = {
     fixedSource: `  containerRef={container}
   fromRef={left}
   toRef={centre}`,
+    /*
+     * The one signed prop in the library, and the inferred range cannot
+     * express it: `curvature` matches none of the naming rules, so it fell
+     * back to a window starting at zero and the slider could only bow the beam
+     * upward. Half of a prop documented as "positive bows up, negative bows
+     * down" was unreachable in the playground that exists to demonstrate it.
+     */
+    ranges: {
+      curvature: { min: -100, max: 100, unit: "px" },
+    },
   },
 };
 

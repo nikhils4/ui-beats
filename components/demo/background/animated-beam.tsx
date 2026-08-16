@@ -98,7 +98,16 @@ export function AnimatedBeam({
       height={size.height}
       viewBox={`0 0 ${size.width} ${size.height}`}
       aria-hidden="true"
-      className={`pointer-events-none absolute top-0 left-0 ${className}`}
+      /*
+       * `overflow-visible` because the arc is not obliged to stay inside the
+       * box the endpoints describe. The SVG is sized to the container, and an
+       * SVG clips to its viewport by default, so a curvature taller than the
+       * gap between the two elements had its whole middle cut away — at
+       * `curvature={90}` across a row of 44px nodes, everything but a stub at
+       * each end. The container decides where the beam is allowed to draw;
+       * the beam should not clip itself.
+       */
+      className={`pointer-events-none absolute top-0 left-0 overflow-visible ${className}`}
     >
       <path
         d={path}

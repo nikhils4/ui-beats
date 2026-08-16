@@ -265,6 +265,24 @@ export function initialValues(controls: PlaygroundControl[]): PlaygroundValues {
   );
 }
 
+/**
+ * A control's current value, as the number the reader should see beside it.
+ *
+ * The step decides the precision: a 0.05 slider reporting
+ * `0.30000000000000004` is float noise, not information.
+ *
+ * Trailing zeros are dropped only from a fractional part. Applying
+ * `/\.?0+$/` to the whole string — which is what this did — also ate the
+ * zeros of an integer, so a slider sitting at 90 read "9px" and one at 100
+ * read "1px". Every round number in the studio was labelled as a different
+ * number, on every numeric control in the library.
+ */
+export function formatNumber(value: number, step: number): string {
+  const decimals = step < 1 ? (String(step).split(".")[1]?.length ?? 2) : 0;
+  const fixed = value.toFixed(decimals);
+  return decimals === 0 ? fixed : fixed.replace(/\.?0+$/, "") || "0";
+}
+
 /** `"a \"quoted\" string"`, safe inside a JSX double-quoted attribute. */
 function jsxString(value: string): string {
   return `"${value.replace(/\\/g, "\\\\").replace(/"/g, "&quot;")}"`;

@@ -2,6 +2,7 @@
 
 import { useId } from "react";
 import { PropSelect } from "@/components/website/prop-select";
+import { formatNumber } from "@/lib/playground";
 import { cn } from "@/lib/utils";
 import type {
   PlaygroundControl,
@@ -17,12 +18,6 @@ import type {
  * dependencies to re-implement them would ship more JavaScript to a docs page
  * than the components being demonstrated.
  */
-
-/** Trim float noise: 0.30000000000000004 -> 0.3. */
-function formatNumber(value: number, step: number): string {
-  const decimals = step < 1 ? (String(step).split(".")[1]?.length ?? 2) : 0;
-  return value.toFixed(decimals).replace(/\.?0+$/, "") || "0";
-}
 
 interface FieldProps {
   htmlFor: string;

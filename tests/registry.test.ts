@@ -9,6 +9,7 @@ import {
   getRegistry,
   isCategory,
 } from "@/lib/registry";
+import { deriveControls, resolvePlaygroundConfig } from "@/lib/playground";
 import { CATEGORY_ORDER } from "@/config/categories";
 import { isRecentlyAdded, parseAddedAt } from "@/config/recency";
 
@@ -60,6 +61,42 @@ describe("registry integrity", () => {
       expect(entry.props.length, `${entry.name} has no props`).toBeGreaterThan(
         0,
       );
+    }
+  });
+
+  /*
+   * A control that cannot reach the values its own row documents.
+   *
+   * `inferRange` guesses a slider's bounds from the prop's name, and a name it
+   * does not recognise falls back to a window starting at zero. That is right
+   * for almost everything — sizes, counts, durations — and silently wrong for
+   * the rare signed prop: Animated Beam's `curvature` is documented as
+   * "positive bows up, negative bows down" and the slider stopped at 0, so
+   * half the prop was undemonstrable. Nothing failed; the playground just
+   * quietly disagreed with the props table beneath it.
+   *
+   * The description is the only declaration of intent available, which makes
+   * this a keyword check rather than a type check. It is enough: the fix is a
+   * `ranges` override in the content file, and this says when one is owed.
+   */
+  it("can reach the negative values a prop documents", () => {
+    for (const entry of registry) {
+      const config = resolvePlaygroundConfig(entry.name, entry.playground);
+      const byProp = new Map(entry.props.map((prop) => [prop.prop, prop]));
+
+      for (const control of deriveControls(entry.props, config)) {
+        if (control.kind !== "number") continue;
+        if (
+          !/\bnegative\b/i.test(byProp.get(control.prop)?.description ?? "")
+        ) {
+          continue;
+        }
+
+        expect(
+          control.min,
+          `${entry.name}.${control.prop} documents negative values but its slider starts at ${control.min}`,
+        ).toBeLessThan(0);
+      }
     }
   });
 

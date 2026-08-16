@@ -1,30 +1,46 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { CodeBlock } from "@/components/website/code-block";
+import {
+  deriveControls,
+  generateSnippet,
+  initialValues,
+  resolvePlaygroundConfig,
+  tagFor,
+} from "@/lib/playground";
 import { getComponent } from "@/lib/registry";
 import { siteConfig } from "@/lib/site";
 
-const STEPS = [
-  {
-    title: "Run one command.",
-    body: "The CLI installs the packages it needs.",
-  },
-  {
-    title: "The file lands in your repo.",
-    body: "At components/ui/border-beam.tsx, in your next diff.",
-  },
-  {
-    title: "Change anything.",
-    body: "No wrapper API, no version to pin.",
-  },
-];
+function steps(installPath: string) {
+  return [
+    {
+      title: "Run one command.",
+      body: "The CLI installs the packages it needs.",
+    },
+    {
+      title: "The file lands in your repo.",
+      body: `At ${installPath}, in your next diff.`,
+    },
+    {
+      title: "Change anything.",
+      body: "No wrapper API, no version to pin.",
+    },
+  ];
+}
 
 /**
  * The "you own the code" pitch, made with the actual code.
  *
- * The snippet is the same file the docs page shows, read out of the registry
- * instead of copied into this component. A landing page with a hand-written
- * approximation of the API goes stale the first time the API changes.
+ * Nothing here is hand-written: a landing page carrying its own copy of the
+ * API goes stale the first time the API changes. The install path comes from
+ * the registry entry and the snippet is generated from the documented props
+ * table, the same way the playground generates its own.
+ *
+ * It shows the call, not the demo file. Printing the whole of
+ * `border-beam.usage.tsx` was the obvious thing and the wrong one: two thirds
+ * of it is the card's own markup, so the section's tallest element was a
+ * scrolling wall of Tailwind sitting under the words "that is the whole API".
+ * What the reader owns is a component that takes children and needs no props.
  *
  * No live preview here, deliberately: Border Beam already runs in a tile in
  * the showcase above, and a second copy of it cost this section a 18rem panel
@@ -37,17 +53,25 @@ export async function OwnTheCode() {
   const install = `npx shadcn@latest add ${siteConfig.url}/r/${entry.name}.json`;
 
   /*
-   * Rewrite the import to the path the reader will actually have.
-   *
-   * In this repository the demos live under `components/demo/<category>/`, but
-   * the registry installs each one to `components/ui/<name>.tsx`. Showing the
-   * raw file here would print an import path that contradicts step two sitting
-   * directly beside it.
+   * Where the CLI puts it, which is not where it lives in this repository —
+   * the demos sit under `components/demo/<category>/` and the registry
+   * installs each one to `components/ui/<name>.tsx`. Step two and the import
+   * in the snippet both derive from this pair, so they cannot contradict each
+   * other the way a hardcoded path beside a generated one eventually does.
    */
-  const usage = entry.usage.replace(
-    new RegExp(`@/components/demo/${entry.category}/`, "g"),
-    "@/components/ui/",
-  );
+  const installedAt = `components/ui/${entry.name}.tsx`;
+  const modulePath = `@/components/ui/${entry.name}`;
+
+  const config = resolvePlaygroundConfig(entry.name, entry.playground);
+  const controls = deriveControls(entry.props, config);
+  const usage = [
+    `import { ${tagFor(entry.name)} } from "${modulePath}";`,
+    "",
+    // Every control left at its documented default, so the snippet emits no
+    // attributes at all. That is the honest shape of the API, and the props
+    // are one link away for anyone who wants them.
+    generateSnippet(config, controls, initialValues(controls)),
+  ].join("\n");
 
   return (
     <section className="border-t border-border/60">
@@ -68,7 +92,7 @@ export async function OwnTheCode() {
             {/* Numbered by a mono index rather than a filled circle: three
                 short lines should read as a caption, not a feature list. */}
             <ol className="mt-8 grid gap-3">
-              {STEPS.map((step, index) => (
+              {steps(installedAt).map((step, index) => (
                 <li key={step.title} className="flex gap-3 text-sm">
                   <span className="pt-px font-mono text-xs text-brand/70">
                     0{index + 1}
@@ -86,11 +110,10 @@ export async function OwnTheCode() {
 
           <div className="min-w-0">
             <CodeBlock code={install} language="bash" className="mt-0" />
-            <CodeBlock
-              code={usage}
-              title={`${entry.name}.usage.tsx`}
-              maxHeight="20rem"
-            />
+            {/* `page.tsx`, not `border-beam.tsx`: the installed file is what
+                step two just described, and this is the reader's own file
+                calling it. */}
+            <CodeBlock code={usage} title="page.tsx" maxHeight="20rem" />
             <p className="mt-3 text-sm text-muted-foreground">
               That is the whole API.{" "}
               <Link

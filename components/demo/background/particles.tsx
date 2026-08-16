@@ -37,7 +37,7 @@ interface Particle {
  * A deterministic pseudo-random source (mulberry32).
  *
  * `Math.random()` would give every visitor a different field, which is the
- * usual and correct choice — but it also gives every CI run a different one,
+ * usual and correct choice, but it also gives every CI run a different one,
  * and `tests/visual/frames.spec.ts` screenshots this component at three fixed
  * points. A fixed seed makes those frames reproducible without freezing the
  * motion itself.
@@ -56,7 +56,7 @@ function createRandom(seed: number): () => number {
  * A drifting field of particles that scatters away from the pointer.
  *
  * Positions are held as fractions of the frame rather than pixels, so a resize
- * is a redraw rather than a reseed — the field keeps its arrangement when the
+ * is a redraw rather than a reseed: the field keeps its arrangement when the
  * container changes instead of visibly reshuffling.
  *
  * Live props are read through a ref inside the animation loop, so dragging a

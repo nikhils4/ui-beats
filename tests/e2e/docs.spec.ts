@@ -12,7 +12,7 @@ const CATEGORIES = [
 test.describe("docs navigation", () => {
   /*
    * Regression: each `/docs/<category>` landing page redirected using a
-   * hardcoded index into the nav array, and every one of the six was wrong —
+   * hardcoded index into the nav array, and every one of the six was wrong:
    * `/docs/text` landed on an animation page, `/docs/button` on a background.
    */
   for (const category of CATEGORIES) {
@@ -107,7 +107,7 @@ test.describe("component page", () => {
 
     /*
      * On mobile the sidebar is an off-canvas Sheet that is not rendered at all
-     * until it is opened — the links are absent from the DOM, not merely
+     * until it is opened: the links are absent from the DOM, not merely
      * hidden. Tapping the trigger is the real mobile navigation path, so open
      * it rather than skipping the project.
      */

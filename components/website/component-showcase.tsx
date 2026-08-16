@@ -420,7 +420,7 @@ export function ComponentShowcase({ total }: { total: number }) {
           {/*
             The newest four, placed here rather than appended to the end.
             A showcase that files what just shipped below twenty older tiles is
-            an archive, not a shop window — and these are the four that earn a
+            an archive, not a shop window, and these are the four that earn a
             slot on their own merits rather than on being recent. Terminal and
             Comparison Slider do something no other tile does; Expandable Card
             is the only interaction here that rearranges the layout; Rainbow
@@ -821,7 +821,7 @@ export function ComponentShowcase({ total }: { total: number }) {
             These two close the grid, and that is most of why they are here.
             Glowing Card is two rows tall and lands in the last row of the six
             column layout, which left four cells of empty background below the
-            tiles beside it — the section stopped rather than ended. Two
+            tiles beside it: the section stopped rather than ended. Two
             single-row tiles fill exactly that gap, and at four columns they
             add one complete row, so neither breakpoint is left ragged.
 

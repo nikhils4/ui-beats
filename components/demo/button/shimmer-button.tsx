@@ -5,7 +5,7 @@ import { motion, useReducedMotion } from "motion/react";
 
 /**
  * Native button props minus the handlers Motion redefines with its own
- * signatures — spreading React's DOM versions onto `motion.button` conflicts.
+ * signatures: spreading React's DOM versions onto `motion.button` conflicts.
  */
 type NativeButtonProps = Omit<
   ComponentPropsWithoutRef<"button">,

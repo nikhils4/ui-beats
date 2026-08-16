@@ -35,8 +35,8 @@ const GlowingCard: React.FC<GlowingCardProps> = ({
   /*
    * One card, themed by tokens.
    *
-   * This was two complete copies of the card — one `dark:hidden`, the other
-   * `hidden dark:block` — each with its palette written in hex. Both were
+   * This was two complete copies of the card: one `dark:hidden`, the other
+   * `hidden dark:block`, each with its palette written in hex. Both were
    * always in the DOM, both tracked the pointer, and neither had any relation
    * to the user's own theme: install this into a project with a warm neutral
    * palette and you got Tailwind's cool greys regardless.

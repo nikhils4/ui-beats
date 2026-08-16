@@ -237,7 +237,7 @@ export default async function ComponentDocsPage({ params }: PageProps) {
             What else lands in the project.
             `Dependencies` above is npm packages only, so a block advertised
             "lucide-react" and said nothing about the components the install
-            also writes — the single most important thing about a block, and
+            also writes, the single most important thing about a block, and
             until now visible only on the home page.
           */}
           {entry.beatsDependencies.length ? (
@@ -360,8 +360,8 @@ export default async function ComponentDocsPage({ params }: PageProps) {
         A link out rather than the playground itself.
 
         Inline, it needed a control column beside the stage and a snippet
-        below, which pushed the page's real content — when to use it, the
-        props, the install command — a full screen further down. It gets a
+        below, which pushed the page's real content (when to use it, the
+        props, the install command) a full screen further down. It gets a
         page of its own, and this is the invitation to it.
       */}
       {hasPlayground ? (

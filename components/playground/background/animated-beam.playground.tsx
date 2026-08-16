@@ -13,7 +13,7 @@ import type { PlaygroundHarnessProps } from "@/types/playground.type";
  * Hand-written rather than generated, because this is the one component whose
  * required props are refs. A control panel cannot produce a `RefObject`, so
  * the harness owns the container and the two endpoints and lets the controls
- * drive everything else — which is exactly the arrangement a real page uses.
+ * drive everything else, which is exactly the arrangement a real page uses.
  */
 function Node({
   ref,

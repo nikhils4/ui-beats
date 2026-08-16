@@ -12,7 +12,7 @@ export interface ComponentProp {
  * Attribution for a community-contributed component.
  *
  * This used to be a raw HTML string rendered through `dangerouslySetInnerHTML`
- * and scrubbed with DOMPurify — which meant shipping JSDOM to the server just
+ * and scrubbed with DOMPurify, which meant shipping JSDOM to the server just
  * to sanitise text we author ourselves. Structured data removes the sink.
  */
 export interface ComponentCredits {
@@ -60,7 +60,7 @@ export interface ComponentConfig {
    * Replaces a hand-set `isNew` flag, which nothing ever cleared: Text Shine
    * carried a "New" badge for the better part of two years, and the home page
    * picked its featured component by taking the last flagged entry in registry
-   * order — an order that is by category, so the newest component was never
+   * order, an order that is by category, so the newest component was never
    * the one on show. `isNew` is derived from this date now (see
    * `config/recency.ts`) and expires on its own.
    *
@@ -92,7 +92,7 @@ export interface ComponentConfig {
   /**
    * Playground details that cannot be derived from the props table.
    *
-   * Omit it entirely for a component whose props are all scalars — the tag
+   * Omit it entirely for a component whose props are all scalars: the tag
    * comes from the name and the controls come from `props`. Whether a
    * playground appears at all is decided by the presence of a harness under
    * `components/playground/`, not by this field.

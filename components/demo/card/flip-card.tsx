@@ -70,7 +70,7 @@ const FlipCard: React.FC<FlipCardProps> = ({
         style={{ transformStyle: "preserve-3d" }}
         animate={{ transform: isFlipped ? rotateValue : "none" }}
         /*
-         * The card still turns under reduced motion — it just cuts rather than
+         * The card still turns under reduced motion; it just cuts rather than
          * sweeps. Suppressing the flip outright would leave the back face
          * permanently unreachable, which is a different bug from a calm one:
          * the component exists to show what is written on the other side.

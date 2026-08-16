@@ -3,7 +3,7 @@ import { test, expect } from "@playwright/test";
 test.describe("Tilt Card", () => {
   /*
    * Regression: the glare was a radial gradient with no visibility control, so
-   * it was painted permanently at the card's centre — the card sat there with a
+   * it was painted permanently at the card's centre: the card sat there with a
    * bright blob on it whether or not a pointer was anywhere near.
    */
   test("hides the glare until the pointer is over the card", async ({
@@ -83,7 +83,7 @@ test.describe("Dock", () => {
 test.describe("Split Flap", () => {
   /*
    * Regression: the flaps were rendered through an `AnimatePresence`, and at
-   * one flip every 55ms the exits could not retire faster than they arrived —
+   * one flip every 55ms the exits could not retire faster than they arrived:
    * a spinning column ended up holding twenty invisible cards it had already
    * turned over. Each cell now renders exactly the outgoing and incoming card.
    */
@@ -138,7 +138,7 @@ test.describe("Ripple Button", () => {
   /*
    * Regression: activating a button from the keyboard makes Chromium fire a
    * synthetic pointerdown with an empty `pointerType` at coordinates (0, 0) as
-   * well as the click, so Enter used to produce two ripples — the second of
+   * well as the click, so Enter used to produce two ripples, the second of
    * them starting from outside the button entirely.
    */
   test("ripples exactly once, from the centre, on a keyboard press", async ({

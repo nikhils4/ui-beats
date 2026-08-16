@@ -50,11 +50,11 @@ describe("open graph cards are not silently suppressed", () => {
    *
    *   "File-based metadata has the higher priority and will override the
    *    `metadata` object and `generateMetadata` function."
-   *   — next/dist/docs/01-app/03-api-reference/04-functions/generate-metadata.md
+   *   next/dist/docs/01-app/03-api-reference/04-functions/generate-metadata.md
    *
    * On 16.3.0 the reverse is true for `openGraph.images`. `/docs/[category]`
    * and `/blogs/[slug]` both had an `opengraph-image.tsx` generating a card
-   * and an explicit `images` in the same segment, and the explicit value won —
+   * and an explicit `images` in the same segment, and the explicit value won,
    * so six category links and every blog post unfurled with a shared image
    * while their generated cards were built, prerendered, and never served.
    */

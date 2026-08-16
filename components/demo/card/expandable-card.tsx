@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 interface ExpandableCardItem {
   id: string;
   title: string;
-  /** Small line above the title — a date, a category, a status. */
+  /** Small line above the title: a date, a category, a status. */
   meta?: string;
   /** The one line shown while the card is collapsed. */
   summary: string;
@@ -29,7 +29,7 @@ interface ExpandableCardProps {
  * a modal fades in: the open panel carries the same `layoutId` as the row that
  * spawned it, so Motion interpolates the one box into the other and the reader
  * never loses track of which card they opened. The title and meta carry their
- * own ids for the same reason — without them the text would stretch with the
+ * own ids for the same reason; without them the text would stretch with the
  * box instead of travelling to its new position.
  *
  * `layoutId` is namespaced with `useId`, so two of these on one page do not
@@ -37,7 +37,7 @@ interface ExpandableCardProps {
  *
  * It behaves like the dialog it is: Escape closes, the backdrop closes, focus
  * moves to the panel on open and returns to the row that opened it on close.
- * With reduced motion the panel simply appears — the geometry still explains
+ * With reduced motion the panel simply appears: the geometry still explains
  * where it came from, and nothing travels to say so.
  */
 export function ExpandableCard({

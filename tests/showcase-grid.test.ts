@@ -9,15 +9,15 @@ import path from "node:path";
  * which is why the middle of the grid always looks right and hid this for so
  * long. It cannot backfill the end: a two-row tile placed near the bottom
  * leaves its second row half empty, and the section trails off into four cells
- * of background rather than finishing. That is what shipped — Glowing Card
+ * of background rather than finishing. That is what shipped: Glowing Card
  * spanning two rows in the last row of the six-column layout, with nothing
  * beside it.
  *
  * Nothing failed when it happened, because nothing was checking. This does the
  * arithmetic the layout depends on: parse the tiles out of the source, run the
  * same first-fit placement the browser runs, and assert that no cell is left
- * empty at either breakpoint. The two differ — the same tiles pack differently
- * into four columns and six — so fixing one by eye routinely breaks the other.
+ * empty at either breakpoint. The two differ: the same tiles pack differently
+ * into four columns and six, so fixing one by eye routinely breaks the other.
  */
 
 const ROOT = process.cwd();
@@ -39,7 +39,7 @@ interface Tile {
  *
  * Scanning to the first `>` at brace depth zero keeps expression props like
  * `onAction={() => wait(1400)}` from ending the tag early, and skips the
- * children — where `label="Scratch me"` on a nested demo would otherwise be
+ * children, where `label="Scratch me"` on a nested demo would otherwise be
  * read as a tile of its own.
  */
 function parseTiles(source: string): Tile[] {
@@ -136,7 +136,7 @@ describe("home showcase grid", () => {
 
     expect(
       holes,
-      `the grid ends ragged — ${holes.length} empty cell(s):\n  ${holes.join("\n  ")}`,
+      `the grid ends ragged, ${holes.length} empty cell(s):\n  ${holes.join("\n  ")}`,
     ).toEqual([]);
   });
 

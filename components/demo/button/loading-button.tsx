@@ -13,7 +13,7 @@ import { Check, Loader2 } from "lucide-react";
 
 /**
  * Native button props minus the handlers Motion redefines with its own
- * signatures — spreading React's DOM versions onto `motion.button` conflicts.
+ * signatures: spreading React's DOM versions onto `motion.button` conflicts.
  */
 type NativeButtonProps = Omit<
   ComponentPropsWithoutRef<"button">,
@@ -53,8 +53,8 @@ type Status = "idle" | "loading" | "success";
  * restored in a `finally`, so a rejected action returns the button to idle
  * instead of stranding it on a spinner.
  *
- * The spinner keeps turning under `prefers-reduced-motion` — it is the only
- * signal that the request is still open — but the width and label transitions
+ * The spinner keeps turning under `prefers-reduced-motion`: it is the only
+ * signal that the request is still open, but the width and label transitions
  * are dropped.
  */
 export function LoadingButton({
@@ -126,7 +126,7 @@ export function LoadingButton({
       /*
        * Busy is `aria-disabled`, not `disabled`. A real `disabled` attribute
        * drops focus in most browsers, and the button is almost always focused
-       * at that moment because the click is what made it busy — so the label
+       * at that moment because the click is what made it busy, so the label
        * change to "Saving" would go unannounced by the screen reader that most
        * needed it. The click is refused by `handleClick` either way.
        */

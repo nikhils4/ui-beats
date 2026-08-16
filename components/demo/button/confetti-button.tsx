@@ -11,7 +11,7 @@ import { cn } from "@/lib/utils";
 
 /**
  * Native button props minus the handlers Motion redefines with its own
- * signatures — spreading React's DOM versions onto `motion.button` conflicts.
+ * signatures: spreading React's DOM versions onto `motion.button` conflicts.
  */
 type NativeButtonProps = Omit<
   ComponentPropsWithoutRef<"button">,
@@ -52,7 +52,7 @@ const DEFAULT_COLORS = ["#7c3aed", "#ec4899", "#06b6d4", "#f59e0b", "#22c55e"];
  * The burst originates at the button's own centre rather than the top of the
  * viewport, which is what makes it read as coming *from* the thing you
  * pressed. `canvas-confetti` takes its origin in viewport fractions, so the
- * button's box is measured at click time — a stored position would be wrong
+ * button's box is measured at click time; a stored position would be wrong
  * after any scroll.
  *
  * `onClick` is called either way. The confetti is decoration on top of

@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 
 /**
  * Native button props minus the handlers Motion redefines with its own
- * signatures — spreading React's DOM versions onto `motion.button` conflicts.
+ * signatures: spreading React's DOM versions onto `motion.button` conflicts.
  */
 type NativeButtonProps = Omit<
   ComponentPropsWithoutRef<"button">,
@@ -37,7 +37,7 @@ interface RainbowButtonProps extends NativeButtonProps {
  * The palette is the project's own `--chart-1` through `--chart-5`, not five
  * hardcoded hues. Those are part of the contract `shadcn init` writes into
  * every project, so the button ships with a rainbow that already belongs to
- * whatever it is installed into — and re-themes with the rest of the app
+ * whatever it is installed into, and re-themes with the rest of the app
  * instead of staying the one violet-and-pink element on a green site.
  *
  * The ramp repeats its first colour at the end and the background is twice the

@@ -70,7 +70,7 @@ export const proxy: NextProxy = (request, event) => {
  *
  * Without a matcher this would run on every request including `_next/static`,
  * turning a static asset fetch into a function invocation. The value has to be
- * a literal — Next statically analyses it at build time and silently ignores
+ * a literal: Next statically analyses it at build time and silently ignores
  * anything computed.
  */
 export const config = {

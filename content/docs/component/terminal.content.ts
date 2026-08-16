@@ -8,7 +8,7 @@ const TerminalContent: ComponentConfig = {
     "The Terminal component replays a shell session, typing the commands character by character and printing everything else whole, with the pause sitting in front of each output line where the work would have happened.",
   addedAt: "2026-08-15",
   whenToUse:
-    "On a landing page for anything installed from a command line, where showing the install is more convincing than describing it. Keep the session to what a reader can follow at a glance — a transcript long enough to need scrolling has stopped being a demo and become documentation in the wrong place.",
+    "On a landing page for anything installed from a command line, where showing the install is more convincing than describing it. Keep the session to what a reader can follow at a glance: a transcript long enough to need scrolling has stopped being a demo and become documentation in the wrong place.",
   props: [
     {
       prop: "lines",

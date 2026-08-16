@@ -19,7 +19,7 @@ const getServerSnapshot = () => false;
  *
  * `useSyncExternalStore` is the right primitive for reading an external store
  * during render. The previous implementation started at `undefined`, coerced
- * it to `false`, and then called `setState` inside an effect — which rendered
+ * it to `false`, and then called `setState` inside an effect, which rendered
  * the desktop layout for one frame on every mobile page load.
  */
 export function useIsMobile(): boolean {

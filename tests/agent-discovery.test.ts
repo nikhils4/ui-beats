@@ -31,7 +31,7 @@ describe("markdown alternate link", () => {
   });
 
   /*
-   * `getting-started` pages have no markdown twin — `app/md/[category]/
+   * `getting-started` pages have no markdown twin: `app/md/[category]/
    * [component]` builds its params from the registry and sets
    * `dynamicParams = false`, so advertising one would point agents at a 404.
    */

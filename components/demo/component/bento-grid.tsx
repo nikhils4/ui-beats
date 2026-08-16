@@ -29,7 +29,7 @@ interface BentoCardProps {
  * properties rather than inline `grid-column`, and both are gated behind the
  * `sm` breakpoint. That gate is the whole design: a card written as
  * `colSpan={2}` inside a one-column grid does not clamp to that column, it
- * makes the grid grow an implicit second one — so a naive inline span silently
+ * makes the grid grow an implicit second one, so a naive inline span silently
  * shreds the layout on a phone. Holding the spans in variables that only apply
  * from `sm` up means every card is simply full width on small screens, and the
  * bento arrangement appears when there is room for it.

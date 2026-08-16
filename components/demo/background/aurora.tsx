@@ -22,7 +22,7 @@ interface AuroraProps {
  *
  * Three ribbons rather than one: a single animated gradient reads as a
  * gradient being animated, because every part of it moves in step. Overlapping
- * bands at different angles and — crucially — different periods never repeat
+ * bands at different angles and, crucially, different periods never repeat
  * the same arrangement, so the layer keeps changing without any one element
  * doing anything complicated.
  *

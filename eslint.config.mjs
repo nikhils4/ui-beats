@@ -48,7 +48,7 @@ const config = [
             {
               name: "framer-motion",
               message:
-                "framer-motion is now `motion` — import from `motion/react`.",
+                "framer-motion is now `motion`; import from `motion/react`.",
             },
             {
               name: "react-intersection-observer",

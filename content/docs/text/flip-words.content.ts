@@ -8,7 +8,7 @@ const FlipWordsContent: ComponentConfig = {
     "The FlipWords component cycles one slot in a sentence through a list of words, blurring each out as the next rises into its place and animating the width difference so the rest of the line never jumps.",
   addedAt: "2026-08-15",
   whenToUse:
-    "For a hero line that has to name several audiences or use cases without listing them all at once. Keep the words a similar length and make the sentence true for every one of them — a reader who arrives mid-cycle sees exactly one, so any word that only works as part of the set is a word that fails for most visitors.",
+    "For a hero line that has to name several audiences or use cases without listing them all at once. Keep the words a similar length and make the sentence true for every one of them: a reader who arrives mid-cycle sees exactly one, so any word that only works as part of the set is a word that fails for most visitors.",
   props: [
     {
       prop: "words",

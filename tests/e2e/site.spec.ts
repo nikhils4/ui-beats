@@ -126,7 +126,7 @@ test.describe("home showcase", () => {
   /*
    * Regression: every tile used to be one big `<Link>` wrapped around its
    * demo, which put the dock's buttons and the magnetic button inside an
-   * anchor — invalid markup, and it meant any attempt to play with a demo
+   * anchor: invalid markup, and it meant any attempt to play with a demo
    * navigated away from the page instead.
    */
   test("never nests an interactive control inside a link", async ({ page }) => {

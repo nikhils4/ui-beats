@@ -8,7 +8,7 @@ const ConfettiButtonContent: ComponentConfig = {
     "The ConfettiButton component throws a burst of confetti from its own centre when pressed, measuring the button's position at click time so the pieces come from the thing the reader actually pressed.",
   addedAt: "2026-08-15",
   whenToUse:
-    "For the end of something: a completed onboarding, a first deploy, a plan upgrade. It has to stay rare to keep working — a confetti burst on an ordinary save turns the celebration into noise, and the second time a reader sees it they are already waiting for it to clear.",
+    "For the end of something: a completed onboarding, a first deploy, a plan upgrade. It has to stay rare to keep working: a confetti burst on an ordinary save turns the celebration into noise, and the second time a reader sees it they are already waiting for it to clear.",
   props: [
     {
       prop: "children",

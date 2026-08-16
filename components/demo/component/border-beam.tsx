@@ -33,7 +33,7 @@ interface BorderBeamProps {
  * The ring is a single element carrying a conic gradient, masked so only the
  * border area paints: `mask-composite` subtracts the content box from the
  * padding box, leaving a band exactly `borderWidth` thick. That is why the
- * beam follows rounded corners exactly — it is the element's own shape, not a
+ * beam follows rounded corners exactly: it is the element's own shape, not a
  * dot being animated around an approximation of it.
  *
  * The angle is driven by a motion value written from `useAnimationFrame`
@@ -61,7 +61,7 @@ export function BorderBeam({
   });
 
   // Transparent everywhere except the arc, which fades from the head colour
-  // into the tail colour and then out — a streak rather than a hard wedge.
+  // into the tail colour and then out: a streak rather than a hard wedge.
   const stops = `transparent 0deg, ${colorTo} ${arc * 0.45}deg, ${colorFrom} ${arc}deg, transparent ${arc + 0.5}deg`;
   const background = useMotionTemplate`conic-gradient(from ${angle}deg at 50% 50%, ${stops})`;
 

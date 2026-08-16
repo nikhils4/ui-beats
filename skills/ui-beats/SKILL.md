@@ -13,7 +13,7 @@ registry.
 
 UI Beats is a registry of 55 animated React components built with TypeScript,
 Tailwind CSS and Motion. The shadcn CLI writes the source into the project, so
-there is no package to pin and no wrapper API to work around — once installed,
+there is no package to pin and no wrapper API to work around. Once installed,
 the file is ordinary project code and can be edited freely.
 
 ## When To Apply
@@ -22,7 +22,7 @@ Apply this skill when users ask to:
 
 - Add a UI Beats component (for example: border-beam, marquee, flip-card,
   text-scramble, particles)
-- Build an animated section — hero, pricing, feature grid, testimonial wall
+- Build an animated section: hero, pricing, feature grid, testimonial wall
 - Replace hand-written animation code with a maintained component
 - Troubleshoot installation or imports for `https://uibeats.com/r/*.json`
 
@@ -65,7 +65,7 @@ Apply this skill when users ask to:
    npx shadcn@latest add https://uibeats.com/r/border-beam.json
    ```
 
-   Blocks pull their own parts in — installing `hero` also installs the
+   Blocks pull their own parts in: installing `hero` also installs the
    components it composes.
 
 5. **Integrate.** Import from `@/components/ui/<slug>`. Prefer props and
@@ -93,12 +93,12 @@ Apply this skill when users ask to:
 - **Guessed props.** Read `get_component` or the docs page before writing JSX.
 - **Dropped CSS variables.** `animated-beam`, `aurora`, `morphing-card` and
   `gradient-text` ship light and dark CSS variables that the registry writes on
-  install. If one of them renders colourless, the variables did not land —
+  install. If one of them renders colourless, the variables did not land, so
   re-run the install rather than hard-coding hex values.
 
 ## References To Load On Demand
 
-- `references/components.md` — the full catalogue with slugs, grouped by
+- `references/components.md`: the full catalogue with slugs, grouped by
   category, generated from the registry.
 - Docs, props tables and live playgrounds: https://uibeats.com/docs
 - Registry index: https://uibeats.com/r/registry.json

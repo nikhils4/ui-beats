@@ -7,7 +7,7 @@ interface GradientTextProps {
   text: string;
   /** First and last stop of the gradient. Any CSS colour. */
   from?: string;
-  /** Middle stop — the colour that travels across the text. */
+  /** Middle stop: the colour that travels across the text. */
   via?: string;
   /** Seconds for one pass of the gradient. */
   duration?: number;
@@ -17,7 +17,7 @@ interface GradientTextProps {
 /**
  * Text painted with a gradient that travels across it.
  *
- * The ramp is mirrored — `from, via, from, via, from` — and the background is
+ * The ramp is mirrored (`from, via, from, via, from`) and the background is
  * sized to twice the element, so shifting the position by exactly one image
  * width returns to the frame it started on. That is what makes the loop
  * seamless without a reverse: a one-directional sweep that snaps back at the

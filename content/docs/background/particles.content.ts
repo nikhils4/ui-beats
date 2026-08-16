@@ -8,7 +8,7 @@ const ParticlesContent: ComponentConfig = {
     "The Particles component draws a drifting field of specks on a canvas and scatters them away from the pointer, holding positions as fractions of the frame so a resize redraws the field instead of reshuffling it.",
   addedAt: "2026-08-15",
   whenToUse:
-    "Behind a hero or a launch page that wants depth and a reason to move the mouse. It paints on every frame, so keep the quantity modest and use one per view — a page with three particle fields spends more of its frame budget on decoration than on the interface.",
+    "Behind a hero or a launch page that wants depth and a reason to move the mouse. It paints on every frame, so keep the quantity modest and use one per view: a page with three particle fields spends more of its frame budget on decoration than on the interface.",
   fullBleedPreview: true,
   props: [
     {

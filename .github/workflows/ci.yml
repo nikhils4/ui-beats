@@ -139,7 +139,7 @@ jobs:
       - name: Install Playwright browsers
         run: yarn playwright install --with-deps chromium
 
-      # Baselines are platform-specific — see `snapshotPathTemplate` in
+      # Baselines are platform-specific; see `snapshotPathTemplate` in
       # playwright.config.ts. This runner is the only platform whose set is
       # committed, which is why the suite runs here and not on a developer's
       # machine.

@@ -50,7 +50,7 @@ interface DockProps {
  * on a spring as it leaves.
  *
  * The pointer's x position is held in a motion value and read by each item
- * through context, so magnification runs entirely off the main thread — no
+ * through context, so magnification runs entirely off the main thread: no
  * state updates and no re-renders per frame, however many items the dock
  * holds.
  */
@@ -104,7 +104,7 @@ interface DockItemProps {
 /**
  * A single dock entry.
  *
- * The label appears on focus as well as hover — a dock whose names only exist
+ * The label appears on focus as well as hover; a dock whose names only exist
  * on pointer hover is unusable by keyboard and invisible on touch.
  */
 export function DockItem({

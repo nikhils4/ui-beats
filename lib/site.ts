@@ -18,7 +18,7 @@ export const siteConfig = {
    * The generated root card (`app/opengraph-image.tsx`), not a file in
    * `public/`. This is the inherited fallback for routes with no
    * `opengraph-image` of their own, and it used to be a checked-in PNG that
-   * nobody re-exported when the wordmark changed — so the fallback drifted
+   * nobody re-exported when the wordmark changed, so the fallback drifted
    * off-brand while every generated card stayed current. Pointing at the
    * route means there is one definition of the card and no binary to keep in
    * sync. The hashless URL is stable; Next only adds `?<hash>` for caching.

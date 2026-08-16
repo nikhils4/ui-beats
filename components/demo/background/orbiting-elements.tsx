@@ -22,7 +22,7 @@ interface OrbitingElementsProps {
  * point.
  *
  * Each item sits on a rotating arm and counter-rotates at the same speed, so
- * it travels the orbit while staying upright — icons and text never end up
+ * it travels the orbit while staying upright; icons and text never end up
  * upside down at the bottom of the circle.
  */
 export function OrbitingElements({

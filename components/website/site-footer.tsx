@@ -6,7 +6,7 @@ import { Footer } from "@/components/website/footer";
 /**
  * The site footer, except on the routes that are tools rather than documents.
  *
- * The studio is laid out to fill the viewport exactly — stage, snippet and
+ * The studio is laid out to fill the viewport exactly: stage, snippet and
  * every control on screen with nothing to scroll. A 364px footer underneath
  * defeated that on its own: the page scrolled by precisely the height of the
  * footer, which is the worst of both, since the studio still could not use

@@ -26,7 +26,7 @@ interface AnimatedBeamProps {
  *
  * The path is measured from the live geometry of the two elements rather than
  * hardcoded, so it survives responsive reflow, font loading and content
- * changes — a `ResizeObserver` on the container recomputes it whenever
+ * changes: a `ResizeObserver` on the container recomputes it whenever
  * anything moves.
  */
 export function AnimatedBeam({
@@ -42,7 +42,7 @@ export function AnimatedBeam({
   gradientStop = "var(--accent-pink)",
   className = "",
 }: AnimatedBeamProps) {
-  // `useId` keeps the gradient id unique — two beams on one page sharing an id
+  // `useId` keeps the gradient id unique; two beams on one page sharing an id
   // would both resolve to whichever was defined last.
   const gradientId = useId();
   const [path, setPath] = useState("");
@@ -102,7 +102,7 @@ export function AnimatedBeam({
        * `overflow-visible` because the arc is not obliged to stay inside the
        * box the endpoints describe. The SVG is sized to the container, and an
        * SVG clips to its viewport by default, so a curvature taller than the
-       * gap between the two elements had its whole middle cut away — at
+       * gap between the two elements had its whole middle cut away: at
        * `curvature={90}` across a row of 44px nodes, everything but a stub at
        * each end. The container decides where the beam is allowed to draw;
        * the beam should not clip itself.

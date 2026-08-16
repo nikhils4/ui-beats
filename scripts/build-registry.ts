@@ -69,7 +69,7 @@ interface RegistryItem {
   /**
    * Theme tokens the CLI merges into the user's stylesheet on install.
    *
-   * Only the ones this component actually reads — see `config/tokens.ts` for
+   * Only the ones this component actually reads; see `config/tokens.ts` for
    * why a component's own inline variables are not in here.
    */
   cssVars?: { light: Record<string, string>; dark: Record<string, string> };
@@ -91,13 +91,13 @@ function registryUrlFor(name: string): string {
  * Who wrote a component, always answered.
  *
  * `credits` is only set for components someone else wrote, so five of the
- * author's own were shipping with no `author` at all — the field simply
+ * author's own were shipping with no `author` at all: the field simply
  * vanished on those entries, which reads as missing data to anything consuming
  * the catalogue rather than as different provenance.
  *
  * A `kind: "tool"` credit is not authorship. The docs page has always drawn
- * that line — it types a tool credit as `SoftwareApplication` rather than
- * `Person` in its JSON-LD — but this function did not carry `kind` in its
+ * that line (it types a tool credit as `SoftwareApplication` rather than
+ * `Person` in its JSON-LD) but this function did not carry `kind` in its
  * signature at all, so it could not see the difference and promoted the tool
  * into `author`. That put "Claude Code" on 39 of 55 entries in the one file
  * every directory, scraper and MCP client reads, against 5 for the maintainer.
@@ -113,7 +113,7 @@ function authorFor(config: {
 }
 
 /**
- * One entry in `components.json` — the catalogue the MCP server reads.
+ * One entry in `components.json`: the catalogue the MCP server reads.
  *
  * The shadcn `registry.json` deliberately stays inside its own schema, so the
  * props table and the guidance prose that an agent needs in order to *pick*
@@ -152,7 +152,7 @@ interface CatalogueEntry {
  * exists and how to run it, instead of needing someone to have read the README.
  *
  * `packages` rather than `remotes`: this server is stdio, spawned by the client
- * from npm — there is no HTTP endpoint to advertise. Name and version are read
+ * from npm: there is no HTTP endpoint to advertise. Name and version are read
  * off the package itself so a release cannot leave this file stale.
  */
 function writeServerCard() {

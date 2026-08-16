@@ -15,7 +15,7 @@ import { cn } from "@/lib/utils";
  * A native `<select>` renders as an operating-system menu: it ignores the
  * theme, looks wrong in dark mode, and sat directly under the styled component
  * picker looking like a different product. These lists are two to four items,
- * so this needs no search — just a button and a panel that match everything
+ * so this needs no search, just a button and a panel that match everything
  * around them.
  */
 interface PropSelectProps {

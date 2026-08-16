@@ -49,7 +49,7 @@ const GravityTextSwap: React.FC<GravityTextSwapProps> = ({
           transition={{ duration: duration / 2 }}
         >
           {/*
-            The phrases still cycle under reduced motion — stopping them would
+            The phrases still cycle under reduced motion; stopping them would
             hide every phrase after the first, which is content loss rather
             than calm. What goes is the gravity: no per-character drop and no
             stagger, leaving the crossfade on the wrapper above to carry the

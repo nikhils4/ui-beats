@@ -5,8 +5,8 @@
  * component referenced a token that only exists on this site. Animated Beam
  * defaults its gradient to `var(--brand)` and `var(--accent-pink)`; installed
  * into a stock shadcn project, where neither is defined, the beam renders with
- * no gradient. The install was silently broken and the docs page — served from
- * the one origin that does define them — looked perfect.
+ * no gradient. The install was silently broken and the docs page, served from
+ * the one origin that does define them, looked perfect.
  *
  * So a component may use any token from `SHADCN_BASE_TOKENS`, which the user
  * already has because `shadcn init` wrote it, or any token from `BEATS_TOKENS`,
@@ -17,7 +17,7 @@
 /**
  * Tokens `shadcn init` writes into a project's stylesheet.
  *
- * Not exhaustive of every possible theme — just the contract every shadcn
+ * Not exhaustive of every possible theme, just the contract every shadcn
  * project satisfies, which is what makes them free to use.
  */
 export const SHADCN_BASE_TOKENS = new Set([
@@ -65,7 +65,7 @@ export interface BeatsToken {
 /**
  * Tokens UI Beats owns, emitted as `cssVars` on any item that uses one.
  *
- * Values match `app/globals.css` — this is the same palette, restated in the
+ * Values match `app/globals.css`: this is the same palette, restated in the
  * form the shadcn CLI merges into a user's stylesheet. Kept deliberately small:
  * every entry here is a variable written into someone else's project, so a
  * token earns its place by being referenced, and `tests/tokens.test.ts` deletes
@@ -99,8 +99,8 @@ export function collectThemeTokens(source: string): string[] {
   for (const match of source.matchAll(/var\(\s*--([a-zA-Z0-9-]+)\s*[,)]/g)) {
     const name = match[1];
     if (!name) continue;
-    // Assigned somewhere in this same file — `"--bento-columns": value` or
-    // `--bento-columns:` in a template — so it travels with the component.
+    // Assigned somewhere in this same file (`"--bento-columns": value` or
+    // `--bento-columns:` in a template), so it travels with the component.
     if (new RegExp(`["']?--${name}["']?\\s*:`).test(source)) continue;
     referenced.add(name);
   }

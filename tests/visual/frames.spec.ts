@@ -5,7 +5,7 @@ import componentConfigs from "../../content/docs";
  * Pixel snapshots of an animation, taken at fixed points along it.
  *
  * Screenshotting an animated component normally produces a different image
- * every run, which is why nobody in this category does it — and why a
+ * every run, which is why nobody in this category does it, and why a
  * regression in the middle of a transition ships unnoticed until somebody
  * happens to look. Playwright's clock removes the variable: time is installed
  * frozen, then advanced by an exact number of milliseconds, so frame 300 is
@@ -20,7 +20,7 @@ import componentConfigs from "../../content/docs";
  * Where along an entrance the interesting frames are.
  *
  * Zero is deliberately included. The first frame is where a broken initial
- * variant shows up — a component that starts already settled has lost its
+ * variant shows up: a component that starts already settled has lost its
  * animation, and no later frame can tell you that.
  */
 const FRAMES_MS = [0, 300, 1200];
@@ -30,7 +30,7 @@ test.describe.configure({ mode: "parallel" });
 for (const config of componentConfigs) {
   const key = `${config.category}/${config.name}`;
 
-  test(`frames — ${key}`, async ({ page }) => {
+  test(`frames: ${key}`, async ({ page }) => {
     /*
      * Installed before navigation so the page never sees a real clock. Motion
      * reads `performance.now()` on its first frame; letting that be genuine
@@ -47,7 +47,7 @@ for (const config of componentConfigs) {
      * The stage is server-rendered and visible at once; the preview inside it
      * is a `next/dynamic` chunk that lands later, behind a skeleton. Asserting
      * on the stage alone let frame 0 race that chunk, capturing the skeleton
-     * about one run in forty — a different component each time, which is what
+     * about one run in forty: a different component each time, which is what
      * made this suite look flaky rather than broken.
      *
      * The wait is free: the clock is frozen, so nothing animates while the

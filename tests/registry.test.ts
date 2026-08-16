@@ -69,7 +69,7 @@ describe("registry integrity", () => {
    *
    * `inferRange` guesses a slider's bounds from the prop's name, and a name it
    * does not recognise falls back to a window starting at zero. That is right
-   * for almost everything — sizes, counts, durations — and silently wrong for
+   * for almost everything (sizes, counts, durations) and silently wrong for
    * the rare signed prop: Animated Beam's `curvature` is documented as
    * "positive bows up, negative bows down" and the slider stopped at 0, so
    * half the prop was undemonstrable. Nothing failed; the playground just
@@ -228,7 +228,7 @@ describe("added dates", () => {
 
   /*
    * Regression: the home page took the last entry carrying an `isNew` flag,
-   * and the registry is ordered by category — so the featured component was
+   * and the registry is ordered by category, so the featured component was
    * whichever flagged component sat last in the text category, which had been
    * Text Shine, added in 2024.
    */

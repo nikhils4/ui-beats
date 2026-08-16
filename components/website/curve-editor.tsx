@@ -122,7 +122,7 @@ export function CurveEditor({
       ref={svgRef}
       /*
         Tuned so the unit square stays large.
-        This was `-10 -52 120 264` — over twice as tall as it was wide, which
+        This was `-10 -52 120 264`, over twice as tall as it was wide, which
         meant any height cap shrank the whole drawing to a sliver and the plot
         rendered about as big as a postage stamp. The vertical padding now
         covers the range handles can actually reach (-0.5 to 1.5) and no more.

@@ -22,7 +22,7 @@ interface ScrollRevealProps {
  * Text that lights up word by word as the reader scrolls past it.
  *
  * Each word maps its own slice of the container's scroll progress, so the
- * reveal tracks the scrollbar exactly — scroll back up and it un-reveals.
+ * reveal tracks the scrollbar exactly: scroll back up and it un-reveals.
  * A time-based stagger would drift out of sync with the reader.
  */
 export function ScrollReveal({

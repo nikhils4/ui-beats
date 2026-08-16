@@ -302,7 +302,7 @@ export function ComponentPreview({
         /*
          * A block is a whole page section, not a widget. In the 20rem stage
          * every other component uses, Pricing showed its heading and the top
-         * inch of its cards — not the feature lists, not the buttons, and not
+         * inch of its cards, not the feature lists, not the buttons, and not
          * the Border Beam tracing the recommended tier, which is the entire
          * reason that block exists. Blocks get a stage tall enough to be
          * judged, and scroll rather than crop if they still exceed it.

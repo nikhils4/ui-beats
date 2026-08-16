@@ -31,7 +31,7 @@ interface SplitFlapProps {
  * until it reaches its letter, left to right.
  *
  * Columns advance one character per tick toward their target rather than
- * showing random glyphs, so the board always lands — and the ripple comes from
+ * showing random glyphs, so the board always lands, and the ripple comes from
  * each column starting a beat after its neighbour, exactly as a real board's
  * motors do.
  *
@@ -104,8 +104,8 @@ export function SplitFlap({
 
         settled = false;
         const index = charset.indexOf(current.char);
-        // A character the board cannot reach by cycling — punctuation outside
-        // the charset — is set directly, so a column can never spin forever.
+        // A character the board cannot reach by cycling (punctuation outside
+        // the charset) is set directly, so a column can never spin forever.
         const advanced =
           charset.includes(wanted) && index !== -1
             ? (charset[(index + 1) % charset.length] ?? wanted)

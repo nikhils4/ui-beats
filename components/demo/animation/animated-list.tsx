@@ -27,7 +27,7 @@ interface AnimatedListProps {
  * layout animation rather than hand-computed offsets: each surviving entry
  * animates from wherever it was to wherever the new arrival pushed it.
  *
- * Nothing here is real notification content — if you wire it to some, turn on
+ * Nothing here is real notification content; if you wire it to some, turn on
  * `live` so the arrivals are announced rather than appearing silently.
  */
 export function AnimatedList({

@@ -41,7 +41,7 @@ const SmoothReveal: React.FC<SmoothRevealProps> = ({
 
   const customEasing = cubicBezier(0.2, 0.0, 0.0, 1.0);
 
-  // 100px of travel by default — the largest displacement of any entrance
+  // 100px of travel by default: the largest displacement of any entrance
   // here, and the one most worth removing when asked to.
   const variants = prefersReducedMotion
     ? {

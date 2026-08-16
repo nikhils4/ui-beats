@@ -51,7 +51,7 @@ export function TextScramble({
 
   /**
    * Starts the scramble interval. Deliberately performs no synchronous state
-   * update, so it is safe to call from an effect body — the timer is the
+   * update, so it is safe to call from an effect body: the timer is the
    * external system the effect subscribes to.
    */
   const run = useCallback(() => {

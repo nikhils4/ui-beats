@@ -8,7 +8,7 @@ const DotPatternContent: ComponentConfig = {
     "The DotPattern component tiles a grid of dots behind your content and lights the ones nearest the pointer, using a masked second copy of the same grid so the bright dots land exactly on the dim ones.",
   addedAt: "2026-08-15",
   whenToUse:
-    "As the quiet texture under a hero, a feature section or an empty state, where a flat background would read as unfinished. Turn the glow off for anything behind long-form copy — a light that follows the cursor is an invitation to move it, which is the opposite of what a reading surface wants.",
+    "As the quiet texture under a hero, a feature section or an empty state, where a flat background would read as unfinished. Turn the glow off for anything behind long-form copy: a light that follows the cursor is an invitation to move it, which is the opposite of what a reading surface wants.",
   fullBleedPreview: true,
   props: [
     {

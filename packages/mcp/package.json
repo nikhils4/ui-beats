@@ -1,7 +1,7 @@
 {
   "name": "@uibeats/mcp",
   "version": "0.1.2",
-  "description": "MCP server for UI Beats — let your coding agent search, read and install animated React components.",
+  "description": "MCP server for UI Beats. Let your coding agent search, read and install animated React components.",
   "keywords": [
     "mcp",
     "model-context-protocol",

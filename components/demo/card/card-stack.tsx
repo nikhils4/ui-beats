@@ -74,7 +74,7 @@ export function CardStack({
    * Autoplay pauses on hover, focus and drag.
    *
    * A deck that keeps dealing while someone is reading the card in front of
-   * them — or halfway through dragging it — is actively working against them.
+   * them, or halfway through dragging it, is actively working against them.
    */
   useEffect(() => {
     if (!autoplay || paused || cards.length < 2) return;

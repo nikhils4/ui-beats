@@ -3,8 +3,8 @@
  *
  * Controls are derived from the props table the component already documents,
  * so a component gains a playground without restating its API a second time.
- * What cannot be derived — the JSX tag name, and the required props that are
- * objects or nodes rather than scalars — is declared here.
+ * What cannot be derived (the JSX tag name, and the required props that are
+ * objects or nodes rather than scalars) is declared here.
  */
 
 /** Narrow an inferred number range where the guess from the prop name is wrong. */
@@ -20,7 +20,7 @@ export interface NumberControlOverride {
  *
  * Everything here is optional: the JSX tag is derived from the component name,
  * and the controls are derived from the props table. A component gets a
- * working playground by having a harness file and nothing else — this exists
+ * working playground by having a harness file and nothing else; this exists
  * only for what genuinely cannot be inferred.
  */
 export interface PlaygroundOverrides {
@@ -45,7 +45,7 @@ export interface PlaygroundOverrides {
    * Starting values for props the docs give no default for.
    *
    * A required prop has no default by definition, so a control derived from it
-   * alone starts at `0` or `""` — which is why Number Ticker opened counting
+   * alone starts at `0` or `""`, which is why Number Ticker opened counting
    * to zero and the three text components rendered nothing at all. This is the
    * value the playground opens on; it is not a claim about the component's
    * behaviour, so it stays out of the props table.
@@ -63,7 +63,7 @@ interface ControlBase {
   description: string;
   /**
    * Required props are always written into the generated snippet, even when
-   * untouched — omitting one because it matched its starting value would emit
+   * untouched: omitting one because it matched its starting value would emit
    * a snippet that does not compile.
    */
   required: boolean;

@@ -33,11 +33,11 @@ import type {
 /**
  * The studio: one full-page tool for both halves of tuning a component.
  *
- * This replaces two smaller things that sat in tabs on a narrow page — a props
- * playground and a separate easing editor — and were each squeezed into half
- * the width they wanted. The canvas now gets the whole page and every control
- * lives in one rail on the right, which is also what makes swapping the
- * component a one-click move rather than a navigation.
+ * This replaces two smaller things that sat in tabs on a narrow page: a props
+ * playground and a separate easing editor, each squeezed into half the width
+ * they wanted. The canvas now gets the whole page and every control lives in
+ * one rail on the right, which is also what makes swapping the component a
+ * one-click move rather than a navigation.
  */
 
 export interface StudioComponent {

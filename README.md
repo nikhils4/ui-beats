@@ -44,7 +44,7 @@ Most components get picked by whatever is writing the code. The MCP server puts 
 claude mcp add uibeats -- npx -y @uibeats/mcp
 ```
 
-It exposes four tools — `search_components`, `get_component`, `list_components` and `get_install_command`. See [`packages/mcp`](packages/mcp) or the [MCP docs](https://uibeats.com/docs/getting-started/mcp).
+It exposes four tools: `search_components`, `get_component`, `list_components` and `get_install_command`. See [`packages/mcp`](packages/mcp) or the [MCP docs](https://uibeats.com/docs/getting-started/mcp).
 
 For agents that only fetch URLs, the same content is served as plain text:
 
@@ -52,7 +52,7 @@ For agents that only fetch URLs, the same content is served as plain text:
 | ---------------------------- | ------------------------------------------------------------ |
 | `/llms.txt`                  | Index of every component, linking to its markdown            |
 | `/llms-full.txt`             | Every component's props and full source, in one file         |
-| `/docs/<category>/<name>.md` | Any component page as markdown — just add `.md`              |
+| `/docs/<category>/<name>.md` | Any component page as markdown, just add `.md`               |
 | `/r/components.json`         | The catalogue as JSON, with props and guidance. CORS is open |
 
 ## Tune before you copy
@@ -61,7 +61,7 @@ Every component has a **playground** at `/playground/<category>/<name>`: the pro
 
 The controls are derived from the same `props` array that renders the documentation table, so a control can never describe a prop the docs do not.
 
-Alongside it, **[Motion Studio](https://uibeats.com/motion-studio)** — a cubic-bezier and spring editor. Drag the curve or tune stiffness, damping and mass, watch it run on three properties at once, and copy the Motion `transition` or the CSS. Springs are integrated from the same damped-oscillator model Motion uses rather than approximated with a bezier, so the preview is the motion you will ship.
+Alongside it, **[Motion Studio](https://uibeats.com/motion-studio)**, a cubic-bezier and spring editor. Drag the curve or tune stiffness, damping and mass, watch it run on three properties at once, and copy the Motion `transition` or the CSS. Springs are integrated from the same damped-oscillator model Motion uses rather than approximated with a bezier, so the preview is the motion you will ship.
 
 ## Components
 
@@ -78,7 +78,7 @@ Alongside it, **[Motion Studio](https://uibeats.com/motion-studio)** — a cubic
 
 ### Motion you can switch off
 
-Every component honours `prefers-reduced-motion`. Not "most of them" — the
+Every component honours `prefers-reduced-motion`. Not "most of them": the
 whole registry, checked in CI: `tests/reduced-motion.test.ts` fails the build
 if a component ships without consulting the preference, or reads it and then
 animates anyway.
@@ -86,12 +86,12 @@ animates anyway.
 What that means per component is a judgement, not a switch. An entrance is
 settled from the first frame. A carousel stops advancing on its own but still
 moves when you press the button. Flip Card still turns, because the back face
-is the point — it just cuts instead of sweeping.
+is the point; it just cuts instead of sweeping.
 
 ### Themed by your tokens, not ours
 
-Components read shadcn's own variables — `--card`, `--border`,
-`--muted-foreground` — so an installed component wears your palette. The few
+Components read shadcn's own variables (`--card`, `--border`,
+`--muted-foreground`), so an installed component wears your palette. The few
 that need a colour shadcn does not define ship it with them: `cssVars` in the
 registry item, merged into your stylesheet by the CLI. See `config/tokens.ts`;
 the build fails on a component that reads a variable nothing defines.
@@ -136,7 +136,7 @@ That writes the four files below, registers them in all three maps, and leaves
 a stub that compiles and passes the suite. The rest of this section is what it
 does, for when you need to do it by hand.
 
-Adding a component means adding **four files**. The sidebar, the docs page, the sitemap, the command menu and the shadcn registry entry are all derived from them — there is no central list to keep in sync.
+Adding a component means adding **four files**. The sidebar, the docs page, the sitemap, the command menu and the shadcn registry entry are all derived from them; there is no central list to keep in sync.
 
 ```
 components/demo/<category>/<name>.tsx         the component itself
@@ -156,7 +156,7 @@ components/website/playground-harnesses.tsx              one line in the lazy ha
 Everything else is generated:
 
 - **`lib/registry.ts`** joins each config with its source on disk and derives the npm dependency list from the component's own `import` statements.
-- **`lib/playground.ts`** turns the documented props table into controls — a string-literal union becomes a select, a `number` becomes a range with a bounded scale, a hex-defaulted colour prop becomes a swatch.
+- **`lib/playground.ts`** turns the documented props table into controls: a string-literal union becomes a select, a `number` becomes a range with a bounded scale, a hex-defaulted colour prop becomes a swatch.
 - **`lib/agent-docs.ts`** renders the same registry data as markdown for `/llms.txt`, `/llms-full.txt` and the per-component `.md` routes.
 - **`config/side-nav.ts`** builds the sidebar from the same array.
 - **`scripts/build-registry.ts`** emits `public/r/*.json` for the shadcn CLI, plus `components.json` for the MCP server.
@@ -176,13 +176,13 @@ Everything else is generated:
 
 ## Contributing
 
-Contributions are welcome — see [CONTRIBUTING.md](CONTRIBUTING.md) and the [contribute guide](https://uibeats.com/docs/getting-started/contribute). Contributors are credited on their component's docs page.
+Contributions are welcome; see [CONTRIBUTING.md](CONTRIBUTING.md) and the [contribute guide](https://uibeats.com/docs/getting-started/contribute). Contributors are credited on their component's docs page.
 
 ### Attribution
 
 Every component says where it came from. The `credits` field on each component's config drives the Credits block on its docs page, the `author` field in its registry JSON, and the `author` in its structured data.
 
-Eighteen components — Tilt Card, Text Scramble, Magnetic Button, Stagger List, Dock, Marquee, Number Ticker, Scroll Reveal, Orbiting Elements, Animated Beam, Animated List, Border Beam, Card Stack, Liquid Tabs, Retro Grid, Ripple Button, Scratch to Reveal and Split Flap — were written with [Claude Code](https://claude.com/claude-code) and are credited as such rather than presented as community contributions. They are reviewed and maintained here like any other component.
+Eighteen components (Tilt Card, Text Scramble, Magnetic Button, Stagger List, Dock, Marquee, Number Ticker, Scroll Reveal, Orbiting Elements, Animated Beam, Animated List, Border Beam, Card Stack, Liquid Tabs, Retro Grid, Ripple Button, Scratch to Reveal and Split Flap) were written with [Claude Code](https://claude.com/claude-code) and are credited as such rather than presented as community contributions. They are reviewed and maintained here like any other component.
 
 <a href="https://github.com/nikhils4/ui-beats/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=nikhils4/ui-beats" alt="Contributors" />

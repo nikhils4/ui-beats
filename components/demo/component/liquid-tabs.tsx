@@ -113,7 +113,7 @@ export function LiquidTabs({
     const list = listRef.current;
     if (!list || typeof ResizeObserver === "undefined") return;
 
-    // Fonts loading, a container resizing, a label changing — all move the
+    // Fonts loading, a container resizing, a label changing: all move the
     // tabs under the pill without anything re-rendering.
     const observer = new ResizeObserver(sync);
     observer.observe(list);

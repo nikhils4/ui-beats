@@ -42,7 +42,7 @@ yarn dev`}
         />
         <p className="mt-3 max-w-2xl text-sm text-muted-foreground">
           Requires Node 20.9 or newer and Yarn 4 via Corepack. Before opening a
-          PR, run what CI runs — <code className={inlineCode}>yarn lint</code>,{" "}
+          PR, run what CI runs: <code className={inlineCode}>yarn lint</code>,{" "}
           <code className={inlineCode}>yarn format:check</code>,{" "}
           <code className={inlineCode}>yarn typecheck</code>,{" "}
           <code className={inlineCode}>yarn test</code>,{" "}
@@ -55,7 +55,7 @@ yarn dev`}
       <DocsSection
         id="scaffold"
         title="Start with the scaffolder"
-        description="It writes four files, edits three registries and leaves a stub that compiles, renders and passes the suite — so your first test run tells you about your component rather than about a wiring mistake. Then replace the TODOs."
+        description="It writes four files, edits three registries and leaves a stub that compiles, renders and passes the suite, so your first test run tells you about your component rather than about a wiring mistake. Then replace the TODOs."
       >
         <CodeBlock
           language="bash"
@@ -94,7 +94,7 @@ components/website/playground-harnesses.tsx       # the same, if you wrote a har
           the shadcn registry under{" "}
           <code className={inlineCode}>public/r/</code>. The MCP server reads
           the deployed catalogue at runtime, so a new component reaches it on
-          deploy with no release. There is no central list to keep up to date —
+          deploy with no release. There is no central list to keep up to date,
           but miss the preview map and the test suite says so by name.
         </p>
       </DocsSection>
@@ -108,7 +108,7 @@ components/website/playground-harnesses.tsx       # the same, if you wrote a har
           <li>
             <code className={inlineCode}>name</code>,{" "}
             <code className={inlineCode}>category</code> and the filename all
-            have to agree — the route, the sidebar and the registry key off the
+            have to agree: the route, the sidebar and the registry key off the
             triple.
           </li>
           <li>
@@ -129,7 +129,7 @@ components/website/playground-harnesses.tsx       # the same, if you wrote a har
           <li>
             <code className={inlineCode}>credits</code> is required. Use{" "}
             <code className={inlineCode}>kind: &quot;tool&quot;</code> if a
-            model wrote it — crediting one as a person makes the page copy and
+            model wrote it; crediting one as a person makes the page copy and
             the structured data both wrong.
           </li>
           <li>
@@ -158,7 +158,7 @@ components/website/playground-harnesses.tsx       # the same, if you wrote a har
             <code className={inlineCode}>text-muted-foreground</code>) rather
             than hardcoded colours. A colour shadcn does not define has to be
             declared in <code className={inlineCode}>config/tokens.ts</code> so
-            the registry ships it — otherwise it renders here and breaks on
+            the registry ships it; otherwise it renders here and breaks on
             install.
           </li>
           <li>
@@ -185,8 +185,8 @@ components/website/playground-harnesses.tsx       # the same, if you wrote a har
           Baselines are platform-specific and only the Linux set is committed.
           Locally, <code className={inlineCode}>yarn test:visual</code> writes
           your own on first run and gitignores them. On CI, a new component has
-          no baseline yet, so the Motion frames job writes three PNGs and fails
-          — download the <code className={inlineCode}>visual-baselines</code>{" "}
+          no baseline yet, so the Motion frames job writes three PNGs and fails.
+          Download the <code className={inlineCode}>visual-baselines</code>{" "}
           artifact from that run, commit them under{" "}
           <code className={inlineCode}>
             tests/visual/__screenshots__/linux/
@@ -205,7 +205,7 @@ git push origin feat/your-component`}
         />
         <p className="mt-3 max-w-2xl leading-7">
           One component per PR. Include a screenshot or screen recording in the
-          description, and explain why rather than what — the diff already says
+          description, and explain why rather than what; the diff already says
           what. Contributors are credited on their component&apos;s docs page.
         </p>
       </DocsSection>

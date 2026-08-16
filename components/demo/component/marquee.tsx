@@ -97,7 +97,7 @@ export function Marquee({
     >
       <motion.div ref={trackRef} style={{ x }} className="flex w-max">
         <div className="flex shrink-0 items-center">{children}</div>
-        {/* The duplicate is decorative — screen readers should hear the list
+        {/* The duplicate is decorative; screen readers should hear the list
             once, not twice. */}
         <div className="flex shrink-0 items-center" aria-hidden="true">
           {children}

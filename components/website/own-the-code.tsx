@@ -53,7 +53,7 @@ export async function OwnTheCode() {
   const install = `npx shadcn@latest add ${siteConfig.url}/r/${entry.name}.json`;
 
   /*
-   * Where the CLI puts it, which is not where it lives in this repository —
+   * Where the CLI puts it, which is not where it lives in this repository:
    * the demos sit under `components/demo/<category>/` and the registry
    * installs each one to `components/ui/<name>.tsx`. Step two and the import
    * in the snippet both derive from this pair, so they cannot contradict each

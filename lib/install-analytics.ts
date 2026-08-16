@@ -3,7 +3,7 @@
  *
  * `public/r/*.json` is the only endpoint that a real adoption touches: the
  * shadcn CLI fetches it the moment somebody actually runs `add`. Page views
- * told us what people browsed, which is a different and much less useful list —
+ * told us what people browsed, which is a different and much less useful list:
  * the components that photograph well, not the ones that get shipped.
  *
  * Deliberately free of any registry import. The proxy bundle would otherwise
@@ -138,7 +138,7 @@ export function eventName(target: RegistryTarget): string {
  *
  * GA4 rejects an event with no `client_id`, and a random one per request would
  * report every install as a new user. Bucketing on the user agent alone gives
- * a coarse but honest id — no IP, nothing that survives back to a person.
+ * a coarse but honest id: no IP, nothing that survives back to a person.
  */
 export function clientId(userAgent: string | null): string {
   const seed = userAgent ?? "unknown";

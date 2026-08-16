@@ -23,7 +23,7 @@ interface RetroGridProps {
  * Lines are drawn with `currentColor`, so the grid takes the text colour of
  * whatever wraps it and follows the theme without a single JS read. Depth is a
  * CSS `perspective` plus one `rotateX`, and motion is a single transform on an
- * oversized tile — the loop is seamless because it travels exactly one cell
+ * oversized tile. The loop is seamless because it travels exactly one cell
  * before restarting, which is indistinguishable from travelling forever.
  */
 export function RetroGrid({

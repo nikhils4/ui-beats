@@ -31,7 +31,7 @@ const clamp = (value: number) => Math.min(100, Math.max(0, value));
  *
  * The top layer is revealed with `clip-path` rather than a width. A clipped
  * layer is laid out at full size and only painted in part, so both sides stay
- * pinned to the same geometry — resize a width instead and the top copy
+ * pinned to the same geometry. Resize a width instead and the top copy
  * reflows as it narrows, which turns a comparison of two designs into a
  * comparison of one design against itself at a different width.
  *
@@ -40,8 +40,8 @@ const clamp = (value: number) => Math.min(100, Math.max(0, value));
  * comparison that can only be operated by dragging is one a keyboard user
  * cannot see the other half of.
  *
- * No Motion here. The divider tracks the pointer exactly — anything easing
- * toward the cursor would feel broken — so the only animated case is a
+ * No Motion here. The divider tracks the pointer exactly, because anything
+ * easing toward the cursor would feel broken, so the only animated case is a
  * keyboard step, which is a CSS transition that `motion-reduce` turns off.
  */
 export function ComparisonSlider({

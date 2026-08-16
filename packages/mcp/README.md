@@ -1,6 +1,6 @@
 # @uibeats/mcp
 
-MCP server for [UI Beats](https://uibeats.com) — lets a coding agent search the
+MCP server for [UI Beats](https://uibeats.com). Lets a coding agent search the
 component catalogue, read a component's full source and props, and install it,
 without anyone opening the website.
 
@@ -44,8 +44,8 @@ JSX, then `get_install_command("flip-card")` and runs it.
 There is no backend. The server is a cached client over two static files the
 site already publishes:
 
-- `/r/components.json` — the search index (names, descriptions, props, guidance)
-- `/docs/<category>/<name>.md` — the canonical document for one component
+- `/r/components.json`: the search index (names, descriptions, props, guidance)
+- `/docs/<category>/<name>.md`: the canonical document for one component
 
 The catalogue is cached in memory for ten minutes, and a stale copy is kept as
 a fallback so a brief network failure does not break every tool call.
@@ -62,7 +62,7 @@ UIBEATS_URL=http://localhost:3000 npx @uibeats/mcp
 
 ## Development
 
-This package is standalone — it is not part of the site's Yarn install.
+This package is standalone: it is not part of the site's Yarn install.
 
 ```bash
 cd packages/mcp

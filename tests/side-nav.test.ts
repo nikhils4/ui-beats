@@ -32,7 +32,7 @@ describe("side navigation", () => {
   /*
    * Regression: every `/docs/<category>` landing page used to redirect by
    * indexing this array with a hardcoded number (`sideNav[1]`, `sideNav[3]`, …)
-   * and all six numbers pointed at the wrong section — `/docs/text` landed on
+   * and all six numbers pointed at the wrong section: `/docs/text` landed on
    * an animation page, `/docs/button` on a background. The destination is
    * derived now; this pins it.
    */

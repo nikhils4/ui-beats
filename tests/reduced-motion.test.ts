@@ -5,7 +5,7 @@ import { getRegistry } from "@/lib/registry";
  * `prefers-reduced-motion` coverage, enforced rather than intended.
  *
  * Fifteen of forty components ignored the setting, including every entrance
- * animation in the `animation` category — a component library whose entire
+ * animation in the `animation` category: a component library whose entire
  * subject is motion, shipping the one thing a motion-sensitive reader has
  * asked the browser to stop doing. Numbers like that do not happen because
  * anybody decided to skip it; they happen because nothing failed when it was

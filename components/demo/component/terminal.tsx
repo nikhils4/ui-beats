@@ -137,8 +137,8 @@ export function Terminal({
        * re-announce the entire session on every loop, forever, which is the
        * kind of thing that gets a screen reader turned off rather than a
        * component admired. At zero opacity the text stays in the accessibility
-       * tree, so the transcript reads in full at any point in the animation —
-       * and because the lines are laid out from the start, the box does not
+       * tree, so the transcript reads in full at any point in the animation.
+       * And because the lines are laid out from the start, the box does not
        * grow a row at a time and shove the page around beneath it.
        */}
       <div className="space-y-1 p-4">

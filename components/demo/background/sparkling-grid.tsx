@@ -119,7 +119,7 @@ export function SparklingGrid({
     };
     // Primitive deps only. The old effect listed the `sparkleColor` and
     // `dotColor` object props, which are fresh literals on every render when
-    // defaulted — so it tore down and rebuilt the entire grid continuously.
+    // defaulted, so it tore down and rebuilt the entire grid continuously.
   }, [gridSize, sparkleFrequency, prefersReducedMotion]);
 
   return (

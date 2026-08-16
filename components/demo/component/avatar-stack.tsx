@@ -4,7 +4,7 @@ import { motion, useReducedMotion } from "motion/react";
 import { cn } from "@/lib/utils";
 
 export interface AvatarStackItem {
-  /** Full name — the image's alt text, and what the initials are built from. */
+  /** Full name: the image's alt text, and what the initials are built from. */
   name: string;
   /** Optional image. An avatar without one falls back to initials. */
   src?: string;
@@ -42,7 +42,7 @@ function initials(name: string): string {
  * reflows as the pointer travels along the stack.
  *
  * Every avatar carries its owner's name for a screen reader whether it renders
- * an image or initials — a stack of pictures that announces nothing is a row of
+ * an image or initials: a stack of pictures that announces nothing is a row of
  * strangers, and the initials themselves are marked `aria-hidden` because "AC"
  * read aloud is noise.
  */

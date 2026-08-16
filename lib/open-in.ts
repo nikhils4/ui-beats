@@ -1,8 +1,8 @@
 /**
  * Deep links that put a component into a tool without anybody typing.
  *
- * Everything needed for this already existed — a public registry URL per
- * component and a published MCP server — and none of it was exposed as
+ * Everything needed for this already existed (a public registry URL per
+ * component and a published MCP server) but none of it was exposed as
  * something you could click. A reader who wanted the component still had to
  * copy a command, find a terminal, and be in the right directory. These are
  * the same install, minus those three steps.
@@ -32,7 +32,7 @@ export function shadcnCommand(name: string): string {
  * Open a component in v0.
  *
  * v0 fetches the registry item itself, so this passes the URL rather than the
- * source — the chat starts with the real component, its dependencies and its
+ * source: the chat starts with the real component, its dependencies and its
  * `cssVars`, not a paraphrase of them.
  *
  * `v0.app`, not the `v0.dev` every other registry still links to. The old host
@@ -79,7 +79,7 @@ export function claudeCodeCommand(): string {
 /**
  * VS Code's MCP install link.
  *
- * Plain JSON in the query string rather than base64 — the two editors chose
+ * Plain JSON in the query string rather than base64: the two editors chose
  * differently, and guessing wrong produces a link that opens the editor and
  * then fails silently.
  */

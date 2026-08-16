@@ -30,7 +30,7 @@ interface DotPatternProps {
  * twice, not a second grid drawn near the pointer.
  *
  * The mask is driven by motion values rather than state, so pointer movement
- * never re-renders the component — a `setState` per `pointermove` over a
+ * never re-renders the component; a `setState` per `pointermove` over a
  * full-bleed background is the version of this that drops frames on a laptop.
  *
  * Dots are painted with `currentColor`, so the grid takes the text colour of

@@ -2,7 +2,7 @@ import { test, expect, type Locator } from "@playwright/test";
 import componentConfigs from "../../content/docs";
 
 /**
- * Every component ends up visible — with motion and without it.
+ * Every component ends up visible, with motion and without it.
  *
  * The failure this exists for has no pixel baseline and no thrown error: an
  * entrance animation whose settled state never arrives leaves real content in
@@ -21,7 +21,7 @@ import componentConfigs from "../../content/docs";
  *
  * Opacity is read as rendered, not as declared: a `motion.div` at `opacity: 1`
  * inside a wrapper still at 0 is invisible, and the per-element value says
- * nothing about that — which is the entire bug class this is chasing.
+ * nothing about that, which is the entire bug class this is chasing.
  */
 async function hasVisibleContent(stage: Locator): Promise<boolean> {
   return stage.evaluate((root: HTMLElement) => {
@@ -41,7 +41,7 @@ async function hasVisibleContent(stage: Locator): Promise<boolean> {
 
     return Array.from(root.querySelectorAll<HTMLElement>("*")).some((node) => {
       // The replay button is page chrome, not the component, and it is always
-      // present and opaque — it would pass every check below on its own.
+      // present and opaque; it would pass every check below on its own.
       if (node.closest("[aria-label='Replay animation']")) return false;
 
       const box = node.getBoundingClientRect();

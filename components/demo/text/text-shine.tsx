@@ -20,7 +20,7 @@ interface TextShineProps {
  * `baseColor` defaults to the theme's foreground rather than a hardcoded
  * `#222`, which was all but invisible against a dark background. Because the
  * text is painted with `background-clip: text`, the base colour has to be a
- * real colour value — `currentColor` resolves to `transparent` here.
+ * real colour value; `currentColor` resolves to `transparent` here.
  */
 export function TextShine({
   text,

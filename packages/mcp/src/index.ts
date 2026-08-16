@@ -3,7 +3,7 @@
  * UI Beats MCP server.
  *
  * Lets a coding agent search the component catalogue, read a component's full
- * documentation and source, and get the exact install command — without the
+ * documentation and source, and get the exact install command, without the
  * user ever opening the website.
  *
  * Run it over stdio:
@@ -38,7 +38,7 @@ const server = new McpServer(
   {
     instructions: [
       "UI Beats is a library of animated React components (TypeScript, Tailwind CSS, Motion).",
-      "Components are copied into the user's project via the shadcn CLI — this is not an npm",
+      "Components are copied into the user's project via the shadcn CLI. This is not an npm",
       "package, and there is nothing to import from node_modules.",
       "",
       "Use `search_components` to find a component, then `get_component` to read its full",
@@ -71,7 +71,7 @@ function summarize(entry: CatalogueComponent): string {
 /**
  * A category filter, checked against the catalogue rather than a literal union.
  *
- * This was a `z.enum` of six values. The site shipped a seventh — `block` — and
+ * This was a `z.enum` of six values. The site shipped a seventh (`block`) and
  * the schema then rejected the one word an agent would reach for to find the
  * three blocks, while the site's own docs listed them under exactly that name.
  * Nothing about the server needed to change for the components themselves to
@@ -147,7 +147,7 @@ async function guard<T>(run: () => Promise<T>, what: string) {
   } catch (error) {
     const detail = error instanceof Error ? error.message : String(error);
     return errorResult(
-      `Could not ${what}. ${detail}\n\nThe catalogue is served from ${ORIGIN}/r/components.json — check connectivity, or set UIBEATS_URL to a reachable origin.`,
+      `Could not ${what}. ${detail}\n\nThe catalogue is served from ${ORIGIN}/r/components.json. Check connectivity, or set UIBEATS_URL to a reachable origin.`,
     );
   }
 }
@@ -157,7 +157,7 @@ server.registerTool(
   {
     title: "Search UI Beats components",
     description:
-      "Search the UI Beats catalogue by intent or name — e.g. 'card that flips', 'number counting up', 'animated background', 'flip-card'. Returns ranked matches with their description, docs URL and install command. Call get_component afterwards to read the actual source and props.",
+      "Search the UI Beats catalogue by intent or name, e.g. 'card that flips', 'number counting up', 'animated background', 'flip-card'. Returns ranked matches with their description, docs URL and install command. Call get_component afterwards to read the actual source and props.",
     inputSchema: {
       query: z
         .string()
@@ -168,7 +168,7 @@ server.registerTool(
       /*
        * No ceiling. This was `.max(34)`, written when the catalogue held 34
        * components; it now holds more, so asking for all of them failed
-       * validation. The result is bounded by the pool either way — a limit
+       * validation. The result is bounded by the pool either way: a limit
        * past the end of it just returns the pool.
        */
       limit: z
@@ -272,14 +272,14 @@ server.registerTool(
           "",
           ...entries.map(
             (entry) =>
-              `- \`${entry.name}\` — ${entry.title}: ${entry.description}`,
+              `- \`${entry.name}\` (${entry.title}): ${entry.description}`,
           ),
         ].join("\n");
       });
 
       return textResult(
         [
-          `UI Beats — ${catalogue.count} components, MIT licensed.`,
+          `UI Beats: ${catalogue.count} components, MIT licensed.`,
           `Install any of them with: npx shadcn@latest add ${ORIGIN}/r/<name>.json`,
           "",
           ...sections,
@@ -328,7 +328,7 @@ server.registerTool(
 
 async function main() {
   await server.connect(new StdioServerTransport());
-  // stdout is the transport — anything written there corrupts the JSON-RPC
+  // stdout is the transport; anything written there corrupts the JSON-RPC
   // stream, so status goes to stderr.
   console.error(`uibeats-mcp ${VERSION} ready (origin: ${ORIGIN})`);
 }

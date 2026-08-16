@@ -28,7 +28,7 @@ yarn build          # also regenerates public/r/ via registry:build
 yarn test:e2e       # builds, serves, then runs chromium + mobile
 ```
 
-A fifth job — **Motion frames** — diffs pixel baselines and only reproduces on
+A fifth job, **Motion frames**, diffs pixel baselines and only reproduces on
 Linux. See [Motion baselines](#motion-baselines) for what that means for a new
 component.
 
@@ -43,11 +43,11 @@ yarn new:component --name flip-clock --category card
 ```
 
 `--category` is one of `animation`, `background`, `button`, `card`, `component`,
-`text`. Blocks are hand-authored — see [Adding a block](#adding-a-block).
+`text`. Blocks are hand-authored; see [Adding a block](#adding-a-block).
 `--title` overrides the title derived from the name (`flip-clock` → `Flip Clock`).
 
 It writes four files, edits three registries, dates the component today, and
-leaves a stub that compiles, renders and passes the suite — so your first run of
+leaves a stub that compiles, renders and passes the suite, so your first run of
 `yarn test` tells you about your component rather than about a wiring mistake.
 Then replace the TODOs.
 
@@ -64,7 +64,7 @@ than to be handed one.
 | `content/docs/<category>/<name>.content.ts`              | Title, description, props table, guidance, attribution.                              |
 | `content/docs/index.ts`                                  | One import plus one array entry, at the end of the component's own category.         |
 | `components/website/component-preview.tsx`               | A `next/dynamic` entry keyed `"<category>/<name>"`.                                  |
-| `components/website/playground-harnesses.tsx`            | The same, for the harness — only if you wrote one.                                   |
+| `components/website/playground-harnesses.tsx`            | The same, for the harness, only if you wrote one.                                    |
 
 Miss the preview map and `tests/registry.test.ts` fails with
 `component-preview.tsx is missing "<category>/<name>"`, rather than the component
@@ -79,7 +79,7 @@ Do not hand-edit any of these. They all read the registry:
 - the sitemap, `/llms.txt` and `/llms-full.txt`
 - the home page's featured component, picked by `addedAt`
 - `public/r/<name>.json`, `registry.json`, `components.json` and
-  `.well-known/mcp.json` — written by `yarn registry:build` (which `yarn build`
+  `.well-known/mcp.json`, written by `yarn registry:build` (which `yarn build`
   runs) and gitignored, so there is nothing to commit
 - the MCP server, which fetches the deployed `components.json` at runtime. A new
   component reaches `@uibeats/mcp` users on deploy; the package needs no release.
@@ -97,7 +97,7 @@ const FlipClockContent: ComponentConfig = {
     "The FlipClock component counts down on split flaps that fall through the change, so a deadline reads as motion rather than as a number that quietly differs from the one before.",
   addedAt: "2026-08-15",
   whenToUse:
-    "For a countdown a reader is meant to feel — a sale ending, a launch. Not for a clock that merely shows the time, where the flap animation draws the eye to something nobody needs to look at twice.",
+    "For a countdown a reader is meant to feel: a sale ending, a launch. Not for a clock that merely shows the time, where the flap animation draws the eye to something nobody needs to look at twice.",
   props: [
     {
       prop: "until",
@@ -112,25 +112,25 @@ const FlipClockContent: ComponentConfig = {
 export default FlipClockContent;
 ```
 
-- **`name`, `category`, filename.** All three have to agree — the docs route,
+- **`name`, `category`, filename.** All three have to agree: the docs route,
   the sidebar and the registry key off the triple, and a test enforces it.
 - **`description`** is the meta description, the registry entry and the MCP
   catalogue text, not just page copy. Lead with what the component does.
 - **`title`** carries an SEO budget: pages are titled
   `React <Title> <category noun>` and `tests/seo.test.ts` requires the result
-  plus `" — UI Beats"` to fit in 60 characters, to be unique across the library,
+  plus `" · UI Beats"` to fit in 60 characters, to be unique across the library,
   and not to repeat a word (`Flip Card` + `Card Component` must not become
   `Flip Card Card Component`).
 - **`addedAt`** is `YYYY-MM-DD`. `isNew` is derived from it and expires on its
   own; a date in the future fails the suite.
 - **`whenToUse`** is required in practice: over 80 characters, unique across the
   library, and not a restatement of the description. Say where the component
-  fits _and_ where it does not — a page of one description plus a props table has
+  fits _and_ where it does not: a page of one description plus a props table has
   no prose for a search engine to rank.
 - **`props`** needs at least one row, and it is also where the playground gets
   its controls, so the names matter (see below). Sub-component props are rows
   named `"PricingTier: featured"`.
-- **`credits`** is required for anything new — `tests/registry.test.ts` holds a
+- **`credits`** is required for anything new; `tests/registry.test.ts` holds a
   closed list of five grandfathered components and fails on any other entry
   without it. The URL must be `https://`. If a model wrote the component, use
   `kind: "tool"`; crediting one as a person makes the page copy and the
@@ -145,7 +145,7 @@ export default FlipClockContent;
 ### The playground harness
 
 A harness renders the real component with the panel's `values` merged in. It is
-optional — no file, no playground — but if you write one, two rules apply:
+optional (no file, no playground), but if you write one, two rules apply:
 
 - **Controls come from the props table.** `lib/playground.ts` infers a control
   from each prop's name and type, so `duration` gets seconds and `opacity` gets
@@ -157,8 +157,8 @@ optional — no file, no playground — but if you write one, two rules apply:
   `tests/playground-parity.test.ts` compares the visible copy in the two files:
   any prose of five characters or more in the usage file has to appear in the
   harness or in the shared `components/playground/demo-content.tsx`. Where they
-  genuinely cannot agree — the docs demo cycles a prop the studio gives a control
-  for — add an entry to `EXCEPTIONS` in that test with a reason.
+  genuinely cannot agree (the docs demo cycles a prop the studio gives a control
+  for), add an entry to `EXCEPTIONS` in that test with a reason.
 
 ### Motion baselines
 
@@ -168,7 +168,7 @@ a PR instead of shipping. Baselines are platform-specific and only the Linux set
 is committed:
 
 - Locally, `yarn test:visual` writes a **darwin** set on its first run. It is
-  gitignored — it is yours, for iterating.
+  gitignored: it is yours, for iterating.
 - On CI, the **Motion frames** job runs against
   `tests/visual/__screenshots__/linux/`. A new component has no baseline there,
   so the job writes three PNGs and fails. Download the `visual-baselines`
@@ -177,12 +177,12 @@ is committed:
   second run compares against them.
 
 Look at the three frames before committing them. Frame 0 is where a broken
-initial state shows up — a component already settled in frame 0 has lost its
+initial state shows up: a component already settled in frame 0 has lost its
 entrance animation, and no later frame can tell you that.
 
 ## Adding a block
 
-A block is a whole section — a hero, a pricing table — rather than a primitive.
+A block is a whole section (a hero, a pricing table) rather than a primitive.
 It has no scaffolder and three differences from a component:
 
 - It installs to `components/blocks/` as `registry:block`, not to
@@ -205,7 +205,7 @@ Blocks have no playground harness.
   dependency for everyone who installs it, derived straight from the import
   statements. `motion` is fine; a new charting library is not.
 - **Use the design tokens** (`bg-background`, `text-muted-foreground`, `border`)
-  rather than hardcoded colours, so the component works in both themes — and in
+  rather than hardcoded colours, so the component works in both themes, and in
   the themes of the projects it gets installed into, which is the harder half.
   A colour shadcn does not define has to be declared in `config/tokens.ts` so
   the registry can ship it in `cssVars`; the build fails on a `var(--whatever)`
@@ -215,7 +215,7 @@ Blocks have no playground harness.
   between the server and the browser and cause hydration mismatches. Use
   `useId()` for stable variation.
 - **Format dates with an explicit locale and `timeZone`.** Same reason.
-- **Honour `prefers-reduced-motion`.** Not only for loops — for anything that
+- **Honour `prefers-reduced-motion`.** Not only for loops, but for anything that
   moves. `tests/reduced-motion.test.ts` fails the build if a component does not
   consult the preference, consults it and ignores the answer, or uses
   `useReducedMotion` without a `"use client"` directive. A `motion-reduce:` class
@@ -224,7 +224,7 @@ Blocks have no playground harness.
   What to do with it is a judgement. An entrance should be settled from the
   first frame rather than merely instant, or the content sits invisible until
   it scrolls into view. Something the user explicitly starts may still animate.
-  Something that withholds content — a typewriter — should show all of it.
+  Something that withholds content, like a typewriter, should show all of it.
 
   `tests/visual/settle.spec.ts` then checks that the component is actually
   visible both ways, because a reduced-motion branch that never reaches its
@@ -247,7 +247,7 @@ chore(deps): bump motion to 13.1
 
 - One component, or one logical change, per PR.
 - Include a screenshot or short screen recording for anything visual.
-- Explain _why_, not just what — the diff already says what.
+- Explain _why_, not just what; the diff already says what.
 - CI must be green, Motion frames included. For a new component that means the
   baseline commit described above.
 
@@ -260,5 +260,5 @@ Open an issue with the [bug report template](.github/ISSUE_TEMPLATE/bug_report.m
 Include the component, your Next/React/Tailwind versions, and a reproduction if
 you can.
 
-For security issues, follow [SECURITY.md](SECURITY.md) instead — please don't
+For security issues, follow [SECURITY.md](SECURITY.md) instead; please don't
 open a public issue.

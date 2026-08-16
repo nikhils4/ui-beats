@@ -20,7 +20,7 @@ interface FlipWordsProps {
  * outgoing word out of the flow the moment it starts leaving, so the incoming
  * one is already in position rather than waiting for an empty box to collapse.
  * The `layout` on the wrapper then animates the width difference, so the text
- * after the slot slides rather than jumping — the thing that makes most
+ * after the slot slides rather than jumping: the thing that makes most
  * word-rotators look broken mid-sentence.
  *
  * With the preference set the list stops advancing altogether. A word that

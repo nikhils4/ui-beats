@@ -32,7 +32,7 @@ export const SubscribeButton: React.FC<SubscribeButtonProps> = ({
   const handleClick = () => {
     // `isAnimating` drives both the particle burst and the 17-stop colour
     // cycle through the button. Never entering it under reduced motion leaves
-    // the click doing exactly what it says — subscribing — with no fireworks.
+    // the click doing exactly what it says (subscribing) with no fireworks.
     if (!isSubscribed && !prefersReducedMotion) {
       setIsAnimating(true);
     }

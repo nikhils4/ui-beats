@@ -30,7 +30,7 @@ interface RippleButtonProps {
  *
  * Each ripple is sized to reach the button's farthest corner from its own
  * origin, so a press near an edge still floods the whole surface instead of
- * stopping short — the detail that separates this from a centred circle that
+ * stopping short: the detail that separates this from a centred circle that
  * happens to grow.
  *
  * Ripples are spawned on pointer *down* rather than click, because the
@@ -80,7 +80,7 @@ export function RippleButton({
      *
      * Activating a button from the keyboard makes Chromium fire a synthetic
      * pointerdown with an empty `pointerType` at coordinates (0, 0), so
-     * without this check Enter produced two ripples — one from the keyboard
+     * without this check Enter produced two ripples: one from the keyboard
      * branch below, and one starting from wherever the top-left of the
      * viewport happens to be relative to the button.
      */
@@ -95,7 +95,7 @@ export function RippleButton({
       onPointerDown={handlePointerDown}
       onClick={(event) => {
         // `detail === 0` means the click came from the keyboard, which never
-        // fires pointerdown — without this, Enter and Space press the button
+        // fires pointerdown. Without this, Enter and Space press the button
         // with no feedback at all.
         if (event.detail === 0) spawn(event.currentTarget);
         onClick?.();

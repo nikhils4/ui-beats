@@ -15,7 +15,7 @@
 :root {
   --radius: 0.75rem;
 
-  /* Brand — an electric violet, used for primary actions, focus and accents. */
+  /* Brand: an electric violet, used for primary actions, focus and accents. */
   --brand: oklch(0.55 0.23 285);
   --brand-foreground: oklch(0.985 0.002 285);
   --brand-muted: oklch(0.95 0.03 285);
@@ -319,7 +319,7 @@
  *
  * Careful with line-height: the glyphs are painted by this element's
  * background, which stops at the padding box. Any part of a glyph outside that
- * box has nothing painting it and disappears — so a `leading` under about 1.05
+ * box has nothing painting it and disappears, so a `leading` under about 1.05
  * silently eats descenders (g, y, p, q). Give the line room, and add a little
  * padding-bottom on very tight display sizes.
  */

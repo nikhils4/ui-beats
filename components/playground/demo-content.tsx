@@ -20,7 +20,7 @@ import {
  * The content each playground harness renders.
  *
  * The rule: a component looks the same in the studio as it does on its docs
- * page. It did not — the harnesses were generated with generic filler ("Copy
+ * page. It did not: the harnesses were generated with generic filler ("Copy
  * the component / Own the code / Ship it") while the docs demo showed a
  * notification feed, a testimonial deck, a dock of real icons. Same component,
  * two unrelated experiences, and the studio was the one that looked unfinished.

@@ -38,8 +38,8 @@ const TextWriter: React.FC<TextWriterProps> = ({
    *
    * This is the one component here where the animation withholds content
    * rather than decorating it: mid-effect, the DOM genuinely contains half a
-   * word. Typing it out character by character — and, with `loop`, deleting it
-   * again forever — is unreadable for anyone who asked the browser to stop
+   * word. Typing it out character by character (and, with `loop`, deleting it
+   * again forever) is unreadable for anyone who asked the browser to stop
    * moving things, so they get the finished text and no cursor.
    *
    * Derived during render rather than pushed into state from the effect: the

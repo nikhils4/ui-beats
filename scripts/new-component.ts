@@ -4,7 +4,7 @@
  *     yarn new:component --name flip-clock --category component
  *
  * Adding a component by hand means four new files and three separate registries
- * to edit — `content/docs/index.ts`, the preview map and the harness map — and
+ * to edit (`content/docs/index.ts`, the preview map and the harness map) and
  * missing any one of them fails somewhere other than where the mistake was.
  * That is a fine amount of ceremony for someone who has done it forty times and
  * a wall for a first-time contributor, which is the population this needs to
@@ -320,7 +320,7 @@ const ${Pascal}Content: ComponentConfig = {
   ],
   // Required: tests/registry.test.ts fails on any component added after the
   // grandfathered set without attribution. Use \`kind: "tool"\` if a model wrote
-  // it — crediting one as a person is a lie to anything reading the schema.
+  // it: crediting one as a person is a lie to anything reading the schema.
   credits: {
     name: "TODO your name",
     url: "https://github.com/TODO",
@@ -346,7 +346,7 @@ export default ${Pascal}Content;
 
   /*
    * The array is ordered by category, and the sidebar, sitemap and registry all
-   * read it in order — so a new entry goes at the end of its own category
+   * read it in order, so a new entry goes at the end of its own category
    * rather than the end of the file.
    */
   const categoryImports = fs

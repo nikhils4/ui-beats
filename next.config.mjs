@@ -66,7 +66,7 @@ const nextConfig = {
          * Point agents at the markdown twin of a component page.
          *
          * An agent that fetches the HTML gets told, in the response itself,
-         * that a clean markdown version exists — without having to know the
+         * that a clean markdown version exists, without having to know the
          * `.md` convention or spend a second request finding out.
          *
          * A relative URI so this stays correct on localhost and preview
@@ -98,7 +98,7 @@ const nextConfig = {
      *
      * Serving markdown from the HTML URL needs `Vary: Accept` so a cache keeps
      * the two representations apart. Next owns the `Vary` header on page routes
-     * and overwrites it with its own RSC list — verified via both `headers()`
+     * and overwrites it with its own RSC list, verified via both `headers()`
      * and a `proxy.ts`, neither of which survives. Negotiating without that
      * guard risks a shared CDN entry handing markdown to a human visitor, so
      * the `Link: rel="alternate"` header above advertises the markdown twin
@@ -106,8 +106,8 @@ const nextConfig = {
      */
     return [
       // Agent-facing markdown. `/docs/card/flip-card.md` cannot be a route
-      // segment of its own — `[component]/page.tsx` already occupies that
-      // level — so the extension is matched here and mapped onto the handler
+      // segment of its own (`[component]/page.tsx` already occupies that
+      // level) so the extension is matched here and mapped onto the handler
       // at `app/md/[category]/[component]/route.ts`.
       {
         source: "/docs/:category/:component.md",

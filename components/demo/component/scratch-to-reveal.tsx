@@ -32,7 +32,7 @@ interface ScratchToRevealProps {
   className?: string;
 }
 
-/** Sample every 16th pixel — precise to well under a percent, 16× cheaper. */
+/** Sample every 16th pixel: precise to well under a percent, 16× cheaper. */
 const SAMPLE_STRIDE = 16;
 
 /**
@@ -82,8 +82,8 @@ export function ScratchToReveal({
   /**
    * The drawing context, always requested with the same attributes.
    *
-   * `willReadFrequently` has to be set on the call that *creates* the context —
-   * later calls return the existing one and ignore their options — so asking
+   * `willReadFrequently` has to be set on the call that *creates* the context.
+   * Later calls return the existing one and ignore their options, so asking
    * for it in only the read path would silently do nothing.
    */
   const getContext = () =>
@@ -159,7 +159,7 @@ export function ScratchToReveal({
     context.lineWidth = brushSize * 2;
     // Under `destination-out` it is the *source alpha* that erases, and the
     // context still holds the translucent white the foil's hatching and label
-    // were painted with — leaving it would rub away 7% of the foil per stroke.
+    // were painted with; leaving it would rub away 7% of the foil per stroke.
     context.strokeStyle = "#000";
     context.fillStyle = "#000";
 

@@ -8,7 +8,7 @@ const GradientTextContent: ComponentConfig = {
     "The GradientText component paints a line of text with a colour ramp that travels across it on a loop, so a headline word carries the accent colour as movement rather than as a flat fill.",
   addedAt: "2026-08-15",
   whenToUse:
-    "For the one word in a headline that should carry the eye — a product name, the verb in a value proposition. Use it on a short span inside a larger sentence rather than on the whole line: a paragraph of moving gradient is unreadable, and the effect stops meaning anything once everything has it.",
+    "For the one word in a headline that should carry the eye: a product name, the verb in a value proposition. Use it on a short span inside a larger sentence rather than on the whole line: a paragraph of moving gradient is unreadable, and the effect stops meaning anything once everything has it.",
   props: [
     {
       prop: "text",
@@ -26,7 +26,7 @@ const GradientTextContent: ComponentConfig = {
       prop: "via",
       type: "string",
       defaultValue: "'var(--accent-pink)'",
-      description: "Middle stop — the colour that travels across the text",
+      description: "Middle stop: the colour that travels across the text",
     },
     {
       prop: "duration",

@@ -8,7 +8,7 @@ const TimelineContent: ComponentConfig = {
     "The Timeline component lays events down a vertical rail that fills as the reader scrolls through them, scaling a single element rather than resizing it so the fill costs nothing on the main thread.",
   addedAt: "2026-08-15",
   whenToUse:
-    "For a sequence where the order carries meaning: a changelog, a roadmap, an onboarding walkthrough, a company history. A list of items that merely happen to be numbered is better as a list — the rail promises the reader that each entry follows from the one above it.",
+    "For a sequence where the order carries meaning: a changelog, a roadmap, an onboarding walkthrough, a company history. A list of items that merely happen to be numbered is better as a list: the rail promises the reader that each entry follows from the one above it.",
   props: [
     {
       prop: "items",
@@ -57,7 +57,7 @@ const TimelineContent: ComponentConfig = {
       prop: "TimelineItem: meta",
       type: "string",
       defaultValue: "-",
-      description: "Small line above the title — a date, a version, a stage",
+      description: "Small line above the title: a date, a version, a stage",
     },
     {
       prop: "TimelineItem: body",

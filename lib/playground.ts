@@ -149,7 +149,7 @@ function toControl(
   if (config.exclude?.includes(prop.prop)) return null;
   // Some props tables document a sub-component's API in the same table, with
   // rows named like "DockItem: label". Those are prose, not props of this
-  // component, and emitting one produced `<Dock DockItem: label="" >` — JSX
+  // component, and emitting one produced `<Dock DockItem: label="" >`: JSX
   // that does not parse. Anything that is not a plain identifier is not a prop.
   if (!/^[A-Za-z_$][\w$]*$/.test(prop.prop)) return null;
 
@@ -166,7 +166,7 @@ function toControl(
      * "Must appear in the generated snippet."
      *
      * That is the documented required props, plus any prop the docs give no
-     * default for that needed a starting value configured — a component that
+     * default for that needed a starting value configured: a component that
      * cannot render without one is required in practice however its
      * description is worded. Split Flap is the case in point: its `text` is
      * not marked required, but `<SplitFlap />` displays nothing.
@@ -272,7 +272,7 @@ export function initialValues(controls: PlaygroundControl[]): PlaygroundValues {
  * `0.30000000000000004` is float noise, not information.
  *
  * Trailing zeros are dropped only from a fractional part. Applying
- * `/\.?0+$/` to the whole string — which is what this did — also ate the
+ * `/\.?0+$/` to the whole string, which is what this did, also ate the
  * zeros of an integer, so a slider sitting at 90 read "9px" and one at 100
  * read "1px". Every round number in the studio was labelled as a different
  * number, on every numeric control in the library.

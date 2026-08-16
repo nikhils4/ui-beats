@@ -24,8 +24,8 @@ import type { ComponentCategory } from "@/types/component-config.type";
  *
  * A native `<select>` was doing this job, which meant the one control the tool
  * is built around rendered as an operating-system menu: unstyleable, wrong in
- * dark mode, and with no way to search thirty-four entries. This is a combobox
- * — type to filter, arrow keys to move, grouped by category with the icon each
+ * dark mode, and with no way to search thirty-four entries. This is a combobox:
+ * type to filter, arrow keys to move, grouped by category with the icon each
  * category already uses in the sidebar.
  */
 

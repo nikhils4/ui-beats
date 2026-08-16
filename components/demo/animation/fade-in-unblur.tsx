@@ -22,7 +22,7 @@ const FadeInUnblur: React.FC<FadeInUnblurProps> = ({
   const prefersReducedMotion = useReducedMotion();
 
   /*
-   * The settled state keeps `scale: 1.2` — that is where the animation ends,
+   * The settled state keeps `scale: 1.2`, which is where the animation ends,
    * and matching it is the point. Reducing it to 1 here would render the
    * component at a different size for these users than for everyone else.
    */

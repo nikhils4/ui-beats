@@ -1,6 +1,6 @@
 ## What does this change?
 
-<!-- A sentence or two. The diff already says what changed — say why. -->
+<!-- A sentence or two. The diff already says what changed, so say why. -->
 
 ## Type of change
 

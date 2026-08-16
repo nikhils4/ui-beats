@@ -10,7 +10,7 @@ interface ScrollProgressProps {
    *
    * With a container the bar is positioned `absolute`, so it belongs inside a
    * `relative` wrapper *around* the scroll area rather than inside the area
-   * itself — a bar inside the scroller would scroll away with the content.
+   * itself: a bar inside the scroller would scroll away with the content.
    */
   container?: RefObject<HTMLElement | null>;
   /** Thickness of the bar, in pixels. */
@@ -51,7 +51,7 @@ export function ScrollProgress({
   const prefersReducedMotion = useReducedMotion();
 
   /*
-   * The bar itself survives reduced motion — it moves only because the reader
+   * The bar itself survives reduced motion: it moves only because the reader
    * is scrolling, and pinning it would just make it wrong. The spring does
    * not: it keeps travelling after the scroll has stopped, which is motion the
    * reader did not ask for and cannot stop.
@@ -61,7 +61,7 @@ export function ScrollProgress({
   return (
     <motion.div
       // The bar restates progress the content already conveys, and it changes
-      // on every frame of a scroll — announcing that is noise, not information.
+      // on every frame of a scroll. Announcing that is noise, not information.
       aria-hidden="true"
       className={cn(
         "left-0 z-50 w-full origin-left",

@@ -10,7 +10,7 @@ import { CATEGORY_ORDER } from "@/config/categories";
 
 describe("component page titles", () => {
   /*
-   * Regression: pages were titled "Flip Card — UI Beats", competing only for a
+   * Regression: pages were titled "Flip Card · UI Beats", competing only for a
    * query nobody types. Meanwhile ui.ibelick.com/text-shine and nine others
    * ranked for "react text shine animation" while ours was absent.
    */
@@ -46,8 +46,8 @@ describe("component page titles", () => {
     for (const entry of getRegistry()) {
       const title = componentSeoTitle(entry);
       expect(title.startsWith("React ")).toBe(true);
-      // ~60 chars renders before truncation; the layout appends " — UI Beats".
-      expect(`${title} — UI Beats`.length, title).toBeLessThanOrEqual(60);
+      // ~60 chars renders before truncation; the layout appends " · UI Beats".
+      expect(`${title} · UI Beats`.length, title).toBeLessThanOrEqual(60);
     }
   });
 

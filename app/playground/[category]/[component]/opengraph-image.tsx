@@ -24,7 +24,7 @@ export async function generateStaticParams() {
  * Per-component playground card.
  *
  * Like Motion Studio, these pages declared their own `openGraph` block, which
- * replaces the parent's instead of merging into it — so all thirty-odd
+ * replaces the parent's instead of merging into it, so all thirty-odd
  * playground routes shared a link preview with no image at all.
  */
 export default async function OpengraphImage({

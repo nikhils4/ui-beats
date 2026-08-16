@@ -6,9 +6,9 @@ import { getRegistry } from "@/lib/registry";
 /**
  * A component must look the same in the studio as it does on its docs page.
  *
- * The two previews come from different files — `components/usage/…usage.tsx`
+ * The two previews come from different files: `components/usage/…usage.tsx`
  * renders the docs demo, `components/playground/…playground.tsx` renders the
- * studio one — and they drifted badly: the harnesses were generated with
+ * studio one, and they drifted badly: the harnesses were generated with
  * generic filler while the docs demos showed a notification feed, a
  * testimonial deck, a dock of real icons.
  *
@@ -58,7 +58,7 @@ function extractCopy(source: string): Set<string> {
   }
 
   // A hex colour or a CSS length is a prop value, not something the reader
-  // reads. Both surfaces are free to differ on them — that is what the
+  // reads. Both surfaces are free to differ on them; that is what the
   // controls are for.
   for (const value of [...found]) {
     if (/^#[0-9a-f]{3,8}$/i.test(value)) found.delete(value);
@@ -72,7 +72,7 @@ function extractCopy(source: string): Set<string> {
 /**
  * Copy that only exists in the docs demo because it animates through it.
  *
- * A playground cannot both cycle a prop on a timer and let the reader set it —
+ * A playground cannot both cycle a prop on a timer and let the reader set it:
  * the timer would overwrite whatever they typed a second later. Where the two
  * genuinely cannot agree, the control wins and the difference is written down
  * here rather than quietly tolerated by a looser check.

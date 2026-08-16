@@ -128,7 +128,7 @@ describe("deriveControls", () => {
         [required("value", "number"), prop("delay", "number", "0.2")],
         withDefaults,
       );
-      // Untouched, so `delay` is correctly absent — but a snippet missing a
+      // Untouched, so `delay` is correctly absent, but a snippet missing a
       // required prop would not compile.
       const snippet = generateSnippet(
         withDefaults,

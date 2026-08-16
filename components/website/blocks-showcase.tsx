@@ -20,7 +20,7 @@ function lead(text: string | undefined) {
  *
  * Deliberately not tiles like the component showcase above it. A block is a
  * whole page section, and a section shrunk into a 12rem card is a screenshot
- * of a layout rather than the layout — which is exactly the complaint the
+ * of a layout rather than the layout, which is exactly the complaint the
  * dedicated `/preview` route exists to answer. So this sells them in words and
  * sends people to see the real thing at full width.
  *

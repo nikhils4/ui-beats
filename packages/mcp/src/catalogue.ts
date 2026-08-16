@@ -2,7 +2,7 @@
  * Fetching and searching the UI Beats catalogue.
  *
  * The catalogue is the static `/r/components.json` the site emits at build
- * time, so this server has no backend of its own — it is a thin, cached client
+ * time, so this server has no backend of its own: it is a thin, cached client
  * over files that are already on the CDN.
  */
 
@@ -116,7 +116,7 @@ export async function fetchComponentMarkdown(
  * Words that carry no signal in a component query.
  *
  * Without this, "a card that flips over on hover" scores every component in
- * the catalogue, because "on" and "that" appear in every description — the
+ * the catalogue, because "on" and "that" appear in every description, so the
  * query returns the whole library ranked by prose length.
  */
 const STOPWORDS = new Set([
@@ -210,7 +210,7 @@ function tokenize(value: string): string[] {
 
 /**
  * Crude singular/plural fold, so "cards" finds "card" and "flips" finds "flip".
- * Not a stemmer — just enough that an agent's phrasing does not cost a match.
+ * Not a stemmer, just enough that an agent's phrasing does not cost a match.
  */
 function fold(token: string): string {
   if (token.length > 4 && token.endsWith("ies"))
@@ -243,7 +243,7 @@ function proseTokens(entry: CatalogueComponent): Set<string> {
  * Deliberately boring: an exact name match must always win, then title, then
  * the prose. Agents ask for things like "card that flips on hover" and "number
  * counting up animation", so every token is scored independently and a partial
- * match still counts — an all-or-nothing filter returns nothing for those.
+ * match still counts; an all-or-nothing filter returns nothing for those.
  *
  * Prose is matched per word rather than by substring. `haystack.includes(token)`
  * scored "thing" against every description containing "something", which put
@@ -284,7 +284,7 @@ export function searchComponents(
     : catalogue.components;
 
   const tokens = tokenize(query);
-  // An empty query is a browse, not a search — return the pool rather than
+  // An empty query is a browse, not a search, so return the pool rather than
   // scoring everything to zero and handing back an arbitrary slice.
   if (!tokens.length) return pool.slice(0, limit);
 

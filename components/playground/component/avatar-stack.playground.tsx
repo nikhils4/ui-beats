@@ -9,8 +9,8 @@ import type { PlaygroundHarnessProps } from "@/types/playground.type";
  * Playground harness for AvatarStack.
  *
  * Mirrors `components/usage/component/avatar-stack.usage.tsx` so the studio and
- * the docs page show the same demo. The roster is fixed — it is the thing being
- * laid out, not a setting — and everything else comes from the control panel.
+ * the docs page show the same demo. The roster is fixed: it is the thing being
+ * laid out, not a setting, and everything else comes from the control panel.
  */
 export default function AvatarStackPlayground({
   values,

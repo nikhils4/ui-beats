@@ -15,7 +15,7 @@ export function generateStaticParams() {
 /**
  * Per-post social card.
  *
- * Posts previously unfurled with their `image` frontmatter — 16:9 hero art
+ * Posts previously unfurled with their `image` frontmatter: 16:9 hero art
  * carrying a different brand (pastel field, `nikhils.ca` byline), letterboxed
  * into a 1.91:1 slot. That art is still the in-page hero; only the social
  * preview is overridden here, so a shared post now reads as UI Beats.

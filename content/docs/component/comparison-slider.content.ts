@@ -8,7 +8,7 @@ const ComparisonSliderContent: ComponentConfig = {
     "The ComparisonSlider component stacks two layers and reveals one against the other with a divider the reader drags, clipping the top layer rather than resizing it so neither side reflows as the divider moves.",
   addedAt: "2026-08-15",
   whenToUse:
-    "For a pair that only makes sense side by side and at the same size: a retouch, a redesign, a light and dark treatment of one screen. Two images that differ in more than one respect are better shown as two images — the divider invites a close comparison of a single change, and finds nothing when there are several.",
+    "For a pair that only makes sense side by side and at the same size: a retouch, a redesign, a light and dark treatment of one screen. Two images that differ in more than one respect are better shown as two images: the divider invites a close comparison of a single change, and finds nothing when there are several.",
   props: [
     {
       prop: "before",

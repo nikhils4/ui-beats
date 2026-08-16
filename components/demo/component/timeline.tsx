@@ -13,7 +13,7 @@ import { cn } from "@/lib/utils";
 interface TimelineItem {
   id: string;
   title: string;
-  /** Small line above the title — a date, a version, a stage. */
+  /** Small line above the title: a date, a version, a stage. */
   meta?: string;
   body: string;
 }
@@ -74,7 +74,7 @@ export function Timeline({
   });
 
   /*
-   * The fill survives reduced motion — it moves only because the reader is
+   * The fill survives reduced motion: it moves only because the reader is
    * scrolling, and pinning it at zero would leave a rail that is permanently
    * wrong. The spring does not: it keeps travelling after the scroll stops.
    */

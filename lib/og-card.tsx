@@ -38,7 +38,7 @@ interface OgCardProps {
   eyebrow?: string;
   title: string;
   body?: string;
-  /** Bottom-left slot — an install command, a byline, whatever the route has. */
+  /** Bottom-left slot: an install command, a byline, whatever the route has. */
   footerLeft?: ReactNode;
   /** Bottom-right slot, set in the faint furniture colour. */
   footerRight?: string;

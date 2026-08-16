@@ -44,7 +44,7 @@ const ExpandableCardContent: ComponentConfig = {
       prop: "ExpandableCardItem: meta",
       type: "string",
       defaultValue: "-",
-      description: "Small line above the title — a date, a category, a status",
+      description: "Small line above the title: a date, a category, a status",
     },
     {
       prop: "ExpandableCardItem: summary",

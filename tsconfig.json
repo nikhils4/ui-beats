@@ -34,7 +34,7 @@
     ".next/dev/types/**/*.ts"
   ],
   // `packages/*` are standalone publishable packages with their own tsconfig
-  // and their own module resolution — compiling them under the site's
+  // and their own module resolution; compiling them under the site's
   // bundler-mode config would fail on their Node16-style `.js` import specifiers.
   "exclude": ["node_modules", ".next", "public/r", "packages"]
 }

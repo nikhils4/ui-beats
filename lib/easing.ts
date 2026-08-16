@@ -3,7 +3,7 @@
  *
  * Everything here is pure so the editor can be unit tested without a DOM, and
  * so the same functions draw the curve, drive the preview and print the
- * snippet — the three cannot disagree about what the curve actually is.
+ * snippet, so the three cannot disagree about what the curve actually is.
  */
 
 export type EasingMode = "tween" | "spring";
@@ -157,7 +157,7 @@ export function sampleSpring(
     raw.push({ x: elapsed, y: position });
 
     // Settled once it has been within half a percent of rest, and barely
-    // moving, for a continuous 100ms — a single frame inside the threshold
+    // moving, for a continuous 100ms: a single frame inside the threshold
     // happens mid-overshoot on the way past.
     const atRest = Math.abs(1 - position) < 0.005 && Math.abs(velocity) < 0.05;
     settledFor = atRest ? settledFor + step : 0;

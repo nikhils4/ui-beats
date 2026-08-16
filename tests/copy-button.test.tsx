@@ -57,7 +57,7 @@ describe("CopyButton", () => {
 
     /*
      * The old snippet button used react-use's `useCopyToClipboard`, whose state
-     * never reset — once copied it showed a tick forever. This pins the reset.
+     * never reset: once copied it showed a tick forever. This pins the reset.
      */
     await vi.advanceTimersByTimeAsync(2100);
     await waitFor(() =>

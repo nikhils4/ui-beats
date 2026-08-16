@@ -46,7 +46,7 @@ You will be credited in the advisory unless you would rather not be.
 **Out of scope**
 
 - Vulnerabilities in third-party dependencies without a working exploit against
-  this project — report those upstream
+  this project; report those upstream
 - Missing hardening headers with no demonstrated impact
 - Denial of service through volumetric traffic
 - Findings from automated scanners with no proof of exploitability
@@ -57,7 +57,7 @@ You will be credited in the advisory unless you would rather not be.
 Components are distributed as source and run entirely on the client. When you
 add one:
 
-- **Review what you install.** Read the file — that is the point of source
+- **Review what you install.** Read the file; that is the point of source
   distribution.
 - **Treat props as untrusted** if they carry user-supplied data. No component
   here writes to `innerHTML`, and none should. If you add HTML rendering to a

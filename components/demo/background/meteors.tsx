@@ -36,7 +36,7 @@ function pseudoRandom(seed: number): number {
  *
  * Each streak rides a rail the full height of the frame and travels in
  * percentages of that rail, so the field fills its container without measuring
- * it — no `ResizeObserver`, and nothing to retune when the container changes
+ * it: no `ResizeObserver`, and nothing to retune when the container changes
  * size. Direction is one `rotate` on the field as a whole rather than a
  * transform per streak, which is also why the field is oversized by a quarter
  * in every direction: rotation would otherwise swing empty corners into view.
@@ -62,7 +62,7 @@ export function Meteors({
           /*
            * Negative, so each streak begins part-way through its own fall
            * rather than at the top. A positive delay would leave the sky empty
-           * for the first few seconds and fill it in — which is the one moment
+           * for the first few seconds and fill it in, which is the one moment
            * a visitor is most likely to be looking at it.
            */
           delay: -pseudoRandom(index + 101) * travel,

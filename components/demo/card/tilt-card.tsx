@@ -47,7 +47,7 @@ export function TiltCard({
    * Visibility of the highlight, separate from its position.
    *
    * Without this the gradient was painted the whole time, parked at the
-   * card's centre — so the card sat there with a permanent bright blob on it
+   * card's centre, so the card sat there with a permanent bright blob on it
    * whether or not a pointer was anywhere near. A highlight is a response to
    * the pointer, so it starts at zero and fades in on enter.
    */

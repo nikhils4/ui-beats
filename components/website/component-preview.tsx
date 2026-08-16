@@ -100,6 +100,18 @@ const previews: Record<string, PreviewComponent> = {
     () => import("@/components/usage/background/meteors.usage"),
     { loading },
   ),
+  "background/aurora": dynamic(
+    () => import("@/components/usage/background/aurora.usage"),
+    { loading },
+  ),
+  "background/dot-pattern": dynamic(
+    () => import("@/components/usage/background/dot-pattern.usage"),
+    { loading },
+  ),
+  "background/particles": dynamic(
+    () => import("@/components/usage/background/particles.usage"),
+    { loading },
+  ),
   "button/ripple-button": dynamic(
     () => import("@/components/usage/button/ripple-button.usage"),
     { loading },
@@ -120,6 +132,14 @@ const previews: Record<string, PreviewComponent> = {
     () => import("@/components/usage/button/loading-button.usage"),
     { loading },
   ),
+  "button/rainbow-button": dynamic(
+    () => import("@/components/usage/button/rainbow-button.usage"),
+    { loading },
+  ),
+  "button/confetti-button": dynamic(
+    () => import("@/components/usage/button/confetti-button.usage"),
+    { loading },
+  ),
   "card/card-stack": dynamic(
     () => import("@/components/usage/card/card-stack.usage"),
     { loading },
@@ -138,6 +158,10 @@ const previews: Record<string, PreviewComponent> = {
   ),
   "card/tilt-card": dynamic(
     () => import("@/components/usage/card/tilt-card.usage"),
+    { loading },
+  ),
+  "card/expandable-card": dynamic(
+    () => import("@/components/usage/card/expandable-card.usage"),
     { loading },
   ),
   "component/shimmer-effect": dynamic(
@@ -176,6 +200,22 @@ const previews: Record<string, PreviewComponent> = {
     () => import("@/components/usage/component/scroll-progress.usage"),
     { loading },
   ),
+  "component/timeline": dynamic(
+    () => import("@/components/usage/component/timeline.usage"),
+    { loading },
+  ),
+  "component/terminal": dynamic(
+    () => import("@/components/usage/component/terminal.usage"),
+    { loading },
+  ),
+  "component/comparison-slider": dynamic(
+    () => import("@/components/usage/component/comparison-slider.usage"),
+    { loading },
+  ),
+  "component/progress-ring": dynamic(
+    () => import("@/components/usage/component/progress-ring.usage"),
+    { loading },
+  ),
   "text/gravity-text-swap": dynamic(
     () => import("@/components/usage/text/gravity-text-swap.usage"),
     { loading },
@@ -202,6 +242,14 @@ const previews: Record<string, PreviewComponent> = {
   ),
   "text/text-writer": dynamic(
     () => import("@/components/usage/text/text-writer.usage"),
+    { loading },
+  ),
+  "text/gradient-text": dynamic(
+    () => import("@/components/usage/text/gradient-text.usage"),
+    { loading },
+  ),
+  "text/flip-words": dynamic(
+    () => import("@/components/usage/text/flip-words.usage"),
     { loading },
   ),
 };

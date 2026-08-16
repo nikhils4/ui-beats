@@ -20,11 +20,15 @@ import { RetroGrid } from "@/components/demo/background/retro-grid";
 import { SparklingGrid } from "@/components/demo/background/sparkling-grid";
 import { LoadingButton } from "@/components/demo/button/loading-button";
 import { MagneticButton } from "@/components/demo/button/magnetic-button";
+import { RainbowButton } from "@/components/demo/button/rainbow-button";
 import { RippleButton } from "@/components/demo/button/ripple-button";
 import { ShimmerButton } from "@/components/demo/button/shimmer-button";
 import { SubscribeButton } from "@/components/demo/button/subscribe-button";
 import { AvatarStack } from "@/components/demo/component/avatar-stack";
 import { CardStack } from "@/components/demo/card/card-stack";
+import { ComparisonSlider } from "@/components/demo/component/comparison-slider";
+import { ExpandableCard } from "@/components/demo/card/expandable-card";
+import { Terminal } from "@/components/demo/component/terminal";
 import FlipCard from "@/components/demo/card/flip-card";
 import GlowingCard from "@/components/demo/card/glowing-card";
 import { TiltCard } from "@/components/demo/card/tilt-card";
@@ -32,6 +36,8 @@ import { BorderBeam } from "@/components/demo/component/border-beam";
 import { Dock, DockItem } from "@/components/demo/component/dock";
 import { LiquidTabs } from "@/components/demo/component/liquid-tabs";
 import { ScratchToReveal } from "@/components/demo/component/scratch-to-reveal";
+import { ProgressRing } from "@/components/demo/component/progress-ring";
+import { GradientText } from "@/components/demo/text/gradient-text";
 import GravityTextSwap from "@/components/demo/text/gravity-text-swap";
 import { NumberTicker } from "@/components/demo/text/number-ticker";
 import { SplitFlap } from "@/components/demo/text/split-flap";
@@ -249,6 +255,83 @@ const TEAM = [
 const wait = (ms: number) =>
   new Promise<void>((resolve) => setTimeout(resolve, ms));
 
+/* -- the newest four --------------------------------------------------- */
+
+const SESSION = [
+  { kind: "command" as const, text: "npx shadcn add terminal" },
+  { kind: "output" as const, text: "Fetching registry..." },
+  { kind: "output" as const, text: "Installing motion" },
+  { kind: "output" as const, text: "Writing ui/terminal.tsx" },
+  { kind: "success" as const, text: "Done. Yours to edit." },
+];
+
+const CHANGELOG = [
+  {
+    id: "terminal",
+    meta: "New",
+    title: "Terminal",
+    summary: "Replays an install, one line at a time",
+    detail:
+      "Only the commands type. The pause sits in front of each output line, where the work would have happened.",
+  },
+  {
+    id: "compare",
+    meta: "New",
+    title: "Comparison Slider",
+    summary: "Drag one layer across another",
+    detail:
+      "The top layer is clipped rather than resized, so neither side reflows as the divider travels over it.",
+  },
+  {
+    id: "rainbow",
+    meta: "New",
+    title: "Rainbow Button",
+    summary: "Colour that travels around the edge",
+    detail:
+      "The palette is your own chart tokens, so it arrives wearing your colours instead of five that belong to us.",
+  },
+];
+
+/**
+ * The two sides of the comparison tile.
+ *
+ * They differ in colour, not in copy, with their labels in opposite corners:
+ * the same sentence in the same place on both would simply be cut in half by
+ * the divider.
+ */
+function CompareBefore() {
+  return (
+    <div className="flex size-full flex-col justify-between bg-muted p-4">
+      <span className="self-start rounded-full border bg-background/90 px-2 py-0.5 text-[10px] font-semibold tracking-wide uppercase">
+        Before
+      </span>
+      <div className="space-y-2 pb-6">
+        {/* Both bars run past the halfway mark so the divider always cuts
+            each of them, wherever the reader parks it. */}
+        <div className="h-2 w-4/5 rounded-full bg-foreground/25" />
+        <div className="h-2 w-3/5 rounded-full bg-foreground/15" />
+      </div>
+    </div>
+  );
+}
+
+function CompareAfter() {
+  return (
+    <div className="flex size-full flex-col justify-between bg-gradient-to-br from-brand/35 via-brand/10 to-transparent p-4">
+      <span className="self-end rounded-full border bg-background/90 px-2 py-0.5 text-[10px] font-semibold tracking-wide uppercase">
+        After
+      </span>
+      <div className="space-y-2 pb-6">
+        {/* Same widths as the Before panel: a mismatch would show as two
+            different bars either side of the divider rather than one bar
+            changing colour across it. */}
+        <div className="h-2 w-4/5 rounded-full bg-brand/80" />
+        <div className="h-2 w-3/5 rounded-full bg-brand/50" />
+      </div>
+    </div>
+  );
+}
+
 export function ComponentShowcase({ total }: { total: number }) {
   return (
     <section className="relative border-t border-border/60">
@@ -276,7 +359,16 @@ export function ComponentShowcase({ total }: { total: number }) {
         </div>
 
         {/* `grid-flow-dense` backfills the gaps that row-spanning tiles leave
-            behind at the narrower breakpoints. */}
+            behind at the narrower breakpoints.
+
+            What it cannot backfill is the end. Dense flow fills holes *before*
+            the last item, so a two-row tile near the bottom leaves its second
+            row half empty and the section trails off into background instead
+            of ending on a line. The totals have to come out even by hand: at
+            six columns every row needs three two-column tiles, so the spans
+            must sum to a multiple of six with the row-spanning tiles paired
+            off. Adding a tile means checking both that and the four-column
+            case, where the same tiles pack differently. */}
         <div className="mt-12 grid grid-flow-dense auto-rows-[11rem] grid-cols-1 gap-3 sm:grid-cols-4 lg:grid-cols-6">
           <Tile
             href="/docs/background/retro-grid"
@@ -323,6 +415,64 @@ export function ComponentShowcase({ total }: { total: number }) {
                 </p>
               </div>
             </BorderBeam>
+          </Tile>
+
+          {/*
+            The newest four, placed here rather than appended to the end.
+            A showcase that files what just shipped below twenty older tiles is
+            an archive, not a shop window — and these are the four that earn a
+            slot on their own merits rather than on being recent. Terminal and
+            Comparison Slider do something no other tile does; Expandable Card
+            is the only interaction here that rearranges the layout; Rainbow
+            Button is simply the best-looking button in the library.
+          */}
+          {/* Two rows rather than one wide row: a terminal centred in a tile
+              four columns across is a small box in a large empty field, and
+              the height is what makes it read as a window. */}
+          <Tile
+            href="/docs/component/terminal"
+            label="Terminal"
+            className="sm:col-span-2 sm:row-span-2 lg:col-span-2"
+          >
+            <Terminal
+              lines={SESSION}
+              typingSpeed={0.045}
+              lineDelay={0.4}
+              loopDelay={2.5}
+              title="~/my-app"
+            />
+          </Tile>
+
+          <Tile
+            href="/docs/component/comparison-slider"
+            label="Comparison Slider"
+            interactive
+            bleed
+            className="sm:col-span-2 sm:row-span-2 lg:col-span-2"
+          >
+            <ComparisonSlider
+              before={<CompareBefore />}
+              after={<CompareAfter />}
+              className="size-full"
+            />
+          </Tile>
+
+          <Tile
+            href="/docs/card/expandable-card"
+            label="Expandable Card"
+            interactive
+            className="sm:col-span-2 sm:row-span-2 lg:col-span-2"
+          >
+            <ExpandableCard items={CHANGELOG} duration={0.3} />
+          </Tile>
+
+          <Tile
+            href="/docs/button/rainbow-button"
+            label="Rainbow Button"
+            interactive
+            className="sm:col-span-2 lg:col-span-2"
+          >
+            <RainbowButton speed={3.5}>Get started</RainbowButton>
           </Tile>
 
           <Tile
@@ -665,6 +815,37 @@ export function ComponentShowcase({ total }: { total: number }) {
             className="sm:col-span-2 lg:col-span-2"
           >
             <SubscribeButton text="Subscribe" />
+          </Tile>
+
+          {/*
+            These two close the grid, and that is most of why they are here.
+            Glowing Card is two rows tall and lands in the last row of the six
+            column layout, which left four cells of empty background below the
+            tiles beside it — the section stopped rather than ended. Two
+            single-row tiles fill exactly that gap, and at four columns they
+            add one complete row, so neither breakpoint is left ragged.
+
+            Anything added here has to stay one row tall and two columns wide
+            for that to hold: see the packing note in the grid comment above.
+          */}
+          <Tile
+            href="/docs/text/gradient-text"
+            label="Gradient Text"
+            className="sm:col-span-2 lg:col-span-2"
+          >
+            <GradientText
+              text="Supercharge"
+              duration={5}
+              className="text-3xl font-bold tracking-tighter"
+            />
+          </Tile>
+
+          <Tile
+            href="/docs/component/progress-ring"
+            label="Progress Ring"
+            className="sm:col-span-2 lg:col-span-2"
+          >
+            <ProgressRing value={86} size={92} strokeWidth={8} duration={1.6} />
           </Tile>
         </div>
       </div>

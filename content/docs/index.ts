@@ -17,16 +17,22 @@ import GradientFlow from "./background/gradient-flow.content";
 import Meteors from "./background/meteors.content";
 import RetroGrid from "./background/retro-grid.content";
 import SparklingGrid from "./background/sparkling-grid.content";
+import Aurora from "./background/aurora.content";
+import DotPattern from "./background/dot-pattern.content";
+import Particles from "./background/particles.content";
 import LoadingButton from "./button/loading-button.content";
 import MagneticButton from "./button/magnetic-button.content";
 import RippleButton from "./button/ripple-button.content";
 import ShimmerButton from "./button/shimmer-button.content";
 import SubscribeButton from "./button/subscribe-button.content";
+import RainbowButton from "./button/rainbow-button.content";
+import ConfettiButton from "./button/confetti-button.content";
 import CardStack from "./card/card-stack.content";
 import FlipCard from "./card/flip-card.content";
 import GlowingCard from "./card/glowing-card.content";
 import MorphingCard from "./card/morphing-card.content";
 import TiltCard from "./card/tilt-card.content";
+import ExpandableCard from "./card/expandable-card.content";
 import AvatarStack from "./component/avatar-stack.content";
 import BentoGrid from "./component/bento-grid.content";
 import BorderBeam from "./component/border-beam.content";
@@ -36,6 +42,10 @@ import Marquee from "./component/marquee.content";
 import ScratchToReveal from "./component/scratch-to-reveal.content";
 import ScrollProgress from "./component/scroll-progress.content";
 import ShimmerEffect from "./component/shimmer-effect.content";
+import Timeline from "./component/timeline.content";
+import Terminal from "./component/terminal.content";
+import ComparisonSlider from "./component/comparison-slider.content";
+import ProgressRing from "./component/progress-ring.content";
 import NumberTicker from "./text/number-ticker.content";
 import ScrollReveal from "./text/scroll-reveal.content";
 import GravityTextSwap from "./text/gravity-text-swap.content";
@@ -43,6 +53,8 @@ import SplitFlap from "./text/split-flap.content";
 import TextScramble from "./text/text-scramble.content";
 import TextShine from "./text/text-shine.content";
 import TextWriter from "./text/text-writer.content";
+import GradientText from "./text/gradient-text.content";
+import FlipWords from "./text/flip-words.content";
 
 /**
  * Every documented component, in one flat list.
@@ -70,16 +82,22 @@ export const componentConfigs: ComponentConfig[] = [
   Meteors,
   RetroGrid,
   SparklingGrid,
+  Aurora,
+  DotPattern,
+  Particles,
   LoadingButton,
   MagneticButton,
   RippleButton,
   ShimmerButton,
   SubscribeButton,
+  RainbowButton,
+  ConfettiButton,
   CardStack,
   FlipCard,
   GlowingCard,
   MorphingCard,
   TiltCard,
+  ExpandableCard,
   AvatarStack,
   BentoGrid,
   BorderBeam,
@@ -89,6 +107,10 @@ export const componentConfigs: ComponentConfig[] = [
   ScratchToReveal,
   ScrollProgress,
   ShimmerEffect,
+  Timeline,
+  Terminal,
+  ComparisonSlider,
+  ProgressRing,
   NumberTicker,
   ScrollReveal,
   GravityTextSwap,
@@ -96,6 +118,8 @@ export const componentConfigs: ComponentConfig[] = [
   TextScramble,
   TextShine,
   TextWriter,
+  GradientText,
+  FlipWords,
 ];
 
 export default componentConfigs;

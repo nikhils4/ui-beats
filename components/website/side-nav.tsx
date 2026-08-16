@@ -203,7 +203,7 @@ export const SideNav = ({ ...props }: React.ComponentProps<typeof Sidebar>) => {
                         sit directly above the component links and used to
                         share their weight and size, so the eye could not tell
                         a heading from a destination and the whole list read as
-                        one flat run of forty-odd rows.
+                        one flat run of fifty-odd rows.
                       */}
                       <SidebarMenuButton
                         tooltip={title}

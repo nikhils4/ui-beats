@@ -22,9 +22,13 @@ export async function generateRssFeed(): Promise<Feed> {
     feedLinks: {
       rss2: absoluteUrl("/api/rss.xml"),
     },
+    /*
+     * Name and link, no email. RSS 2.0 defines `<author>` as an address slot;
+     * with no email the `feed` library writes the name on its own, which every
+     * reader displays and no aggregator can scrape an address out of.
+     */
     author: {
       name: siteConfig.author.name,
-      email: siteConfig.author.email,
       link: siteConfig.author.url,
     },
   };
@@ -44,7 +48,6 @@ export async function generateRssFeed(): Promise<Feed> {
       author: [
         {
           name: post.author,
-          email: siteConfig.author.email,
           link: siteConfig.author.url,
         },
       ],

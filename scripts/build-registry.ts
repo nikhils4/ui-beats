@@ -94,11 +94,20 @@ function registryUrlFor(name: string): string {
  * author's own were shipping with no `author` at all — the field simply
  * vanished on those entries, which reads as missing data to anything consuming
  * the catalogue rather than as different provenance.
+ *
+ * A `kind: "tool"` credit is not authorship. The docs page has always drawn
+ * that line — it types a tool credit as `SoftwareApplication` rather than
+ * `Person` in its JSON-LD — but this function did not carry `kind` in its
+ * signature at all, so it could not see the difference and promoted the tool
+ * into `author`. That put "Claude Code" on 39 of 55 entries in the one file
+ * every directory, scraper and MCP client reads, against 5 for the maintainer.
+ * The credit itself is untouched and still renders on the component page; it
+ * simply stops standing in for the person answerable for the code.
  */
 function authorFor(config: {
-  credits?: { name: string; url: string };
+  credits?: { name: string; url: string; kind?: string };
 }): string {
-  return config.credits
+  return config.credits && config.credits.kind !== "tool"
     ? `${config.credits.name} (${config.credits.url})`
     : `${siteConfig.author.name} (${siteConfig.author.url})`;
 }

@@ -253,3 +253,105 @@ export function LogoItems() {
     </>
   );
 }
+
+/* -- text/flip-words --------------------------------------------------- */
+
+export const AUDIENCES = ["designers", "engineers", "founders", "small teams"];
+
+/* -- card/expandable-card ---------------------------------------------- */
+
+export const RELEASES = [
+  {
+    id: "registry",
+    meta: "Distribution",
+    title: "Install with one command",
+    summary: "The CLI writes the source into your repo",
+    detail:
+      "Every component is published as a registry item, so the shadcn CLI drops the real source into your project along with the packages it needs. Nothing to pin, nothing to wrap.",
+  },
+  {
+    id: "motion",
+    meta: "Animation",
+    title: "Motion is part of the component",
+    summary: "Not a wrapper bolted on afterwards",
+    detail:
+      "The animation lives in the same file as the markup, which is why you can change it. A library that hides motion behind a prop can only ever give you the transitions it thought of first.",
+  },
+  {
+    id: "themes",
+    meta: "Theming",
+    title: "Colours come from your tokens",
+    summary: "Both themes, and the ones you define",
+    detail:
+      "Components read the design tokens your project already defines, so an install picks up your palette instead of ours. Anything outside that set ships with the component as a variable.",
+  },
+];
+
+/* -- component/timeline ------------------------------------------------ */
+
+export const MILESTONES = [
+  {
+    id: "scaffold",
+    meta: "Step one",
+    title: "Scaffold the component",
+    body: "One command writes the four files and edits the three registries that have to know about it.",
+  },
+  {
+    id: "build",
+    meta: "Step two",
+    title: "Write the animation",
+    body: "Motion lives in the same file as the markup, so there is one place to change how it feels.",
+  },
+  {
+    id: "document",
+    meta: "Step three",
+    title: "Fill in the props table",
+    body: "The table is the source of truth: the playground controls are derived from it, not written twice.",
+  },
+  {
+    id: "ship",
+    meta: "Step four",
+    title: "Open the pull request",
+    body: "The suite checks the reduced-motion guard, the title budget and a pixel baseline before it merges.",
+  },
+];
+
+/* -- component/terminal ------------------------------------------------ */
+
+export const TERMINAL_SESSION = [
+  { kind: "command" as const, text: "npx shadcn@latest add terminal.json" },
+  { kind: "output" as const, text: "Checking registry..." },
+  { kind: "output" as const, text: "Installing dependencies: motion" },
+  { kind: "output" as const, text: "Writing components/ui/terminal.tsx" },
+  { kind: "success" as const, text: "Done. One file, yours to edit." },
+];
+
+/* -- component/comparison-slider --------------------------------------- */
+
+export function ComparisonBefore() {
+  return (
+    <div className="flex size-full flex-col justify-between bg-muted p-4">
+      <span className="self-start rounded-full border bg-background/90 px-2 py-0.5 text-[10px] font-semibold tracking-wide uppercase">
+        Before
+      </span>
+      <div className="space-y-2">
+        <div className="h-2.5 w-2/3 rounded-full bg-foreground/25" />
+        <div className="h-2.5 w-1/2 rounded-full bg-foreground/15" />
+      </div>
+    </div>
+  );
+}
+
+export function ComparisonAfter() {
+  return (
+    <div className="flex size-full flex-col justify-between bg-gradient-to-br from-primary/35 via-primary/10 to-transparent p-4">
+      <span className="self-end rounded-full border bg-background/90 px-2 py-0.5 text-[10px] font-semibold tracking-wide uppercase">
+        After
+      </span>
+      <div className="space-y-2">
+        <div className="h-2.5 w-2/3 rounded-full bg-primary/70" />
+        <div className="h-2.5 w-1/2 rounded-full bg-primary/40" />
+      </div>
+    </div>
+  );
+}

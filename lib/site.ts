@@ -27,7 +27,6 @@ export const siteConfig = {
   author: {
     name: "Nikhil Singh",
     url: "https://nikhils4.vercel.app",
-    email: "hello@nikhils.ca",
   },
   links: {
     github: "https://github.com/nikhils4/ui-beats",

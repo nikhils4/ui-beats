@@ -13,10 +13,9 @@ latest `main`.
 
 **Please do not open a public issue for security problems.**
 
-Report privately through either:
-
-- [GitHub Security Advisories](https://github.com/nikhils4/ui-beats/security/advisories/new) — preferred
-- Email: **hello@nikhils.ca**
+Report it privately through
+[GitHub Security Advisories](https://github.com/nikhils4/ui-beats/security/advisories/new).
+The report stays between you and the maintainers until a fix ships.
 
 Please include:
 

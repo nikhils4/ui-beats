@@ -4,7 +4,7 @@
   "private": true,
   "description": "Beautifully designed, animated React components you can copy, paste, or install with the shadcn CLI.",
   "license": "MIT",
-  "author": "Nikhil Singh <hello@nikhils.ca> (https://nikhils4.vercel.app)",
+  "author": "Nikhil Singh (https://nikhils4.vercel.app)",
   "homepage": "https://uibeats.com",
   "repository": {
     "type": "git",

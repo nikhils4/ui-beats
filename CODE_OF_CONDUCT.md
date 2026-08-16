@@ -48,8 +48,10 @@ an individual is officially representing the project in public spaces.
 ## Enforcement
 
 Instances of abusive, harassing, or otherwise unacceptable behaviour may be
-reported to the maintainers at **hello@nikhils.ca**. All complaints will be
-reviewed and investigated promptly and fairly.
+reported privately to the maintainers through
+[GitHub's private report form](https://github.com/nikhils4/ui-beats/security/advisories/new).
+It is the project's private channel; conduct reports sent there are handled the
+same way. All complaints will be reviewed and investigated promptly and fairly.
 
 Maintainers are obligated to respect the privacy and security of the reporter
 of any incident.

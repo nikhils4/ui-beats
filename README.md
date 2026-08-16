@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="public/uibeats-logo.png" alt="UI Beats" width="72" height="72" />
+<img src="https://uibeats.com/brand-mark.png" alt="UI Beats" width="72" height="72" />
 
 # UI Beats
 
@@ -57,7 +57,7 @@ For agents that only fetch URLs, the same content is served as plain text:
 
 ## Tune before you copy
 
-Every component has a **playground** at `/playground/<category>/<name>`: the props table becomes a live control panel, the preview updates as you drag, and the snippet carries only what you actually changed. All 40 of them.
+Every component has a **playground** at `/playground/<category>/<name>`: the props table becomes a live control panel, the preview updates as you drag, and the snippet carries only what you actually changed. All 52 of them.
 
 The controls are derived from the same `props` array that renders the documentation table, so a control can never describe a prop the docs do not.
 
@@ -65,16 +65,16 @@ Alongside it, **[Motion Studio](https://uibeats.com/motion-studio)** — a cubic
 
 ## Components
 
-40 components across six categories:
+52 components across six categories:
 
-| Category       | Components                                                                                                            |
-| -------------- | --------------------------------------------------------------------------------------------------------------------- |
-| **Animation**  | Animated List, Bounce, Fade In, Fade In Unblur, Rotate In, Scale In, Smooth Reveal, Stagger List                      |
-| **Background** | Animated Beam, Gradient Flow, Meteors, Orbiting Elements, Retro Grid, Sparkling Grid                                  |
-| **Button**     | Loading Button, Magnetic Button, Ripple Button, Shimmer Button, Subscribe Button                                      |
-| **Card**       | Card Stack, Flip Card, Glowing Card, Morphing Card, Tilt Card                                                         |
-| **Component**  | Avatar Stack, Bento Grid, Border Beam, Dock, Liquid Tabs, Marquee, Scratch to Reveal, Scroll Progress, Shimmer Effect |
-| **Text**       | Gravity Text Swap, Number Ticker, Scroll Reveal, Split Flap, Text Scramble, Text Shine, Text Writer                   |
+| Category       | Components                                                                                                                                                                  |
+| -------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Animation**  | Animated List, Bounce, Fade In, Fade In Unblur, Rotate In, Scale In, Smooth Reveal, Stagger List                                                                            |
+| **Background** | Animated Beam, Aurora, Dot Pattern, Gradient Flow, Meteors, Orbiting Elements, Particles, Retro Grid, Sparkling Grid                                                        |
+| **Button**     | Confetti Button, Loading Button, Magnetic Button, Rainbow Button, Ripple Button, Shimmer Button, Subscribe Button                                                           |
+| **Card**       | Card Stack, Expandable Card, Flip Card, Glowing Card, Morphing Card, Tilt Card                                                                                              |
+| **Component**  | Avatar Stack, Bento Grid, Border Beam, Comparison Slider, Dock, Liquid Tabs, Marquee, Progress Ring, Scratch to Reveal, Scroll Progress, Shimmer Effect, Terminal, Timeline |
+| **Text**       | Flip Words, Gradient Text, Gravity Text Swap, Number Ticker, Scroll Reveal, Split Flap, Text Scramble, Text Shine, Text Writer                                              |
 
 ### Motion you can switch off
 

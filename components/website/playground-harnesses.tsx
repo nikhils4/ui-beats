@@ -66,6 +66,18 @@ export const playgroundHarnesses: Record<
     () => import("@/components/playground/background/retro-grid.playground"),
     { loading },
   ),
+  "background/aurora": dynamic(
+    () => import("@/components/playground/background/aurora.playground"),
+    { loading },
+  ),
+  "background/dot-pattern": dynamic(
+    () => import("@/components/playground/background/dot-pattern.playground"),
+    { loading },
+  ),
+  "background/particles": dynamic(
+    () => import("@/components/playground/background/particles.playground"),
+    { loading },
+  ),
   "background/sparkling-grid": dynamic(
     () =>
       import("@/components/playground/background/sparkling-grid.playground"),
@@ -81,6 +93,14 @@ export const playgroundHarnesses: Record<
   ),
   "button/subscribe-button": dynamic(
     () => import("@/components/playground/button/subscribe-button.playground"),
+    { loading },
+  ),
+  "button/rainbow-button": dynamic(
+    () => import("@/components/playground/button/rainbow-button.playground"),
+    { loading },
+  ),
+  "button/confetti-button": dynamic(
+    () => import("@/components/playground/button/confetti-button.playground"),
     { loading },
   ),
   "card/card-stack": dynamic(
@@ -101,6 +121,10 @@ export const playgroundHarnesses: Record<
   ),
   "card/tilt-card": dynamic(
     () => import("@/components/playground/card/tilt-card.playground"),
+    { loading },
+  ),
+  "card/expandable-card": dynamic(
+    () => import("@/components/playground/card/expandable-card.playground"),
     { loading },
   ),
   "component/border-beam": dynamic(
@@ -126,6 +150,23 @@ export const playgroundHarnesses: Record<
   ),
   "component/shimmer-effect": dynamic(
     () => import("@/components/playground/component/shimmer-effect.playground"),
+    { loading },
+  ),
+  "component/timeline": dynamic(
+    () => import("@/components/playground/component/timeline.playground"),
+    { loading },
+  ),
+  "component/terminal": dynamic(
+    () => import("@/components/playground/component/terminal.playground"),
+    { loading },
+  ),
+  "component/comparison-slider": dynamic(
+    () =>
+      import("@/components/playground/component/comparison-slider.playground"),
+    { loading },
+  ),
+  "component/progress-ring": dynamic(
+    () => import("@/components/playground/component/progress-ring.playground"),
     { loading },
   ),
   "text/gravity-text-swap": dynamic(
@@ -154,6 +195,14 @@ export const playgroundHarnesses: Record<
   ),
   "text/text-writer": dynamic(
     () => import("@/components/playground/text/text-writer.playground"),
+    { loading },
+  ),
+  "text/gradient-text": dynamic(
+    () => import("@/components/playground/text/gradient-text.playground"),
+    { loading },
+  ),
+  "text/flip-words": dynamic(
+    () => import("@/components/playground/text/flip-words.playground"),
     { loading },
   ),
 };

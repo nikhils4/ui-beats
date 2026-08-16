@@ -104,10 +104,11 @@ describe("registry integrity", () => {
     const flipCard = getComponent("card", "flip-card");
     expect(flipCard).toBeDefined();
     expect(flipCard?.dependencies).toContain("motion");
-    // flip-card imports `@/lib/utils`, which maps to the shadcn `utils` item
-    // rather than an npm package.
-    expect(flipCard?.registryDependencies).toContain("utils");
+    // flip-card imports `@/lib/utils`, which is neither an npm package nor a
+    // dependency worth declaring: `shadcn init` has already written it, and
+    // declaring it broke the v0 hand-off for every component using `cn`.
     expect(flipCard?.dependencies).not.toContain("@/lib/utils");
+    expect(flipCard?.registryDependencies).not.toContain("utils");
   });
 
   it("never lists react as an installable dependency", () => {

@@ -37,10 +37,16 @@ export function detectDependencies(...sources: string[]): SourceDependencies {
       const specifier = match[1];
       if (!specifier) continue;
 
-      if (specifier.startsWith("@/lib/utils")) {
-        registryDependencies.add("utils");
-        continue;
-      }
+      // `cn` needs no declared dependency. `shadcn init` writes `lib/utils.ts`
+      // before `add` can run at all, so the item is always already there, and
+      // neither shadcn's own components nor Magic UI's declare it: shadcn's
+      // `card.json` imports `cn` with an empty `registryDependencies`.
+      //
+      // Declaring it is not merely redundant. v0 resolves the dependency,
+      // then generates its preview page against the wrong module and emits
+      // `import Component from "@/lib/utils"`, which only exports `cn` — so
+      // "Open in v0" died on every component that happened to use `cn`.
+      if (specifier.startsWith("@/lib/utils")) continue;
 
       const beats = beatsComponentFrom(specifier);
       if (beats) {
